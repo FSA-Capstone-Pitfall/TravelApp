@@ -46,7 +46,7 @@ function ProductCTA() {
                 Get on the WaitList
               </Typography>
               <Typography variant='h5'>
-                Taste the holidays of the everyday close to home.
+                Sign up to be the apart of the travel movement.
               </Typography>
               <TextField
                 noBorder
@@ -79,8 +79,6 @@ function ProductCTA() {
               right: 0,
               bottom: 0,
               width: '100%',
-              background:
-                'url(/static/themes/onepirate/productCTAImageDots.png)',
             }}
           />
           <Box

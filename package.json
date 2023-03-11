@@ -10,9 +10,28 @@
     "start-server": "nodemon --watch server -e js,html server/index.js",
     "seed": "node seed.js"
   },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
   "author": "Chris E",
   "license": "ISC",
   "dependencies": {
+    "react-syntax-highlighter": "15.5.0",
+    "react-scripts": "5.0.1",
+    "react-flatpickr": "3.10.11",
+    "react-countup": "6.2.0",
+    "react-copy-to-clipboard": "5.1.0",
+    "chroma-js": "2.4.2",
+    "flatpickr": "4.6.13",
+    "prop-types": "15.8.1",
+    "@testing-library/jest-dom": "5.16.4",
+    "@testing-library/react": "13.2.0",
+    "@testing-library/user-event": "14.1.1",
+    "@mui/styled-engine": "5.6.1",
+    "@emotion/cache": "11.7.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@fontsource/roboto": "^4.5.8",
@@ -44,7 +63,12 @@
     "sequelize": "^6.28.0",
     "stripe": "^11.13.0",
     "styled-components": "^5.3.8",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^4.11.1",
+    "rellax": "1.12.1",
+    "swiper": "7.3.4",
+    "typed.js": "2.0.12",
+    "uuid": "8.3.2",
+    "web-vitals": "2.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
@@ -55,6 +79,15 @@
     "css-loader": "^6.7.3",
     "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "webpack-cli": "^5.0.1",
+    "eslint": "8.15.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-react": "7.29.4",
+    "eslint-plugin-react-hooks": "4.5.0",
+    "prettier": "2.6.2"
   }
 }

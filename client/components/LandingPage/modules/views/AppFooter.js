@@ -14,7 +14,7 @@ function Copyright() {
     <React.Fragment>
       {'© '}
       <Link color='inherit' href='http://localhost:8404/'>
-        Roam Free
+        Pathfinder
       </Link>{' '}
       {new Date().getFullYear()}
     </React.Fragment>

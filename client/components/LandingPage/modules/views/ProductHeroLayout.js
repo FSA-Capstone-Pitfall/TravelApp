@@ -4,7 +4,6 @@ import { styled } from '@mui/material/styles';
 
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import ArrowDownwardSharpIcon from '@mui/icons-material/ArrowDownwardSharp';
 
 const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
   color: theme.palette.common.white,
@@ -62,9 +61,7 @@ function ProductHeroLayout(props) {
           width='12'
           alt='arrow down'
           sx={{ position: 'absolute', bottom: 32 }}
-        >
-          <ArrowDownwardSharpIcon />
-        </Box>
+        ></Box>
       </Container>
     </ProductHeroLayoutRoot>
   );
