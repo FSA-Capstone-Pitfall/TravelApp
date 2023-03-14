@@ -15,4 +15,20 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+// GET: /api/destinations/:location
+router.get('/:location', async (req, res, next) => {
+  try {
+    let { location } = req.params;
+    location = location.toUpperCase();
+    const destinations = await Destination.findAll({
+      where: {
+        destinationTag: location,
+      },
+    });
+    res.json(destinations);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

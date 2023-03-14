@@ -2,8 +2,7 @@ import * as React from 'react';
 import Button from '../components/Button';
 import Typography from '../components/Typography';
 import ProductHeroLayout from './ProductHeroLayout';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const backgroundImages = [
   'https://images.unsplash.com/photo-1530789253388-582c481c54b0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
@@ -19,8 +18,6 @@ const rdmIdx = Math.floor(Math.random() * backgroundImages.length);
 const displayPic = backgroundImages[rdmIdx];
 
 export default function ProductHero() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
 
   return (
@@ -97,7 +94,7 @@ export default function ProductHero() {
             variant='contained'
             size='large'
             component='a'
-            href='/destinations'
+            href={`/destinations`}
             sx={{ minWidth: 200 }}
           >
             Destinations

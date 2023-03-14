@@ -31,6 +31,11 @@ function AppAppBar() {
 
   const user = useSelector((state) => state.auth.user);
 
+  let userId;
+  if (user) {
+    userId = user.id;
+  }
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -108,8 +113,8 @@ function AppAppBar() {
               <Tooltip title='Open settings'>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
-                    alt='Rupinder Singh'
-                    src='https://images.unsplash.com/photo-1634484640014-a6e3ae27542c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80'
+                    alt='travel_user'
+                    src='https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
                   />
                 </IconButton>
               </Tooltip>
@@ -172,15 +177,6 @@ function AppAppBar() {
                 }}
               >
                 {'Sign Up'}
-              </Link>
-              <Link
-                color='inherit'
-                variant='h6'
-                underline='none'
-                href='/destinations'
-                sx={rightLink}
-              >
-                {'Destinations'}
               </Link>
             </Box>
           )}

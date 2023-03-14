@@ -13,7 +13,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './modules/theme';
-import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -24,7 +23,7 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-      <Link color='inherit' href='https://mui.com/'>
+      <Link color='inherit' href='http://localhost:8404/'>
         Pathfinder
       </Link>{' '}
       {new Date().getFullYear()}
@@ -34,14 +33,12 @@ function Copyright(props) {
 }
 
 const handleSubmit = async (event) => {
-  const navigate = useNavigate();
   event.preventDefault();
   const data = new FormData(event.currentTarget);
   console.log({
     email: data.get('email'),
     password: data.get('password'),
   });
-  navigate('/');
 };
 
 export default function SignUp() {

@@ -15,21 +15,21 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from '../../components/LandingPage/modules/theme';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { fetchDestinations } from '../../store/slices/destinationsSlice';
+import { Link, useParams } from 'react-router-dom';
+import { fetchSingleDestination } from '../../store/slices/destinationsSlice';
 
 const placeImages = {
-  NYC: 'https://images.unsplash.com/photo-1543716091-a840c05249ec?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+  NYC: 'https://images.unsplash.com/photo-1547452912-6972ef22a5ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
   AUSTIN:
-    'https://images.unsplash.com/photo-1583512603879-b68fbc57a71b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80',
+    'https://images.unsplash.com/photo-1531218150217-54595bc2b934?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1528&q=80',
   YELLOWSTONE:
-    'https://images.unsplash.com/photo-1584722721847-e97a39c902e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+    'https://images.unsplash.com/photo-1529439322271-42931c09bce1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
   SANDIEGO:
     'https://images.unsplash.com/photo-1566353820592-c81f362cbd46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
   HONOLULU:
-    'https://images.unsplash.com/photo-1603243840535-411d0ff891e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+    'https://images.unsplash.com/photo-1542259009477-d625272157b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80',
 };
-const placeSum = {
+const summary = {
   NYC: 'NYC is a top destination, offering an array of experiences for visitors including world-renowned museums, Broadway shows, diverse cuisine, and iconic landmarks such as the Empire State Building and the Brooklyn Bridge. With so much to see and do, a trip to NYC promises to be an unforgettable vacation.',
   AUSTIN:
     "Austin, Texas is a vibrant and eclectic city with a unique blend of music, art, and outdoor activities. As a top destination for foodies and beer enthusiasts, visitors can enjoy a variety of culinary delights and local brews while exploring the city's lively music scene, stunning parks, and distinctive neighborhoods.",
@@ -41,13 +41,10 @@ const placeSum = {
     'Honolulu, the capital of Hawaii, is known for its beautiful beaches, crystal clear waters and lush vegetation. Visitors can experience Hawaiian culture, history and adventure with activities such as hiking, surfing, and exploring museums and gardens.',
 };
 
-export default function Destination() {
+export default function SingleDestination() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { location } = useParams();
   const destinations = useSelector((state) => state.destinations.destinations);
-  const uniqueTags = [
-    ...new Set(destinations.map((destination) => destination.destinationTag)),
-  ];
 
   const user = useSelector((state) => state.auth.user);
 
@@ -57,12 +54,10 @@ export default function Destination() {
   }
 
   useEffect(() => {
-    dispatch(fetchDestinations());
-  }, [dispatch]);
-
-  const handleLearnMore = async (location) => {
-    navigate(`/destinations/${location}`);
-  };
+    if (location) {
+      dispatch(fetchSingleDestination(location));
+    }
+  }, [dispatch, location]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -71,9 +66,11 @@ export default function Destination() {
         {/* Hero unit */}
         <Box
           sx={{
-            bgcolor: 'background.paper',
+            backgroundImage: `url(${placeImages[location]})`,
             pt: 8,
             pb: 6,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
           }}
         >
           <Container maxWidth='sm'>
@@ -84,19 +81,16 @@ export default function Destination() {
               color='text.primary'
               gutterBottom
             >
-              Destinations
+              {location}
             </Typography>
             <Typography
               variant='h5'
               align='center'
-              color='text.secondary'
+              color='text.primary'
+              fontWeight='bold'
               paragraph
             >
-              Step off the beaten path and immerse yourself in the culture.
-              Taste the flavors of the city, hear its stories, and explore its
-              hidden corners. You'll discover a new way of seeing the world, one
-              that is tailored to your interests and will leave you with
-              memories to last a lifetime.
+              {summary[location]}
             </Typography>
             <Stack
               sx={{ pt: 4 }}
@@ -107,7 +101,7 @@ export default function Destination() {
               <Button variant='contained' href={`/users/${userId}/calendar`}>
                 Schedule Your Consultation
               </Button>
-              <Button variant='outlined' href={`/users/${userId}/calendar`}>
+              <Button variant='contained' href={`/users/${userId}/calendar`}>
                 View Calendar
               </Button>
             </Stack>
@@ -116,8 +110,8 @@ export default function Destination() {
         <Container sx={{ py: 8 }} maxWidth='md'>
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {uniqueTags.map((location) => (
-              <Grid item key={location} xs={12} sm={6} md={4}>
+            {destinations.map((site) => (
+              <Grid item key={site.id} xs={12} sm={6} md={4}>
                 <Card
                   sx={{
                     height: '100%',
@@ -131,27 +125,21 @@ export default function Destination() {
                       // 16:9
                       pt: '5%',
                     }}
-                    image={placeImages[location]}
+                    image='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1421&q=80'
                     alt='random'
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant='h5' component='h2'>
-                      {location}
+                      {site.name}
                     </Typography>
-                    <Typography>{placeSum[location]}</Typography>
+                    <Typography>{site.category}</Typography>
                   </CardContent>
                   <CardActions>
-                    <Button
-                      size='small'
-                      sx={{ textTransform: 'none' }}
-                      onClick={() => {
-                        handleLearnMore(location);
-                      }}
-                    >
+                    <Button size='small' sx={{ textTransform: 'none' }}>
                       Learn More
                     </Button>
                     <Button size='small' sx={{ textTransform: 'none' }}>
-                      Generate Itenerary
+                      Add to Itenerary
                     </Button>
                   </CardActions>
                 </Card>

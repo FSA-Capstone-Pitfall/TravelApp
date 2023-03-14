@@ -62,8 +62,6 @@ export default function SignInSide() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
   const [notification, setNotification] = useState();
 
   const handleSubmit = async (event) => {
@@ -80,8 +78,6 @@ export default function SignInSide() {
         setNotification('Invalid username or password.');
       } else {
         await dispatch(getUserByToken());
-        setFirstName('');
-        setLastName('');
         setEmail('');
         setPassword('');
         navigate('/');

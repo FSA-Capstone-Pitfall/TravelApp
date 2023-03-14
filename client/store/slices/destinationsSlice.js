@@ -10,6 +10,18 @@ export const fetchDestinations = createAsyncThunk('/destinations', async () => {
   }
 });
 
+export const fetchSingleDestination = createAsyncThunk(
+  'fetchSingleDestination',
+  async (location) => {
+    try {
+      const { data } = await axios.get(`/api/destinations/${location}`);
+      return data;
+    } catch (err) {
+      throw err.message;
+    }
+  }
+);
+
 const initialState = {
   destinations: [],
   status: 'idle', // options: idle, loading, succeeded, failed
@@ -34,6 +46,9 @@ const destinations = createSlice({
       .addCase(fetchDestinations.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload.message;
+      })
+      .addCase(fetchSingleDestination.fulfilled, (state, action) => {
+        state.destinations = action.payload;
       });
   },
 });
