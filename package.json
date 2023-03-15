@@ -16,7 +16,7 @@
       "react-app/jest"
     ]
   },
-  "author": "Chris E",
+  "author": "Team Pitfall",
   "license": "ISC",
   "dependencies": {
     "@emotion/cache": "11.7.1",
