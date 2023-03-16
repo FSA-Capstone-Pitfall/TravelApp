@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -11,8 +11,6 @@ import Box from '@mui/material/Box';
 
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { ThemeProvider } from '@mui/material/styles';
-import theme from '../../components/LandingPage/modules/theme';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -65,101 +63,98 @@ export default function Destination() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <main>
-        {/* Hero unit */}
-        <Box
-          sx={{
-            bgcolor: 'background.paper',
-            pt: 8,
-            pb: 6,
-          }}
-        >
-          <Container maxWidth='sm'>
-            <Typography
-              component='h1'
-              variant='h2'
-              align='center'
-              color='text.primary'
-              gutterBottom
-            >
-              Destinations
-            </Typography>
-            <Typography
-              variant='h5'
-              align='center'
-              color='text.secondary'
-              paragraph
-            >
-              Step off the beaten path and immerse yourself in the culture.
-              Taste the flavors of the city, hear its stories, and explore its
-              hidden corners. You'll discover a new way of seeing the world, one
-              that is tailored to your interests and will leave you with
-              memories to last a lifetime.
-            </Typography>
-            <Stack
-              sx={{ pt: 4 }}
-              direction='row'
-              spacing={2}
-              justifyContent='center'
-            >
-              <Button variant='contained' href={`/users/${userId}/calendar`}>
-                Schedule Your Consultation
-              </Button>
-              <Button variant='outlined' href={`/users/${userId}/calendar`}>
-                View Calendar
-              </Button>
-            </Stack>
-          </Container>
-        </Box>
-        <Container sx={{ py: 8 }} maxWidth='md'>
-          {/* End hero unit */}
-          <Grid container spacing={4}>
-            {uniqueTags.map((location) => (
-              <Grid item key={location} xs={12} sm={6} md={4}>
-                <Card
-                  sx={{
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                  }}
-                >
-                  <CardMedia
-                    component='img'
-                    sx={{
-                      // 16:9
-                      pt: '5%',
-                    }}
-                    image={placeImages[location]}
-                    alt='random'
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant='h5' component='h2'>
-                      {location}
-                    </Typography>
-                    <Typography>{placeSum[location]}</Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button
-                      size='small'
-                      sx={{ textTransform: 'none' }}
-                      onClick={() => {
-                        handleLearnMore(location);
-                      }}
-                    >
-                      Learn More
-                    </Button>
-                    <Button size='small' sx={{ textTransform: 'none' }}>
-                      Generate Itenerary
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
+    <main>
+      {/* Hero unit */}
+      <Box
+        sx={{
+          bgcolor: 'background.paper',
+          pt: 8,
+          pb: 6,
+        }}
+      >
+        <Container maxWidth='sm'>
+          <Typography
+            component='h1'
+            variant='h2'
+            align='center'
+            color='text.primary'
+            gutterBottom
+          >
+            Destinations
+          </Typography>
+          <Typography
+            variant='h5'
+            align='center'
+            color='text.secondary'
+            paragraph
+          >
+            Step off the beaten path and immerse yourself in the culture. Taste
+            the flavors of the city, hear its stories, and explore its hidden
+            corners. You'll discover a new way of seeing the world, one that is
+            tailored to your interests and will leave you with memories to last
+            a lifetime.
+          </Typography>
+          <Stack
+            sx={{ pt: 4 }}
+            direction='row'
+            spacing={2}
+            justifyContent='center'
+          >
+            <Button variant='contained' href={`/users/${userId}/calendar`}>
+              Schedule Your Consultation
+            </Button>
+            <Button variant='outlined' href={`/users/${userId}/calendar`}>
+              View Calendar
+            </Button>
+          </Stack>
         </Container>
-      </main>
-    </ThemeProvider>
+      </Box>
+      <Container sx={{ py: 8 }} maxWidth='md'>
+        {/* End hero unit */}
+        <Grid container spacing={4}>
+          {uniqueTags.map((location) => (
+            <Grid item key={location} xs={12} sm={6} md={4}>
+              <Card
+                sx={{
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <CardMedia
+                  component='img'
+                  sx={{
+                    // 16:9
+                    pt: '5%',
+                  }}
+                  image={placeImages[location]}
+                  alt='random'
+                />
+                <CardContent sx={{ flexGrow: 1 }}>
+                  <Typography gutterBottom variant='h5' component='h2'>
+                    {location}
+                  </Typography>
+                  <Typography>{placeSum[location]}</Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    size='small'
+                    sx={{ textTransform: 'none' }}
+                    onClick={() => {
+                      handleLearnMore(location);
+                    }}
+                  >
+                    Learn More
+                  </Button>
+                  <Button size='small' sx={{ textTransform: 'none' }}>
+                    Generate Itenerary
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </main>
   );
 }
