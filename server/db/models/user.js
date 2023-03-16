@@ -17,13 +17,6 @@ const User = db.define('user', {
       notEmpty: true,
     },
   },
-  address: {
-    type: Sequelize.STRING,
-    allowNull: true,
-    validate: {
-      notEmpty: true,
-    },
-  },
   state: {
     type: Sequelize.STRING,
     allowNull: true,
@@ -31,7 +24,7 @@ const User = db.define('user', {
       notEmpty: true,
     },
   },
-  zipcode: {
+  city: {
     type: Sequelize.STRING,
     allowNull: true,
     validate: {
@@ -40,9 +33,9 @@ const User = db.define('user', {
   },
   role: {
     type: Sequelize.ENUM,
-    values: ['admin', 'customer', 'creator'],
+    values: ['admin', 'user'],
     allowNull: false,
-    defaultValue: 'customer',
+    defaultValue: 'user',
   },
   password: {
     type: Sequelize.STRING,

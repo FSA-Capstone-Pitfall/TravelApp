@@ -1,8 +1,19 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const Destination = db.define('destination', {
+const Activity = db.define('activity', {
   name: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  duration: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+  streetAddress: {
     type: Sequelize.TEXT,
     allowNull: false,
     validate: {
@@ -23,6 +34,14 @@ const Destination = db.define('destination', {
       notEmpty: true,
     },
   },
+  category: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    validate: {
+      notEmpty: true,
+    },
+    defaultValue: 'hiking',
+  },
   imageUrl: {
     type: Sequelize.TEXT,
     allowNull: true,
@@ -34,4 +53,4 @@ const Destination = db.define('destination', {
   },
 });
 
-module.exports = Destination;
+module.exports = Activity;
