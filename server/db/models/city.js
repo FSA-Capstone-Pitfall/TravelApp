@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const Destination = db.define('destination', {
+const City = db.define('city', {
   name: {
     type: Sequelize.TEXT,
     allowNull: false,
@@ -9,16 +9,16 @@ const Destination = db.define('destination', {
       notEmpty: true,
     },
   },
-  zipCode: {
+  tag: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
     },
   },
-  googleMap: {
+  state: {
     type: Sequelize.STRING,
-    allowNull: true,
+    allowNull: false,
     validate: {
       notEmpty: true,
     },
@@ -34,4 +34,4 @@ const Destination = db.define('destination', {
   },
 });
 
-module.exports = Destination;
+module.exports = City;

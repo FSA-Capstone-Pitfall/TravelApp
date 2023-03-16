@@ -1,24 +1,10 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const Destination = db.define('destination', {
+const Badge = db.define('badge', {
   name: {
     type: Sequelize.TEXT,
     allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
-  },
-  zipCode: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
-  },
-  googleMap: {
-    type: Sequelize.STRING,
-    allowNull: true,
     validate: {
       notEmpty: true,
     },
@@ -34,4 +20,4 @@ const Destination = db.define('destination', {
   },
 });
 
-module.exports = Destination;
+module.exports = Badge;
