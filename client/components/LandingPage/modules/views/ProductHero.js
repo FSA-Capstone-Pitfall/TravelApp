@@ -35,12 +35,7 @@ export default function ProductHero() {
             src={displayPic}
             alt='increase priority'
           />
-          <Typography
-            color='inherit'
-            align='center'
-            variant='h2'
-            marked='center'
-          >
+          <Typography color='inherit' align='center' variant='h2'>
             Your Personal Travel Concierge
           </Typography>
           <Typography
@@ -57,7 +52,7 @@ export default function ProductHero() {
             variant='contained'
             size='large'
             component='a'
-            href='/sign-up'
+            href='/signup'
             sx={{ minWidth: 200 }}
           >
             Register

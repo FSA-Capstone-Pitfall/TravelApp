@@ -1,20 +1,20 @@
 import { createTheme } from '@mui/material/styles';
-import { green, grey, red } from '@mui/material/colors';
+import { grey, red } from '@mui/material/colors';
 
 const rawTheme = createTheme({
   palette: {
     primary: {
-      light: '#69696a',
-      main: '#19413f',
-      dark: '#1e1e1f',
+      main: 'rgba(75,125,70,0.75)',
     },
     secondary: {
-      light: '#fff5f8',
-      main: '#19d8a5',
+      main: 'rgba(52,130,140,0.84)',
     },
     warning: {
       main: '#ffc071',
       dark: '#ffb25e',
+    },
+    background: {
+      default: '#fffdfd',
     },
     error: {
       light: red[50],
@@ -26,11 +26,10 @@ const rawTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "'Work Sans', sans-serif",
     fontSize: 14,
-    fontWeightLight: 300, // Work Sans
-    fontWeightRegular: 400, // Work Sans
-    fontWeightMedium: 700, // Roboto Condensed
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 700,
   },
 });
 

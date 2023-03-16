@@ -1,18 +1,18 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { authenticate, getUserByToken } from '../../store';
+import {
+  Avatar,
+  Button,
+  TextField,
+  Grid,
+  Typography,
+  Box,
+  Link,
+  Paper,
+} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { ThemeProvider } from '@mui/material/styles';
-import theme from './modules/theme';
 
 function Copyright(props) {
   return (
@@ -32,23 +32,86 @@ function Copyright(props) {
   );
 }
 
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  const data = new FormData(event.currentTarget);
-  console.log({
-    email: data.get('email'),
-    password: data.get('password'),
-  });
-};
+const travelImages = [
+  'https://images.unsplash.com/photo-1476900543704-4312b78632f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+  'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=772&q=80',
+  'https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+  'https://images.unsplash.com/photo-1504598318550-17eba1008a68?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=772&q=80',
+  'https://images.unsplash.com/photo-1541410965313-d53b3c16ef17?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+  'https://images.unsplash.com/photo-1549654747-1fe362f45d7b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+  'https://images.unsplash.com/photo-1560306843-33986aebaf12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+  'https://images.unsplash.com/photo-1517963140-f60c9eceb504?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=930&q=80',
+  'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=930&q=80',
+  'https://images.unsplash.com/photo-1549144511-f099e773c147?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+  'https://images.unsplash.com/photo-1516939884455-1445c8652f83?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+  'https://images.unsplash.com/photo-1501554728187-ce583db33af7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+  'https://images.unsplash.com/photo-1474755032398-4b0ed3b2ae5c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+  'https://images.unsplash.com/photo-1531141445733-14c2eb7d4c1f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=930&q=80',
+];
+
+const rdmIdx = Math.floor(Math.random() * travelImages.length);
+
+const displayPic = travelImages[rdmIdx];
 
 export default function SignUp() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [notification, setNotification] = useState();
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords don't match");
+      return;
+    }
+    if (!firstName) {
+      setNotification('Please enter first name.');
+    } else if (!lastName) {
+      setNotification('Please enter last name.');
+    } else if (!email) {
+      setNotification('Please enter email.');
+    } else if (!password) {
+      setNotification('Please enter password.');
+    } else {
+      const result = await dispatch(
+        authenticate({ firstName, lastName, email, password, method: 'signup' })
+      );
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPassword('');
+      navigate('/');
+    }
+  };
+
   return (
-    <ThemeProvider theme={theme}>
-      <Container component='main' maxWidth='xs'>
-        <CssBaseline />
+    <Grid container component='main' sx={{ height: '100vh' }}>
+      <Grid
+        item
+        xs={false}
+        sm={4}
+        md={7}
+        sx={{
+          backgroundImage: `url(${displayPic})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundColor: (t) =>
+            t.palette.mode === 'light'
+              ? t.palette.grey[50]
+              : t.palette.grey[900],
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <Box
           sx={{
-            marginTop: 8,
+            my: 8,
+            mx: 4,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -64,7 +127,7 @@ export default function SignUp() {
             component='form'
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
+            sx={{ mt: 1 }}
           >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -76,6 +139,7 @@ export default function SignUp() {
                   id='firstName'
                   label='First Name'
                   autoFocus
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -86,6 +150,7 @@ export default function SignUp() {
                   label='Last Name'
                   name='lastName'
                   autoComplete='family-name'
+                  onChange={(e) => setLastName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -96,6 +161,7 @@ export default function SignUp() {
                   label='Email Address'
                   name='email'
                   autoComplete='email'
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -107,23 +173,34 @@ export default function SignUp() {
                   type='password'
                   id='password'
                   autoComplete='new-password'
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value='allowExtraEmails' color='primary' />
-                  }
-                  label='I want to receive inspiration, marketing promotions and updates via email.'
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value='agreeToTerms' color='primary' />}
-                  label='I agree to the Terms and Service.'
+                <TextField
+                  required
+                  fullWidth
+                  name='confirmPassword'
+                  label='Confirm Password'
+                  type='password'
+                  id='confirmPassword'
+                  autoComplete='new-password'
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </Grid>
             </Grid>
+            {notification && (
+              <Typography
+                variant='body1'
+                align='center'
+                sx={{
+                  color: 'red',
+                  mt: 1,
+                }}
+              >
+                {notification}
+              </Typography>
+            )}
             <Button
               type='submit'
               fullWidth
@@ -142,7 +219,7 @@ export default function SignUp() {
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />
-      </Container>
-    </ThemeProvider>
+      </Grid>
+    </Grid>
   );
 }

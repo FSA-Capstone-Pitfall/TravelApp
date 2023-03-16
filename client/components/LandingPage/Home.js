@@ -5,13 +5,12 @@ import ProductHero from './modules/views/ProductHero';
 import ProductValues from './modules/views/ProductValues';
 import ProductCTA from './modules/views/ProductCTA';
 import AppAppBar from './modules/views/AppAppBar';
-import withRoot from './modules/withRoot';
 
 function Index() {
   return (
     <React.Fragment>
-      <AppAppBar />
       <ProductHero />
+      <AppAppBar />
       <ProductValues />
       <ProductCategories />
       <ProductCTA />
@@ -20,4 +19,4 @@ function Index() {
   );
 }
 
-export default withRoot(Index);
+export default Index;

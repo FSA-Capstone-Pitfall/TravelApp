@@ -44,14 +44,6 @@ const User = db.define('user', {
     allowNull: false,
     defaultValue: 'customer',
   },
-  username: {
-    type: Sequelize.STRING,
-    unique: true,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
-  },
   password: {
     type: Sequelize.STRING,
     allowNull: false,
