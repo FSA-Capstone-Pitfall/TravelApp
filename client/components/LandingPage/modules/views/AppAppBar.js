@@ -15,6 +15,7 @@ import { setUser } from '../../../../store';
 import { removeUserToken } from '../../../../utils';
 import { useScrollTrigger } from '@mui/material';
 import LoginDialog from './LoginDialog';
+import SignupDialog from './SignupDialog';
 
 const rightLink = {
   fontSize: 16,
@@ -89,15 +90,15 @@ function AppAppBar() {
             <img
               src='https://i.ibb.co/LJhcbQp/IMG-0599.png'
               alt='pathfinder'
-              height='44'
-              width='44'
+              height='33'
+              width='33'
             />
             <Link
               variant='h6'
               underline='none'
               color='inherit'
               href='/'
-              sx={{ fontSize: 24, textTransform: 'none' }}
+              sx={{ fontSize: 16, textTransform: 'none' }}
             >
               {'Pathfinder'}
             </Link>
@@ -187,17 +188,13 @@ function AppAppBar() {
                 onClose={handleCloseLoginDialog}
               />
 
-              <Link
+              <SignupDialog
+                color='inherit'
                 variant='h6'
                 underline='none'
-                href='/signup'
-                sx={{
-                  ...rightLink,
-                  color: 'secondary.main',
-                }}
-              >
-                {'Sign Up'}
-              </Link>
+                open={isLoginDialogOpen}
+                onClose={handleCloseLoginDialog}
+              />
             </Box>
           )}
         </Toolbar>

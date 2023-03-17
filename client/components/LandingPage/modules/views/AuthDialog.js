@@ -54,7 +54,7 @@ export default function AppFooter() {
       component='footer'
       sx={{ display: 'flex', bgcolor: 'secondary.light' }}
     >
-      <Container sx={{ my: 2, display: 'flex' }}>
+      <Container sx={{ my: 1, display: 'flex' }}>
         <Grid container spacing={5}>
           <Grid item xs={6} sm={4} md={3}>
             <Grid

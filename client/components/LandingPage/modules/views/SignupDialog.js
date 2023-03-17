@@ -24,13 +24,45 @@ const rightLink = {
   textTransform: 'none',
 };
 
-export default function LoginDialog() {
+export default function SignupDialog() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [notification, setNotification] = useState();
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [open, setOpen] = useState(false);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords don't match");
+      return;
+    }
+    if (!firstName) {
+      setNotification('Please enter first name.');
+    } else if (!lastName) {
+      setNotification('Please enter last name.');
+    } else if (!email) {
+      setNotification('Please enter email.');
+    } else if (!password) {
+      setNotification('Please enter password.');
+    } else {
+      const result = await dispatch(
+        authenticate({ firstName, lastName, email, password, method: 'signup' })
+      );
+      if (result) {
+        dispatch(getUserByToken());
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPassword('');
+        navigate('/', { replace: true });
+      }
+    }
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -38,27 +70,6 @@ export default function LoginDialog() {
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (!email) {
-      setNotification('Please enter email.');
-    } else if (!password) {
-      setNotification('Please enter password.');
-    } else {
-      const result = await dispatch(
-        authenticate({ email, password, method: 'login' })
-      );
-      if (result.payload && result.payload.error) {
-        setNotification('Invalid username or password.');
-      } else {
-        await dispatch(getUserByToken());
-        setEmail('');
-        setPassword('');
-        navigate('/', { replace: true });
-      }
-    }
   };
 
   return (
@@ -74,13 +85,14 @@ export default function LoginDialog() {
           cursor: 'pointer',
         }}
       >
-        {'Login'}
+        {'Sign Up'}
       </Link>
+
       <Dialog open={open} onClose={handleClose} maxWidth='xs'>
         <form onSubmit={handleSubmit}>
           <DialogTitle sx={{ textAlign: 'center', paddingTop: '40px' }}>
             <Typography component='h1' variant='h5'>
-              Log Into Pathfinder
+              Sign Up
             </Typography>
             <IconButton
               aria-label='close'
@@ -100,15 +112,34 @@ export default function LoginDialog() {
               <Box component='form' onSubmit={handleSubmit} sx={{ mt: 1 }}>
                 <TextField
                   margin='normal'
+                  autoComplete='given-name'
+                  name='firstName'
+                  required
+                  fullWidth
+                  id='firstName'
+                  label='First Name'
+                  autoFocus
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+                <TextField
+                  margin='normal'
+                  required
+                  fullWidth
+                  id='lastName'
+                  label='Last Name'
+                  name='lastName'
+                  autoComplete='family-name'
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+                <TextField
+                  margin='normal'
                   required
                   fullWidth
                   id='email'
                   label='Email Address'
                   name='email'
                   autoComplete='email'
-                  autoFocus
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <TextField
                   margin='normal'
@@ -118,9 +149,19 @@ export default function LoginDialog() {
                   label='Password'
                   type='password'
                   id='password'
-                  autoComplete='current-password'
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
+                  autoComplete='new-password'
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <TextField
+                  margin='normal'
+                  required
+                  fullWidth
+                  name='confirmPassword'
+                  label='Confirm Password'
+                  type='password'
+                  id='confirmPassword'
+                  autoComplete='new-password'
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </Box>
             </Box>
@@ -153,20 +194,15 @@ export default function LoginDialog() {
               variant='contained'
               sx={{ mt: 1, mb: 2 }}
             >
-              Login
+              Sign up
             </Button>
             <Grid
               container
               sx={{ width: '100%', justifyContent: 'space-between' }}
             >
               <Grid item>
-                <Link href='#' variant='body2'>
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
                 <Link href='/' variant='body2'>
-                  {"Don't have an account? Sign Up"}
+                  Already have an account? Log in
                 </Link>
               </Grid>
             </Grid>
