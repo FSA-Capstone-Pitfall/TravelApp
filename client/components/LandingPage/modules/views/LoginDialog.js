@@ -17,6 +17,13 @@ import {
 } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 
+const rightLink = {
+  fontSize: 16,
+  color: 'common.white',
+  ml: 3,
+  textTransform: 'none',
+};
+
 export default function LoginDialog() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -50,16 +57,27 @@ export default function LoginDialog() {
         setEmail('');
         setPassword('');
         navigate('/');
-        handleClose();
       }
     }
   };
 
   return (
     <Box>
-      <Link onClick={handleClickOpen}>{'Login'}</Link>
+      <Link
+        color='inherit'
+        variant='h6'
+        underline='none'
+        onClick={handleClickOpen}
+        sx={{
+          ...rightLink,
+          color: 'secondary.main',
+          cursor: 'pointer',
+        }}
+      >
+        {'Login'}
+      </Link>
       <Dialog open={open} onClose={handleClose} maxWidth='xs'>
-        <DialogTitle sx={{ textAlign: 'center', paddingTop: '36px' }}>
+        <DialogTitle sx={{ textAlign: 'center', paddingTop: '40px' }}>
           <Typography component='h1' variant='h5'>
             Log Into Pathfinder
           </Typography>
@@ -121,7 +139,7 @@ export default function LoginDialog() {
             type='submit'
             fullWidth
             variant='contained'
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 1, mb: 2 }}
           >
             Login
           </Button>

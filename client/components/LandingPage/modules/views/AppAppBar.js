@@ -179,18 +179,6 @@ function AppAppBar() {
                 textTransform: 'none',
               }}
             >
-              <Link
-                color='inherit'
-                variant='h6'
-                underline='none'
-                onClick={handleOpenLoginDialog}
-                sx={{
-                  ...rightLink,
-                  color: 'secondary.main',
-                }}
-              >
-                {'Login'}
-              </Link>
               <LoginDialog
                 color='inherit'
                 variant='h6'
