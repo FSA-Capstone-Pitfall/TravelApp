@@ -74,7 +74,7 @@ export default function ProductHero() {
             variant='h2'
             marked='center'
           >
-            {`Your Next Destination Awaits ${user.firstName}`}
+            {`Your next destination awaits, ${user.firstName}`}
           </Typography>
           <Typography
             color='inherit'

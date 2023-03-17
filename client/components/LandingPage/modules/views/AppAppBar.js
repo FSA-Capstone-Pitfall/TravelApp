@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { setUser } from '../../../../store';
 import { removeUserToken } from '../../../../utils';
 import { useScrollTrigger } from '@mui/material';
+import LoginDialog from './LoginDialog';
 
 const rightLink = {
   fontSize: 16,
@@ -29,6 +30,7 @@ function AppAppBar() {
   const dispatch = useDispatch();
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [isTransparent, setIsTransparent] = useState(true);
+  const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
 
   const user = useSelector((state) => state.auth.user);
 
@@ -64,12 +66,19 @@ function AppAppBar() {
     setIsTransparent(!trigger);
   };
 
+  const handleOpenLoginDialog = () => {
+    setIsLoginDialogOpen(true);
+  };
+
+  const handleCloseLoginDialog = () => {
+    setIsLoginDialogOpen(false);
+  };
+
   return (
     <div>
       <ResponsiveAppBar
         position='fixed'
         color={trigger ? 'primary' : 'transparent'}
-        borderRadius='20px'
       >
         {' '}
         <Toolbar
@@ -174,15 +183,22 @@ function AppAppBar() {
                 color='inherit'
                 variant='h6'
                 underline='none'
-                href='/login'
+                onClick={handleOpenLoginDialog}
                 sx={{
                   ...rightLink,
                   color: 'secondary.main',
-                  textTransform: 'none',
                 }}
               >
-                {'Sign In'}
+                {'Login'}
               </Link>
+              <LoginDialog
+                color='inherit'
+                variant='h6'
+                underline='none'
+                open={isLoginDialogOpen}
+                onClose={handleCloseLoginDialog}
+              />
+
               <Link
                 variant='h6'
                 underline='none'
@@ -190,7 +206,6 @@ function AppAppBar() {
                 sx={{
                   ...rightLink,
                   color: 'secondary.main',
-                  textTransform: 'none',
                 }}
               >
                 {'Sign Up'}

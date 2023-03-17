@@ -1,0 +1,147 @@
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { authenticate, getUserByToken } from '../../../../store';
+import {
+  Button,
+  TextField,
+  Grid,
+  Typography,
+  Box,
+  Link,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  IconButton,
+} from '@mui/material';
+import { Close as CloseIcon } from '@mui/icons-material';
+
+export default function LoginDialog() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [notification, setNotification] = useState();
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!email) {
+      setNotification('Please enter email.');
+    } else if (!password) {
+      setNotification('Please enter password.');
+    } else {
+      const result = await dispatch(
+        authenticate({ email, password, method: 'login' })
+      );
+      if (result.payload && result.payload.error) {
+        setNotification('Invalid username or password.');
+      } else {
+        await dispatch(getUserByToken());
+        setEmail('');
+        setPassword('');
+        navigate('/');
+        handleClose();
+      }
+    }
+  };
+
+  return (
+    <Box>
+      <Link onClick={handleClickOpen}>{'Login'}</Link>
+      <Dialog open={open} onClose={handleClose} maxWidth='xs'>
+        <DialogTitle sx={{ textAlign: 'center', paddingTop: '36px' }}>
+          <Typography component='h1' variant='h5'>
+            Log Into Pathfinder
+          </Typography>
+          <IconButton
+            aria-label='close'
+            sx={{ position: 'absolute', top: 0, right: 0 }}
+            onClick={handleClose}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <Box component='form' onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <TextField
+                margin='normal'
+                required
+                fullWidth
+                id='email'
+                label='Email Address'
+                name='email'
+                autoComplete='email'
+                autoFocus
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+              <TextField
+                margin='normal'
+                required
+                fullWidth
+                name='password'
+                label='Password'
+                type='password'
+                id='password'
+                autoComplete='current-password'
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+              />
+            </Box>
+          </Box>
+        </DialogContent>
+        <DialogActions
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            paddingTop: 0,
+            pl: 3,
+            pr: 3,
+            pb: 4,
+          }}
+        >
+          <Button
+            type='submit'
+            fullWidth
+            variant='contained'
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Login
+          </Button>
+          <Grid
+            container
+            sx={{ width: '100%', justifyContent: 'space-between' }}
+          >
+            <Grid item>
+              <Link href='#' variant='body2'>
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href='/signup' variant='body2'>
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
+        </DialogActions>
+      </Dialog>
+    </Box>
+  );
+}

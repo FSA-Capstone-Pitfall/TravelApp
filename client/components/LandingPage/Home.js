@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ProductCategories from './modules/views/ProductCategories';
-import AppFooter from './modules/views/AppFooter';
+import AppFooter from './modules/views/AuthDialog';
 import ProductHero from './modules/views/ProductHero';
 import ProductValues from './modules/views/ProductValues';
 import ProductCTA from './modules/views/ProductCTA';

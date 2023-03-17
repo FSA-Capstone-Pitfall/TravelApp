@@ -54,7 +54,7 @@ export default function AppFooter() {
       component='footer'
       sx={{ display: 'flex', bgcolor: 'secondary.light' }}
     >
-      <Container sx={{ my: 8, display: 'flex' }}>
+      <Container sx={{ my: 2, display: 'flex' }}>
         <Grid container spacing={5}>
           <Grid item xs={6} sm={4} md={3}>
             <Grid
@@ -62,7 +62,7 @@ export default function AppFooter() {
               direction='column'
               justifyContent='flex-end'
               spacing={2}
-              sx={{ height: 120 }}
+              sx={{ height: 80 }}
             >
               <Grid item sx={{ display: 'flex' }}>
                 <Box component='a' href='https://www.facebook.com/'>
