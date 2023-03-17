@@ -13,14 +13,14 @@ const Activity = db.define('activity', {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  streetAddress: {
+  address: {
     type: Sequelize.TEXT,
     allowNull: false,
     validate: {
       notEmpty: true,
     },
   },
-  zipCode: {
+  zipcode: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {

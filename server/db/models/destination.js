@@ -9,9 +9,9 @@ const Destination = db.define('destination', {
       notEmpty: true,
     },
   },
-  zipCode: {
-    type: Sequelize.STRING,
-    allowNull: false,
+  description: {
+    type: Sequelize.TEXT,
+    allowNull: true,
     validate: {
       notEmpty: true,
     },
