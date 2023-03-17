@@ -1,31 +1,49 @@
 const router = require('express').Router();
-const Sequelize = require('sequelize');
 
 const {
-  models: { Destination },
+  models: { Destination, City }
 } = require('../../db');
+const { Op } = require('sequelize');
 
-// GET: /api/destinations
+
+// GET: /api/destinations Search cities or destinations by identifier.
 router.get('/', async (req, res, next) => {
   try {
-    const destinations = await Destination.findAll();
-    res.json(destinations);
-  } catch (err) {
-    next(err);
-  }
-});
+    let { identifier } = req.query;
 
-// GET: /api/destinations/:location
-router.get('/:location', async (req, res, next) => {
-  try {
-    let { location } = req.params;
-    location = location.toUpperCase();
-    const destinations = await Destination.findAll({
+    if (!identifier) {
+      res.status(400).send({
+        message: 'missing url identifier query'
+      });
+      return;
+    }
+
+    // TODO make identifier case-insensitive
+
+    const citiesWithDestinations = await City.findAll({
+      limit: 5,
       where: {
-        destinationTag: location,
+        [Op.or]: [
+          {
+            name: {
+              [Op.like]: `%${identifier}%`
+            }
+          },
+          {
+            '$destinations.name$': {
+              [Op.like]: `%${identifier}%`
+            }
+          }
+        ]
       },
+      include: {
+        as: 'destinations',
+        model: Destination,
+        required: true,
+        duplicating: false
+      }
     });
-    res.json(destinations);
+    res.status(200).send(citiesWithDestinations);
   } catch (err) {
     next(err);
   }
