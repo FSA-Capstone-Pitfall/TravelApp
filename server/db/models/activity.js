@@ -34,13 +34,10 @@ const Activity = db.define('activity', {
       notEmpty: true,
     },
   },
-  category: {
-    type: Sequelize.STRING,
-    allowNull: true,
-    validate: {
-      notEmpty: true,
-    },
-    defaultValue: 'hiking',
+  categories: {
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    allowNull: false,
+    defaultValue: [],
   },
   imageUrl: {
     type: Sequelize.TEXT,

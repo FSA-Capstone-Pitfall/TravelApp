@@ -1133,7 +1133,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '40.6892494,-74.0445004',
     description:
       'An iconic symbol of freedom and a must-visit attraction for any NYC trip.',
-    category: 'Landmark',
+    categories: ['landmark'],
     cityId: 1, // NYC
     destinationId: 1, // Manhattan
   },
@@ -1145,7 +1145,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '40.706086,-73.996864',
     description:
       'A historic suspension bridge connecting Manhattan and Brooklyn, offering stunning views of the city.',
-    category: 'Landmark',
+    categories: ['landmark'],
     cityId: 1, // NYC
     destinationId: 2, // Brooklyn
   },
@@ -1157,7 +1157,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '40.746482,-73.844292',
     description:
       'A large public park in Queens, featuring the Unisphere, Queens Museum, and other attractions.',
-    category: 'Park',
+    categories: ['park'],
     cityId: 1, // NYC
     destinationId: 3, // Queens
   },
@@ -1169,7 +1169,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '36.177157,-115.135209',
     description:
       'A unique museum dedicated to preserving the iconic neon signs from Las Vegas history.',
-    category: 'Museum',
+    categories: ['museum'],
     cityId: 3, // Las Vegas
     destinationId: 11, // The Strip
   },
@@ -1181,7 +1181,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '40.702068,-74.013664',
     description:
       'A free commuter ferry offering breathtaking views of the Statue of Liberty, Ellis Island, and the Manhattan skyline.',
-    category: 'Transportation',
+    categories: ['transportation'],
     cityId: 1, // NYC
     destinationId: 5, // Staten Island
   },
@@ -1193,7 +1193,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '32.731357,-117.146527',
     description:
       'A sprawling urban cultural park with museums, gardens, and the world-famous San Diego Zoo.',
-    category: 'Park',
+    categories: ['park'],
     cityId: 2, // San Diego
     destinationId: 6, // Gaslamp Quarter
   },
@@ -1205,7 +1205,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '32.71374,-117.175127',
     description:
       'A maritime museum located on the historic aircraft carrier USS Midway.',
-    category: 'Museum',
+    categories: ['museum'],
     cityId: 2, // San Diego
     destinationId: 7, // Little Italy
   },
@@ -1217,7 +1217,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '32.849509,-117.270155',
     description:
       'A picturesque cove and beach, popular for swimming, snorkeling, and scuba diving.',
-    category: 'Beach',
+    categories: ['beach'],
     cityId: 2, // San Diego
     destinationId: 8, // La Jolla
   },
@@ -1229,7 +1229,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '32.767823,-117.250038',
     description:
       'A historic oceanfront amusement park featuring rides, games, and dining options.',
-    category: 'Amusement Park',
+    categories: ['amusement_park'],
     cityId: 2, // San Diego
     destinationId: 9, // Pacific Beach
   },
@@ -1241,7 +1241,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '32.748469,-117.129768',
     description:
       'A historic theater turned concert venue hosting live music performances and events.',
-    category: 'Entertainment',
+    categories: ['entertainment'],
     cityId: 2, // San Diego
     destinationId: 10, // North Park
   },
@@ -1253,7 +1253,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '40.756345,-73.923947',
     description:
       'A media museum dedicated to the art, history, and technology of film, television, and digital media.',
-    category: 'Museum',
+    categories: ['museum'],
     cityId: 1, // NYC
     destinationId: 3, // Queens
   },
@@ -1265,7 +1265,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '40.829643,-73.926175',
     description:
       'The home stadium of the New York Yankees, offering baseball games, concerts, and other events.',
-    category: 'Sports',
+    categories: ['sports'],
     cityId: 1, // NYC
     destinationId: 4, // The Bronx
   },
@@ -1277,7 +1277,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '40.643747,-74.101919',
     description:
       'A cultural center and botanical garden on Staten Island, featuring museums, art galleries, and event spaces.',
-    category: 'Park',
+    categories: ['park'],
     cityId: 1, // NYC
     destinationId: 5, // Staten Island
   },
@@ -1289,7 +1289,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '40.785091,-73.968285',
     description:
       'A massive urban park in Manhattan, offering walking paths, open lawns, and iconic landmarks.',
-    category: 'Park',
+    categories: ['park'],
     cityId: 1, // NYC
     destinationId: 1, // Manhattan
   },
@@ -1301,7 +1301,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '36.112624,-115.174235',
     description:
       'A captivating water show featuring lights, music, and dancing fountains in front of the Bellagio hotel.',
-    category: 'Show',
+    categories: ['show'],
     cityId: 3, // Las Vegas
     destinationId: 11, // The Strip
   },
@@ -1313,7 +1313,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '36.172828,-115.141276',
     description:
       'An interactive museum dedicated to the history of organized crime and law enforcement in the United States.',
-    category: 'Museum',
+    categories: ['museum'],
     cityId: 3, // Las Vegas
     destinationId: 12, // Downtown Las Vegas
   },
@@ -1325,7 +1325,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '36.140300,-115.426996',
     description:
       'A protected area featuring stunning red rock formations, hiking trails, and scenic drives just outside of Las Vegas.',
-    category: 'Nature',
+    categories: ['nature'],
     cityId: 3, // Las Vegas
     destinationId: 13, // Summerlin
   },
@@ -1337,7 +1337,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '36.094930,-114.928977',
     description:
       'A picturesque, man-made lake featuring upscale resorts, golf courses, and a Mediterranean-style village.',
-    category: 'Nature',
+    categories: ['nature'],
     cityId: 3, // Las Vegas
     destinationId: 14, // Henderson
   },
@@ -1349,7 +1349,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '36.169993,-115.140267',
     description:
       'A five-block entertainment district featuring a pedestrian mall, LED canopy, live music, street performers, and iconic casinos.',
-    category: 'Entertainment',
+    categories: ['entertainment'],
     cityId: 3, // Las Vegas
     destinationId: 12, // Downtown Las Vegas
   },
