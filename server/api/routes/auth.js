@@ -30,7 +30,6 @@ router.post('/login', async (req, res, next) => {
 });
 
 router.post('/signup', async (req, res, next) => {
-  console.log('in the post');
   try {
     const { email, password, firstName, lastName } = req.body;
 

@@ -11,6 +11,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <AppAppBar />
       <CssBaseline />
+      <AppAppBar />
       <Router />
       <AppFooter />
     </ThemeProvider>
