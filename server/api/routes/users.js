@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  models: { User },
+  models: { User, User_Itinerary, Itinerary, Activity, City, Destination },
 } = require('../../db');
 const { requireToken, requireAdminToken } = require('../middleware');
 
@@ -40,6 +40,7 @@ router.get('/:userId', requireToken, async (req, res, next) => {
         'email',
         'firstName',
         'lastName',
+        'role',
         'city',
         'state',
         'imageUrl',
@@ -55,6 +56,73 @@ router.get('/:userId', requireToken, async (req, res, next) => {
     } else {
       res.status(404).send("User doesn't exist.");
     }
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+// user views all their trips
+// GET /api/users/:userId/trips/
+router.get('/:userId/trips', requireToken, async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    const trips = await User_Itinerary.findAll({
+      where: {
+        userId: userId,
+      },
+      include: [
+        {
+          model: Itinerary,
+          include: [
+            {
+              model: Activity,
+              include: {
+                model: Destination,
+                include: {
+                  model: City,
+                },
+              },
+            },
+          ],
+        },
+      ],
+    });
+    res.status(200).json(trips);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+// user gets a specific trip
+// GET /api/users/:userId/trips/:tripId
+router.get('/:userId/trips/:tripId', requireToken, async (req, res, next) => {
+  try {
+    const { userId, tripId } = req.params;
+    const trip = await User_Itinerary.findOne({
+      where: {
+        userId: userId,
+        itineraryId: tripId,
+      },
+      include: [
+        {
+          model: Itinerary,
+          include: [
+            {
+              model: Activity,
+              include: {
+                model: Destination,
+                include: {
+                  model: City,
+                },
+              },
+            },
+          ],
+        },
+      ],
+    });
+    res.status(200).json(trip);
   } catch (error) {
     console.error(error);
     next(error);

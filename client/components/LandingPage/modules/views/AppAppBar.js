@@ -84,6 +84,7 @@ function AppAppBar() {
       <ResponsiveAppBar
         position='fixed'
         color={trigger ? 'primary' : 'transparent'}
+        borderradius='20px'
       >
         {' '}
         <Toolbar
