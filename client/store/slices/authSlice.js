@@ -23,17 +23,19 @@ const authenticate = createAsyncThunk(
   'authenticate',
   async ({ email, password, method, firstName, lastName }) => {
     try {
-      const {
-        data: { token },
-      } = await axios.post(`/api/auth/${method}`, {
+      const { data } = await axios.post(`/api/auth/${method}`, {
         email,
         password,
         firstName,
         lastName,
       });
-
-      setUserToken(token);
-      return {};
+      console.log('data: ', data);
+      if (typeof data === 'string') {
+        throw new Error(data);
+      } else {
+        setUserToken(data.token);
+        return {};
+      }
     } catch (error) {
       return { error };
     }
@@ -57,13 +59,16 @@ const auth = createSlice({
     });
     builder.addCase(authenticate.fulfilled, (state, { payload }) => {
       if (payload.error) {
+        console.log('hit!!!');
         let errorMessage = 'Something went wrong.';
         if (payload.error.response.status === 401) {
+          console.log('here too');
           errorMessage = 'Unauthorized.';
         }
-        return { ...state, error: errorMessage };
+        return { error: errorMessage };
+      } else {
+        return state;
       }
-      return state;
     });
   },
 });

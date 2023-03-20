@@ -4,17 +4,17 @@ import { grey, red } from '@mui/material/colors';
 const rawTheme = createTheme({
   palette: {
     primary: {
-      main: 'rgba(75,125,70,0.75)',
+      main: 'rgba(52,130,140,0.84)',
     },
     secondary: {
-      main: 'rgba(52,130,140,0.84)',
+      main: 'rgba(75,125,70,0.75)',
     },
     warning: {
       main: '#ffc071',
       dark: '#ffb25e',
     },
     background: {
-      default: '#fffdfd',
+      default: '#def1ca',
     },
     error: {
       light: red[50],
@@ -46,7 +46,7 @@ const theme = {
     ...rawTheme.palette,
     background: {
       ...rawTheme.palette.background,
-      default: rawTheme.palette.common.white,
+      default: '#def1ca',
       placeholder: grey[200],
     },
   },

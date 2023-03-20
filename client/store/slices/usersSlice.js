@@ -4,6 +4,7 @@ import axios from 'axios';
 const initialState = {
   allUsers: [],
   selectedUser: {},
+  userProfile: {},
   error: null,
 };
 
@@ -12,6 +13,19 @@ export const fetchSingleUser = createAsyncThunk(
   async (userId) => {
     try {
       const { data: user } = await axios.get(`/api/users/${userId}`);
+      return { user };
+    } catch (error) {
+      console.error('Unable to fetch user.', error);
+      return { error };
+    }
+  }
+);
+
+export const fetchSingleUserProfile = createAsyncThunk(
+  'users/fetchSingleUserProfile',
+  async (userId) => {
+    try {
+      const { data: user } = await axios.get(`/api/users/profile/${userId}`);
       return { user };
     } catch (error) {
       console.error('Unable to fetch user.', error);
@@ -59,6 +73,16 @@ const usersSlice = createSlice({
           return { ...state, error: errorMessage };
         }
         return { ...state, selectedUser: payload.user };
+      })
+      .addCase(fetchSingleUserProfile.fulfilled, (state, { payload }) => {
+        if (payload.error) {
+          let errorMessage = 'Something went wrong.';
+          if (payload.error.response.status === 500) {
+            errorMessage = 'No user found.';
+          }
+          return { ...state, error: errorMessage };
+        }
+        return { ...state, userProfile: payload.user };
       })
       .addCase(fetchUsers.fulfilled, (state, action) => {
         state.allUsers = action.payload;
