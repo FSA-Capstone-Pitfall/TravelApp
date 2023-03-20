@@ -15,4 +15,5 @@ const store = configureStore({
 });
 
 export default store;
+export * from './slices/destinationsSlice';
 export * from './slices/authSlice';

@@ -8,12 +8,12 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setUser } from '../../../../store';
 import { removeUserToken } from '../../../../utils';
 import { useScrollTrigger } from '@mui/material';
+import SearchBar from '../../../SearchBar';
 
 const rightLink = {
   fontSize: 16,
@@ -67,9 +67,9 @@ function AppAppBar() {
   return (
     <div>
       <ResponsiveAppBar
-        position='fixed'
+        position="fixed"
         color={trigger ? 'primary' : 'transparent'}
-        borderradius='20px'
+        borderradius="20px"
       >
         {' '}
         <Toolbar
@@ -78,21 +78,22 @@ function AppAppBar() {
         >
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <img
-              src='https://i.ibb.co/LJhcbQp/IMG-0599.png'
-              alt='pathfinder'
-              height='44'
-              width='44'
+              src="https://i.ibb.co/LJhcbQp/IMG-0599.png"
+              alt="pathfinder"
+              height="44"
+              width="44"
             />
             <Link
-              variant='h6'
-              underline='none'
-              color='inherit'
-              href='/'
+              variant="h6"
+              underline="none"
+              color="inherit"
+              href="/"
               sx={{ fontSize: 24, textTransform: 'none' }}
             >
               {'Pathfinder'}
             </Link>
           </Box>
+          <SearchBar />
           {user ? (
             <Box
               sx={{
@@ -104,9 +105,9 @@ function AppAppBar() {
               }}
             >
               <Link
-                variant='h6'
-                underline='none'
-                href='/'
+                variant="h6"
+                underline="none"
+                href="/"
                 sx={{
                   ...rightLink,
                   color: 'secondary.main',
@@ -116,10 +117,10 @@ function AppAppBar() {
                 {'My Trips'}
               </Link>
               <Link
-                color='inherit'
-                variant='h6'
-                underline='none'
-                href='/destinations'
+                color="inherit"
+                variant="h6"
+                underline="none"
+                href="/destinations"
                 sx={{ ...rightLink, marginRight: '16px' }}
               >
                 {'Destinations'}
@@ -127,13 +128,13 @@ function AppAppBar() {
 
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar
-                  alt='travel_user'
-                  src='https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
+                  alt="travel_user"
+                  src="https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
                 />
               </IconButton>
               <Menu
                 sx={{ mt: '45px' }}
-                id='menu-appbar'
+                id="menu-appbar"
                 anchorEl={anchorElUser}
                 anchorOrigin={{
                   vertical: 'top',
@@ -150,7 +151,7 @@ function AppAppBar() {
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Typography
-                      textAlign='center'
+                      textAlign="center"
                       onClick={() => {
                         handleProfileClick(setting);
                       }}
@@ -171,10 +172,10 @@ function AppAppBar() {
               }}
             >
               <Link
-                color='inherit'
-                variant='h6'
-                underline='none'
-                href='/login'
+                color="inherit"
+                variant="h6"
+                underline="none"
+                href="/login"
                 sx={{
                   ...rightLink,
                   color: 'secondary.main',
@@ -184,9 +185,9 @@ function AppAppBar() {
                 {'Sign In'}
               </Link>
               <Link
-                variant='h6'
-                underline='none'
-                href='/signup'
+                variant="h6"
+                underline="none"
+                href="/signup"
                 sx={{
                   ...rightLink,
                   color: 'secondary.main',

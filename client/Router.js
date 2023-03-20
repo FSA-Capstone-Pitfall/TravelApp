@@ -6,7 +6,7 @@ import SignInSide from './components/LandingPage/SignIn';
 import SignUp from './components/LandingPage/SignUp';
 import { getUserByToken } from './store';
 import { isLoggedIn } from './utils';
-import Destination from './features/destinations';
+import Destinations from './components/pages/destinations';
 import SingleDestination from './features/singleDestination';
 import MyTrip from './features/itinerary';
 
@@ -20,19 +20,26 @@ const Router = () => {
     }
   }, []);
 
-  return !user ? (
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route exact path='/login' element={<SignInSide />} />
-      <Route exact path='/signup' element={<SignUp />} />
-    </Routes>
-  ) : (
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/destinations' element={<Destination />} />
-      <Route path='/destinations/:location' element={<SingleDestination />} />
-      <Route path='/mytrips' element={<MyTrip />} />
-    </Routes>
+  return (
+    <div style={{ marginTop: '-9vh' }}>
+      {
+        !user ? (
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route exact path="/login" element={<SignInSide />} />
+            <Route exact path="/signup" element={<SignUp />} />
+            <Route path="/destinations" element={<Destinations />} />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/destinations" element={<Destinations />} />
+            <Route path="/destinations/:location" element={<SingleDestination />} />
+            <Route path="/mytrips" element={<MyTrip />} />
+          </Routes>
+        )
+      }
+    </div>
   );
 };
 
