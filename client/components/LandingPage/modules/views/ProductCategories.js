@@ -20,7 +20,7 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
   position: 'relative',
   display: 'block',
   padding: 0,
-  borderRadius: 0,
+  borderradius: 0,
   height: '40vh',
   [theme.breakpoints.down('md')]: {
     width: '100% !important',
