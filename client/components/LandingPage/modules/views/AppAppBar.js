@@ -24,7 +24,7 @@ const rightLink = {
   textTransform: 'none',
 };
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Logout'];
 
 function AppAppBar() {
   const navigate = useNavigate();
@@ -53,6 +53,10 @@ function AppAppBar() {
       dispatch(setUser(null));
       removeUserToken();
       navigate('/');
+    } else if (selection === 'Profile') {
+      navigate(`/users/profile/${userId}`);
+    } else if (selection === 'Account') {
+      navigate(`/users/account/${userId}`);
     } else {
       console.log('You clicked a button!');
     }
@@ -136,10 +140,14 @@ function AppAppBar() {
               </Link>
 
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar
-                  alt='travel_user'
-                  src='https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
-                />
+                {!user.imageUrl ? (
+                  <Avatar
+                    alt='travel_user'
+                    src='https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
+                  />
+                ) : (
+                  <Avatar alt='user_pic' src={user.imageUrl} />
+                )}
               </IconButton>
               <Menu
                 sx={{ mt: '45px' }}

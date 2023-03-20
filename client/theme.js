@@ -14,7 +14,7 @@ const rawTheme = createTheme({
       dark: '#ffb25e',
     },
     background: {
-      default: '#fffdfd',
+      default: '#def1ca',
     },
     error: {
       light: red[50],
@@ -46,7 +46,7 @@ const theme = {
     ...rawTheme.palette,
     background: {
       ...rawTheme.palette.background,
-      default: rawTheme.palette.common.white,
+      default: '#def1ca',
       placeholder: grey[200],
     },
   },

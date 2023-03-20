@@ -24,8 +24,9 @@ export default function ProductHero() {
     <ProductHeroLayout
       sxBackground={{
         backgroundImage: `url(${displayPic})`,
-
         backgroundPosition: 'center',
+        display: 'flex',
+        alignItems: 'center',
       }}
     >
       {!user ? (

@@ -24,7 +24,7 @@ const rightLink = {
   textTransform: 'none',
 };
 
-export default function SignupDialog() {
+export default function SignupDialog({ toggleDialog }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
@@ -50,16 +50,29 @@ export default function SignupDialog() {
     } else if (!password) {
       setNotification('Please enter password.');
     } else {
-      const result = await dispatch(
-        authenticate({ firstName, lastName, email, password, method: 'signup' })
-      );
-      if (result) {
-        dispatch(getUserByToken());
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setPassword('');
-        navigate('/', { replace: true });
+      try {
+        const result = await dispatch(
+          authenticate({
+            firstName,
+            lastName,
+            email,
+            password,
+            method: 'signup',
+          })
+        );
+        if (result) {
+          dispatch(getUserByToken());
+          setFirstName('');
+          setLastName('');
+          setEmail('');
+          setPassword('');
+          navigate('/', { replace: true });
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          console.log('this shows');
+          setNotification('Unable to create account.');
+        }
       }
     }
   };
@@ -201,8 +214,8 @@ export default function SignupDialog() {
               sx={{ width: '100%', justifyContent: 'space-between' }}
             >
               <Grid item>
-                <Link href='/' variant='body2'>
-                  Already have an account? Log in
+                <Link href='#' variant='body2' onClick={toggleDialog}>
+                  {'Already have an account? Log In'}
                 </Link>
               </Grid>
             </Grid>
