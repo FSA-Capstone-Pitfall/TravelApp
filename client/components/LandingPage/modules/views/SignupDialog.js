@@ -35,6 +35,14 @@ export default function SignupDialog({ toggleDialog }) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [open, setOpen] = useState(false);
 
+  const clearLocalState = () => {
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setPassword('');
+    setNotification('');
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
@@ -60,19 +68,16 @@ export default function SignupDialog({ toggleDialog }) {
             method: 'signup',
           })
         );
-        if (result) {
+        console.log('result: ', result);
+        if (!result.payload.error) {
           dispatch(getUserByToken());
-          setFirstName('');
-          setLastName('');
-          setEmail('');
-          setPassword('');
+          clearLocalState();
           navigate('/', { replace: true });
+        } else {
+          throw new Error(result.payload.error);
         }
       } catch (error) {
-        if (error.response && error.response.status === 401) {
-          console.log('this shows');
-          setNotification('Unable to create account.');
-        }
+        setNotification('Unable to create account.');
       }
     }
   };
@@ -83,6 +88,7 @@ export default function SignupDialog({ toggleDialog }) {
 
   const handleClose = () => {
     setOpen(false);
+    clearLocalState();
   };
 
   return (
@@ -214,7 +220,7 @@ export default function SignupDialog({ toggleDialog }) {
               sx={{ width: '100%', justifyContent: 'space-between' }}
             >
               <Grid item>
-                <Link href='#' variant='body2' onClick={toggleDialog}>
+                <Link href='/' variant='body2' onClick={toggleDialog}>
                   {'Already have an account? Log In'}
                 </Link>
               </Grid>

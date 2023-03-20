@@ -16,10 +16,11 @@ const Router = () => {
   const user = useSelector((state) => state.auth.user);
 
   useEffect(() => {
-    if (isLoggedIn()) {
+    console.log('isloggedin: ', isLoggedIn());
+    if (isLoggedIn() !== undefined) {
       dispatch(getUserByToken());
     }
-  }, []);
+  }, [dispatch]);
 
   return !user ? (
     <Routes>
@@ -32,8 +33,13 @@ const Router = () => {
       <Route path='/destinations/:location' element={<SingleDestination />} />
       <Route path='/mytrips' element={<MyTrip />} />
       <Route exact path='/users/all' element={<AllUsers />} />
-      <Route exact path='/users/account/:userId' element={<UserAccount />} />
+      <Route
+        exact
+        path={`/users/account/${user.id}`}
+        element={<UserAccount userId={user.id} />}
+      />
       <Route exact path='/users/profile/:userId' element={<UserProfile />} />
+      <Route path='*' element={<Home />} />
     </Routes>
   );
 };

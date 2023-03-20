@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { fetchSingleUser, updateUser } from '../../store/slices/usersSlice';
 import { Typography, TextField, Button, Box } from '@mui/material';
 
-const UserAccount = () => {
+const UserAccount = ({ userId }) => {
+  console.log('userid: ', userId);
   const dispatch = useDispatch();
-  const { userId } = useParams();
   const [user, setUser] = useState(null);
   const loggedUser = useSelector((state) => state.auth.user);
   const selectedUser = useSelector((state) => state.users.selectedUser);

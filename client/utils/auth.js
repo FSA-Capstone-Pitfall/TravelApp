@@ -2,7 +2,11 @@ const getUserToken = () => window.localStorage.getItem('AUTH_TOKEN');
 
 const isLoggedIn = () => {
   const token = window.localStorage.getItem('AUTH_TOKEN');
-  return !!token;
+  if (token !== undefined) {
+    return token;
+  } else {
+    return null;
+  }
 };
 
 const setUserToken = (token) =>

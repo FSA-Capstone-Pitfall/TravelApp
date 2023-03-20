@@ -62,6 +62,28 @@ router.get('/:userId', requireToken, async (req, res, next) => {
   }
 });
 
+// GET /api/users/profile/:userId
+router.get('/profile/:userId', requireToken, async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    const user = await User.findOne({
+      where: {
+        id: userId,
+      },
+      attributes: ['id', 'firstName', 'lastName', 'city', 'state', 'imageUrl'],
+    });
+
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404).send("User doesn't exist.");
+    }
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
 // user views all their trips
 // GET /api/users/:userId/trips/
 router.get('/:userId/trips', requireToken, async (req, res, next) => {

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchSingleUser } from '../../store/slices/usersSlice';
-import { Typography, Box, Avatar } from '@mui/material';
+import { fetchSingleUserProfile } from '../../store/slices/usersSlice';
+import { Box, Avatar } from '@mui/material';
 
 const UserProfile = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
   const [user, setUser] = useState(null);
-  const selectedUser = useSelector((state) => state.users.selectedUser);
+  const selectedUser = useSelector((state) => state.users.userProfile);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -17,7 +17,7 @@ const UserProfile = () => {
   const [imageUrl, setImageUrl] = useState('');
 
   useEffect(() => {
-    dispatch(fetchSingleUser(userId));
+    dispatch(fetchSingleUserProfile(userId));
   }, [dispatch, userId]);
 
   useEffect(() => {

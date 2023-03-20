@@ -32,12 +32,19 @@ export default function LoginDialog({ toggleDialog }) {
   const [notification, setNotification] = useState();
   const [open, setOpen] = useState(false);
 
+  const clearLocalState = () => {
+    setEmail('');
+    setPassword('');
+    setNotification('');
+  };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+    clearLocalState();
   };
 
   const handleSubmit = async (event) => {
@@ -165,7 +172,7 @@ export default function LoginDialog({ toggleDialog }) {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href='#' variant='body2' onClick={toggleDialog}>
+                <Link href='/' variant='body2' onClick={toggleDialog}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
