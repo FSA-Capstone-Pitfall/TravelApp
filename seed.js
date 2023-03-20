@@ -30,7 +30,7 @@ const seed = async () => {
       const rdmIdx = Math.floor(Math.random() * userList.length);
       const user = userList[rdmIdx];
       return Post.create({ ...post, userId: user.id });
-    }),
+    })
   );
 
   // seeding cities
@@ -56,7 +56,7 @@ const seed = async () => {
     ITINERARY_ACTIVITY_SEED_DATA,
     {
       validate: true,
-    },
+    }
   );
 
   // seeding user_itineraries
@@ -64,7 +64,7 @@ const seed = async () => {
     USER_ITINERARY_SEED_DATA,
     {
       validate: true,
-    },
+    }
   );
 
   console.log(`seeded ${users.length} users`);
