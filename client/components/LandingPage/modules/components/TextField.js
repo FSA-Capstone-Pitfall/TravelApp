@@ -64,7 +64,7 @@ const styles = ({ theme }) => ({
   },
   [`& .${selectClasses.select}`]: {
     height: 'auto',
-    borderRadius: 0,
+    borderradius: 0,
   },
   [`& .${selectClasses.icon}`]: {
     top: '50%',
@@ -98,7 +98,7 @@ function TextField(props) {
             {
               [classes.inputBorder]: !noBorder,
             },
-            InputPropsClassesInput,
+            InputPropsClassesInput
           ),
           ...InputPropsClassesOther,
         },
