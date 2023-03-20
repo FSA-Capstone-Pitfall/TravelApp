@@ -25,16 +25,14 @@ Frame.belongsToMany(User, { through: User_Frame });
 Itinerary.belongsTo(User);
 Itinerary.belongsTo(City);
 Itinerary.hasMany(User_Itinerary);
-Itinerary.belongsToMany(Activity, { through: 'Itinerary_Activity' });
+Itinerary.belongsToMany(Activity, { through: Itinerary_Activity });
 
 // Activity
-// Activity.belongsTo(City);
 Activity.belongsTo(Destination);
-Activity.belongsToMany(Itinerary, { through: 'Itinerary_Activity' });
+Activity.belongsToMany(Itinerary, { through: Itinerary_Activity });
 
 // City
 City.hasMany(Itinerary);
-// City.hasMany(Activity);
 City.hasMany(Destination);
 
 // Destination
