@@ -28,13 +28,13 @@ Itinerary.hasMany(User_Itinerary);
 Itinerary.belongsToMany(Activity, { through: 'Itinerary_Activity' });
 
 // Activity
-Activity.belongsTo(City);
+// Activity.belongsTo(City);
 Activity.belongsTo(Destination);
 Activity.belongsToMany(Itinerary, { through: 'Itinerary_Activity' });
 
 // City
 City.hasMany(Itinerary);
-City.hasMany(Activity);
+// City.hasMany(Activity);
 City.hasMany(Destination);
 
 // Destination
