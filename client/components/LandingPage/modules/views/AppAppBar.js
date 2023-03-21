@@ -14,6 +14,8 @@ import { useNavigate } from 'react-router-dom';
 import { setUser } from '../../../../store';
 import { removeUserToken } from '../../../../utils';
 import { useScrollTrigger } from '@mui/material';
+import LoginDialog from './LoginDialog';
+import SignupDialog from './SignupDialog';
 
 const rightLink = {
   fontSize: 16,
@@ -22,13 +24,14 @@ const rightLink = {
   textTransform: 'none',
 };
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Logout'];
 
 function AppAppBar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [isTransparent, setIsTransparent] = useState(true);
+  const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
 
   const user = useSelector((state) => state.auth.user);
 
@@ -50,6 +53,10 @@ function AppAppBar() {
       dispatch(setUser(null));
       removeUserToken();
       navigate('/');
+    } else if (selection === 'Profile') {
+      navigate(`/users/profile/${userId}`);
+    } else if (selection === 'Account') {
+      navigate(`/users/account/${userId}`);
     } else {
       console.log('You clicked a button!');
     }
@@ -62,6 +69,14 @@ function AppAppBar() {
 
   const handleTrigger = () => {
     setIsTransparent(!trigger);
+  };
+
+  const handleOpenLoginDialog = () => {
+    setIsLoginDialogOpen(true);
+  };
+
+  const handleCloseLoginDialog = () => {
+    setIsLoginDialogOpen(false);
   };
 
   return (
@@ -80,15 +95,15 @@ function AppAppBar() {
             <img
               src='https://i.ibb.co/LJhcbQp/IMG-0599.png'
               alt='pathfinder'
-              height='44'
-              width='44'
+              height='33'
+              width='33'
             />
             <Link
               variant='h6'
               underline='none'
               color='inherit'
               href='/'
-              sx={{ fontSize: 24, textTransform: 'none' }}
+              sx={{ fontSize: 16, textTransform: 'none' }}
             >
               {'Pathfinder'}
             </Link>
@@ -126,10 +141,14 @@ function AppAppBar() {
               </Link>
 
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar
-                  alt='travel_user'
-                  src='https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
-                />
+                {!user.imageUrl ? (
+                  <Avatar
+                    alt='travel_user'
+                    src='https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
+                  />
+                ) : (
+                  <Avatar alt='user_pic' src={user.imageUrl} />
+                )}
               </IconButton>
               <Menu
                 sx={{ mt: '45px' }}
@@ -170,31 +189,21 @@ function AppAppBar() {
                 textTransform: 'none',
               }}
             >
-              <Link
+              <LoginDialog
                 color='inherit'
                 variant='h6'
                 underline='none'
-                href='/login'
-                sx={{
-                  ...rightLink,
-                  color: 'secondary.main',
-                  textTransform: 'none',
-                }}
-              >
-                {'Sign In'}
-              </Link>
-              <Link
+                open={isLoginDialogOpen}
+                onClose={handleCloseLoginDialog}
+              />
+
+              <SignupDialog
+                color='inherit'
                 variant='h6'
                 underline='none'
-                href='/signup'
-                sx={{
-                  ...rightLink,
-                  color: 'secondary.main',
-                  textTransform: 'none',
-                }}
-              >
-                {'Sign Up'}
-              </Link>
+                open={isLoginDialogOpen}
+                onClose={handleCloseLoginDialog}
+              />
             </Box>
           )}
         </Toolbar>

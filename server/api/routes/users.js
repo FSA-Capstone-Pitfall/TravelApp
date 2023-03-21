@@ -11,7 +11,15 @@ router.get('/', requireAdminToken, async (req, res, next) => {
       // explicitly select only the id and username fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      attributes: ['id', 'email', 'firstName', 'lastName'],
+      attributes: [
+        'id',
+        'email',
+        'firstName',
+        'lastName',
+        'city',
+        'state',
+        'imageUrl',
+      ],
     });
     res.json(users);
   } catch (err) {
@@ -27,7 +35,16 @@ router.get('/:userId', requireToken, async (req, res, next) => {
       where: {
         id: userId,
       },
-      attributes: ['id', 'email', 'firstName', 'lastName', 'role'],
+      attributes: [
+        'id',
+        'email',
+        'firstName',
+        'lastName',
+        'role',
+        'city',
+        'state',
+        'imageUrl',
+      ],
     });
 
     if (user) {
@@ -36,6 +53,28 @@ router.get('/:userId', requireToken, async (req, res, next) => {
       } else {
         res.status(403).send('You are not authorized to access this resource.');
       }
+    } else {
+      res.status(404).send("User doesn't exist.");
+    }
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+// GET /api/users/profile/:userId
+router.get('/profile/:userId', requireToken, async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    const user = await User.findOne({
+      where: {
+        id: userId,
+      },
+      attributes: ['id', 'firstName', 'lastName', 'city', 'state', 'imageUrl'],
+    });
+
+    if (user) {
+      res.json(user);
     } else {
       res.status(404).send("User doesn't exist.");
     }
