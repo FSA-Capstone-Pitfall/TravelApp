@@ -29,7 +29,6 @@ const authenticate = createAsyncThunk(
         firstName,
         lastName,
       });
-      console.log('data: ', data);
       if (typeof data === 'string') {
         throw new Error(data);
       } else {
@@ -59,10 +58,8 @@ const auth = createSlice({
     });
     builder.addCase(authenticate.fulfilled, (state, { payload }) => {
       if (payload.error) {
-        console.log('hit!!!');
         let errorMessage = 'Something went wrong.';
         if (payload.error.response.status === 401) {
-          console.log('here too');
           errorMessage = 'Unauthorized.';
         }
         return { error: errorMessage };

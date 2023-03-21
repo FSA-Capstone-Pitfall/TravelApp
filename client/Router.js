@@ -16,7 +16,6 @@ const Router = () => {
   const user = useSelector((state) => state.auth.user);
 
   useEffect(() => {
-    console.log('isloggedin: ', isLoggedIn());
     if (isLoggedIn() !== undefined) {
       dispatch(getUserByToken());
     }

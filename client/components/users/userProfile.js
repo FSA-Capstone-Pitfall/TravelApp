@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchSingleUserProfile } from '../../store/slices/usersSlice';
-import { Box, Avatar } from '@mui/material';
+import { Box, Avatar, Grid } from '@mui/material';
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -32,53 +32,61 @@ const UserProfile = () => {
   }, [selectedUser]);
 
   return (
-    <Box>
-      <Box
-        sx={{
-          mt: 1,
-          ml: 5,
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
-        <Avatar src={imageUrl} sx={{ height: '200px', width: '200px' }} />
-        <Box sx={{ mt: 2 }}>
-          {firstName} {lastName}
-        </Box>
-        <Box>
-          {city}, {userState}
-        </Box>
-        <Box sx={{ mt: 2 }}>
-          <Box
-            component='img'
-            src='https://www.seekpng.com/png/detail/159-1595172_iceberg-badge-pixel-art.png'
-            sx={{ width: '50px', height: '50px', mr: 2 }}
-          />
-          <Box
-            component='img'
-            src='https://www.seekpng.com/png/detail/159-1595172_iceberg-badge-pixel-art.png'
-            sx={{ width: '50px', height: '50px', mr: 2 }}
-          />
-          <Box
-            component='img'
-            src='https://www.seekpng.com/png/detail/159-1595172_iceberg-badge-pixel-art.png'
-            sx={{ width: '50px', height: '50px' }}
-          />
-        </Box>
-        <Box
-          sx={{
-            borderColor: 'secondary.main',
-            bgcolor: 'secondary.light',
-            mt: 2,
-            border: 1,
-            width: '12rem',
-            height: '5rem',
-            borderRadius: '12px',
-          }}
-        >
-          Hi, I'm Lisa!
-        </Box>
-      </Box>
+    <Box sx={{ flexGrow: 1, padding: 3 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={8} sx={{ ml: 3, mr: 3 }}>
+          <Grid container spacing={2}>
+            <Grid xs={6} md={4}>
+              <Avatar src={imageUrl} sx={{ height: '200px', width: '200px' }} />
+            </Grid>
+            <Grid
+              item
+              xs={6}
+              md={8}
+              sx={{ display: 'flex', alignItems: 'center', mb: 1 }}
+            >
+              This is where all of the trips will be rendered.
+            </Grid>
+            <Grid
+              item
+              xs={6}
+              md={4}
+              sx={{ textAlign: 'left', display: 'inline-block' }}
+            >
+              <Grid item sx={{ mb: 1 }}>
+                {firstName} {lastName}
+              </Grid>
+              <Grid item sx={{ mb: 2 }}>
+                {city}, {userState}
+              </Grid>
+              <Grid item sx={{ mb: 1 }}>
+                <Box
+                  component='img'
+                  src='https://www.seekpng.com/png/detail/159-1595172_iceberg-badge-pixel-art.png'
+                  sx={{ width: '40px', height: '40px', mr: 2 }}
+                />
+                <Box
+                  component='img'
+                  src='https://www.seekpng.com/png/detail/159-1595172_iceberg-badge-pixel-art.png'
+                  sx={{ width: '40px', height: '40px', mr: 2 }}
+                />
+                <Box
+                  component='img'
+                  src='https://www.seekpng.com/png/detail/159-1595172_iceberg-badge-pixel-art.png'
+                  sx={{ width: '40px', height: '40px' }}
+                />
+              </Grid>
+              <Grid item sx={{ mb: 1 }}>
+                This is where the user's description will go after we hook up
+                the backend to accommodate this--maybe there's also an option to
+                add a link to their profile, that could point towards some
+                travel-oriented content like a blog or independent offered tour
+                service.
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
     </Box>
   );
 };

@@ -84,12 +84,11 @@ function AppAppBar() {
       <ResponsiveAppBar
         position='fixed'
         color={trigger ? 'primary' : 'transparent'}
-        borderradius='20px'
       >
         {' '}
         <Toolbar
           onScroll={handleTrigger}
-          sx={{ justifyContent: 'space-between' }}
+          sx={{ justifyContent: 'space-between', padding: '8px 16px' }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <img
@@ -131,11 +130,14 @@ function AppAppBar() {
                 {'My Trips'}
               </Link>
               <Link
-                color='inherit'
                 variant='h6'
                 underline='none'
                 href='/destinations'
-                sx={{ ...rightLink, marginRight: '16px' }}
+                sx={{
+                  ...rightLink,
+                  color: 'secondary.main',
+                  marginRight: '16px',
+                }}
               >
                 {'Destinations'}
               </Link>

@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSingleUser, updateUser } from '../../store/slices/usersSlice';
-import { Typography, TextField, Button, Box } from '@mui/material';
+import {
+  Typography,
+  TextField,
+  Button,
+  Box,
+  Grid,
+  Avatar,
+} from '@mui/material';
 
 const UserAccount = ({ userId }) => {
-  console.log('userid: ', userId);
   const dispatch = useDispatch();
   const [user, setUser] = useState(null);
   const loggedUser = useSelector((state) => state.auth.user);
@@ -61,84 +67,91 @@ const UserAccount = ({ userId }) => {
   };
 
   return (
-    <Box
-      sx={{
-        mt: 2,
-        mr: 2,
-        ml: 2,
-        mb: 2,
-      }}
-    >
-      <Typography variant='h4'>Account Info</Typography>
-      <Box
-        component='form'
-        onSubmit={handleUpdate}
-        sx={{
-          mt: 1,
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
-        <TextField
-          margin='normal'
-          id='firstName'
-          name='firstName'
-          label='First Name'
-          value={firstName}
-          autoFocus
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-        <TextField
-          margin='normal'
-          id='lastName'
-          name='lastName'
-          label='Last Name'
-          value={lastName}
-          autoFocus
-          onChange={(e) => setLastName(e.target.value)}
-        />
-        <TextField
-          margin='normal'
-          id='city'
-          name='city'
-          label='City'
-          value={city}
-          autoFocus
-          onChange={(e) => setCity(e.target.value)}
-        />
-        <TextField
-          margin='normal'
-          id='state'
-          name='state'
-          label='State'
-          value={userState}
-          autoFocus
-          onChange={(e) => setUserState(e.target.value)}
-        />
-        <TextField
-          margin='normal'
-          id='imageUrl'
-          name='imageUrl'
-          label='Avatar'
-          value={imageUrl}
-          autoFocus
-          onChange={(e) => setImageUrl(e.target.value)}
-        />
-        <TextField
-          margin='normal'
-          id='email'
-          name='email'
-          type='email'
-          label='Email'
-          value={email}
-          autoFocus
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        {update}
-        <Button type='submit' variant='contained' color='primary'>
-          Update
-        </Button>
-      </Box>
+    <Box sx={{ flexGrow: 1, padding: 3 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={8} sx={{ ml: 3, mr: 3 }}>
+          <Grid container spacing={2}>
+            <Grid xs={6} md={4}>
+              <Avatar src={imageUrl} sx={{ height: '200px', width: '200px' }} />
+              <Button variant='outlined' sx={{ mt: 2, ml: '36px' }}>
+                Edit photo
+              </Button>
+            </Grid>
+            <Box>
+              <Typography variant='h4'>Account Info</Typography>
+              <Box
+                component='form'
+                onSubmit={handleUpdate}
+                sx={{
+                  mt: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <TextField
+                  margin='normal'
+                  id='firstName'
+                  name='firstName'
+                  label='First Name'
+                  value={firstName}
+                  autoFocus
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+                <TextField
+                  margin='normal'
+                  id='lastName'
+                  name='lastName'
+                  label='Last Name'
+                  value={lastName}
+                  autoFocus
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+                <TextField
+                  margin='normal'
+                  id='city'
+                  name='city'
+                  label='City'
+                  value={city}
+                  autoFocus
+                  onChange={(e) => setCity(e.target.value)}
+                />
+                <TextField
+                  margin='normal'
+                  id='state'
+                  name='state'
+                  label='State'
+                  value={userState}
+                  autoFocus
+                  onChange={(e) => setUserState(e.target.value)}
+                />
+                <TextField
+                  margin='normal'
+                  id='imageUrl'
+                  name='imageUrl'
+                  label='Avatar'
+                  value={imageUrl}
+                  autoFocus
+                  onChange={(e) => setImageUrl(e.target.value)}
+                />
+                <TextField
+                  margin='normal'
+                  id='email'
+                  name='email'
+                  type='email'
+                  label='Email'
+                  value={email}
+                  autoFocus
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                {update}
+                <Button type='submit' variant='contained' color='primary'>
+                  Update
+                </Button>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </Grid>
     </Box>
   );
 };

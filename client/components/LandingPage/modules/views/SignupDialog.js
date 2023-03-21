@@ -68,7 +68,6 @@ export default function SignupDialog({ toggleDialog }) {
             method: 'signup',
           })
         );
-        console.log('result: ', result);
         if (!result.payload.error) {
           dispatch(getUserByToken());
           clearLocalState();
