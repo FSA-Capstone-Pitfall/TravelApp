@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const fetchDestinations = createAsyncThunk('/destinations', async () => {
+export const fetchDestinations = createAsyncThunk('/destinations', async ({ identifier }) => {
   try {
-    const { data } = await axios.get('/api/destinations');
+    const { data } = await axios.get(`/api/destinations?identifier=${identifier}`);
     return data;
   } catch (err) {
-    throw err.message;
+    throw err;
   }
 });
 
@@ -19,7 +19,7 @@ export const fetchSingleDestination = createAsyncThunk(
     } catch (err) {
       throw err.message;
     }
-  }
+  },
 );
 
 const initialState = {

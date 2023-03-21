@@ -9,7 +9,7 @@ function Copyright() {
   return (
     <React.Fragment>
       {'© '}
-      <Link color='inherit' href='http://localhost:8404/'>
+      <Link color="inherit" href="http://localhost:8404/">
         Pathfinder
       </Link>{' '}
       {new Date().getFullYear()}
@@ -23,32 +23,32 @@ export default function AppFooter() {
       sx={{
         marginTop: 'calc(10% + 60px)',
         width: '100%',
-        position: 'fixed',
+        // position: 'fixed',
         bottom: 0,
       }}
-      component='footer'
+      component="footer"
       square
     >
       <Typography
-        component='footer'
+        component="footer"
         sx={{ display: 'flex', bgcolor: 'secondary.light' }}
       >
         <Container sx={{ my: 1, display: 'flex' }}>
           <Grid
             container
             spacing={4}
-            justifyContent='center'
-            alignItems='center'
+            justifyContent="center"
+            alignItems="center"
           >
             <Grid item xs={6} sm={4} md={3}>
               <Grid
                 container
-                justifyContent='center'
-                alignItems='center'
+                justifyContent="center"
+                alignItems="center"
                 spacing={0}
               >
                 <Grid item>
-                  <Typography variant='caption'>
+                  <Typography variant="caption">
                     <Copyright />
                   </Typography>
                 </Grid>
