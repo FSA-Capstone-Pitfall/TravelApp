@@ -4,8 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './components/LandingPage/Home';
 import { getUserByToken } from './store';
 import { isLoggedIn } from './utils';
-import Destinations from './components/pages/destinations';
-import SingleDestination from './features/singleDestination';
 import MyTrip from './features/itinerary';
 import AllUsers from './components/users/allUsers';
 import UserAccount from './components/users/userAccount';
@@ -21,32 +19,30 @@ const Router = () => {
     }
   }, [dispatch]);
 
-  return(
-    <div style={{ marginTop: '-9vh' }}>
+  return (
+    <div style={{ marginTop: '-14vh' }}>
       {
         !user ? (
-        <Routes>
-          <Route path='/' element={<Home />} />
-        </Routes>
-      ) : (
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/destinations' element={<Destinations />} />
-          <Route path='/destinations/:location' element={<SingleDestination />} />
-          <Route path='/mytrips' element={<MyTrip />} />
-          <Route exact path='/users/all' element={<AllUsers />} />
-          <Route
-            exact
-            path={`/users/account/${user.id}`}
-            element={<UserAccount userId={user.id} />}
-          />
-          <Route exact path='/users/profile/:userId' element={<UserProfile />} />
-          <Route path='*' element={<Home />} />
-        </Routes>
-      )
-    }
-  </div>
-  )
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/mytrips" element={<MyTrip />} />
+            <Route exact path="/users/all" element={<AllUsers />} />
+            <Route
+              exact
+              path={`/users/account/${user.id}`}
+              element={<UserAccount userId={user.id} />}
+            />
+            <Route exact path="/users/profile/:userId" element={<UserProfile />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
+        )
+      }
+    </div>
+  );
 };
 
 export default Router;
