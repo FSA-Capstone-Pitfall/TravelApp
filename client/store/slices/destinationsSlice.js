@@ -6,7 +6,7 @@ export const fetchDestinations = createAsyncThunk('/destinations', async ({ iden
     const { data } = await axios.get(`/api/destinations?identifier=${identifier}`);
     return data;
   } catch (err) {
-    throw err.message;
+    throw err;
   }
 });
 

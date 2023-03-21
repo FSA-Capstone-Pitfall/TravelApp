@@ -8,6 +8,7 @@ import MyTrip from './features/itinerary';
 import AllUsers from './components/users/allUsers';
 import UserAccount from './components/users/userAccount';
 import UserProfile from './components/users/userProfile';
+import Activities from './components/Activities';
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -20,10 +21,11 @@ const Router = () => {
   }, [dispatch]);
 
   return (
-    <div style={{ marginTop: '-14vh' }}>
+    <div style={{ marginTop: '-15vh' }}>
       {
         !user ? (
           <Routes>
+            <Route path="/activities" element={<Activities />} />
             <Route path="/" element={<Home />} />
           </Routes>
         ) : (

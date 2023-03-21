@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Backspace as BackspaceIcon } from '@mui/icons-material';
 
 import { fetchDestinations } from '../store';
+import { useNavigate } from 'react-router-dom';
 
 const StyledTextField = styled(TextField)({
   '& .MuiInputLabel-root': { color: 'white' },
@@ -30,6 +31,7 @@ const StyledTextField = styled(TextField)({
 const SearchBar = () => {
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState('');
+  const navigate = useNavigate();
   const [renderDestinations, setRenderDestinations] = useState(false);
 
   const destinations = useSelector((state) => state.destinations.destinations);
@@ -49,7 +51,9 @@ const SearchBar = () => {
       noValidate
       autoComplete="off"
       onSubmit={handleSubmit}
-      onBlur={() => setRenderDestinations(false)}
+      onBlur={(event) => {
+        setTimeout(() => setRenderDestinations(false), 100);
+      }}
     >
       <StyledTextField
         id="search-destinations-form"
@@ -64,12 +68,12 @@ const SearchBar = () => {
           style: { color: '#fff' },
           endAdornment:
             (
-              <InputAdornment position="end" onClick={() => {
+              searchValue && <InputAdornment position="end" onClick={() => {
                 setSearchValue('');
               }}>
                 <BackspaceIcon style={{ color: '#fff' }} />
               </InputAdornment>
-            )
+            ),
         }}
         onFocus={(event) => {
           if (searchValue && destinations.length) {
@@ -81,7 +85,13 @@ const SearchBar = () => {
         <Paper style={{ position: 'absolute' }}>
           <List component="nav" aria-label="main mailbox folders">
             {destinations.map(city => <List key={city.id}>
-                <ListItemButton onClick={() => console.log('redirecting to city activities')}>
+                <ListItemButton onClick={() => navigate('/activities', {
+                  state: {
+                    cityId: city.id,
+                    displayName: city.name,
+                    imageUrl: city.imageUrl,
+                  },
+                })}>
                   <Typography
                     variant="body1"
                     align="center"
@@ -91,18 +101,27 @@ const SearchBar = () => {
                   </Typography>
                 </ListItemButton>
                 <List component="nav">
-                  {city.destinations.length && city.destinations.map(destination =>
-                    <ListItemButton key={destination.id}
-                                    style={{ paddingLeft: '2rem' }}
-                                    onClick={() => console.log('redirecting to destination activities')}>
-                      <Typography
-                        variant="body1"
-                        align="center"
-                        color="text.secondary"
-                      >
-                        {destination.name}
-                      </Typography>
-                    </ListItemButton>)}
+                  {city.destinations.length &&
+                    city.destinations.map(destination =>
+                      <ListItemButton key={destination.id}
+                                      style={{ paddingLeft: '2rem' }}
+                                      onClick={() => navigate('/activities', {
+                                        state: {
+                                          destinationId: destination.id,
+                                          displayName: destination.name,
+                                          description: destination.description,
+                                          imageUrl: destination.imageUrl,
+                                          googleMap: destination.googleMap,
+                                        },
+                                      })}>
+                        <Typography
+                          variant="body1"
+                          align="center"
+                          color="text.secondary"
+                        >
+                          {destination.name}
+                        </Typography>
+                      </ListItemButton>)}
                 </List>
               </List>,
             )}
