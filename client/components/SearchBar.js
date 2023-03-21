@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Box, InputAdornment, List, ListItemButton, Paper, TextField, Typography } from '@mui/material';
+import { Box, List, ListItemButton, Paper, TextField, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { Backspace as BackspaceIcon } from '@mui/icons-material';
+import { Backspace as BackspaceIcon, Search as SearchIcon } from '@mui/icons-material';
 
 import { fetchDestinations } from '../store';
 import { useNavigate } from 'react-router-dom';
@@ -58,6 +58,7 @@ const SearchBar = () => {
       <StyledTextField
         id="search-destinations-form"
         variant="outlined"
+        label="Where to?"
         size={'small'}
         value={searchValue}
         onChange={(event) => {
@@ -68,11 +69,9 @@ const SearchBar = () => {
           style: { color: '#fff' },
           endAdornment:
             (
-              searchValue && <InputAdornment position="end" onClick={() => {
-                setSearchValue('');
-              }}>
-                <BackspaceIcon style={{ color: '#fff' }} />
-              </InputAdornment>
+              searchValue ?
+                <BackspaceIcon style={{ color: '#fff' }}/> :
+                <SearchIcon style={{ color: '#fff' }}/>
             ),
         }}
         onFocus={(event) => {
