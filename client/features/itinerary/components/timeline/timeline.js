@@ -10,7 +10,22 @@ import {
 } from '@mui/lab';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
-export default function BasicTimeline() {
+export default function BasicTimeline({ activities }) {
+
+  function comparePositions(a, b) {
+    let dateA = new Date(a.itinerary_activity.date)
+    let dateB = new Date(b.itinerary_activity.date)
+    return dateA - dateB;
+  }
+
+  let activitiesArr;
+  if(activities){
+    activitiesArr = [...activities]
+    activitiesArr.sort(comparePositions)
+  }
+
+
+
   return (
     <Timeline
       sx={{
