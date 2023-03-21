@@ -47,6 +47,7 @@ const SearchBar = () => {
       noValidate
       autoComplete="off"
       onSubmit={handleSubmit}
+      onBlur={() => setRenderDestinations(false)}
     >
       <StyledTextField
         id="search-destinations-form"
@@ -59,6 +60,11 @@ const SearchBar = () => {
           setRenderDestinations(false);
         }}
         inputProps={{ style: { color: '#fff' } }}
+        onFocus={(event) => {
+          if (searchValue && destinations.length) {
+            setRenderDestinations(true);
+          }
+        }}
       />
       {renderDestinations && destinations.length &&
         <Paper style={{ position: 'absolute' }}>
