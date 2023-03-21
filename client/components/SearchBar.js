@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { Box, InputAdornment, List, ListItemButton, Paper, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  InputAdornment,
+  List,
+  ListItemButton,
+  Paper,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { Backspace as BackspaceIcon } from '@mui/icons-material';
@@ -44,20 +52,20 @@ const SearchBar = () => {
 
   return (
     <Box
-      component="form"
+      component='form'
       sx={{
         '& > :not(style)': { m: 1, width: '25ch' },
       }}
       noValidate
-      autoComplete="off"
+      autoComplete='off'
       onSubmit={handleSubmit}
       onBlur={(event) => {
         setTimeout(() => setRenderDestinations(false), 100);
       }}
     >
       <StyledTextField
-        id="search-destinations-form"
-        variant="outlined"
+        id='search-destinations-form'
+        variant='outlined'
         size={'small'}
         value={searchValue}
         onChange={(event) => {
@@ -65,15 +73,17 @@ const SearchBar = () => {
           setRenderDestinations(false);
         }}
         InputProps={{
-          style: { color: '#fff' },
-          endAdornment:
-            (
-              searchValue && <InputAdornment position="end" onClick={() => {
+          style: { color: '#fff', borderRadius: '20px' },
+          endAdornment: searchValue && (
+            <InputAdornment
+              position='end'
+              onClick={() => {
                 setSearchValue('');
-              }}>
-                <BackspaceIcon style={{ color: '#fff' }} />
-              </InputAdornment>
-            ),
+              }}
+            >
+              <BackspaceIcon style={{ color: '#fff' }} />
+            </InputAdornment>
+          ),
         }}
         onFocus={(event) => {
           if (searchValue && destinations.length) {
@@ -81,53 +91,63 @@ const SearchBar = () => {
           }
         }}
       />
-      {renderDestinations && destinations.length &&
+      {renderDestinations && destinations.length && (
         <Paper style={{ position: 'absolute' }}>
-          <List component="nav" aria-label="main mailbox folders">
-            {destinations.map(city => <List key={city.id}>
-                <ListItemButton onClick={() => navigate('/activities', {
-                  state: {
-                    cityId: city.id,
-                    displayName: city.name,
-                    imageUrl: city.imageUrl,
-                  },
-                })}>
+          <List component='nav' aria-label='main mailbox folders'>
+            {destinations.map((city) => (
+              <List key={city.id}>
+                <ListItemButton
+                  onClick={() =>
+                    navigate('/activities', {
+                      state: {
+                        cityId: city.id,
+                        displayName: city.name,
+                        imageUrl: city.imageUrl,
+                      },
+                    })
+                  }
+                >
                   <Typography
-                    variant="body1"
-                    align="center"
-                    color="text.secondary"
+                    variant='body1'
+                    align='center'
+                    color='text.secondary'
                   >
                     {city.name}
                   </Typography>
                 </ListItemButton>
-                <List component="nav">
+                <List component='nav'>
                   {city.destinations.length &&
-                    city.destinations.map(destination =>
-                      <ListItemButton key={destination.id}
-                                      style={{ paddingLeft: '2rem' }}
-                                      onClick={() => navigate('/activities', {
-                                        state: {
-                                          destinationId: destination.id,
-                                          displayName: destination.name,
-                                          description: destination.description,
-                                          imageUrl: destination.imageUrl,
-                                          googleMap: destination.googleMap,
-                                        },
-                                      })}>
+                    city.destinations.map((destination) => (
+                      <ListItemButton
+                        key={destination.id}
+                        style={{ paddingLeft: '2rem' }}
+                        onClick={() =>
+                          navigate('/activities', {
+                            state: {
+                              destinationId: destination.id,
+                              displayName: destination.name,
+                              description: destination.description,
+                              imageUrl: destination.imageUrl,
+                              googleMap: destination.googleMap,
+                            },
+                          })
+                        }
+                      >
                         <Typography
-                          variant="body1"
-                          align="center"
-                          color="text.secondary"
+                          variant='body1'
+                          align='center'
+                          color='text.secondary'
                         >
                           {destination.name}
                         </Typography>
-                      </ListItemButton>)}
+                      </ListItemButton>
+                    ))}
                 </List>
-              </List>,
-            )}
+              </List>
+            ))}
           </List>
         </Paper>
-      }
+      )}
     </Box>
   );
 };
