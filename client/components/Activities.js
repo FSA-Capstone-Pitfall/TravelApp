@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { fetchActivities } from '../store';
 import { Box, Container, List, Typography } from '@mui/material';
-
+import { fetchActivities } from '../store';
 
 const Activities = () => {
   const dispatch = useDispatch();
@@ -43,14 +42,11 @@ const Activities = () => {
           justifyContent: 'center',
           alignItems: 'center',
           height: '40rem',
-          backgroundImage: `url(${imageUrl})`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${imageUrl})`,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           overflow: 'hidden',
           backgroundColor: 'common.black',
-          opacity: 0.5,
-
-
         }}
       >
         <Typography color="#fff" align="center" variant="h2">
