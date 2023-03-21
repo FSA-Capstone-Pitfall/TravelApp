@@ -25,21 +25,22 @@ const Router = () => {
       {
         !user ? (
           <Routes>
-            <Route path="/activities" element={<Activities />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home/>}/>
+            <Route path="/activities" element={<Activities/>}/>
           </Routes>
         ) : (
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/mytrips" element={<MyTrip />} />
-            <Route exact path="/users/all" element={<AllUsers />} />
+            <Route path="/" element={<Home/>}/>
+            <Route path="/activities" element={<Activities/>}/>
+            <Route path="/mytrips" element={<MyTrip/>}/>
+            <Route exact path="/users/all" element={<AllUsers/>}/>
             <Route
               exact
               path={`/users/account/${user.id}`}
-              element={<UserAccount userId={user.id} />}
+              element={<UserAccount userId={user.id}/>}
             />
-            <Route exact path="/users/profile/:userId" element={<UserProfile />} />
-            <Route path="*" element={<Home />} />
+            <Route exact path="/users/profile/:userId" element={<UserProfile/>}/>
+            <Route path="*" element={<Home/>}/>
           </Routes>
         )
       }
