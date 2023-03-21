@@ -68,14 +68,31 @@ const UserAccount = ({ userId }) => {
 
   return (
     <Box sx={{ flexGrow: 1, padding: 3 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={8} sx={{ ml: 3, mr: 3 }}>
+      <Grid container spacing={2} sx={{ display: 'flex' }}>
+        <Grid item xs={8}>
           <Grid container spacing={2}>
-            <Grid xs={6} md={4}>
-              <Avatar src={imageUrl} sx={{ height: '200px', width: '200px' }} />
-              <Button variant='outlined' sx={{ mt: 2, ml: '36px' }}>
-                Edit photo
-              </Button>
+            <Grid item xs={6}>
+              <Box
+                sx={{
+                  marginBottom: 1,
+                  maxWidth: '200px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <Avatar
+                  src={imageUrl}
+                  sx={{ height: '200px', width: '200px' }}
+                />
+                <Box
+                  component='div'
+                  sx={{ textAlign: 'left', display: 'block', mb: 1 }}
+                >
+                  <Button variant='outlined' sx={{ mt: 2, ml: '36px' }}>
+                    Edit photo
+                  </Button>
+                </Box>
+              </Box>
             </Grid>
             <Box>
               <Typography variant='h4'>Account Info</Typography>

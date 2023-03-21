@@ -88,7 +88,7 @@ function AppAppBar() {
         {' '}
         <Toolbar
           onScroll={handleTrigger}
-          sx={{ justifyContent: 'space-between', padding: '8px 16px' }}
+          sx={{ justifyContent: 'space-between' }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <img
