@@ -1003,6 +1003,8 @@ const CITY_SEED_DATA = [
     name: 'New York City',
     tag: 'NYC',
     state: 'New York',
+    imageUrl:
+      'https://images.unsplash.com/photo-1593821182275-0fe19796d302?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1744&q=80',
   },
   {
     name: 'San Diego',
@@ -1021,105 +1023,125 @@ const DESTINATION_SEED_DATA = [
     name: 'Manhattan',
     description:
       'The bustling heart of New York City, known for its iconic landmarks, skyscrapers, and vibrant neighborhoods.',
-    googleMap: '40.783060,-73.971249',
+    googleMap: '40.71353120449932, -74.00837013505404',
     cityId: 1, // NYC
+    imageUrl:
+      'https://images.unsplash.com/photo-1499566727020-881da110a0b0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1243&q=80',
   },
   {
     name: 'Brooklyn',
     description:
       'A diverse and culturally rich borough known for its hipster vibe, unique neighborhoods, and thriving arts scene.',
-    googleMap: '40.678178,-73.944158',
+    googleMap: '40.677777236516604, -73.94122236418421',
     cityId: 1,
+    imageUrl:
+      'https://images.unsplash.com/photo-1565867254334-10280784ff69?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
   },
   {
     name: 'Queens',
     description:
       'The largest borough of New York City, boasting a mix of residential neighborhoods, cultural enclaves, and the home of both JFK and LaGuardia airports.',
-    googleMap: '40.728224,-73.794852',
+    googleMap: '40.73007120731987, -73.79497978680546',
     cityId: 1,
+    imageUrl:
+      'https://images.unsplash.com/photo-1522482178516-7a04ae0dce7a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
   },
   {
     name: 'The Bronx',
     description:
       'A vibrant borough rich in history and culture, famous for being the birthplace of hip hop and home to the New York Yankees.',
-    googleMap: '40.844782,-73.864827',
+    googleMap: '40.8446267852257, -73.86428130814255',
     cityId: 1,
+    imageUrl:
+      'https://images.unsplash.com/photo-1549882406-3a8e87d11b84?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1240&q=80',
   },
   {
     name: 'Staten Island',
     description:
       'The southernmost and least populated borough of New York City, known for its suburban feel and natural attractions like the Staten Island Greenbelt.',
-    googleMap: '40.579532,-74.150201',
+    googleMap: '40.579685949368574, -74.15154726648674',
     cityId: 1,
+    imageUrl:
+      'https://images.unsplash.com/photo-1608476674619-3cbb17e1c399?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
   },
   {
     name: 'Gaslamp Quarter',
     description:
       'A lively downtown neighborhood known for its historic architecture, vibrant nightlife, and diverse dining options.',
-    googleMap: '32.711594,-117.160482',
+    googleMap: '32.71300845306552, -117.15968599605831',
     cityId: 2, // San Diego
   },
   {
     name: 'Little Italy',
     description:
       'A vibrant neighborhood known for its Italian heritage, featuring a mix of Italian restaurants, boutique shops, and art galleries.',
-    googleMap: '32.722932,-117.168221',
+    googleMap: '32.72303206038393, -117.16877007340835',
     cityId: 2,
   },
   {
     name: 'La Jolla',
     description:
       'An upscale coastal community known for its picturesque coastline, luxurious homes, and a variety of outdoor activities.',
-    googleMap: '32.832811,-117.271272',
+    googleMap: '32.842730542759135, -117.26986113668559',
     cityId: 2,
+    imageUrl:
+      'https://images.unsplash.com/photo-1546200378-434d318e5715?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
   },
   {
     name: 'Pacific Beach',
     description:
       'A popular beach neighborhood with a lively boardwalk, offering a mix of casual dining, bars, and shopping.',
-    googleMap: '32.798807,-117.245532',
+    googleMap: '32.80253067827883, -117.23436392776415',
     cityId: 2,
+    imageUrl:
+      'https://images.unsplash.com/photo-1587675204408-9031e3fef00e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1525&q=80',
   },
   {
     name: 'North Park',
     description:
       'A trendy neighborhood known for its craft beer scene, diverse dining options, and vibrant arts community.',
-    googleMap: '32.748382,-117.127858',
+    googleMap: '32.7458314983731, -117.13002479603428',
     cityId: 2,
+    imageUrl:
+      'https://images.unsplash.com/photo-1574731907493-ab1e5447054b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80',
   },
   {
     name: 'The Strip',
     description:
       'A 4.2-mile stretch of Las Vegas Boulevard lined with luxurious hotels, casinos, and entertainment venues, making it the heart of Las Vegas.',
-    googleMap: '36.114647,-115.172813',
+    googleMap: '36.11423406898256, -115.17674257236175',
     cityId: 3, // Las Vegas
+    imageUrl:
+      'https://images.unsplash.com/photo-1650236985650-aafce1c62870?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1441&q=80',
   },
   {
     name: 'Downtown Las Vegas',
     description:
       'The historic center of Las Vegas, featuring the Fremont Street Experience, classic casinos, and an emerging arts district.',
-    googleMap: '36.17497,-115.13722',
+    googleMap: '36.17385061946078, -115.14167097706307',
     cityId: 3,
+    imageUrl:
+      'https://images.unsplash.com/photo-1549861833-c5932fd19229?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1333&q=80',
   },
   {
     name: 'Summerlin',
     description:
       'An affluent master-planned community located on the western edge of Las Vegas, known for its golf courses, parks, and shopping centers.',
-    googleMap: '36.168336,-115.333862',
+    googleMap: '36.18961261811269, -115.30446290731614',
     cityId: 3,
   },
   {
     name: 'Henderson',
     description:
       'A neighboring city southeast of Las Vegas, offering a suburban lifestyle with parks, shopping centers, and family-friendly attractions.',
-    googleMap: '36.039525,-114.981721',
+    googleMap: '36.03886191334772, -114.97747178326334',
     cityId: 3,
   },
   {
     name: 'Paradise',
     description:
       'An unincorporated area and census-designated place south of Las Vegas, containing much of The Strip, McCarran International Airport, and the University of Nevada, Las Vegas.',
-    googleMap: '36.097194,-115.146665',
+    googleMap: '36.09838250246821, -115.15021632804732',
     cityId: 3,
   },
 ];
@@ -1130,24 +1152,26 @@ const ACTIVITY_SEED_DATA = [
     address: 'Liberty Island',
     duration: 120,
     zipcode: '10004',
-    googleMap: '40.6892494,-74.0445004',
+    googleMap: '40.68931158473072, -74.04449304208963',
     description:
       'An iconic symbol of freedom and a must-visit attraction for any NYC trip.',
     categories: ['landmark'],
-    cityId: 1, // NYC
     destinationId: 1, // Manhattan
+    imageUrl:
+      'https://images.unsplash.com/photo-1583707225662-125fe69e6656?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
   },
   {
     name: 'Brooklyn Bridge',
     address: 'Brooklyn Bridge',
     duration: 60,
     zipcode: '11201',
-    googleMap: '40.706086,-73.996864',
+    googleMap: '40.70654130036695, -73.99687477759225',
     description:
       'A historic suspension bridge connecting Manhattan and Brooklyn, offering stunning views of the city.',
     categories: ['landmark'],
-    cityId: 1, // NYC
     destinationId: 2, // Brooklyn
+    imageUrl:
+      'https://images.unsplash.com/photo-1452796651103-7c07fca7a2c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80',
   },
   {
     name: 'Flushing Meadows Corona Park',
@@ -1158,7 +1182,6 @@ const ACTIVITY_SEED_DATA = [
     description:
       'A large public park in Queens, featuring the Unisphere, Queens Museum, and other attractions.',
     categories: ['park'],
-    cityId: 1, // NYC
     destinationId: 3, // Queens
   },
   {
@@ -1170,7 +1193,6 @@ const ACTIVITY_SEED_DATA = [
     description:
       'A unique museum dedicated to preserving the iconic neon signs from Las Vegas history.',
     categories: ['museum'],
-    cityId: 3, // Las Vegas
     destinationId: 11, // The Strip
   },
   {
@@ -1182,7 +1204,6 @@ const ACTIVITY_SEED_DATA = [
     description:
       'A free commuter ferry offering breathtaking views of the Statue of Liberty, Ellis Island, and the Manhattan skyline.',
     categories: ['transportation'],
-    cityId: 1, // NYC
     destinationId: 5, // Staten Island
   },
   {
@@ -1194,7 +1215,6 @@ const ACTIVITY_SEED_DATA = [
     description:
       'A sprawling urban cultural park with museums, gardens, and the world-famous San Diego Zoo.',
     categories: ['park'],
-    cityId: 2, // San Diego
     destinationId: 6, // Gaslamp Quarter
   },
   {
@@ -1206,7 +1226,6 @@ const ACTIVITY_SEED_DATA = [
     description:
       'A maritime museum located on the historic aircraft carrier USS Midway.',
     categories: ['museum'],
-    cityId: 2, // San Diego
     destinationId: 7, // Little Italy
   },
   {
@@ -1218,7 +1237,6 @@ const ACTIVITY_SEED_DATA = [
     description:
       'A picturesque cove and beach, popular for swimming, snorkeling, and scuba diving.',
     categories: ['beach'],
-    cityId: 2, // San Diego
     destinationId: 8, // La Jolla
   },
   {
@@ -1230,7 +1248,6 @@ const ACTIVITY_SEED_DATA = [
     description:
       'A historic oceanfront amusement park featuring rides, games, and dining options.',
     categories: ['amusement_park'],
-    cityId: 2, // San Diego
     destinationId: 9, // Pacific Beach
   },
   {
@@ -1242,7 +1259,6 @@ const ACTIVITY_SEED_DATA = [
     description:
       'A historic theater turned concert venue hosting live music performances and events.',
     categories: ['entertainment'],
-    cityId: 2, // San Diego
     destinationId: 10, // North Park
   },
   {
@@ -1254,7 +1270,6 @@ const ACTIVITY_SEED_DATA = [
     description:
       'A media museum dedicated to the art, history, and technology of film, television, and digital media.',
     categories: ['museum'],
-    cityId: 1, // NYC
     destinationId: 3, // Queens
   },
   {
@@ -1266,7 +1281,6 @@ const ACTIVITY_SEED_DATA = [
     description:
       'The home stadium of the New York Yankees, offering baseball games, concerts, and other events.',
     categories: ['sports'],
-    cityId: 1, // NYC
     destinationId: 4, // The Bronx
   },
   {
@@ -1278,7 +1292,6 @@ const ACTIVITY_SEED_DATA = [
     description:
       'A cultural center and botanical garden on Staten Island, featuring museums, art galleries, and event spaces.',
     categories: ['park'],
-    cityId: 1, // NYC
     destinationId: 5, // Staten Island
   },
   {
@@ -1286,12 +1299,13 @@ const ACTIVITY_SEED_DATA = [
     address: 'Central Park, New York, NY',
     duration: 180,
     zipcode: '10024',
-    googleMap: '40.785091,-73.968285',
+    googleMap: '40.7831085840114, -73.96537076045074',
     description:
       'A massive urban park in Manhattan, offering walking paths, open lawns, and iconic landmarks.',
     categories: ['park'],
-    cityId: 1, // NYC
     destinationId: 1, // Manhattan
+    imageUrl:
+      'https://images.unsplash.com/photo-1631729779674-1f369e1116b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1412&q=80',
   },
   {
     name: 'Bellagio Fountains',
@@ -1302,7 +1316,6 @@ const ACTIVITY_SEED_DATA = [
     description:
       'A captivating water show featuring lights, music, and dancing fountains in front of the Bellagio hotel.',
     categories: ['show'],
-    cityId: 3, // Las Vegas
     destinationId: 11, // The Strip
   },
   {
@@ -1314,7 +1327,6 @@ const ACTIVITY_SEED_DATA = [
     description:
       'An interactive museum dedicated to the history of organized crime and law enforcement in the United States.',
     categories: ['museum'],
-    cityId: 3, // Las Vegas
     destinationId: 12, // Downtown Las Vegas
   },
   {
@@ -1326,7 +1338,6 @@ const ACTIVITY_SEED_DATA = [
     description:
       'A protected area featuring stunning red rock formations, hiking trails, and scenic drives just outside of Las Vegas.',
     categories: ['nature'],
-    cityId: 3, // Las Vegas
     destinationId: 13, // Summerlin
   },
   {
@@ -1338,7 +1349,6 @@ const ACTIVITY_SEED_DATA = [
     description:
       'A picturesque, man-made lake featuring upscale resorts, golf courses, and a Mediterranean-style village.',
     categories: ['nature'],
-    cityId: 3, // Las Vegas
     destinationId: 14, // Henderson
   },
   {
@@ -1350,7 +1360,6 @@ const ACTIVITY_SEED_DATA = [
     description:
       'A five-block entertainment district featuring a pedestrian mall, LED canopy, live music, street performers, and iconic casinos.',
     categories: ['entertainment'],
-    cityId: 3, // Las Vegas
     destinationId: 12, // Downtown Las Vegas
   },
 ];
