@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Box, List, ListItemButton, Paper, TextField, Typography } from '@mui/material';
+import { Box, InputAdornment, List, ListItemButton, Paper, TextField, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
+import { Backspace as BackspaceIcon } from '@mui/icons-material';
+
 import { fetchDestinations } from '../store';
 
 const StyledTextField = styled(TextField)({
@@ -52,14 +54,23 @@ const SearchBar = () => {
       <StyledTextField
         id="search-destinations-form"
         variant="outlined"
-        label="Where to"
         size={'small'}
         value={searchValue}
         onChange={(event) => {
           setSearchValue(event.target.value);
           setRenderDestinations(false);
         }}
-        inputProps={{ style: { color: '#fff' } }}
+        InputProps={{
+          style: { color: '#fff' },
+          endAdornment:
+            (
+              <InputAdornment position="end" onClick={() => {
+                setSearchValue('');
+              }}>
+                <BackspaceIcon style={{ color: '#fff' }} />
+              </InputAdornment>
+            )
+        }}
         onFocus={(event) => {
           if (searchValue && destinations.length) {
             setRenderDestinations(true);
@@ -72,7 +83,7 @@ const SearchBar = () => {
             {destinations.map(city => <List key={city.id}>
                 <ListItemButton onClick={() => console.log('redirecting to city activities')}>
                   <Typography
-                    variant="h5"
+                    variant="body1"
                     align="center"
                     color="text.secondary"
                   >
@@ -85,10 +96,9 @@ const SearchBar = () => {
                                     style={{ paddingLeft: '2rem' }}
                                     onClick={() => console.log('redirecting to destination activities')}>
                       <Typography
-                        variant="h5"
+                        variant="body1"
                         align="center"
                         color="text.secondary"
-                        paragraph
                       >
                         {destination.name}
                       </Typography>
