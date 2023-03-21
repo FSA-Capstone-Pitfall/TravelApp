@@ -50,13 +50,14 @@ function MyTrip() {
   const [activities, setActivities] = useState();
   const [city, setCity] = useState();
   const user = useSelector((state) => state.auth.user);
-  // const intineraries = useSelector((state) => state.trips.itineraries);
+  //const itineraries = useSelector((state) => state.trips.itineraries);
   const selectedTrip = useSelector((state) => state.trips.itineraries);
 
   let userId;
   if (user) {
     userId = user.id;
   }
+  
 
   useEffect(() => {
     const pullData = async () => {
@@ -84,6 +85,7 @@ function MyTrip() {
     setActivities(activities.filter((activity) => activity.id !== activityId));
   };
 
+
   return (
     <Box sx={{ flexGrow: 1, padding: 3 }}>
       <PictureBox sx={{ flexGrow: 1, marginBottom: 3 }}>
@@ -100,7 +102,7 @@ function MyTrip() {
             <Grid item xs={6}>
               <Item sx={{ marginBottom: 1 }}>
                 <BasicTabs />
-                <BasicTimeline />
+                <BasicTimeline activities={activities}/>
               </Item>
             </Grid>
             <Grid item xs={6}>

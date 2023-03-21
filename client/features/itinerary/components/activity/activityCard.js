@@ -48,11 +48,19 @@ export default function MediaControlCard({ activity, onDelete }) {
     handleClose();
   };
 
+  let startDate = new Date(activity.itinerary_activity.date);
+  let activityDuration = activity.itinerary_activity.duration;
+
+  const dateTimeGenerator = (date, duration) => {
+    let endDate = new Date(date.getTime() + duration * 60000);
+    return `${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')} - ${endDate.getHours()}:${endDate.getMinutes().toString().padStart(2, '0')}`
+  };
+
   return (
-    <Card sx={{ display: 'flex', padding: 3 }}>
+    <Card sx={{ display: 'flex', padding: 1 }}>
       <CardMedia
         component='img'
-        sx={{ width: 250 }}
+        sx={{ width: 150}}
         image={activity.imageUrl}
         alt='activity picture'
       />
@@ -66,7 +74,14 @@ export default function MediaControlCard({ activity, onDelete }) {
             color='text.secondary'
             component='div'
           >
-            10:00am - 12:00pm
+            {`${startDate.toDateString()}`}
+          </Typography>
+          <Typography
+            variant='subtitle1'
+            color='text.secondary'
+            component='div'
+          >
+            {dateTimeGenerator(startDate, activityDuration)}        
           </Typography>
           <Typography
             variant='subtitle1'
