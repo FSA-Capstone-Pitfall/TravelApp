@@ -16,6 +16,7 @@ import { removeUserToken } from '../../../../utils';
 import { useScrollTrigger } from '@mui/material';
 import LoginDialog from './LoginDialog';
 import SignupDialog from './SignupDialog';
+import SearchBar from '../../../SearchBar';
 
 const rightLink = {
   fontSize: 16,
@@ -107,6 +108,7 @@ function AppAppBar() {
               {'Pathfinder'}
             </Link>
           </Box>
+          <SearchBar />
           {user ? (
             <Box
               sx={{
