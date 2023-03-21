@@ -60,37 +60,38 @@ const SearchBar = () => {
         }}
         inputProps={{ style: { color: '#fff' } }}
       />
-      {renderDestinations && destinations.length && <Paper style={{ position: 'absolute' }}>
-        <List component="nav" aria-label="main mailbox folders">
-          {destinations.map(city => <List key={city.id}>
-              <ListItemButton onClick={() => console.log('redirecting to city activities')}>
-                <Typography
-                  variant="h5"
-                  align="center"
-                  color="text.secondary"
-                >
-                  {city.name}
-                </Typography>
-              </ListItemButton>
-              <List component="nav">
-                {city.destinations.length && city.destinations.map(destination =>
-                  <ListItemButton key={destination.id}
-                                  style={{ paddingLeft: '2rem' }}
-                                  onClick={() => console.log('redirecting to destination activities')}>
-                    <Typography
-                      variant="h5"
-                      align="center"
-                      color="text.secondary"
-                      paragraph
-                    >
-                      {destination.name}
-                    </Typography>
-                  </ListItemButton>)}
-              </List>
-            </List>,
-          )}
-        </List>
-      </Paper>
+      {renderDestinations && destinations.length &&
+        <Paper style={{ position: 'absolute' }}>
+          <List component="nav" aria-label="main mailbox folders">
+            {destinations.map(city => <List key={city.id}>
+                <ListItemButton onClick={() => console.log('redirecting to city activities')}>
+                  <Typography
+                    variant="h5"
+                    align="center"
+                    color="text.secondary"
+                  >
+                    {city.name}
+                  </Typography>
+                </ListItemButton>
+                <List component="nav">
+                  {city.destinations.length && city.destinations.map(destination =>
+                    <ListItemButton key={destination.id}
+                                    style={{ paddingLeft: '2rem' }}
+                                    onClick={() => console.log('redirecting to destination activities')}>
+                      <Typography
+                        variant="h5"
+                        align="center"
+                        color="text.secondary"
+                        paragraph
+                      >
+                        {destination.name}
+                      </Typography>
+                    </ListItemButton>)}
+                </List>
+              </List>,
+            )}
+          </List>
+        </Paper>
       }
     </Box>
   );
