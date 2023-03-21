@@ -1,46 +1,162 @@
-import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField';
 
-export default function MediaControlCard() {
-  const theme = useTheme();
+export default function MediaControlCard({ activity, onDelete }) {
+  const [description, setDescription] = useState(activity.description || '');
+  const [prevDescription, setPrevDescription] = useState(description);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  };
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const toggleEditing = (isSaving) => {
+    if (isEditing) {
+      if (!isSaving) {
+        setDescription(prevDescription); // Revert to the previous description when canceling
+      }
+    } else {
+      setPrevDescription(description); // Store the current description when entering edit mode
+    }
+    setIsEditing(!isEditing);
+  };
+
+  const handleSave = () => {
+    toggleEditing(true); // Pass true to indicate you are saving the edit
+  };
+
+  const handleDelete = () => {
+    onDelete(activity.id);
+    handleClose();
+  };
+
+  let startDate = new Date(activity.itinerary_activity.date);
+  let activityDuration = activity.itinerary_activity.duration;
+
+  const dateTimeGenerator = (date, duration) => {
+    let endDate = new Date(date.getTime() + duration * 60000);
+    return `${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')} - ${endDate.getHours()}:${endDate.getMinutes().toString().padStart(2, '0')}`
+  };
 
   return (
-    <Card sx={{ display: 'flex', padding: 3 }}>
+    <Card sx={{ display: 'flex', padding: 1 }}>
       <CardMedia
         component='img'
-        sx={{ width: 151 }}
-        image='https://images.unsplash.com/photo-1452796651103-7c07fca7a2c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80'
-        alt='Live from space album cover'
+        sx={{ width: 150}}
+        image={activity.imageUrl}
+        alt='activity picture'
       />
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component='div' variant='h5'>
-            Central Park
+            {activity.name}
           </Typography>
           <Typography
             variant='subtitle1'
             color='text.secondary'
             component='div'
           >
-            10:00am - 12:00pm
+            {`${startDate.toDateString()}`}
           </Typography>
           <Typography
             variant='subtitle1'
             color='text.secondary'
             component='div'
           >
-            Walk around park
+            {dateTimeGenerator(startDate, activityDuration)}        
+          </Typography>
+          <Typography
+            variant='subtitle1'
+            color='text.secondary'
+            component='div'
+          >
+            {isEditing ? (
+              <TextField
+                value={description}
+                onChange={handleDescriptionChange}
+                onKeyPress={(event) => {
+                  if (event.key === 'Enter') {
+                    handleSave();
+                    event.preventDefault(); // Prevent adding a new line
+                  }
+                }}
+                multiline
+                fullWidth
+              />
+            ) : (
+              description
+            )}
           </Typography>
         </CardContent>
+
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', pr: 1 }}>
+          <IconButton
+            edge='end'
+            color='inherit'
+            aria-label='menu'
+            onClick={handleClick}
+          >
+            <MoreHorizIcon />
+          </IconButton>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+            onClick={handleClose}
+            PaperProps={{
+              elevation: 0,
+              sx: {
+                overflow: 'visible',
+                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                mt: 1.5,
+                '& .MuiAvatar-root': {
+                  width: 32,
+                  height: 32,
+                  ml: -0.5,
+                  mr: 1,
+                },
+                '&:before': {
+                  content: '""',
+                  display: 'block',
+                  position: 'absolute',
+                  top: 0,
+                  right: 14,
+                  width: 10,
+                  height: 10,
+                  bgcolor: 'background.paper',
+                  transform: 'translateY(-50%) rotate(45deg)',
+                  zIndex: 0,
+                },
+              },
+            }}
+            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+          >
+            <MenuItem onClick={toggleEditing}>
+              {isEditing ? 'Cancel' : 'Edit'}
+            </MenuItem>
+            {isEditing && <MenuItem onClick={handleSave}>Save</MenuItem>}
+            <MenuItem onClick={handleDelete}>Delete</MenuItem>
+          </Menu>
+        </Box>
       </Box>
     </Card>
   );

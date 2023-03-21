@@ -39,6 +39,13 @@ const Activity = db.define('activity', {
     allowNull: false,
     defaultValue: [],
   },
+  description: {
+    type: Sequelize.TEXT,
+    allowNull: true,
+    validate: {
+      notEmpty: true,
+    },
+  },
   imageUrl: {
     type: Sequelize.TEXT,
     allowNull: true,

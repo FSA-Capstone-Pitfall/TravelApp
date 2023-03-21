@@ -1,7 +1,6 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import MapWithMarkers from './components/map/map';
 import BasicTimeline from './components/timeline/timeline';
@@ -9,6 +8,9 @@ import BasicTabs from './components/tabs/tabs';
 import DemoApp from './components/calendar/calendar';
 import MediaControlCard from './components/activity/activityCard';
 import Button from '@mui/material/Button';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchSingleTrip, fetchTrips } from '../../store/slices/tripsSlice';
 
 const Item = styled(Box)(({ theme }) => ({
   padding: 25,
@@ -41,21 +43,57 @@ const PictureBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-const destinations = [
-  { lat: 37.7576948, lng: -122.4726194 }, // Twin Peaks
-  { lat: 37.7694208, lng: -122.4862138 }, // Golden Gate Park
-  { lat: 37.783333, lng: -122.464444 }, // California Academy of Sciences
-  { lat: 37.770091, lng: -122.467064 }, // de Young Museum
-  { lat: 37.802372, lng: -122.448248 }, // Palace of Fine Arts Theatre
-  { lat: 37.807601, lng: -122.475163 }, // Ghirardelli Square
-  { lat: 37.810111, lng: -122.477222 }, // Fisherman's Wharf
-];
-
 function MyTrip() {
+  const dispatch = useDispatch();
+  const tripId = 1;
+
+  const [activities, setActivities] = useState();
+  const [city, setCity] = useState();
+  const user = useSelector((state) => state.auth.user);
+  //const itineraries = useSelector((state) => state.trips.itineraries);
+  const selectedTrip = useSelector((state) => state.trips.itineraries);
+
+  let userId;
+  if (user) {
+    userId = user.id;
+  }
+  
+
+  useEffect(() => {
+    const pullData = async () => {
+      const userTrip = await dispatch(fetchSingleTrip({ userId, tripId }));
+      setActivities(userTrip.payload.itinerary.activities);
+      setCity(userTrip.payload.itinerary.city);
+    };
+    pullData();
+  }, [dispatch, userId]);
+
+  let destinations = [];
+  if (activities) {
+    const locations = activities.map((item) => {
+      const coordinates = item.googleMap.split(',');
+      return {
+        lat: parseFloat(coordinates[0]),
+        lng: parseFloat(coordinates[1]),
+      };
+    });
+    destinations = locations;
+  }
+
+  const handleDelete = (activityId) => {
+    // Update your activities state
+    setActivities(activities.filter((activity) => activity.id !== activityId));
+  };
+
+
   return (
     <Box sx={{ flexGrow: 1, padding: 3 }}>
       <PictureBox sx={{ flexGrow: 1, marginBottom: 3 }}>
-        <img src='https://picsum.photos/2000/1000' alt='Full-width' />
+        {city ? (
+          <img src={city.imageUrl} alt='Full-width' />
+        ) : (
+          <h3>Loading...</h3>
+        )}
         <h1>Centered Text</h1>
       </PictureBox>
       <Grid container spacing={2} sx={{ display: 'flex' }}>
@@ -64,12 +102,16 @@ function MyTrip() {
             <Grid item xs={6}>
               <Item sx={{ marginBottom: 1 }}>
                 <BasicTabs />
-                <BasicTimeline />
+                <BasicTimeline activities={activities}/>
               </Item>
             </Grid>
             <Grid item xs={6}>
               <Item sx={{ marginBottom: 1 }}>
-                {MapWithMarkers(destinations)}
+                {destinations.length > 0 ? (
+                  MapWithMarkers(destinations)
+                ) : (
+                  <h3>Loading...</h3>
+                )}
               </Item>
             </Grid>
             <Grid item xs={6}>
@@ -113,7 +155,7 @@ function MyTrip() {
         <Grid item xs={4} sx={{ textAlign: 'left' }}>
           <Box sx={{ maxHeight: '1100px', overflowY: 'auto', flex: 1 }}>
             <Item>
-              <h2>Sunday</h2>
+              <h2>Trip Details</h2>
               <Box
                 sx={{
                   '& > *:not(:last-child)': {
@@ -121,45 +163,14 @@ function MyTrip() {
                   },
                 }}
               >
-                <MediaControlCard />
-                <MediaControlCard />
-                <MediaControlCard />
-              </Box>
-              <h2>Monday</h2>
-              <Box
-                sx={{
-                  '& > *:not(:last-child)': {
-                    marginBottom: '16px',
-                  },
-                }}
-              >
-                <MediaControlCard />
-                <MediaControlCard />
-                <MediaControlCard />
-              </Box>
-              <h2>Tuesday</h2>
-              <Box
-                sx={{
-                  '& > *:not(:last-child)': {
-                    marginBottom: '16px',
-                  },
-                }}
-              >
-                <MediaControlCard />
-                <MediaControlCard />
-                <MediaControlCard />
-              </Box>
-              <h2>Wednesday</h2>
-              <Box
-                sx={{
-                  '& > *:not(:last-child)': {
-                    marginBottom: '16px',
-                  },
-                }}
-              >
-                <MediaControlCard />
-                <MediaControlCard />
-                <MediaControlCard />
+                {activities &&
+                  activities.map((activity) => (
+                    <MediaControlCard
+                      key={activity.id}
+                      activity={activity}
+                      onDelete={handleDelete} // Pass the onDelete callback
+                    />
+                  ))}
               </Box>
             </Item>
           </Box>

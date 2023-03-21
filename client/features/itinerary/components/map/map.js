@@ -10,10 +10,7 @@ const MapWithMarkers = (destinations) => {
   const apiKey = 'AIzaSyDgbRMDx6Coo7NSWhHae1La5TcxQBbS36w';
 
   // Get the first destination as the center
-  const defaultCenter =
-    destinations.length > 0
-      ? destinations[0]
-      : { lat: 40.776676, lng: -73.971321 };
+  const defaultCenter = destinations[0];
 
   return (
     <LoadScript googleMapsApiKey={apiKey}>
