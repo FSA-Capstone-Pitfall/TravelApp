@@ -5,6 +5,7 @@ import Home from './components/LandingPage/Home';
 import { getUserByToken } from './store';
 import { isLoggedIn } from './utils';
 import MyTrip from './features/itinerary';
+import AllTrips from './features/itinerary/allTrips';
 import AllUsers from './components/users/allUsers';
 import UserAccount from './components/users/userAccount';
 import UserProfile from './components/users/userProfile';
@@ -21,10 +22,7 @@ const Router = () => {
     }
   }, [dispatch]);
 
-  const topMargin =
-    location.pathname.startsWith('/users') || location.pathname === '/mytrips'
-      ? '0px'
-      : '-15vh';
+  const topMargin = location.pathname.startsWith('/users') ? '0px' : '-15vh';
 
   return (
     <div style={{ marginTop: topMargin }}>
@@ -37,7 +35,8 @@ const Router = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/activities' element={<Activities />} />
-          <Route path='/mytrips' element={<MyTrip />} />
+          <Route path='/mytrips' element={<AllTrips />} />
+          <Route path='/singletrip' element={<MyTrip />} />
           <Route exact path='/users/all' element={<AllUsers />} />
           <Route
             exact

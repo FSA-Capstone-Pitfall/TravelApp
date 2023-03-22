@@ -139,7 +139,7 @@ function AppAppBar() {
                 >
                   {'Trips'}
                 </Link>
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mr: -1 }}>
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mr: 1 }}>
                   {!user.imageUrl ? (
                     <Avatar
                       alt='travel_user'

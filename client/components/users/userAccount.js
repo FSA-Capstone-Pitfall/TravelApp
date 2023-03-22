@@ -75,7 +75,7 @@ const UserAccount = ({ userId }) => {
       >
         <Grid item xs={12} sm={8}>
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item sm={6}>
               <Box
                 sx={{
                   marginBottom: 1,
