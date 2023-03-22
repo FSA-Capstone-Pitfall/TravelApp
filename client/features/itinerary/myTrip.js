@@ -106,13 +106,13 @@ function MyTrip() {
               </Item>
             </Grid>
             <Grid item xs={6}>
-              {/* <Item sx={{ marginBottom: 1 }}>
+              <Item sx={{ marginBottom: 1 }}>
                 {destinations.length > 0 ? (
                   MapWithMarkers(destinations)
                 ) : (
                   <h3>Loading...</h3>
                 )}
-              </Item> */}
+              </Item>
             </Grid>
             <Grid item xs={6}>
               <Item sx={{ marginBottom: 1 }}>
