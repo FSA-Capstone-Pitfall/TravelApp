@@ -9,10 +9,10 @@ import AppAppBar from './components/LandingPage/modules/views/AppAppBar';
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <AppAppBar/>
-      <CssBaseline/>
-      <Router/>
-      <AppFooter/>
+      <CssBaseline />
+      <AppAppBar />
+      <Router />
+      <AppFooter />
     </ThemeProvider>
   );
 };

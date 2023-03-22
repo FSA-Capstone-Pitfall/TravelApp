@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Home from './components/LandingPage/Home';
 import { getUserByToken } from './store';
 import { isLoggedIn } from './utils';
@@ -13,6 +13,7 @@ import Activities from './components/Activities';
 const Router = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
+  const location = useLocation();
 
   useEffect(() => {
     if (isLoggedIn() !== undefined) {
@@ -20,30 +21,37 @@ const Router = () => {
     }
   }, [dispatch]);
 
+  const topMargin =
+    location.pathname.startsWith('/users') || location.pathname === '/mytrips'
+      ? '0px'
+      : '-15vh';
+
   return (
-    <div style={{ marginTop: '-15vh' }}>
-      {
-        !user ? (
-          <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/activities" element={<Activities/>}/>
-          </Routes>
-        ) : (
-          <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/activities" element={<Activities/>}/>
-            <Route path="/mytrips" element={<MyTrip/>}/>
-            <Route exact path="/users/all" element={<AllUsers/>}/>
-            <Route
-              exact
-              path={`/users/account/${user.id}`}
-              element={<UserAccount userId={user.id}/>}
-            />
-            <Route exact path="/users/profile/:userId" element={<UserProfile/>}/>
-            <Route path="*" element={<Home/>}/>
-          </Routes>
-        )
-      }
+    <div style={{ marginTop: topMargin }}>
+      {!user ? (
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/activities' element={<Activities />} />
+        </Routes>
+      ) : (
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/activities' element={<Activities />} />
+          <Route path='/mytrips' element={<MyTrip />} />
+          <Route exact path='/users/all' element={<AllUsers />} />
+          <Route
+            exact
+            path={`/users/account/${user.id}`}
+            element={<UserAccount userId={user.id} />}
+          />
+          <Route
+            exact
+            path='/users/profile/:userId'
+            element={<UserProfile />}
+          />
+          <Route path='*' element={<Home />} />
+        </Routes>
+      )}
     </div>
   );
 };

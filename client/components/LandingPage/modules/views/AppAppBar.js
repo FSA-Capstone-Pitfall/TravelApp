@@ -91,125 +91,115 @@ function AppAppBar() {
           onScroll={handleTrigger}
           sx={{ justifyContent: 'space-between' }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', pl: -2 }}>
             <img
               src='https://i.ibb.co/LJhcbQp/IMG-0599.png'
               alt='pathfinder'
-              height='33'
-              width='33'
+              height='40'
+              width='40'
             />
             <Link
               variant='h6'
               underline='none'
-              color='inherit'
+              color='white'
               href='/'
-              sx={{ fontSize: 16, textTransform: 'none' }}
+              sx={{ fontSize: 16, textTransform: 'none', ml: 1 }}
             >
               {'Pathfinder'}
             </Link>
           </Box>
-          <SearchBar />
-          {user ? (
-            <Box
-              sx={{
-                flex: 1,
-                display: 'flex',
-                justifyContent: 'flex-end',
-                alignItems: 'center',
-                textTransform: 'none',
-              }}
-            >
-              <Link
-                variant='h6'
-                underline='none'
-                href='/'
-                sx={{
-                  ...rightLink,
-                  color: 'secondary.main',
-                  textTransform: 'none',
-                }}
-              >
-                {'My Trips'}
-              </Link>
-              <Link
-                variant='h6'
-                underline='none'
-                href='/destinations'
-                sx={{
-                  ...rightLink,
-                  color: 'secondary.main',
-                  marginRight: '16px',
-                }}
-              >
-                {'Destinations'}
-              </Link>
+          <Box
+            sx={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}
+          >
+            {user ? (
+              <>
+                <SearchBar />
+                <Link
+                  variant='h6'
+                  underline='none'
+                  href='/destinations'
+                  sx={{
+                    ...rightLink,
+                    color: 'white',
+                    textTransform: 'none',
+                    marginLeft: '20px',
+                  }}
+                >
+                  {'Explore'}
+                </Link>
+                <Link
+                  variant='h6'
+                  underline='none'
+                  href='/'
+                  sx={{
+                    ...rightLink,
+                    color: 'white',
+                    marginRight: '24px',
+                  }}
+                >
+                  {'Trips'}
+                </Link>
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mr: -1 }}>
+                  {!user.imageUrl ? (
+                    <Avatar
+                      alt='travel_user'
+                      src='https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
+                    />
+                  ) : (
+                    <Avatar alt='user_pic' src={user.imageUrl} />
+                  )}
+                </IconButton>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id='menu-appbar'
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => (
+                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                      <Typography
+                        textAlign='center'
+                        onClick={() => {
+                          handleProfileClick(setting);
+                        }}
+                      >
+                        {setting}
+                      </Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </>
+            ) : (
+              <>
+                <SearchBar />
 
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                {!user.imageUrl ? (
-                  <Avatar
-                    alt='travel_user'
-                    src='https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
-                  />
-                ) : (
-                  <Avatar alt='user_pic' src={user.imageUrl} />
-                )}
-              </IconButton>
-              <Menu
-                sx={{ mt: '45px' }}
-                id='menu-appbar'
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography
-                      textAlign='center'
-                      onClick={() => {
-                        handleProfileClick(setting);
-                      }}
-                    >
-                      {setting}
-                    </Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
-          ) : (
-            <Box
-              sx={{
-                flex: 1,
-                display: 'flex',
-                justifyContent: 'flex-end',
-                textTransform: 'none',
-              }}
-            >
-              <LoginDialog
-                color='inherit'
-                variant='h6'
-                underline='none'
-                open={isLoginDialogOpen}
-                onClose={handleCloseLoginDialog}
-              />
-
-              <SignupDialog
-                color='inherit'
-                variant='h6'
-                underline='none'
-                open={isLoginDialogOpen}
-                onClose={handleCloseLoginDialog}
-              />
-            </Box>
-          )}
+                <LoginDialog
+                  color='inherit'
+                  variant='h6'
+                  underline='none'
+                  open={isLoginDialogOpen}
+                  onClose={handleCloseLoginDialog}
+                />
+                <SignupDialog
+                  color='inherit'
+                  variant='h6'
+                  underline='none'
+                  open={isLoginDialogOpen}
+                  onClose={handleCloseLoginDialog}
+                />
+              </>
+            )}
+          </Box>
         </Toolbar>
       </ResponsiveAppBar>
       <Toolbar />
