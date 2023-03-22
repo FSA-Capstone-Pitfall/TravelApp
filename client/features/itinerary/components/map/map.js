@@ -7,13 +7,13 @@ const containerStyle = {
 };
 
 const MapWithMarkers = (destinations) => {
-  const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+  const locationKey = 'AIzaSyARbbsqAblNXS7rOerdE1gI_q5a6yQyXgw';
 
   // Get the first destination as the center
   const defaultCenter = destinations[0];
 
   return (
-    <LoadScript googleMapsApiKey={apiKey}>
+    <LoadScript googleMapsApiKey={locationKey}>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={defaultCenter}
