@@ -68,21 +68,22 @@ const UserAccount = ({ userId }) => {
 
   return (
     <Box sx={{ flexGrow: 1, padding: 3 }}>
-      <Grid container spacing={2} sx={{ display: 'flex' }}>
-        <Grid item xs={8}>
+      <Grid
+        container
+        spacing={2}
+        sx={{ display: 'flex', gridTemplateColumns: 'auto 1fr' }}
+      >
+        <Grid item xs={12} sm={8}>
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <Box
                 sx={{
                   marginBottom: 1,
-                  maxWidth: '200px',
-                  display: 'flex',
-                  flexDirection: 'column',
                 }}
               >
                 <Avatar
                   src={imageUrl}
-                  sx={{ height: '200px', width: '200px' }}
+                  sx={{ height: '225px', width: '225px' }}
                 />
                 <Box
                   component='div'
@@ -94,7 +95,7 @@ const UserAccount = ({ userId }) => {
                 </Box>
               </Box>
             </Grid>
-            <Box>
+            <Grid item sm={6}>
               <Typography variant='h4'>Account Info</Typography>
               <Box
                 component='form'
@@ -165,7 +166,7 @@ const UserAccount = ({ userId }) => {
                   Update
                 </Button>
               </Box>
-            </Box>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

@@ -77,7 +77,7 @@ export default function LoginDialog({ toggleDialog }) {
         onClick={handleClickOpen}
         sx={{
           ...rightLink,
-          color: 'secondary.main',
+          color: 'white',
           cursor: 'pointer',
         }}
       >

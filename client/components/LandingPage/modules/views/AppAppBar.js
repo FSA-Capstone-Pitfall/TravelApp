@@ -130,7 +130,7 @@ function AppAppBar() {
                 <Link
                   variant='h6'
                   underline='none'
-                  href='/'
+                  href='/mytrips'
                   sx={{
                     ...rightLink,
                     color: 'white',

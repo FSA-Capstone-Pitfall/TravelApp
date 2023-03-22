@@ -44,7 +44,14 @@ const ProfileColumn = () => {
         gap: '0.5rem',
       }}
     >
-      <Card sx={{ display: 'flex' }}>
+      <Card
+        sx={{
+          display: 'flex',
+          border: '2px solid',
+          borderColor: 'primary.main',
+          backgroundColor: 'rgba(75,125,70, 0.6)',
+        }}
+      >
         <CardMedia
           component='img'
           sx={{ width: 250 }}
@@ -85,47 +92,192 @@ const ProfileColumn = () => {
           </CardContent>
         </Box>
       </Card>
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
+      <Grid container spacing={3}>
+        <Grid item xs={4}>
           <Card sx={{ display: 'flex' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <CardContent sx={{ flex: '1 0 auto' }}>
                 <Typography component='div' variant='caption'>
                   Upcoming Trips{' '}
                 </Typography>
-                <ul>
-                  <Typography
-                    variant='body2'
-                    color='text.secondary'
-                    component='div'
-                  >
-                    <li>Ohio Exploration</li>
-                    <li>Kansas Camping</li>
-                    <li>Maine Lobstering</li>
-                  </Typography>
-                </ul>
+                <Card
+                  sx={{
+                    display: 'flex',
+                    border: '1px solid',
+                    borderColor: 'black',
+                    flexGrow: 2,
+                    padding: '8px',
+                  }}
+                >
+                  <CardMedia
+                    component='img'
+                    sx={{ width: 75, height: 75 }}
+                    image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFy1ZRj0Lz8HeiG73c2jlrHCWpKpxSlqT4Kg&usqp=CAU'
+                    alt='Live from space album cover'
+                  />
+                  <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <CardContent sx={{ flex: '1 0 auto' }}>
+                      <Typography
+                        variant='body1'
+                        color='text.secondary'
+                        component='div'
+                      >
+                        San Diego{' '}
+                      </Typography>
+                      <Typography component='div' color='black' variant='body2'>
+                        Duration: 1 day
+                      </Typography>
+                    </CardContent>
+                  </Box>
+                </Card>
+                <Card
+                  sx={{
+                    display: 'flex',
+                    border: '1px solid',
+                    borderColor: 'black',
+                    flexGrow: 2,
+                    padding: '8px',
+                    width: '100%',
+                    flexBasis: 0,
+                  }}
+                >
+                  <CardMedia
+                    component='img'
+                    sx={{ width: 75, height: 75 }}
+                    image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFy1ZRj0Lz8HeiG73c2jlrHCWpKpxSlqT4Kg&usqp=CAU'
+                    alt='Live from space album cover'
+                  />
+                  <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <CardContent sx={{ flex: '1 0 auto' }}>
+                      <Typography
+                        variant='body1'
+                        color='text.secondary'
+                        component='div'
+                      >
+                        Austin{' '}
+                      </Typography>
+                      <Typography component='div' color='black' variant='body2'>
+                        Duration: 1 day
+                      </Typography>
+                    </CardContent>
+                  </Box>
+                </Card>
+                <Card
+                  sx={{
+                    display: 'flex',
+                    border: '1px solid',
+                    borderColor: 'black',
+                    flexGrow: 2,
+                    padding: '8px',
+                  }}
+                >
+                  <CardMedia
+                    component='img'
+                    sx={{ width: 75, height: 75 }}
+                    image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFy1ZRj0Lz8HeiG73c2jlrHCWpKpxSlqT4Kg&usqp=CAU'
+                    alt='Live from space album cover'
+                  />
+                  <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <CardContent sx={{ flex: '1 0 auto' }}>
+                      <Typography
+                        variant='body1'
+                        color='text.secondary'
+                        component='div'
+                      >
+                        San Diego{' '}
+                      </Typography>
+                      <Typography component='div' color='black' variant='body2'>
+                        Duration: 1 day
+                      </Typography>
+                    </CardContent>
+                  </Box>
+                </Card>
               </CardContent>
             </Box>
           </Card>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <Card sx={{ display: 'flex' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <CardContent sx={{ flex: '1 0 auto' }}>
                 <Typography component='div' variant='caption'>
                   My Curated Trips{' '}
                 </Typography>
-                <ul>
-                  <Typography
-                    variant='body2'
-                    color='text.secondary'
-                    component='div'
-                  >
-                    <li>Shopping in Summerlin</li>
-                    <li>Lake Mead Weekend Trip</li>
-                    <li>Gamble Gamble Gamble</li>
-                  </Typography>
-                </ul>
+                {/* hi */}
+                <Card
+                  sx={{
+                    display: 'flex',
+                    border: '1px solid',
+                    borderColor: 'black',
+                    flexGrow: 2,
+                    padding: '8px',
+                  }}
+                >
+                  <CardMedia
+                    component='img'
+                    sx={{ width: 75, height: 75 }}
+                    image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFy1ZRj0Lz8HeiG73c2jlrHCWpKpxSlqT4Kg&usqp=CAU'
+                    alt='Live from space album cover'
+                  />
+                  <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <CardContent sx={{ flex: '1 0 auto' }}>
+                      <Typography
+                        variant='body1'
+                        color='text.secondary'
+                        component='div'
+                      >
+                        New York City{' '}
+                      </Typography>
+                      <Typography component='div' color='black' variant='body2'>
+                        Duration: 3 days
+                      </Typography>
+                    </CardContent>
+                  </Box>
+                </Card>
+                {/* hi */}
+              </CardContent>
+            </Box>
+          </Card>
+        </Grid>
+        <Grid item xs={4}>
+          <Card sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              <CardContent sx={{ flex: '1 0 auto' }}>
+                <Typography component='div' variant='caption'>
+                  Wishlist{' '}
+                </Typography>
+                {/* hi */}
+                <Card
+                  sx={{
+                    display: 'flex',
+                    border: '1px solid',
+                    borderColor: 'black',
+                    flexGrow: 2,
+                    padding: '8px',
+                  }}
+                >
+                  <CardMedia
+                    component='img'
+                    sx={{ width: 75, height: 75 }}
+                    image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFy1ZRj0Lz8HeiG73c2jlrHCWpKpxSlqT4Kg&usqp=CAU'
+                    alt='Live from space album cover'
+                  />
+                  <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <CardContent sx={{ flex: '1 0 auto' }}>
+                      <Typography
+                        variant='body1'
+                        color='text.secondary'
+                        component='div'
+                      >
+                        San Diego{' '}
+                      </Typography>
+                      <Typography component='div' color='black' variant='body2'>
+                        Duration: 1 day
+                      </Typography>
+                    </CardContent>
+                  </Box>
+                </Card>
+                {/* hi */}
               </CardContent>
             </Box>
           </Card>
