@@ -91,19 +91,19 @@ function AppAppBar() {
           onScroll={handleTrigger}
           sx={{ justifyContent: 'space-between' }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', pl: -2 }}>
             <img
               src='https://i.ibb.co/LJhcbQp/IMG-0599.png'
               alt='pathfinder'
-              height='33'
-              width='33'
+              height='40'
+              width='40'
             />
             <Link
               variant='h6'
               underline='none'
-              color='inherit'
+              color='white'
               href='/'
-              sx={{ fontSize: 16, textTransform: 'none' }}
+              sx={{ fontSize: 16, textTransform: 'none', ml: 1 }}
             >
               {'Pathfinder'}
             </Link>
@@ -120,8 +120,9 @@ function AppAppBar() {
                   href='/destinations'
                   sx={{
                     ...rightLink,
-                    color: 'secondary.main',
+                    color: 'white',
                     textTransform: 'none',
+                    marginLeft: '20px',
                   }}
                 >
                   {'Explore'}
@@ -132,8 +133,8 @@ function AppAppBar() {
                   href='/'
                   sx={{
                     ...rightLink,
-                    color: 'secondary.main',
-                    marginRight: '22px',
+                    color: 'white',
+                    marginRight: '24px',
                   }}
                 >
                   {'Trips'}
@@ -180,6 +181,8 @@ function AppAppBar() {
               </>
             ) : (
               <>
+                <SearchBar />
+
                 <LoginDialog
                   color='inherit'
                   variant='h6'

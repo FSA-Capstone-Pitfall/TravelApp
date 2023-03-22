@@ -12,7 +12,7 @@ const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    height: '90vh',
+    height: '100vh',
     minHeight: 500,
     maxHeight: 1300,
   },
@@ -54,7 +54,7 @@ function ProductHeroLayout(props) {
             top: 0,
             bottom: 0,
             backgroundColor: 'common.black',
-            opacity: 0.5,
+            opacity: 0.2,
             zIndex: -1,
           }}
         />

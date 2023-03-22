@@ -10,7 +10,8 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { Backspace as BackspaceIcon } from '@mui/icons-material';
+import { Search as SearchIcon } from '@mui/icons-material';
+import { Close as CloseIcon } from '@mui/icons-material';
 
 import { fetchDestinations } from '../store';
 import { useNavigate } from 'react-router-dom';
@@ -73,7 +74,16 @@ const SearchBar = () => {
           setRenderDestinations(false);
         }}
         InputProps={{
-          style: { color: '#fff', borderRadius: '20px' },
+          style: {
+            color: '#fff',
+            borderRadius: '20px',
+            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          },
+          startAdornment: (
+            <InputAdornment position='start'>
+              <SearchIcon style={{ color: '#fff' }} />
+            </InputAdornment>
+          ),
           endAdornment: searchValue && (
             <InputAdornment
               position='end'
@@ -81,7 +91,7 @@ const SearchBar = () => {
                 setSearchValue('');
               }}
             >
-              <BackspaceIcon style={{ color: '#fff' }} />
+              <CloseIcon style={{ color: '#fff' }} />
             </InputAdornment>
           ),
         }}
