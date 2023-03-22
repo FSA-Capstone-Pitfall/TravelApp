@@ -16,7 +16,7 @@ import { removeUserToken } from '../../../../utils';
 import { useScrollTrigger } from '@mui/material';
 import LoginDialog from './LoginDialog';
 import SignupDialog from './SignupDialog';
-import SearchBar from '../../../SearchBar';
+import SearchBar from '../../../shared/SearchBar';
 
 const rightLink = {
   fontSize: 16,

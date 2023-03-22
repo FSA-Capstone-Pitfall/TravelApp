@@ -9,7 +9,7 @@ import AllTrips from './features/itinerary/allTrips';
 import AllUsers from './components/users/allUsers';
 import UserAccount from './components/users/userAccount';
 import UserProfile from './components/users/userProfile';
-import Activities from './components/Activities';
+import Activities from './components/pages/Activities';
 
 const Router = () => {
   const dispatch = useDispatch();
