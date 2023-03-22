@@ -4,7 +4,7 @@ import MyTrip from './myTrip';
 function Index() {
   return (
     <React.Fragment>
-      <MyTrip/>
+      <MyTrip />
     </React.Fragment>
   );
 }

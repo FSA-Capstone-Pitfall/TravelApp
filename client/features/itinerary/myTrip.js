@@ -57,7 +57,6 @@ function MyTrip() {
   if (user) {
     userId = user.id;
   }
-  
 
   useEffect(() => {
     const pullData = async () => {
@@ -85,16 +84,17 @@ function MyTrip() {
     setActivities(activities.filter((activity) => activity.id !== activityId));
   };
 
-
   return (
     <Box sx={{ flexGrow: 1, padding: 3 }}>
-      <PictureBox sx={{ flexGrow: 1, marginBottom: 3 }}>
+      <PictureBox sx={{ flexGrow: 1, marginBottom: 3, minHeight: '700px' }}>
         {city ? (
-          <img src={city.imageUrl} alt='Full-width' />
+          <>
+            <img src={city.imageUrl} alt='Full-width' />
+            <h1>{city.name}</h1>
+          </>
         ) : (
           <h3>Loading...</h3>
         )}
-        <h1>Centered Text</h1>
       </PictureBox>
       <Grid container spacing={2} sx={{ display: 'flex' }}>
         <Grid item xs={8}>
@@ -102,7 +102,7 @@ function MyTrip() {
             <Grid item xs={6}>
               <Item sx={{ marginBottom: 1 }}>
                 <BasicTabs />
-                <BasicTimeline activities={activities}/>
+                <BasicTimeline activities={activities} />
               </Item>
             </Grid>
             <Grid item xs={6}>
@@ -153,7 +153,7 @@ function MyTrip() {
           </Grid>
         </Grid>
         <Grid item xs={4} sx={{ textAlign: 'left' }}>
-          <Box sx={{ maxHeight: '1100px', overflowY: 'auto', flex: 1 }}>
+          <Box sx={{ maxHeight: '1200px', overflowY: 'auto', flex: 1 }}>
             <Item>
               <h2>Trip Details</h2>
               <Box

@@ -1010,11 +1010,15 @@ const CITY_SEED_DATA = [
     name: 'San Diego',
     tag: 'SD',
     state: 'California',
+    imageUrl:
+      'https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1748&q=80',
   },
   {
     name: 'Las Vegas',
     tag: 'LV',
     state: 'Nevada',
+    imageUrl:
+      'https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1748&q=80',
   },
 ];
 
@@ -1183,6 +1187,8 @@ const ACTIVITY_SEED_DATA = [
       'A large public park in Queens, featuring the Unisphere, Queens Museum, and other attractions.',
     categories: ['park'],
     destinationId: 3, // Queens
+    imageUrl:
+      'https://images.unsplash.com/photo-1602637263490-7d2aea0ab24a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80',
   },
   {
     name: 'The Neon Museum',
@@ -1194,6 +1200,8 @@ const ACTIVITY_SEED_DATA = [
       'A unique museum dedicated to preserving the iconic neon signs from Las Vegas history.',
     categories: ['museum'],
     destinationId: 11, // The Strip
+    imageUrl:
+      'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/b3/3d/f9/neon-boneyard.jpg?w=1200&h=-1&s=1',
   },
   {
     name: 'Staten Island Ferry',
@@ -1205,6 +1213,8 @@ const ACTIVITY_SEED_DATA = [
       'A free commuter ferry offering breathtaking views of the Statue of Liberty, Ellis Island, and the Manhattan skyline.',
     categories: ['transportation'],
     destinationId: 5, // Staten Island
+    imageUrl:
+      'https://images.unsplash.com/photo-1648461311622-5ad0396ce72a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1818&q=80',
   },
   {
     name: 'Balboa Park',
@@ -1216,6 +1226,8 @@ const ACTIVITY_SEED_DATA = [
       'A sprawling urban cultural park with museums, gardens, and the world-famous San Diego Zoo.',
     categories: ['park'],
     destinationId: 6, // Gaslamp Quarter
+    imageUrl:
+      'https://images.unsplash.com/photo-1584389109385-8810abee096b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80',
   },
   {
     name: 'USS Midway Museum',
@@ -1227,6 +1239,8 @@ const ACTIVITY_SEED_DATA = [
       'A maritime museum located on the historic aircraft carrier USS Midway.',
     categories: ['museum'],
     destinationId: 7, // Little Italy
+    imageUrl:
+      'https://images.unsplash.com/photo-1656139788954-e3aa67ec9ec4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
   },
   {
     name: 'La Jolla Cove',
@@ -1238,6 +1252,8 @@ const ACTIVITY_SEED_DATA = [
       'A picturesque cove and beach, popular for swimming, snorkeling, and scuba diving.',
     categories: ['beach'],
     destinationId: 8, // La Jolla
+    imageUrl:
+      'https://images.unsplash.com/photo-1578416759904-c1043963e4d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80',
   },
   {
     name: 'Belmont Park',
@@ -1249,6 +1265,8 @@ const ACTIVITY_SEED_DATA = [
       'A historic oceanfront amusement park featuring rides, games, and dining options.',
     categories: ['amusement_park'],
     destinationId: 9, // Pacific Beach
+    imageUrl:
+      'https://blog.sandiego.org/wp-content/uploads/2021/08/Giant_Dipper_Roller_Coaster_courtesy_Belmont_Park_1600x1050.jpg',
   },
   {
     name: 'The Observatory North Park',
@@ -1260,6 +1278,8 @@ const ACTIVITY_SEED_DATA = [
       'A historic theater turned concert venue hosting live music performances and events.',
     categories: ['entertainment'],
     destinationId: 10, // North Park
+    imageUrl:
+      'https://thevendry.com/cdn-cgi/image/height=1920,width=1920,fit=contain,metadata=none/https%3A%2F%2Fs3.us-east-1.amazonaws.com%2Fuploads.thevendry.co%2F24989%2F1668768885595_Balcony-1-min.jpg',
   },
   {
     name: 'Museum of the Moving Image',
@@ -1271,6 +1291,8 @@ const ACTIVITY_SEED_DATA = [
       'A media museum dedicated to the art, history, and technology of film, television, and digital media.',
     categories: ['museum'],
     destinationId: 3, // Queens
+    imageUrl:
+      'https://images.unsplash.com/photo-1580907000234-bb01b75b5bc3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
   },
   {
     name: 'Yankee Stadium',
@@ -1282,6 +1304,8 @@ const ACTIVITY_SEED_DATA = [
       'The home stadium of the New York Yankees, offering baseball games, concerts, and other events.',
     categories: ['sports'],
     destinationId: 4, // The Bronx
+    imageUrl:
+      'https://images.unsplash.com/photo-1449356669056-f1c1e6e56b0f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1546&q=80',
   },
   {
     name: 'Snug Harbor Cultural Center & Botanical Garden',
@@ -1293,6 +1317,8 @@ const ACTIVITY_SEED_DATA = [
       'A cultural center and botanical garden on Staten Island, featuring museums, art galleries, and event spaces.',
     categories: ['park'],
     destinationId: 5, // Staten Island
+    imageUrl:
+      'https://www.nycgo.com/images/venues/1164/snugharbor_taggeryanceyiv_4162snugharbor_taggeryanceyiv_4162.jpg',
   },
   {
     name: 'Central Park',
@@ -1317,6 +1343,8 @@ const ACTIVITY_SEED_DATA = [
       'A captivating water show featuring lights, music, and dancing fountains in front of the Bellagio hotel.',
     categories: ['show'],
     destinationId: 11, // The Strip
+    imageUrl:
+      'https://images.unsplash.com/photo-1629483220891-b19b59a4e7e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2334&q=80',
   },
   {
     name: 'Mob Museum',
@@ -1328,6 +1356,8 @@ const ACTIVITY_SEED_DATA = [
       'An interactive museum dedicated to the history of organized crime and law enforcement in the United States.',
     categories: ['museum'],
     destinationId: 12, // Downtown Las Vegas
+    imageUrl:
+      'https://images.unsplash.com/photo-1490939857372-850585a9bd27?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1834&q=80',
   },
   {
     name: 'Red Rock Canyon National Conservation Area',
@@ -1339,6 +1369,8 @@ const ACTIVITY_SEED_DATA = [
       'A protected area featuring stunning red rock formations, hiking trails, and scenic drives just outside of Las Vegas.',
     categories: ['nature'],
     destinationId: 13, // Summerlin
+    imageUrl:
+      'https://images.unsplash.com/photo-1631582914093-119e5e18e8b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
   },
   {
     name: 'Lake Las Vegas',
@@ -1350,6 +1382,8 @@ const ACTIVITY_SEED_DATA = [
       'A picturesque, man-made lake featuring upscale resorts, golf courses, and a Mediterranean-style village.',
     categories: ['nature'],
     destinationId: 14, // Henderson
+    imageUrl:
+      'https://travelnevada.com/wp-content/uploads/2021/01/LakeLV_Featured.jpg',
   },
   {
     name: 'Fremont Street Experience',
@@ -1361,6 +1395,8 @@ const ACTIVITY_SEED_DATA = [
       'A five-block entertainment district featuring a pedestrian mall, LED canopy, live music, street performers, and iconic casinos.',
     categories: ['entertainment'],
     destinationId: 12, // Downtown Las Vegas
+    imageUrl:
+      'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/db/6f/80/see-the-world-s-biggest.jpg?w=1200&h=1200&s=1',
   },
 ];
 
@@ -1426,47 +1462,39 @@ const ITINERARY_ACTIVITY_SEED_DATA = [
   {
     activityId: 1, // Statue of Liberty National Monument
     itineraryId: 1,
-    position: 1,
     date: new Date('Jul 12, 2023 08:30:00'),
   },
   {
-    activityId: 14, // Central Park
+    activityId: 5, // Staten Island Ferry
     itineraryId: 1,
-    position: 2,
     date: new Date('Jul 12, 2023 10:00:00'),
   },
   {
     activityId: 2, // Brooklyn Bridge
     itineraryId: 1,
-    position: 3,
     date: new Date('Jul 12, 2023 11:30:00'),
   },
 
   {
-    activityId: 12, // Statue of Liberty National Monument
+    activityId: 3, // Flushing Meadows Corona Park
     itineraryId: 1,
-    position: 1,
     date: new Date('Jul 13, 2023 08:30:00'),
   },
   {
-    activityId: 11, // Central Park
+    activityId: 14, // Central Park
     itineraryId: 1,
-    position: 2,
     date: new Date('Jul 13, 2023 10:00:00'),
   },
   {
-    activityId: 8, // Brooklyn Bridge
+    activityId: 12, // Yankee Stadium
     itineraryId: 1,
-    position: 3,
     date: new Date('Jul 13, 2023 11:30:00'),
   },
   {
-    activityId: 9, // Brooklyn Bridge
+    activityId: 13, // Snug Harbor Cultural Center & Botanical Garden
     itineraryId: 1,
-    position: 4,
     date: new Date('Jul 13, 2023 13:30:00'),
   },
-
 
   // San Diego Beach Hopping
   {
@@ -1551,12 +1579,12 @@ const ITINERARY_ACTIVITY_SEED_DATA = [
 
 const USER_ITINERARY_SEED_DATA = [
   {
-    status: 'planning',
+    status: 'upcoming',
     userId: 1,
     itineraryId: 1,
   },
   {
-    status: 'upcoming',
+    status: 'planning',
     userId: 1,
     itineraryId: 2,
   },
