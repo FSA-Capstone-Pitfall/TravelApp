@@ -3,11 +3,11 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
   width: '100%',
-  height: '400px',
+  height: '500px',
 };
 
 const MapWithMarkers = (destinations) => {
-  const apiKey = 'AIzaSyDgbRMDx6Coo7NSWhHae1La5TcxQBbS36w';
+  const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
   // Get the first destination as the center
   const defaultCenter = destinations[0];
