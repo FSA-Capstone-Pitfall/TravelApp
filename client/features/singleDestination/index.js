@@ -1,14 +1,10 @@
 import * as React from 'react';
-import AppFooter from '../../components/LandingPage/modules/views/AppFooter';
-import AppAppBar from '../../components/LandingPage/modules/views/AppAppBar';
 import SingleDestination from './singleDestination';
 
 function Index() {
   return (
     <React.Fragment>
-      <AppAppBar />
-      <SingleDestination />
-      <AppFooter />
+      <SingleDestination/>
     </React.Fragment>
   );
 }
