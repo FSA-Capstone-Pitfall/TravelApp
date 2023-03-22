@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 export default function MediaControlCard({ activity, onDelete }) {
   const [description, setDescription] = useState(activity.description || '');
@@ -53,14 +54,20 @@ export default function MediaControlCard({ activity, onDelete }) {
 
   const dateTimeGenerator = (date, duration) => {
     let endDate = new Date(date.getTime() + duration * 60000);
-    return `${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')} - ${endDate.getHours()}:${endDate.getMinutes().toString().padStart(2, '0')}`
+    return `${date.getHours()}:${date
+      .getMinutes()
+      .toString()
+      .padStart(2, '0')} - ${endDate.getHours()}:${endDate
+      .getMinutes()
+      .toString()
+      .padStart(2, '0')}`;
   };
 
   return (
-    <Card sx={{ display: 'flex', padding: 1 }}>
+    <Card sx={{ display: 'flex', padding: 2 }}>
       <CardMedia
         component='img'
-        sx={{ width: 150}}
+        sx={{ width: 200, height: 165, objectFit: 'cover' }}
         image={activity.imageUrl}
         alt='activity picture'
       />
@@ -81,82 +88,55 @@ export default function MediaControlCard({ activity, onDelete }) {
             color='text.secondary'
             component='div'
           >
-            {dateTimeGenerator(startDate, activityDuration)}        
+            {dateTimeGenerator(startDate, activityDuration)}
           </Typography>
           <Typography
-            variant='subtitle1'
+            variant='body2'
             color='text.secondary'
             component='div'
+            onDoubleClick={() => !isEditing && toggleEditing(false)} // Add this line to enable editing on double click
           >
             {isEditing ? (
-              <TextField
-                value={description}
-                onChange={handleDescriptionChange}
-                onKeyPress={(event) => {
-                  if (event.key === 'Enter') {
-                    handleSave();
-                    event.preventDefault(); // Prevent adding a new line
-                  }
-                }}
-                multiline
-                fullWidth
-              />
+              <>
+                <TextField
+                  value={description}
+                  onChange={handleDescriptionChange}
+                  onKeyPress={(event) => {
+                    if (event.key === 'Enter') {
+                      handleSave();
+                      event.preventDefault(); // Prevent adding a new line
+                    }
+                  }}
+                  multiline
+                  fullWidth
+                />
+                <Box mt={1}>
+                  {' '}
+                  {/* Add this Box to show the Save and Cancel buttons */}
+                  <Button
+                    onClick={handleSave}
+                    variant='contained'
+                    color='primary'
+                    size='small'
+                  >
+                    Save
+                  </Button>
+                  <Button
+                    onClick={() => toggleEditing(false)}
+                    variant='outlined'
+                    color='secondary'
+                    size='small'
+                    style={{ marginLeft: '8px' }}
+                  >
+                    Cancel
+                  </Button>
+                </Box>
+              </>
             ) : (
               description
             )}
           </Typography>
         </CardContent>
-
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', pr: 1 }}>
-          <IconButton
-            edge='end'
-            color='inherit'
-            aria-label='menu'
-            onClick={handleClick}
-          >
-            <MoreHorizIcon />
-          </IconButton>
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-            onClick={handleClose}
-            PaperProps={{
-              elevation: 0,
-              sx: {
-                overflow: 'visible',
-                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                mt: 1.5,
-                '& .MuiAvatar-root': {
-                  width: 32,
-                  height: 32,
-                  ml: -0.5,
-                  mr: 1,
-                },
-                '&:before': {
-                  content: '""',
-                  display: 'block',
-                  position: 'absolute',
-                  top: 0,
-                  right: 14,
-                  width: 10,
-                  height: 10,
-                  bgcolor: 'background.paper',
-                  transform: 'translateY(-50%) rotate(45deg)',
-                  zIndex: 0,
-                },
-              },
-            }}
-            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-          >
-            <MenuItem onClick={toggleEditing}>
-              {isEditing ? 'Cancel' : 'Edit'}
-            </MenuItem>
-            {isEditing && <MenuItem onClick={handleSave}>Save</MenuItem>}
-            <MenuItem onClick={handleDelete}>Delete</MenuItem>
-          </Menu>
-        </Box>
       </Box>
     </Card>
   );
