@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { Close as CloseIcon, Search as SearchIcon } from '@mui/icons-material';
 
-import { fetchDestinations } from '../store';
+import { fetchDestinations } from '../../store';
 import { useNavigate } from 'react-router-dom';
 
 const StyledTextField = styled(TextField)({

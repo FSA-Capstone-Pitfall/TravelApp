@@ -17,14 +17,14 @@ export const fetchActivities = createAsyncThunk('/activities', async ({
       page,
       limit,
       categories,
-    })
+    });
     const { data } = await axios.get(`/api/activities`, {
       params: {
         destinationId: destinationId,
         cityId: cityId,
         page: page,
         limit: limit,
-        categories: categories,
+        categories: categories.join(','),
       },
     });
     return data;

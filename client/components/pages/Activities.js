@@ -2,13 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { Box, Container, List, ListItemButton, Pagination, Typography } from '@mui/material';
-import { fetchActivities } from '../store';
-import MapWithMarkers from '../features/itinerary/components/map/map';
+import { fetchActivities } from '../../store';
+import MapWithMarkers from '../../features/itinerary/components/map/map';
+import { Filters } from '../shared';
+import { capital, snake } from 'case';
+
+const hardcodedCategories = [
+  'amusement_park',
+  'beach',
+  'entertainment',
+  'landmark',
+  'museum',
+  'nature',
+  'park',
+  'show',
+  'sports',
+  'transportation',
+].map(category => capital(category));
 
 const Activities = () => {
   const dispatch = useDispatch();
   const { state } = useLocation();
 
+  const [categories, setCategories] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [currPage, setCurrPage] = useState(1);
 
@@ -29,13 +45,14 @@ const Activities = () => {
         destinationId,
         cityId,
         page: currPage,
+        categories: categories.map(category => snake(category)),
         limit: 6
       }));
     }
-  }, [dispatch, destinationId, cityId, currPage]);
+  }, [dispatch, destinationId, cityId, currPage, categories]);
 
   useEffect(() => {
-    if (activities.totalPages) {
+    if (activities.data) {
       setTotalPages(activities.totalPages);
     }
   }, [activities]);
@@ -89,6 +106,22 @@ const Activities = () => {
         flexDirection: 'column',
         alignItems: 'center',
       }}>
+        <Typography color="black" align="center" variant="h4"
+                    sx={{ mb: 4 }}
+                    style={
+                      { fontWeight: 'regular' }
+                    }>
+          Things to do in {displayName}
+        </Typography>
+        <Filters
+          label={'Filter'}
+          placeholder={'Categories'}
+          options={hardcodedCategories}
+          onChange={(selectedCategories) => {
+            setCategories(selectedCategories);
+            setCurrPage(1);
+          }}
+        />
         {activities.data &&
           <List sx={{
             display: 'grid',
@@ -119,11 +152,17 @@ const Activities = () => {
               ),
             )}
           </List>}
-        <Pagination sx={{ mb: 10 }} count={totalPages} page={currPage} onChange={(event, value) => setCurrPage(value)}/>
+        {totalPages != 0 &&
+          <Pagination
+            id="activities-pagination"
+            sx={{ mb: 10 }}
+            count={totalPages} page={currPage}
+            onChange={(event, value) => setCurrPage(value)}
+          />}
         {destinations.length > 0 ? (
           MapWithMarkers(destinations)
         ) : (
-          <h3 style={{ color: 'black' }}>Loading...</h3>
+          <h3 style={{ color: 'black' }}>No activities found by selected categories.</h3>
         )}
       </Container>
     </Box>
