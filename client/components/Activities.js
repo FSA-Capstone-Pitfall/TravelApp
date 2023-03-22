@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { Box, Container, List, Pagination, Typography } from '@mui/material';
+import { Box, Container, List, ListItemButton, Pagination, Typography } from '@mui/material';
 import { fetchActivities } from '../store';
 import MapWithMarkers from '../features/itinerary/components/map/map';
 
@@ -29,13 +29,13 @@ const Activities = () => {
         destinationId,
         cityId,
         page: currPage,
-        limit: 5
+        limit: 6
       }));
     }
   }, [dispatch, destinationId, cityId, currPage]);
 
   useEffect(() => {
-    if (!totalPages && activities.totalPages) {
+    if (activities.totalPages) {
       setTotalPages(activities.totalPages);
     }
   }, [activities]);
@@ -89,17 +89,36 @@ const Activities = () => {
         flexDirection: 'column',
         alignItems: 'center',
       }}>
-        {activities.data && <List
-          component="nav"
-          sx={{ mb: 5 }}
-        >
-          {activities.data.map(activity => (
-              <Typography key={activity.id}>
-                {activity.name}
-              </Typography>
-            ),
-          )}
-        </List>}
+        {activities.data &&
+          <List sx={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(25%, 1fr))',
+            gridGap: '1rem',
+            width: '100%'
+          }}>
+            {activities.data.map(activity => (
+                <ListItemButton key={activity.id} sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-around',
+                  height: '20rem',
+                  boxSizing: 'border-box'
+                }}>
+                  <img
+                    src={activity.imageUrl}
+                    loading="lazy"
+                    style={{
+                      maxWidth: '100%',
+                      height: '80%'
+                    }}
+                  />
+                  <Typography variant="h5" align={'center'}>
+                    {activity.name}
+                  </Typography>
+                </ListItemButton>
+              ),
+            )}
+          </List>}
         <Pagination sx={{ mb: 10 }} count={totalPages} page={currPage} onChange={(event, value) => setCurrPage(value)}/>
         {destinations.length > 0 ? (
           MapWithMarkers(destinations)

@@ -1,17 +1,8 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  InputAdornment,
-  List,
-  ListItemButton,
-  Paper,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, InputAdornment, List, ListItemButton, Paper, TextField, Typography, } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { Search as SearchIcon } from '@mui/icons-material';
-import { Close as CloseIcon } from '@mui/icons-material';
+import { Close as CloseIcon, Search as SearchIcon } from '@mui/icons-material';
 
 import { fetchDestinations } from '../store';
 import { useNavigate } from 'react-router-dom';
@@ -53,20 +44,20 @@ const SearchBar = () => {
 
   return (
     <Box
-      component='form'
+      component="form"
       sx={{
         '& > :not(style)': { m: 1, width: '25ch' },
       }}
       noValidate
-      autoComplete='off'
+      autoComplete="off"
       onSubmit={handleSubmit}
       onBlur={(event) => {
         setTimeout(() => setRenderDestinations(false), 100);
       }}
     >
       <StyledTextField
-        id='search-destinations-form'
-        variant='outlined'
+        id="search-destinations-form"
+        variant="outlined"
         size={'small'}
         value={searchValue}
         onChange={(event) => {
@@ -79,19 +70,19 @@ const SearchBar = () => {
             borderRadius: '20px',
             backgroundColor: 'rgba(255, 255, 255, 0.2)',
           },
-          startAdornment: (
-            <InputAdornment position='start'>
-              <SearchIcon style={{ color: '#fff' }} />
+          startAdornment: !searchValue && (
+            <InputAdornment position="start">
+              <SearchIcon style={{ color: '#fff' }}/>
             </InputAdornment>
           ),
           endAdornment: searchValue && (
             <InputAdornment
-              position='end'
+              position="end"
               onClick={() => {
                 setSearchValue('');
               }}
             >
-              <CloseIcon style={{ color: '#fff' }} />
+              <CloseIcon style={{ color: '#fff' }}/>
             </InputAdornment>
           ),
         }}
@@ -103,7 +94,7 @@ const SearchBar = () => {
       />
       {renderDestinations && destinations.length && (
         <Paper style={{ position: 'absolute' }}>
-          <List component='nav' aria-label='main mailbox folders'>
+          <List component="nav" aria-label="main mailbox folders">
             {destinations.map((city) => (
               <List key={city.id}>
                 <ListItemButton
@@ -118,14 +109,14 @@ const SearchBar = () => {
                   }
                 >
                   <Typography
-                    variant='body1'
-                    align='center'
-                    color='text.secondary'
+                    variant="body1"
+                    align="center"
+                    color="text.secondary"
                   >
                     {city.name}
                   </Typography>
                 </ListItemButton>
-                <List component='nav'>
+                <List component="nav">
                   {city.destinations.length &&
                     city.destinations.map((destination) => (
                       <ListItemButton
@@ -144,9 +135,9 @@ const SearchBar = () => {
                         }
                       >
                         <Typography
-                          variant='body1'
-                          align='center'
-                          color='text.secondary'
+                          variant="body1"
+                          align="center"
+                          color="text.secondary"
                         >
                           {destination.name}
                         </Typography>
