@@ -45,10 +45,15 @@ const ProfileColumn = () => {
         gap: '0.5rem',
       }}
     >
-      <Avatar src={imageUrl} sx={{ height: '200px', width: '200px' }} />
+      <Avatar src={imageUrl} sx={{ height: '225px', width: '225px' }} />
       <Box
         component='div'
-        sx={{ textAlign: 'left', display: 'block', marginBottom: '-8px' }}
+        sx={{
+          textAlign: 'left',
+          display: 'block',
+          marginBottom: '-8px',
+          marginTop: 1,
+        }}
       >
         <Typography variant='overline'>
           <PersonIcon color='secondary' fontSize='inherit' /> {firstName}{' '}
@@ -60,43 +65,54 @@ const ProfileColumn = () => {
           <PlaceIcon color='secondary' fontSize='inherit' /> {city}, {userState}
         </Typography>
       </Box>
-      <Box component='div' sx={{ textAlign: 'left', display: 'block' }}>
-        <Box
-          component='img'
-          src='https://www.seekpng.com/png/detail/159-1595172_iceberg-badge-pixel-art.png'
-          sx={{
-            width: '40px',
-            height: '40px',
-            mr: 2,
-            display: 'inline-block',
-          }}
-        />
-        <Box
-          component='img'
-          src='https://www.seekpng.com/png/detail/159-1595172_iceberg-badge-pixel-art.png'
-          sx={{
-            width: '40px',
-            height: '40px',
-            mr: 2,
-            display: 'inline-block',
-          }}
-        />
-        <Box
-          component='img'
-          src='https://www.seekpng.com/png/detail/159-1595172_iceberg-badge-pixel-art.png'
-          sx={{ width: '40px', height: '40px', display: 'inline-block' }}
-        />
-      </Box>
       <Box component='div' sx={{ textAlign: 'left', display: 'block', mb: 1 }}>
         <Typography variant='caption'>
           This is where the user's description will go after we hook up the
           backend to accommodate this--maybe there's also an option to add a
-          link to their profile, that could point towards some travel-oriented
-          content like a blog or independent offered tour service.
+          link to their profile.
         </Typography>
       </Box>
+      <Box
+        component='div'
+        sx={{
+          textAlign: 'left',
+          display: 'block',
+          border: '1px solid',
+          backgroundColor: 'secondary.main',
+          opacity: 0.5,
+          minHeight: 'fit-content',
+          py: 2,
+          px: 3,
+          borderRadius: '5px',
+          flexWrap: 'wrap',
+        }}
+      >
+        <Box
+          component='img'
+          src='https://www.seekpng.com/png/detail/159-1595172_iceberg-badge-pixel-art.png'
+          sx={{
+            width: '40px',
+            height: '40px',
+            mr: 2,
+          }}
+        />
+        <Box
+          component='img'
+          src='https://www.seekpng.com/png/detail/159-1595172_iceberg-badge-pixel-art.png'
+          sx={{
+            width: '40px',
+            height: '40px',
+            mr: 2,
+          }}
+        />
+        <Box
+          component='img'
+          src='https://www.seekpng.com/png/detail/159-1595172_iceberg-badge-pixel-art.png'
+          sx={{ width: '40px', height: '40px', mr: 2 }}
+        />
+      </Box>
 
-      <Box component='div' sx={{ textAlign: 'left', display: 'block' }}>
+      <Box component='div' sx={{ textAlign: 'left', display: 'block', mt: 1 }}>
         {' '}
         <Box component='a' href='https://www.facebook.com/'>
           <FacebookIcon fontSize='large' color='secondary' />

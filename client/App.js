@@ -10,9 +10,22 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppAppBar />
-      <Router />
-      <AppFooter />
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: -1,
+          background: `linear-gradient(to bottom, ${theme.palette.primary.main}, ${theme.palette.primary.main} 100px, white 300px)`,
+        }}
+      />
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <AppAppBar />
+        <Router />
+        <AppFooter />
+      </div>
     </ThemeProvider>
   );
 };

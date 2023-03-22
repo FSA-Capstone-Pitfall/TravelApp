@@ -99,7 +99,7 @@ export default function SignupDialog({ toggleDialog }) {
         onClick={handleClickOpen}
         sx={{
           ...rightLink,
-          color: 'secondary.main',
+          color: 'white',
           cursor: 'pointer',
         }}
       >
