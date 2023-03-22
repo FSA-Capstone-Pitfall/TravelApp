@@ -1462,44 +1462,37 @@ const ITINERARY_ACTIVITY_SEED_DATA = [
   {
     activityId: 1, // Statue of Liberty National Monument
     itineraryId: 1,
-    position: 1,
     date: new Date('Jul 12, 2023 08:30:00'),
   },
   {
-    activityId: 14, // Central Park
+    activityId: 5, // Staten Island Ferry
     itineraryId: 1,
-    position: 2,
     date: new Date('Jul 12, 2023 10:00:00'),
   },
   {
     activityId: 2, // Brooklyn Bridge
     itineraryId: 1,
-    position: 3,
     date: new Date('Jul 12, 2023 11:30:00'),
   },
 
   {
     activityId: 3, // Flushing Meadows Corona Park
     itineraryId: 1,
-    position: 1,
     date: new Date('Jul 13, 2023 08:30:00'),
   },
   {
     activityId: 14, // Central Park
     itineraryId: 1,
-    position: 2,
     date: new Date('Jul 13, 2023 10:00:00'),
   },
   {
     activityId: 12, // Yankee Stadium
     itineraryId: 1,
-    position: 3,
     date: new Date('Jul 13, 2023 11:30:00'),
   },
   {
     activityId: 13, // Snug Harbor Cultural Center & Botanical Garden
     itineraryId: 1,
-    position: 4,
     date: new Date('Jul 13, 2023 13:30:00'),
   },
 
