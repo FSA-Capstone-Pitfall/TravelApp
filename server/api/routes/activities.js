@@ -47,16 +47,26 @@ router.get('/', async (req, res, next) => {
       whereActivitiesClause.categories = { [Op.overlap]: categories };
     }
 
+    const basicQuery = {
+      where: whereActivitiesClause,
+      include: includeClause,
+    };
+
+
     const activitiesByCity = await Activity.findAll(
       {
+        ...basicQuery,
         offset: (Number(page) - 1) * limit,
         limit: Number(limit),
-        where: whereActivitiesClause,
-        include: includeClause,
       });
+
+    const numberOfRecords = await Activity.count({
+      ...basicQuery
+    });
 
     const data = {
       page: Number(page),
+      totalPages: Math.ceil(numberOfRecords / limit),
       limit: Number(limit),
       data: activitiesByCity,
     };
