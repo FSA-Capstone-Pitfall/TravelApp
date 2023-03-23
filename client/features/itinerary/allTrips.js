@@ -12,12 +12,8 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSingleTrip, fetchTrips } from '../../store/slices/tripsSlice';
-import {
-  WishlistTrips,
-  FeaturedTrip,
-  CuratedTrips,
-  UpcomingTrips,
-} from './components/trips';
+import TripsList from './components/trips/tripsList';
+import FeaturedTrip from './components/trips/featuredTrip';
 
 const Item = styled(Box)(({ theme }) => ({
   padding: 25,
@@ -98,7 +94,7 @@ function AllTrips() {
                   <Typography component='div' variant='caption'>
                     Upcoming Trips{' '}
                   </Typography>
-                  <UpcomingTrips />
+                  <TripsList status={'upcoming'} />
                 </CardContent>
               </Box>
             </Card>
@@ -108,9 +104,9 @@ function AllTrips() {
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 <CardContent sx={{ flex: '1 0 auto' }}>
                   <Typography component='div' variant='caption'>
-                    My Curated Trips{' '}
+                    Trips Under Construction{' '}
                   </Typography>
-                  <CuratedTrips />
+                  <TripsList status={'planning'} />
                 </CardContent>
               </Box>
             </Card>
@@ -120,9 +116,9 @@ function AllTrips() {
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 <CardContent sx={{ flex: '1 0 auto' }}>
                   <Typography component='div' variant='caption'>
-                    Wishlist{' '}
+                    Completed Trips{' '}
                   </Typography>
-                  <WishlistTrips />{' '}
+                  <TripsList status={'complete'} />
                 </CardContent>
               </Box>
             </Card>
