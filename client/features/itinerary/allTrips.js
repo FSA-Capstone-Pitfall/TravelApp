@@ -1,25 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { styled } from '@mui/material/styles';
-import {
-  Box,
-  Grid,
-  Card,
-  Link,
-  CardContent,
-  CardMedia,
-  Typography,
-} from '@mui/material';
+import { Box, Grid, Card, CardContent, Typography } from '@mui/material';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSingleTrip, fetchTrips } from '../../store/slices/tripsSlice';
+import { fetchTrips } from '../../store/slices/tripsSlice';
 import TripsList from './components/trips/tripsList';
 import FeaturedTrip from './components/trips/featuredTrip';
-
-const Item = styled(Box)(({ theme }) => ({
-  padding: 25,
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
 
 const PictureBox = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -48,9 +34,7 @@ const PictureBox = styled(Box)(({ theme }) => ({
 
 function AllTrips() {
   const dispatch = useDispatch();
-
   const user = useSelector((state) => state.auth.user);
-  const itineraries = useSelector((state) => state.trips.itineraries);
 
   let userId;
   if (user) {
@@ -58,13 +42,8 @@ function AllTrips() {
   }
 
   useEffect(() => {
-    const pullData = async () => {
-      const userTrip = await dispatch(fetchTrips(userId));
-    };
-    pullData();
+    dispatch(fetchTrips(userId));
   }, [dispatch, userId]);
-
-  let destinations = [];
 
   return (
     <Box sx={{ flexGrow: 1, padding: 3 }}>

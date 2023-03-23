@@ -31,7 +31,7 @@ function TripCard({ city, duration }) {
               {city}
             </Typography>
             <Typography component='div' color='black' variant='body2'>
-              Duration: {duration} day(s)
+              Duration: {duration} day{duration > 1 ? 's' : ''}
             </Typography>
           </CardContent>
         </Box>
