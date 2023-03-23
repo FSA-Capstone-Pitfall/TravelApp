@@ -11,20 +11,21 @@ import {
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 export default function BasicTimeline({ activities }) {
+  let destinations = [];
 
-  function comparePositions(a, b) {
-    let dateA = new Date(a.itinerary_activity.date)
-    let dateB = new Date(b.itinerary_activity.date)
-    return dateA - dateB;
+  if (activities) {
+    activities.map((activity) => {
+      if (destinations.length > 0) {
+        if (
+          destinations[destinations.length - 1] !== activity.destination.name
+        ) {
+          destinations.push(activity.destination.name);
+        }
+      } else {
+        destinations.push(activity.destination.name);
+      }
+    });
   }
-
-  let activitiesArr;
-  if(activities){
-    activitiesArr = [...activities]
-    activitiesArr.sort(comparePositions)
-  }
-
-
 
   return (
     <Timeline
@@ -35,39 +36,27 @@ export default function BasicTimeline({ activities }) {
         },
       }}
     >
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot sx={{ width: '24px', height: '24px' }} />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent sx={{ fontSize: '1.25rem' }}>
-          Start from
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot sx={{ width: '24px', height: '24px' }} />
-        </TimelineSeparator>
-        <TimelineContent sx={{ fontSize: '1.25rem' }}>
-          NYC 6 nights
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot sx={{ width: '24px', height: '24px' }} />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent sx={{ fontSize: '1.25rem' }}>
-          Boston 3 nights
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot sx={{ width: '24px', height: '24px' }} />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent sx={{ fontSize: '1.25rem' }}>End at</TimelineContent>
-      </TimelineItem>
+      {destinations ? (
+        destinations.map((destination, i) => {
+          return (
+            <TimelineItem key={i}>
+              <TimelineSeparator>
+                <TimelineDot sx={{ width: '24px', height: '24px' }} />
+                {i === destinations.length - 1 ? null : <TimelineConnector />}
+              </TimelineSeparator>
+              <TimelineContent sx={{ fontSize: '1.25rem' }}>
+                {i === 0
+                  ? `Start from ${destination}`
+                  : i === destinations.length - 1
+                  ? `End at ${destination}`
+                  : `Head to ${destination}`}
+              </TimelineContent>
+            </TimelineItem>
+          );
+        })
+      ) : (
+        <h2>Loading...</h2>
+      )}
     </Timeline>
   );
 }

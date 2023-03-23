@@ -58,10 +58,19 @@ function MyTrip() {
     userId = user.id;
   }
 
+  function comparePositions(a, b) {
+    let dateA = new Date(a.itinerary_activity.date);
+    let dateB = new Date(b.itinerary_activity.date);
+    return dateA - dateB;
+  }
+
   useEffect(() => {
     const pullData = async () => {
       const userTrip = await dispatch(fetchSingleTrip({ userId, tripId }));
-      setActivities(userTrip.payload.itinerary.activities);
+      let activitiesArr;
+      activitiesArr = [...userTrip.payload.itinerary.activities];
+      activitiesArr.sort(comparePositions);
+      setActivities(activitiesArr);
       setCity(userTrip.payload.itinerary.city);
     };
     pullData();
@@ -101,6 +110,7 @@ function MyTrip() {
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <Item sx={{ marginBottom: 1 }}>
+                <h2>Trip Timeline</h2>
                 <BasicTabs />
                 <BasicTimeline activities={activities} />
               </Item>
