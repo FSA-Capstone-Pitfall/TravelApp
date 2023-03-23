@@ -58,12 +58,12 @@ export default function BasicTabs() {
           <Tab label='NYC' {...a11yProps(1)} />
         </Tabs>
       </Box>
-      {/* <TabPanel value={value} index={0}>
+      <TabPanel value={value} index={0}>
         Complete Trip
       </TabPanel>
       <TabPanel value={value} index={1}>
         NYC
-      </TabPanel> */}
+      </TabPanel>
     </Box>
   );
 }
