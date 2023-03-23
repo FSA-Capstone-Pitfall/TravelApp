@@ -2,6 +2,15 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 
+export const fetchSingleActivity = createAsyncThunk('fetchSingleActivity', async (activityId) => {
+  try {
+    const { data: activity } = await axios.get(`/api/activities/${activityId}`);
+    return { activity };
+  } catch (err) {
+    throw err.message;
+  }
+});
+
 export const fetchActivities = createAsyncThunk('/activities', async ({
                                                                         destinationId,
                                                                         cityId,
@@ -35,7 +44,7 @@ export const fetchActivities = createAsyncThunk('/activities', async ({
 
 const initialState = {
   activities: [],
-  singleActivity: {},
+  selectedActivity: {},
   status: 'idle', // options: idle, loading, succeeded, failed
   error: null,
 };
@@ -58,6 +67,16 @@ const activitiesSlice = createSlice({
       .addCase(fetchActivities.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload.message;
+      })
+      .addCase(fetchSingleActivity.fulfilled, (state, { payload }) => {
+        if (payload.error) {
+          let errorMessage = 'Something went wrong.';
+          if (payload.error.response.status === 500) {
+            errorMessage = 'No activity found.';
+          }
+          return { ...state, error: errorMessage };
+        }
+        return { ...state, selectedActivity: payload.activity };
       });
   },
 });

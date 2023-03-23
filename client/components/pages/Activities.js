@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Box, Container, List, ListItemButton, Pagination, Typography } from '@mui/material';
 import { fetchActivities } from '../../store';
 import MapWithMarkers from '../../features/itinerary/components/map/map';
@@ -21,6 +21,7 @@ const hardcodedCategories = [
 ].map(category => capital(category));
 
 const Activities = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { state } = useLocation();
 
@@ -136,7 +137,8 @@ const Activities = () => {
                   justifyContent: 'space-around',
                   height: '20rem',
                   boxSizing: 'border-box'
-                }}>
+                }} onClick={() => navigate(`/activities/${activity.id}`)}
+                >
                   <img
                     src={activity.imageUrl}
                     loading="lazy"
@@ -152,7 +154,7 @@ const Activities = () => {
               ),
             )}
           </List>}
-        {totalPages != 0 &&
+        {totalPages &&
           <Pagination
             id="activities-pagination"
             sx={{ mb: 10 }}
