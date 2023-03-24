@@ -10,6 +10,8 @@ import AllUsers from './components/users/allUsers';
 import UserAccount from './components/users/userAccount';
 import UserProfile from './components/users/userProfile';
 import Activities from './components/pages/Activities';
+import SelectedActivity from './components/pages/SelectedActivity';
+import Explore from './components/pages/Explore';
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -28,27 +30,38 @@ const Router = () => {
     <div style={{ marginTop: topMargin }}>
       {!user ? (
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/activities' element={<Activities />} />
+          <Route path="/" element={<Home/>}/>
+          <Route path="/activities" element={<Activities/>}/>
+          <Route
+            path="/activities/:activityId"
+            element={<SelectedActivity/>}
+          />
+          <Route path="/destinations" element={<Explore/>}/>
         </Routes>
       ) : (
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/activities' element={<Activities />} />
-          <Route path='/mytrips' element={<AllTrips />} />
-          <Route path='/singletrip' element={<MyTrip />} />
-          <Route exact path='/users/all' element={<AllUsers />} />
+          <Route path="/" element={<Home/>}/>
+          <Route path="/activities" element={<Activities/>}/>
+          <Route
+            path="/activities/:activityId"
+            element={<SelectedActivity/>}
+          />
+          <Route path="/destinations" element={<Explore/>}/>
+          <Route path="/mytrips" element={<AllTrips/>}/>
+          <Route path="/singletrip" element={<MyTrip/>}/>
+          <Route exact path="/users/all" element={<AllUsers/>}/>
           <Route
             exact
             path={`/users/account/${user.id}`}
-            element={<UserAccount userId={user.id} />}
+            element={<UserAccount userId={user.id}/>}
           />
           <Route
             exact
-            path='/users/profile/:userId'
-            element={<UserProfile />}
+            path="/users/profile/:userId"
+            element={<UserProfile/>}
           />
-          <Route path='*' element={<Home />} />
+          <Route path="/mytrips/:tripId" element={<MyTrip/>}/>
+          <Route path="*" element={<Home/>}/>
         </Routes>
       )}
     </div>

@@ -1398,11 +1398,217 @@ const ACTIVITY_SEED_DATA = [
     imageUrl:
       'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/db/6f/80/see-the-world-s-biggest.jpg?w=1200&h=1200&s=1',
   },
+  {
+    name: 'The Metropolitan Museum of Art',
+    address: '1000 5th Ave, New York',
+    duration: 180,
+    zipcode: '10028',
+    googleMap: '40.78010278033864, -73.96350149206384',
+    description:
+      "One of the world's largest and finest art museums, with a vast collection spanning 5,000 years of world culture.",
+    categories: ['art', 'culture'],
+    destinationId: 1,
+    imageUrl:
+      'https://images.pexels.com/photos/5845467/pexels-photo-5845467.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+  },
+  {
+    name: 'American Museum of Natural History',
+    address: '200 Central Park West',
+    duration: 180,
+    zipcode: '10024',
+    googleMap: '40.78150280621409, -73.9738916418241',
+    description:
+      'A large museum showcasing a vast collection of natural specimens, from fossils to live animals, plus hands-on exhibits.',
+    categories: ['science', 'history'],
+    destinationId: 1,
+    imageUrl:
+      'https://images.unsplash.com/photo-1534739302117-e9ff126dec91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+  },
+  {
+    name: 'Whitney Museum of American Art',
+    address: '99 Gansevoort St',
+    duration: 90,
+    zipcode: '10014',
+    googleMap: '40.739766518475705, -74.00883071484067',
+    description:
+      "Museum showcasing American art from the 20th and 21st centuries, including works by Edward Hopper and Georgia O'Keeffe.",
+    categories: ['art', 'culture'],
+    destinationId: 1,
+    imageUrl:
+      'https://whitneymedia.org/assets/image/828185/large_EXISTE_001_Gamaliel-Rodri%CC%81guez_Collapsed-Soul_upload2.jpeg',
+  },
+  {
+    name: 'Solomon R. Guggenheim Museum',
+    address: '1071 5th Ave, New York, NY 10128',
+    duration: 120,
+    zipcode: '10128',
+    googleMap: '40.7829796,-73.9589706',
+    description:
+      'A modern and contemporary art museum located in the Upper East Side neighborhood of Manhattan.',
+    categories: ['museum', 'art'],
+    destinationId: 1, // Manhattan
+    imageUrl:
+      'https://www.guggenheim.org/wp-content/uploads/2017/02/architecture-srgm-gwathmey-siegel-annex-16-9.jpg',
+  },
+  {
+    name: 'Cooper Hewitt Smithsonian Design Museum',
+    address: '2 E 91st St, New York, NY 10128',
+    duration: 120,
+    zipcode: '10128',
+    googleMap: '40.784590745071846, -73.95789465901986',
+    description:
+      'Cooper Hewitt, Smithsonian Design Museum is a design museum located in the Upper East Side neighborhood of Manhattan in New York City. It is the only museum in the United States devoted to historical and contemporary design.',
+    categories: ['museum'],
+    destinationId: 1, // Manhattan
+    imageUrl:
+      'https://www.cooperhewitt.org/wp-content/uploads/2017/01/CooperGarden102-Re-e1488822514806.jpg',
+  },
+  {
+    name: 'Times Square',
+    address: 'Manhattan, NY 10036',
+    duration: 120,
+    zipcode: '10036',
+    googleMap: '40.75811307790303, -73.98552626960085',
+    description:
+      'Times Square is a major commercial intersection, tourist destination, entertainment center and neighborhood in the Midtown Manhattan section of New York City.',
+    categories: ['attraction'],
+    destinationId: 1, // Manhattan
+    imageUrl:
+      'https://images.unsplash.com/photo-1582760548598-0bccdf815aa2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+  },
+  {
+    name: 'Empire State Building',
+    address: '20 W 34th St, New York, NY 10001',
+    duration: 180,
+    zipcode: '10001',
+    googleMap: '40.74861116671189, -73.98565367251251',
+    description:
+      'The Empire State Building is a skyscraper located at the intersection of Fifth Avenue and West 34th Street, in New York City.',
+    categories: ['attraction'],
+    destinationId: 1, // Manhattan
+    imageUrl:
+      'https://images.unsplash.com/photo-1555109307-f7d9da25c244?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80',
+  },
+  {
+    name: 'Rockefeller Center',
+    address: '45 Rockefeller Plaza, New York, NY 10111',
+    duration: 180,
+    zipcode: '10111',
+    googleMap: '40.758894586765585, -73.97868433022242',
+    description:
+      'Rockefeller Center is a complex of 19 commercial buildings covering 22 acres (89,000 m2) between 48th Street and 51st Street in Midtown Manhattan, New York City.',
+    categories: ['attraction'],
+    destinationId: 1, // Manhattan
+    imageUrl:
+      'https://images.unsplash.com/photo-1546333069-b263afca9d69?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+  },
+  {
+    name: 'The High Line',
+    address: 'New York, NY 10011',
+    duration: 120,
+    zipcode: '10011',
+    googleMap: '40.748171295774995, -74.00479708789435',
+    description:
+      'The High Line is a 1.45-mile-long elevated linear park, greenway and rail trail created on a former New York Central Railroad spur on the west side of Manhattan in New York City.',
+    categories: ['park'],
+    destinationId: 1, // Manhattan
+    imageUrl:
+      'https://images.unsplash.com/photo-1624553348093-ed95c718f37b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80',
+  },
+  {
+    name: 'Chelsea Market',
+    address: '75 9th Ave, New York, NY 10011',
+    duration: 90,
+    zipcode: '10011',
+    googleMap: '40.74250460891324, -74.00616535905853',
+    description:
+      'Chelsea Market is a food hall, shopping mall, office building and television production facility located in the Chelsea neighborhood of the borough of Manhattan, in New York City.',
+    categories: ['food', 'shopping'],
+    destinationId: 1, // Manhattan
+    imageUrl:
+      'https://images.unsplash.com/photo-1639696194673-67b86204b885?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+  },
+  {
+    name: 'Little Island',
+    address: 'Pier 55 Hudson River Park, New York, NY 10014',
+    duration: 120,
+    zipcode: '10014',
+    googleMap: '40.742233196704134, -74.00998977255094',
+    description:
+      'Little Island is a public park and performance space located on the Hudson River in the Manhattan borough of New York City.',
+    categories: ['park'],
+    destinationId: 1, // Manhattan
+    imageUrl:
+      'https://images.unsplash.com/photo-1642426097194-734923438f2c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+  },
+  {
+    name: 'Chelsea Piers',
+    address: '23rd St & Hudson River Park, New York, NY 10011',
+    duration: 120,
+    zipcode: '10011',
+    googleMap: '40.7468013088249, -74.01077297768053',
+    description:
+      'Chelsea Piers is a series of piers on the West Side of Manhattan in New York City that currently serve as a sports and entertainment complex.',
+    categories: ['sports', 'attraction'],
+    destinationId: 1, // Manhattan
+  },
+  {
+    name: '230 Rooftop Bar',
+    address: '230 5th Ave, New York, NY 10001',
+    duration: 120,
+    zipcode: '10001',
+    googleMap: '40.7441645495001, -73.98809815905854',
+    description:
+      'A rooftop bar atop the 230 Fifth Avenue building offering views of the city skyline.',
+    categories: ['bar'],
+    destinationId: 1, // Manhattan
+    imageUrl:
+      'https://images.unsplash.com/photo-1558383738-8e44bbf6b093?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+  },
+  {
+    name: 'Art Bar',
+    address: '52 8th Ave, New York, NY 10014',
+    duration: 120,
+    zipcode: '10014',
+    googleMap: '40.73868076333868, -74.00360280406021',
+    description:
+      'Village mainstay with comfortable, dimly lit back room offers cocktails & bar food.',
+    categories: ['bar'],
+    destinationId: 1, // Manhattan
+    imageUrl:
+      'https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1429&q=80',
+  },
+  {
+    name: 'The Guthrie Inn',
+    address: '1259 Park Ave, New York, NY 10029',
+    duration: 120,
+    zipcode: '10014',
+    googleMap: '40.787454473947015, -73.95154404371445',
+    description:
+      'This cozy cocktail haunt features a bartop with mixed nuts suspended in epoxy & other quirky decor.',
+    categories: ['bar'],
+    destinationId: 1, // Manhattan
+    imageUrl:
+      'https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80',
+  },
+  {
+    name: 'Mace',
+    address: '35 W 8th St, New York, NY 10011',
+    duration: 120,
+    zipcode: '10011',
+    googleMap: '40.73420191159807, -73.99827361234685',
+    description:
+      'Mace has been a regular on local and international “best of” lists since it first opened in 2015. Sip spice and botanical-forward cocktails, or one of the best frozen drinks in town, and see how fast you’ll make Mace your own personal recommendation.',
+    categories: ['bar'],
+    destinationId: 1, // Manhattan
+    imageUrl:
+      'https://images.unsplash.com/photo-1574879948818-1cfda7aa5b1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80',
+  },
 ];
 
 const ITINERARY_SEED_DATA = [
   {
-    name: 'New York City Top Attractions',
+    name: 'New York City Essentials',
     duration: 3,
     userId: 1,
     cityId: 1,
@@ -1465,7 +1671,7 @@ const ITINERARY_ACTIVITY_SEED_DATA = [
     date: new Date('Jul 12, 2023 08:30:00'),
   },
   {
-    activityId: 5, // Staten Island Ferry
+    activityId: 25, // Times Square
     itineraryId: 1,
     date: new Date('Jul 12, 2023 10:00:00'),
   },
@@ -1474,9 +1680,29 @@ const ITINERARY_ACTIVITY_SEED_DATA = [
     itineraryId: 1,
     date: new Date('Jul 12, 2023 11:30:00'),
   },
+  {
+    activityId: 29, // Chelsea Piers
+    itineraryId: 1,
+    date: new Date('Jul 12, 2023 13:00:00'),
+  },
+  {
+    activityId: 28, // The High Line
+    itineraryId: 1,
+    date: new Date('Jul 12, 2023 14:30:00'),
+  },
+  {
+    activityId: 30, // Little Island
+    itineraryId: 1,
+    date: new Date('Jul 12, 2023 16:00:00'),
+  },
+  {
+    activityId: 35, // Mace
+    itineraryId: 1,
+    date: new Date('Jul 12, 2023 20:00:00'),
+  },
 
   {
-    activityId: 3, // Flushing Meadows Corona Park
+    activityId: 20, // MET
     itineraryId: 1,
     date: new Date('Jul 13, 2023 08:30:00'),
   },
@@ -1491,9 +1717,24 @@ const ITINERARY_ACTIVITY_SEED_DATA = [
     date: new Date('Jul 13, 2023 11:30:00'),
   },
   {
-    activityId: 13, // Snug Harbor Cultural Center & Botanical Garden
+    activityId: 32, // 230 Rooftop Bar
     itineraryId: 1,
-    date: new Date('Jul 13, 2023 13:30:00'),
+    date: new Date('Jul 13, 2023 20:00:00'),
+  },
+  {
+    activityId: 27, // Rockefeller Center
+    itineraryId: 1,
+    date: new Date('Jul 14, 2023 10:00:00'),
+  },
+  {
+    activityId: 21, // American Museum of Natural History
+    itineraryId: 1,
+    date: new Date('Jul 14, 2023 11:30:00'),
+  },
+  {
+    activityId: 33, // Art Bar
+    itineraryId: 1,
+    date: new Date('Jul 14, 2023 13:00:00'),
   },
 
   // San Diego Beach Hopping

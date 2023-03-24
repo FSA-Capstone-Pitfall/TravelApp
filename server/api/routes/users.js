@@ -122,7 +122,6 @@ router.get('/:userId/trips', requireToken, async (req, res, next) => {
 router.get('/:userId/trips/:tripId', requireToken, async (req, res, next) => {
   try {
     const { userId, tripId } = req.params;
-    console.log('in the route userId and tripId', userId, tripId);
     const trip = await User_Itinerary.findOne({
       where: {
         userId: userId,

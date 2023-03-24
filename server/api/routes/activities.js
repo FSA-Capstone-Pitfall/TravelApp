@@ -70,7 +70,34 @@ router.get('/', async (req, res, next) => {
       limit: Number(limit),
       data: activitiesByCity,
     };
+
+    if (cityId) {
+      await City.increment(
+        {
+          searchAppearances: 1
+        },
+        {
+          where: { id: cityId }
+        });
+    }
     res.status(200).json(data);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/:activityId', async (req, res, next) => {
+  try {
+    const { activityId } = req.params
+    const activity = await Activity.findOne({
+      where: {
+        id: activityId,
+      },
+    });
+    if (activity) {
+      res.send(activity);
+
+    }
   } catch (err) {
     next(err);
   }

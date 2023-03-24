@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Timeline,
   TimelineItem,
@@ -8,24 +8,30 @@ import {
   TimelineDot,
   timelineItemClasses,
 } from '@mui/lab';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 
-export default function BasicTimeline({ activities }) {
-  let destinations = [];
+export default function BasicTimeline({
+  activities,
+  city,
+  overallFlag,
+  tripDuration,
+}) {
+  const [destinations, setDestinations] = useState([]);
 
-  if (activities) {
-    activities.map((activity) => {
-      if (destinations.length > 0) {
-        if (
-          destinations[destinations.length - 1] !== activity.destination.name
-        ) {
-          destinations.push(activity.destination.name);
+  useEffect(() => {
+    if (activities) {
+      let dest = [];
+      activities.forEach((activity) => {
+        if (dest.length > 0) {
+          if (dest[dest.length - 1] !== activity.destination.name) {
+            dest.push(activity.destination.name);
+          }
+        } else {
+          dest.push(activity.destination.name);
         }
-      } else {
-        destinations.push(activity.destination.name);
-      }
-    });
-  }
+      });
+      setDestinations(dest);
+    }
+  }, [activities]);
 
   return (
     <Timeline
@@ -36,7 +42,38 @@ export default function BasicTimeline({ activities }) {
         },
       }}
     >
-      {destinations ? (
+      {overallFlag ? (
+        <>
+          <TimelineItem>
+            <TimelineSeparator>
+              <TimelineDot sx={{ width: '24px', height: '24px' }} />
+              <TimelineConnector sx={{ height: '65px' }} />
+            </TimelineSeparator>
+            <TimelineContent sx={{ fontSize: '1.25rem' }}>
+              Start
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineSeparator>
+              <TimelineDot sx={{ width: '24px', height: '24px' }} />
+              <TimelineConnector sx={{ height: '65px' }} />
+            </TimelineSeparator>
+            <TimelineContent sx={{ fontSize: '1.25rem' }}>
+              {city && tripDuration
+                ? `${city.name} - ${tripDuration} day(s)`
+                : city
+                ? city.name
+                : null}
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineSeparator>
+              <TimelineDot sx={{ width: '24px', height: '24px' }} />
+            </TimelineSeparator>
+            <TimelineContent sx={{ fontSize: '1.25rem' }}>End</TimelineContent>
+          </TimelineItem>
+        </>
+      ) : destinations ? (
         destinations.map((destination, i) => {
           return (
             <TimelineItem key={i}>

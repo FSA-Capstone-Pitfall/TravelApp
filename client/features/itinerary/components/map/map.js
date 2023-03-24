@@ -6,7 +6,7 @@ const containerStyle = {
   height: '500px',
 };
 
-const MapWithMarkers = (destinations) => {
+const MapWithMarkers = ({ destinations }) => {
   const locationKey = 'AIzaSyARbbsqAblNXS7rOerdE1gI_q5a6yQyXgw';
 
   // Get the first destination as the center
@@ -20,7 +20,7 @@ const MapWithMarkers = (destinations) => {
         zoom={12}
       >
         {destinations.map((destination, index) => (
-          <Marker key={index} position={destination} />
+          <Marker key={index} position={destination}/>
         ))}
       </GoogleMap>
     </LoadScript>
