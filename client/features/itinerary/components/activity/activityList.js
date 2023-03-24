@@ -28,7 +28,7 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export default function ActivitiesList({ activitiesArr }) {
+export default function ActivityList({ activitiesArr }) {
   const [activities, setActivities] = useState();
 
   const handleDelete = (activityId) => {
@@ -36,9 +36,9 @@ export default function ActivitiesList({ activitiesArr }) {
     setActivities(activities.filter((activity) => activity.id !== activityId));
   };
 
-  if (activities && activities.length > 0) {
-    console.log(activities);
-  }
+  // if (activities && activities.length > 0) {
+  //   console.log(activities);
+  // }
 
   const [value, setValue] = useState(0);
 
@@ -64,6 +64,7 @@ export default function ActivitiesList({ activitiesArr }) {
       } else if (tripDays[tripDays.length - 1].getDate() !== date.getDate()) {
         tripDays.push(date);
       }
+      return null;
     });
   }
 
@@ -73,9 +74,10 @@ export default function ActivitiesList({ activitiesArr }) {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label='trip tabs'>
-          {tripDays.map((day) => {
+          {tripDays.map((day, index) => {
             return (
               <Tab
+                key={index}
                 label={`${days[day.getDay()]} (${
                   day.getMonth() + 1
                 }/${day.getDate()})`}
@@ -86,7 +88,7 @@ export default function ActivitiesList({ activitiesArr }) {
       </Box>
       {tripDays.map((day, index) => {
         return (
-          <TabPanel value={value} index={index}>
+          <TabPanel value={value} index={index} key={index}>
             {activities &&
               activities.map((activity) =>
                 new Date(activity.itinerary_activity.date).getDate() ===
@@ -110,20 +112,3 @@ export default function ActivitiesList({ activitiesArr }) {
     </Box>
   );
 }
-
-/* <Box
-                sx={{
-                  '& > *:not(:last-child)': {
-                    marginBottom: '16px',
-                  },
-                }}
-              >
-                {activities &&
-                  activities.map((activity) => (
-                    <MediaControlCard
-                      key={activity.id}
-                      activity={activity}
-                      onDelete={handleDelete} // Pass the onDelete callback
-                    />
-                  ))}
-              </Box> */
