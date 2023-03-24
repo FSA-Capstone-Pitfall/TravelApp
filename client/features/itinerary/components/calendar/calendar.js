@@ -8,7 +8,7 @@ export default function Calendar({ city, activities, selectedTrip }) {
   const calendarRef = useRef(null);
 
   const handleEventDrop = useCallback(({ event }) => {
-    console.log('Event dropped:', event);
+    // console.log('Event dropped:', event);
     // handle event drop logic here
   }, []);
 
@@ -21,7 +21,6 @@ export default function Calendar({ city, activities, selectedTrip }) {
     );
   }
 
-  console.log(city);
 
   let events = [];
 

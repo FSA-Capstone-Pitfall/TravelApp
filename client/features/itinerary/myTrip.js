@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import MapWithMarkers from './components/map/map';
 import BasicTabs from './components/tabs/tabs';
 import Calendar from './components/calendar/calendar';
-import MediaControlCard from './components/activity/activityCard';
+import ActivitiesList from './components/activity/activityList';
 import Button from '@mui/material/Button';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -88,11 +88,6 @@ function MyTrip() {
     destinations = locations;
   }
 
-  const handleDelete = (activityId) => {
-    // Update your activities state
-    setActivities(activities.filter((activity) => activity.id !== activityId));
-  };
-
   return (
     <Box sx={{ flexGrow: 1, padding: 3 }}>
       <PictureBox sx={{ flexGrow: 1, marginBottom: 3, minHeight: '650px' }}>
@@ -173,22 +168,9 @@ function MyTrip() {
           <Box sx={{ maxHeight: '1200px', overflowY: 'auto', flex: 1 }}>
             <Item>
               <h2>Trip Details</h2>
-              <Box
-                sx={{
-                  '& > *:not(:last-child)': {
-                    marginBottom: '16px',
-                  },
-                }}
-              >
-                {activities &&
-                  activities.map((activity) => (
-                    <MediaControlCard
-                      key={activity.id}
-                      activity={activity}
-                      onDelete={handleDelete} // Pass the onDelete callback
-                    />
-                  ))}
-              </Box>
+              <ActivitiesList
+                  activitiesArr={activities}
+                />
             </Item>
           </Box>
         </Grid>

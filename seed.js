@@ -1736,6 +1736,21 @@ const ITINERARY_ACTIVITY_SEED_DATA = [
     itineraryId: 1,
     date: new Date('Jul 14, 2023 13:00:00'),
   },
+  {
+    activityId: 31, // Art Bar
+    itineraryId: 1,
+    date: new Date('Jul 21, 2023 13:00:00'),
+  },
+  {
+    activityId: 16, // Art Bar
+    itineraryId: 1,
+    date: new Date('Jul 21, 2023 13:00:00'),
+  },
+  {
+    activityId: 15, // Art Bar
+    itineraryId: 1,
+    date: new Date('Jul 21, 2023 13:00:00'),
+  },
 
   // San Diego Beach Hopping
   {
