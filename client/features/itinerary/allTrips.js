@@ -1,29 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { styled } from '@mui/material/styles';
-import {
-  Box,
-  Grid,
-  Card,
-  Link,
-  CardContent,
-  CardMedia,
-  Typography,
-} from '@mui/material';
+import { Box, Grid, Card, CardContent, Typography } from '@mui/material';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSingleTrip, fetchTrips } from '../../store/slices/tripsSlice';
-import {
-  WishlistTrips,
-  FeaturedTrip,
-  CuratedTrips,
-  UpcomingTrips,
-} from './components/trips';
-
-const Item = styled(Box)(({ theme }) => ({
-  padding: 25,
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
+import { fetchTrips } from '../../store/slices/tripsSlice';
+import TripsList from './components/trips/tripsList';
+import FeaturedTrip from './components/trips/featuredTrip';
 
 const PictureBox = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -52,9 +34,7 @@ const PictureBox = styled(Box)(({ theme }) => ({
 
 function AllTrips() {
   const dispatch = useDispatch();
-
   const user = useSelector((state) => state.auth.user);
-  const itineraries = useSelector((state) => state.trips.itineraries);
 
   let userId;
   if (user) {
@@ -62,13 +42,8 @@ function AllTrips() {
   }
 
   useEffect(() => {
-    const pullData = async () => {
-      const userTrip = await dispatch(fetchTrips(userId));
-    };
-    pullData();
+    dispatch(fetchTrips(userId));
   }, [dispatch, userId]);
-
-  let destinations = [];
 
   return (
     <Box sx={{ flexGrow: 1, padding: 3 }}>
@@ -98,7 +73,7 @@ function AllTrips() {
                   <Typography component='div' variant='caption'>
                     Upcoming Trips{' '}
                   </Typography>
-                  <UpcomingTrips />
+                  <TripsList status={'upcoming'} />
                 </CardContent>
               </Box>
             </Card>
@@ -108,9 +83,9 @@ function AllTrips() {
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 <CardContent sx={{ flex: '1 0 auto' }}>
                   <Typography component='div' variant='caption'>
-                    My Curated Trips{' '}
+                    Trips Under Construction{' '}
                   </Typography>
-                  <CuratedTrips />
+                  <TripsList status={'planning'} />
                 </CardContent>
               </Box>
             </Card>
@@ -120,9 +95,9 @@ function AllTrips() {
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 <CardContent sx={{ flex: '1 0 auto' }}>
                   <Typography component='div' variant='caption'>
-                    Wishlist{' '}
+                    Completed Trips{' '}
                   </Typography>
-                  <WishlistTrips />{' '}
+                  <TripsList status={'complete'} />
                 </CardContent>
               </Box>
             </Card>
