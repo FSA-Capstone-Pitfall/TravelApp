@@ -8,32 +8,73 @@ export default function Calendar({ city, activities, selectedTrip }) {
   const calendarRef = useRef(null);
 
   const handleEventDrop = useCallback(({ event }) => {
-    console.log('Event dropped:', event);
+    // console.log('Event dropped:', event);
     // handle event drop logic here
   }, []);
 
-  let startDate;
-  let endDate;
-  if (activities && activities.length > 0) {
-    startDate = new Date(activities[0].itinerary_activity.date);
-    endDate = new Date(
-      activities[activities.length - 1].itinerary_activity.date
-    );
-  }
-
-  console.log(city);
-
   let events = [];
+  let allDestinations = [];
+  let prevDest;
 
-  if (city) {
-    events = [
-      {
-        title: city.name,
-        start: startDate,
-        end: endDate,
-      },
-    ];
+  if (activities) {
+    activities.map((activity) => {
+      let destinationName = activity.destination.name;
+      let startDate = new Date(activity.itinerary_activity.date);
+      let duration = activity.itinerary_activity.duration * 60000;
+      let buffer = activity.itinerary_activity.buffer * 60000;
+      let endDate = new Date(startDate.getTime() + duration);
+      if (destinationName !== prevDest) {
+        allDestinations.push({
+          title: destinationName,
+          start: startDate,
+          end: endDate,
+        });
+        prevDest = activity.destination.name;
+      } else {
+        allDestinations[allDestinations.length - 1].end = new Date(
+          allDestinations[allDestinations.length - 1].end.getTime() +
+            duration +
+            buffer
+        );
+      }
+
+      return null;
+    });
+    events = [...allDestinations];
+    console.log(allDestinations);
+    console.log(events);
   }
+
+  if (activities) {
+    // console.log(selectedTrip.itinerary);
+    activities.map((activity) => {
+      let startDate = new Date(activity.itinerary_activity.date);
+      let endDate = new Date(
+        startDate.getTime() + activity.itinerary_activity.duration * 60000
+      );
+      events.push({ title: activity.name, start: startDate, end: endDate });
+    });
+  }
+
+  // if (city) {
+  //   events = [
+  //     {
+  //       title: city.name,
+  //       start: startDate,
+  //       end: endDate,
+  //     },
+  //     {
+  //       title: destination.name,
+  //       start: startDate,
+  //       end: endDate,
+  //     },
+  //     {
+  //       title: activity.name,
+  //       start: startDate,
+  //       end: endDate,
+  //     },
+  //   ];
+  // }
 
   const initialDate =
     events.length > 0 ? events[0].start.toISOString().split('T')[0] : null;

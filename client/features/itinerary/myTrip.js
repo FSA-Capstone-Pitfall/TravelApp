@@ -3,9 +3,9 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import MapWithMarkers from './components/map/map';
-import BasicTabs from './components/tabs/tabs';
+import BasicTimeline from './components/timeline/timeline';
 import Calendar from './components/calendar/calendar';
-import MediaControlCard from './components/activity/activityCard';
+import ActivityList from './components/activity/activityList';
 import Button from '@mui/material/Button';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -74,7 +74,7 @@ function MyTrip() {
       setCity(userTrip.payload.itinerary.city);
     };
     pullData();
-  }, [dispatch, userId]);
+  }, [dispatch, userId, tripId]);
 
   let destinations = [];
   if (activities) {
@@ -88,10 +88,14 @@ function MyTrip() {
     destinations = locations;
   }
 
-  const handleDelete = (activityId) => {
-    // Update your activities state
-    setActivities(activities.filter((activity) => activity.id !== activityId));
-  };
+  let tripDuration = 0;
+  if (activities && activities.length > 0) {
+    const startDate = new Date(activities[0].itinerary_activity.date);
+    const endDate = new Date(
+      activities[activities.length - 1].itinerary_activity.date
+    );
+    tripDuration = Math.round((endDate - startDate) / 86400000);
+  }
 
   return (
     <Box sx={{ flexGrow: 1, padding: 3 }}>
@@ -111,10 +115,10 @@ function MyTrip() {
             <Grid item xs={6}>
               <Item sx={{ marginBottom: 1 }}>
                 <h2>Trip Timeline</h2>
-                <BasicTabs
+                <BasicTimeline
                   activities={activities}
                   city={city}
-                  selectedTrip={selectedTrip}
+                  tripDuration={tripDuration}
                 />
               </Item>
             </Grid>
@@ -173,22 +177,7 @@ function MyTrip() {
           <Box sx={{ maxHeight: '1200px', overflowY: 'auto', flex: 1 }}>
             <Item>
               <h2>Trip Details</h2>
-              <Box
-                sx={{
-                  '& > *:not(:last-child)': {
-                    marginBottom: '16px',
-                  },
-                }}
-              >
-                {activities &&
-                  activities.map((activity) => (
-                    <MediaControlCard
-                      key={activity.id}
-                      activity={activity}
-                      onDelete={handleDelete} // Pass the onDelete callback
-                    />
-                  ))}
-              </Box>
+              <ActivityList activitiesArr={activities} />
             </Item>
           </Box>
         </Grid>

@@ -64,6 +64,13 @@ export default function MediaControlCard({ activity, onDelete }) {
   };
 
   return (
+    <Box
+    sx={{
+      '& > *:not(:last-child)': {
+        marginBottom: '16px',
+      },
+    }}
+  >
     <Card sx={{ display: 'flex', padding: 2 }}>
       <CardMedia
         component='img'
@@ -81,7 +88,6 @@ export default function MediaControlCard({ activity, onDelete }) {
             color='text.secondary'
             component='div'
           >
-            {`${startDate.toDateString()}`}
           </Typography>
           <Typography
             variant='subtitle1'
@@ -139,5 +145,6 @@ export default function MediaControlCard({ activity, onDelete }) {
         </CardContent>
       </Box>
     </Card>
+    </Box>
   );
 }
