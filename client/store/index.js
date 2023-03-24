@@ -13,6 +13,7 @@ const store = configureStore({
     destinations: destinationsReducer,
     trips: tripsReducer,
     activities: activitiesReducer,
+
   },
   // middleware: (getDefaultMiddleware) =>
   //   getDefaultMiddleware().concat(createLogger()),
@@ -22,3 +23,4 @@ export default store;
 export * from './slices/destinationsSlice';
 export * from './slices/authSlice';
 export * from './slices/activitiesSlice';
+export * from './slices/destinationsSlice';

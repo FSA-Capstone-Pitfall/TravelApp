@@ -3,7 +3,11 @@ import axios from 'axios';
 
 export const fetchDestinations = createAsyncThunk('/destinations', async ({ identifier }) => {
   try {
-    const { data } = await axios.get(`/api/destinations?identifier=${identifier}`);
+    const { data } = await axios.get(`/api/destinations`, {
+      params: {
+        identifier
+      }
+    });
     return data;
   } catch (err) {
     throw err;
@@ -45,12 +49,9 @@ const destinations = createSlice({
       })
       .addCase(fetchDestinations.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.payload.message;
-      })
-      .addCase(fetchSingleDestination.fulfilled, (state, action) => {
-        state.destinations = action.payload;
+        state.error = action.payload;
       });
-  },
+  }
 });
 
 export default destinations.reducer;
