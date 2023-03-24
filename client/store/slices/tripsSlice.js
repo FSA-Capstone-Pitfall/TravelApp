@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const fetchTrips = createAsyncThunk('fetchTrips', async (userId) => {
   try {
-    console.log('in the fetchTrips thunk');
+    console.log('in the fetchTrips thunk', 'userId: ', userId);
     const { data } = await axios.get(`/api/users/${userId}/trips`);
     return data;
   } catch (err) {
@@ -15,7 +15,13 @@ export const fetchSingleTrip = createAsyncThunk(
   'fetchSingleTrip',
   async ({ userId, tripId }) => {
     try {
-      console.log('in the fetchSingleTrip thunk', userId, tripId);
+      console.log(
+        'in the fetchSingleTrip thunk',
+        'userId: ',
+        userId,
+        'tripId: ',
+        tripId
+      );
       const { data } = await axios.get(`/api/users/${userId}/trips/${tripId}`);
       return data;
     } catch (err) {
