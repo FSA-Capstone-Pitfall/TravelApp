@@ -10,7 +10,7 @@ import {
   Link,
 } from '@mui/material';
 
-function FeaturedTrip({ city, duration }) {
+function FeaturedTrip({ city, duration, itineraryId }) {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.auth.user);
@@ -26,14 +26,12 @@ function FeaturedTrip({ city, duration }) {
     dispatch(fetchTrips(userId));
   }, [dispatch, userId]);
 
-  console.log('itins: ', itineraries);
-
   return (
     <>
       {!itineraries[0] ? (
         '...Loading'
       ) : (
-        <Link underline='none' href='/singletrip'>
+        <Link underline='none' href={`/mytrips/${itineraries[0].itineraryId}`}>
           <Card
             sx={{
               display: 'flex',

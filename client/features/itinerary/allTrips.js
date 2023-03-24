@@ -1,11 +1,22 @@
-import React, { useEffect } from 'react';
-import { styled } from '@mui/material/styles';
-import { Box, Grid, Card, CardContent, Typography } from '@mui/material';
-
+import React, { useEffect, useState } from 'react';
+import { styled, useTheme } from '@mui/material/styles';
+import {
+  Box,
+  Typography,
+  Toolbar,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Button,
+} from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrips } from '../../store/slices/tripsSlice';
 import TripsList from './components/trips/tripsList';
 import FeaturedTrip from './components/trips/featuredTrip';
+import FindTrip from './components/trips/findTrip';
+
+const drawerWidth = 240;
 
 const PictureBox = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -32,9 +43,18 @@ const PictureBox = styled(Box)(({ theme }) => ({
   },
 }));
 
+const CustomToolbar = styled(Toolbar)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  color: theme.palette.primary.contrastText,
+  display: 'flex',
+  justifyContent: 'left',
+}));
+
 function AllTrips() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
+  const itineraries = useSelector((state) => state.trips.itineraries);
+  const theme = useTheme();
 
   let userId;
   if (user) {
@@ -45,9 +65,59 @@ function AllTrips() {
     dispatch(fetchTrips(userId));
   }, [dispatch, userId]);
 
+  const [selectedCategory, setSelectedCategory] = useState('Upcoming');
+  const [showUpcoming, setShowUpcoming] = useState(false);
+
+  useEffect(() => {
+    const upcomingTrips = itineraries.filter(
+      (itinerary) => itinerary.status === 'upcoming'
+    );
+    setShowUpcoming(upcomingTrips.length > 0);
+  }, [itineraries]);
+
+  const renderContent = () => {
+    if (selectedCategory === 'Upcoming' && showUpcoming) {
+      return (
+        <>
+          <Box sx={{ mb: 3 }}>
+            <FeaturedTrip />
+          </Box>
+          <TripsList status={'upcoming'} />
+        </>
+      );
+    } else if (selectedCategory === 'Under Construction' && showUpcoming) {
+      return <TripsList status={'planning'} />;
+    } else if (selectedCategory === 'Completed' && showUpcoming) {
+      return <TripsList status={'complete'} />;
+    } else if (selectedCategory === '' && showUpcoming) {
+      return (
+        <>
+          <Box sx={{ mb: 3 }}>
+            <FeaturedTrip />
+          </Box>
+          <TripsList status={'upcoming'} />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <FindTrip />
+        </>
+      );
+    }
+  };
+
+  const categories = [
+    { text: 'Upcoming' },
+    { text: 'Under Construction' },
+    { text: 'Completed' },
+    { text: 'My Curated Trips' },
+    { text: 'Wishlist' },
+  ];
+
   return (
-    <Box sx={{ flexGrow: 1, padding: 3 }}>
-      <PictureBox sx={{ flexGrow: 1, marginBottom: 3, minHeight: '700px' }}>
+    <>
+      <PictureBox sx={{ flexGrow: 1, marginBottom: 1, minHeight: '700px' }}>
         <>
           <img
             src='https://justinkelefas.com/wp-content/uploads/2022/04/New-York-City-Sunset-sample-2.jpg'
@@ -56,55 +126,72 @@ function AllTrips() {
           <h1>My Trips</h1>
         </>
       </PictureBox>
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-
-          gap: '0.5rem',
-        }}
-      >
-        <FeaturedTrip />
-        <Grid container spacing={3}>
-          <Grid item xs={4}>
-            <Card sx={{ display: 'flex' }}>
-              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <CardContent sx={{ flex: '1 0 auto' }}>
-                  <Typography component='div' variant='caption'>
-                    Upcoming Trips{' '}
-                  </Typography>
-                  <TripsList status={'upcoming'} />
-                </CardContent>
-              </Box>
-            </Card>
-          </Grid>
-          <Grid item xs={4}>
-            <Card sx={{ display: 'flex' }}>
-              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <CardContent sx={{ flex: '1 0 auto' }}>
-                  <Typography component='div' variant='caption'>
-                    Trips Under Construction{' '}
-                  </Typography>
-                  <TripsList status={'planning'} />
-                </CardContent>
-              </Box>
-            </Card>
-          </Grid>
-          <Grid item xs={4}>
-            <Card sx={{ display: 'flex' }}>
-              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <CardContent sx={{ flex: '1 0 auto' }}>
-                  <Typography component='div' variant='caption'>
-                    Completed Trips{' '}
-                  </Typography>
-                  <TripsList status={'complete'} />
-                </CardContent>
-              </Box>
-            </Card>
-          </Grid>
-        </Grid>
+      <Box sx={{ flexGrow: 1, padding: 3 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+          <CustomToolbar>
+            <Typography variant='h6' noWrap component='div'>
+              Trips
+            </Typography>
+          </CustomToolbar>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              width: `calc(100% - 56px)`,
+              minHeight: 'calc(100% - 56px)',
+            }}
+          >
+            <Box
+              sx={{
+                width: drawerWidth,
+                backgroundColor: (theme) => theme.palette.background.paper,
+                boxShadow: (theme) => theme.shadows[4],
+                overflowY: 'auto',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <List sx={{ flexGrow: 1 }}>
+                {categories.map((category) => (
+                  <ListItem key={category.text} disablePadding>
+                    <ListItemButton
+                      onClick={() => setSelectedCategory(category.text)}
+                      sx={
+                        selectedCategory === category.text
+                          ? {
+                              borderBottom: `2px solid ${theme.palette.secondary.main}`,
+                            }
+                          : {}
+                      }
+                    >
+                      <ListItemText primary={category.text} />
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+                <Box
+                  sx={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    mt: 3,
+                    mb: 3,
+                    flexGrow: 0,
+                  }}
+                >
+                  <Button variant='contained' color='primary'>
+                    Create a Trip
+                  </Button>
+                </Box>
+              </List>
+            </Box>
+            <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
+              {renderContent()}
+            </Box>
+          </Box>
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 }
 

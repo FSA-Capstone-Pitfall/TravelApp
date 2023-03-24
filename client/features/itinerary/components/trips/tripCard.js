@@ -8,9 +8,9 @@ import {
   Link,
 } from '@mui/material';
 
-function TripCard({ city, duration }) {
+function TripCard({ city, duration, itineraryId }) {
   return (
-    <Link underline='none' href='/singletrip'>
+    <Link underline='none' href={`/mytrips/${itineraryId}`}>
       <Card
         sx={{
           display: 'flex',
@@ -18,6 +18,7 @@ function TripCard({ city, duration }) {
           borderColor: 'black',
           flexGrow: 2,
           padding: '8px',
+          mb: 1,
         }}
       >
         <CardMedia
