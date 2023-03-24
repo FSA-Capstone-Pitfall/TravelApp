@@ -25,6 +25,7 @@ function TripsList({ status }) {
         <TripCard
           duration={trip.itinerary.duration}
           city={trip.itinerary.city.name}
+          itineraryId={trip.itineraryId}
         />
       );
     }
