@@ -5,13 +5,9 @@ import {
   Typography,
   Toolbar,
   List,
-  Divider,
   ListItem,
   ListItemButton,
-  ListItemIcon,
   ListItemText,
-  Tabs,
-  Tab,
   Button,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,7 +15,6 @@ import { fetchTrips } from '../../store/slices/tripsSlice';
 import TripsList from './components/trips/tripsList';
 import FeaturedTrip from './components/trips/featuredTrip';
 import FindTrip from './components/trips/findTrip';
-import MailIcon from '@mui/icons-material/Mail';
 
 const drawerWidth = 240;
 
@@ -70,7 +65,7 @@ function AllTrips() {
     dispatch(fetchTrips(userId));
   }, [dispatch, userId]);
 
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('Upcoming');
   const [showUpcoming, setShowUpcoming] = useState(false);
 
   useEffect(() => {
@@ -113,16 +108,16 @@ function AllTrips() {
   };
 
   const categories = [
-    { text: 'Upcoming', icon: <MailIcon /> },
-    { text: 'Under Construction', icon: <MailIcon /> },
-    { text: 'Completed', icon: <MailIcon /> },
-    { text: 'My Curated Trips', icon: <MailIcon /> },
-    { text: 'Wishlist', icon: <MailIcon /> },
+    { text: 'Upcoming' },
+    { text: 'Under Construction' },
+    { text: 'Completed' },
+    { text: 'My Curated Trips' },
+    { text: 'Wishlist' },
   ];
 
   return (
     <>
-      <PictureBox sx={{ flexGrow: 1, marginBottom: 3, minHeight: '700px' }}>
+      <PictureBox sx={{ flexGrow: 1, marginBottom: 1, minHeight: '700px' }}>
         <>
           <img
             src='https://justinkelefas.com/wp-content/uploads/2022/04/New-York-City-Sunset-sample-2.jpg'
@@ -142,7 +137,7 @@ function AllTrips() {
             sx={{
               display: 'flex',
               flexDirection: 'row',
-              flexGrow: 1,
+              width: `calc(100% - 56px)`,
               minHeight: 'calc(100% - 56px)',
             }}
           >
@@ -152,9 +147,12 @@ function AllTrips() {
                 backgroundColor: (theme) => theme.palette.background.paper,
                 boxShadow: (theme) => theme.shadows[4],
                 overflowY: 'auto',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
-              <List>
+              <List sx={{ flexGrow: 1 }}>
                 {categories.map((category) => (
                   <ListItem key={category.text} disablePadding>
                     <ListItemButton
@@ -178,6 +176,7 @@ function AllTrips() {
                     justifyContent: 'center',
                     mt: 3,
                     mb: 3,
+                    flexGrow: 0,
                   }}
                 >
                   <Button variant='contained' color='primary'>
