@@ -14,8 +14,8 @@ const store = configureStore({
     trips: tripsReducer,
     activities: activitiesReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(createLogger()),
+  // middleware: (getDefaultMiddleware) =>
+  //   getDefaultMiddleware().concat(createLogger()),
 });
 
 export default store;
