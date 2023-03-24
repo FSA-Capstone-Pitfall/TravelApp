@@ -3,14 +3,14 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import MapWithMarkers from './components/map/map';
-import BasicTimeline from './components/timeline/timeline';
 import BasicTabs from './components/tabs/tabs';
-import DemoApp from './components/calendar/calendar';
+import Calendar from './components/calendar/calendar';
 import MediaControlCard from './components/activity/activityCard';
 import Button from '@mui/material/Button';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSingleTrip, fetchTrips } from '../../store/slices/tripsSlice';
+import { useParams } from 'react-router-dom';
+import { fetchSingleTrip } from '../../store/slices/tripsSlice';
 
 const Item = styled(Box)(({ theme }) => ({
   padding: 25,
@@ -45,7 +45,7 @@ const PictureBox = styled(Box)(({ theme }) => ({
 
 function MyTrip() {
   const dispatch = useDispatch();
-  const tripId = 1;
+  const { tripId } = useParams();
 
   const [activities, setActivities] = useState();
   const [city, setCity] = useState();
@@ -95,7 +95,7 @@ function MyTrip() {
 
   return (
     <Box sx={{ flexGrow: 1, padding: 3 }}>
-      <PictureBox sx={{ flexGrow: 1, marginBottom: 3, minHeight: '700px' }}>
+      <PictureBox sx={{ flexGrow: 1, marginBottom: 3, minHeight: '650px' }}>
         {city ? (
           <>
             <img src={city.imageUrl} alt='Full-width' />
@@ -111,14 +111,17 @@ function MyTrip() {
             <Grid item xs={6}>
               <Item sx={{ marginBottom: 1 }}>
                 <h2>Trip Timeline</h2>
-                <BasicTabs />
-                <BasicTimeline activities={activities} />
+                <BasicTabs
+                  activities={activities}
+                  city={city}
+                  selectedTrip={selectedTrip}
+                />
               </Item>
             </Grid>
             <Grid item xs={6}>
               <Item sx={{ marginBottom: 1 }}>
                 {destinations.length > 0 ? (
-                  MapWithMarkers(destinations)
+                  <MapWithMarkers destinations={destinations} />
                 ) : (
                   <h3>Loading...</h3>
                 )}
@@ -126,7 +129,11 @@ function MyTrip() {
             </Grid>
             <Grid item xs={6}>
               <Item sx={{ marginBottom: 1 }}>
-                <DemoApp />
+                <Calendar
+                  activities={activities}
+                  city={city}
+                  selectedTrip={selectedTrip}
+                />
               </Item>
             </Grid>
             <Grid item xs={6}>
