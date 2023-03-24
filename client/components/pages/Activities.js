@@ -162,7 +162,7 @@ const Activities = () => {
             onChange={(event, value) => setCurrPage(value)}
           />}
         {destinations.length > 0 ? (
-          MapWithMarkers(destinations)
+          <MapWithMarkers destinations={destinations}/>
         ) : (
           <h3 style={{ color: 'black' }}>No activities found by selected categories.</h3>
         )}

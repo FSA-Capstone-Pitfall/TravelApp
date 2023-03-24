@@ -18,6 +18,7 @@ router.get('/', async (req, res, next) => {
       model: Destination,
     };
 
+    // Search destinations by names
     if (identifier) {
       orderClause.push(['name', 'DESC']);
       whereClause[Op.or] = [
@@ -34,6 +35,8 @@ router.get('/', async (req, res, next) => {
       ];
       includeClause.required = true;
       includeClause.duplicating = false;
+
+      //  Get the most popular destinations
     } else {
       orderClause.push(['searchAppearances', 'DESC']);
     }

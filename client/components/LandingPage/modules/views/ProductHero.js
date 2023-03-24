@@ -37,31 +37,31 @@ export default function ProductHero() {
           <img
             style={{ display: 'none' }}
             src={displayPic}
-            alt='increase priority'
+            alt="increase priority"
           />
-          <Typography color='inherit' align='center' variant='h2'>
+          <Typography color="inherit" align="center" variant="h2">
             Your Personal Travel Concierge
           </Typography>
           <Typography
-            color='inherit'
-            align='center'
-            variant='h5'
+            color="inherit"
+            align="center"
+            variant="h5"
             sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
           >
             Experience your next destination with personalized itineraries
             crafted by local experts.
           </Typography>
           <Button
-            color='secondary'
-            variant='contained'
-            size='large'
-            component='a'
-            href='/signup'
+            color="secondary"
+            variant="contained"
+            size="large"
+            component="a"
+            href={`/destinations`}
             sx={{ minWidth: 200 }}
           >
-            Register
+            Explore
           </Button>
-          <Typography variant='body2' color='inherit' sx={{ mt: 2 }}>
+          <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
             Discover the experience
           </Typography>
         </>
@@ -70,29 +70,29 @@ export default function ProductHero() {
           <img
             style={{ display: 'none' }}
             src={displayPic}
-            alt='increase priority'
+            alt="increase priority"
           />
           <Typography
-            color='inherit'
-            align='center'
-            variant='h2'
-            marked='center'
+            color="inherit"
+            align="center"
+            variant="h2"
+            marked="center"
           >
             {`Your next destination awaits, ${user.firstName}`}
           </Typography>
           <Typography
-            color='inherit'
-            align='center'
-            variant='h5'
+            color="inherit"
+            align="center"
+            variant="h5"
             sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
           >
             Get your itinerary now and explore as the locals do.
           </Typography>
           <Button
-            color='secondary'
-            variant='contained'
-            size='large'
-            component='a'
+            color="secondary"
+            variant="contained"
+            size="large"
+            component="a"
             href={`/destinations`}
             sx={{ minWidth: 200 }}
           >
