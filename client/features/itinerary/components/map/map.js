@@ -20,7 +20,7 @@ const MapWithMarkers = ({ destinations }) => {
         zoom={12}
       >
         {destinations.map((destination, index) => (
-          <Marker key={index} position={destination} />
+          <Marker key={index} position={destination}/>
         ))}
       </GoogleMap>
     </LoadScript>

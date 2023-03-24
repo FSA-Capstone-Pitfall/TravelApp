@@ -38,6 +38,7 @@ const SearchBar = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!searchValue) return;
     await dispatch(fetchDestinations({ identifier: searchValue }));
     setRenderDestinations(true);
   };

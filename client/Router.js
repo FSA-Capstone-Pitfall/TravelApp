@@ -5,10 +5,12 @@ import Home from './components/LandingPage/Home';
 import { getUserByToken } from './store';
 import { isLoggedIn } from './utils';
 import MyTrip from './features/itinerary';
+import AllTrips from './features/itinerary/allTrips';
 import AllUsers from './components/users/allUsers';
 import UserAccount from './components/users/userAccount';
 import UserProfile from './components/users/userProfile';
 import Activities from './components/pages/Activities';
+import SelectedActivity from './components/pages/SelectedActivity';
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -21,10 +23,7 @@ const Router = () => {
     }
   }, [dispatch]);
 
-  const topMargin =
-    location.pathname.startsWith('/users') || location.pathname === '/mytrips'
-      ? '0px'
-      : '-15vh';
+  const topMargin = location.pathname.startsWith('/users') ? '0px' : '-15vh';
 
   return (
     <div style={{ marginTop: topMargin }}>
@@ -32,12 +31,21 @@ const Router = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/activities' element={<Activities />} />
+          <Route
+            path='/activities/:activityId'
+            element={<SelectedActivity />}
+          />
         </Routes>
       ) : (
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/activities' element={<Activities />} />
-
+          <Route
+            path='/activities/:activityId'
+            element={<SelectedActivity />}
+          />
+          <Route path='/mytrips' element={<AllTrips />} />
+          <Route path='/singletrip' element={<MyTrip />} />
           <Route exact path='/users/all' element={<AllUsers />} />
           <Route
             exact
