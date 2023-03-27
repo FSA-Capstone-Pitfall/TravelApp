@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useEffect, useRef } from 'react';
+import anime from 'animejs';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -14,6 +15,44 @@ const item = {
 };
 
 function ProductValues() {
+  const itemRefs = useRef([]);
+  const observer = useRef();
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1,
+    };
+
+    observer.current = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          itemRefs.current.forEach((item, index) => {
+            anime({
+              targets: item,
+              translateY: [100, 0],
+              opacity: [0, 1],
+              easing: 'easeOutExpo',
+              delay: index * 500,
+            });
+          });
+          observer.current.disconnect();
+        }
+      });
+    }, options);
+
+    itemRefs.current.forEach((item) => {
+      observer.current.observe(item);
+    });
+
+    return () => {
+      if (observer.current) {
+        observer.current.disconnect();
+      }
+    };
+  }, []);
+
   return (
     <Box
       component='section'
@@ -33,7 +72,7 @@ function ProductValues() {
         />
         <Grid container spacing={5}>
           <Grid item xs={12} md={4}>
-            <Box sx={item}>
+            <Box ref={(el) => (itemRefs.current[0] = el)} sx={item}>
               <Avatar
                 alt='Locals'
                 src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
@@ -50,7 +89,7 @@ function ProductValues() {
             </Box>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Box sx={item}>
+            <Box ref={(el) => (itemRefs.current[1] = el)} sx={item}>
               <Avatar
                 alt='Experiences'
                 src='https://images.unsplash.com/photo-1551027654-f7b9f56804c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
@@ -69,7 +108,7 @@ function ProductValues() {
             </Box>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Box sx={item}>
+            <Box ref={(el) => (itemRefs.current[2] = el)} sx={item}>
               <Avatar
                 alt='Exclusive'
                 src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80'
