@@ -10,7 +10,6 @@ let defaultPageLimit = 10;
 //GET: /api/itineraries
 router.get('/', async (req, res, next) => {
   try {
-
     let { cityId, page, limit } = req.query;
 
     if (!cityId) {
@@ -28,26 +27,24 @@ router.get('/', async (req, res, next) => {
       limit = defaultPageLimit;
     }
 
-
     const basicQuery = {
       include: {
         model: City,
         attributes: [],
         where: {
-          id: cityId
-        }
+          id: cityId,
+        },
       },
     };
 
     const publicItineraries = await Itinerary.findAll({
-        ...basicQuery,
-        offset: (Number(page) - 1) * limit,
-        limit: Number(limit),
-      }
-    );
+      ...basicQuery,
+      offset: (Number(page) - 1) * limit,
+      limit: Number(limit),
+    });
 
     const numberOfRecords = await Itinerary.count({
-      ...basicQuery
+      ...basicQuery,
     });
 
     const data = {
@@ -58,7 +55,6 @@ router.get('/', async (req, res, next) => {
     };
 
     res.status(200).json(data);
-
   } catch (err) {
     next(err);
   }
@@ -70,31 +66,27 @@ router.get('/:itineraryId', async (req, res, next) => {
     const { itineraryId } = req.params;
 
     const itinerary = await Itinerary.findOne({
-        where: {
-          id: itineraryId
-        },
-        include: [
-          {
-            model: City,
-          },
-          {
+      where: {
+        id: itineraryId,
+      },
+      include: [
+        {
+          model: Itinerary_Activity,
+          order: [[Itinerary_Activity, 'date', 'ASC']],
+          include: {
             model: Activity,
-            through: {
-              model: Itinerary_Activity,
+            include: {
+              model: Destination,
             },
-            order: [
-              [Itinerary_Activity, 'date', 'ASC']
-            ],
-            include: [
-              { model: Destination }
-            ]
-          }
-        ],
-      }
-    );
+          },
+        },
+        {
+          model: City,
+        },
+      ],
+    });
 
     res.status(200).json(itinerary);
-
   } catch (err) {
     next(err);
   }

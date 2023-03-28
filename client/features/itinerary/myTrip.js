@@ -7,7 +7,7 @@ import BasicTimeline from './components/timeline/timeline';
 import Calendar from './components/calendar/calendar';
 import ActivityList from './components/activity/activityList';
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -42,10 +42,19 @@ const PictureBox = styled(Box)(({ theme }) => ({
     fontSize: '3rem',
     fontWeight: 'bold',
   },
+  '& h3': {
+    position: 'absolute',
+    top: '60%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    color: 'white',
+    fontSize: '2rem',
+  },
 }));
 
 function MyTrip() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { tripId } = useParams();
 
   const [activities, setActivities] = useState();
@@ -101,105 +110,117 @@ function MyTrip() {
   }
 
   return (
-    <Box sx={{ flexGrow: 1, padding: 3 }}>
+    <>
       <PictureBox sx={{ flexGrow: 1, marginBottom: 3, minHeight: '650px' }}>
         {city ? (
           <>
             <img src={city.imageUrl} alt='Full-width' />
-            <h1>{city.name}</h1>
+            <h1>{selectedTrip.itinerary.name}</h1>
+            <h3>{city.name}</h3>
           </>
         ) : (
           <h3>Add activity to see details</h3>
         )}
       </PictureBox>
-      <Grid container spacing={2} sx={{ display: 'flex' }}>
-        <Grid item xs={8}>
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <Item sx={{ marginBottom: 1 }}>
-                <h2>Trip Timeline</h2>
-                <BasicTimeline
-                  activities={activities}
-                  city={city}
-                  tripDuration={tripDuration}
-                />
-              </Item>
-            </Grid>
-            <Grid item xs={6}>
-              <Item sx={{ marginBottom: 1 }}>
-                {destinations.length > 0 ? (
-                  <MapWithMarkers destinations={destinations} />
-                ) : (
-                  <h3>Add activity to see map</h3>
-                )}
-              </Item>
-            </Grid>
-            <Grid item xs={6}>
-              <Item sx={{ marginBottom: 1 }}>
-                <Calendar
-                  activities={activities}
-                  city={city}
-                  selectedTrip={selectedTrip}
-                  editMode={editMode}
-                />
-              </Item>
-            </Grid>
-            <Grid item xs={6}>
-              <Item sx={{ marginBottom: 1 }}>
-                <Box sx={{ marginBottom: '16px' }}>
+      <Box sx={{ flexGrow: 1, padding: 3 }}>
+        <Grid container spacing={2} sx={{ display: 'flex' }}>
+          <Grid item xs={8}>
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <Item sx={{ marginBottom: 1 }}>
+                  <h2>Trip Timeline</h2>
+                  <BasicTimeline
+                    activities={activities}
+                    city={city}
+                    tripDuration={tripDuration}
+                  />
+                </Item>
+              </Grid>
+              <Grid item xs={6}>
+                <Item sx={{ marginBottom: 1 }}>
+                  {destinations.length > 0 ? (
+                    <MapWithMarkers destinations={destinations} />
+                  ) : (
+                    <h3>Add activity to see map</h3>
+                  )}
+                </Item>
+              </Grid>
+              <Grid item xs={6}>
+                <Item sx={{ marginBottom: 1 }}>
+                  <Calendar
+                    activities={activities}
+                    city={city}
+                    selectedTrip={selectedTrip}
+                    editMode={editMode}
+                  />
+                </Item>
+              </Grid>
+              <Grid item xs={6}>
+                <Item sx={{ marginBottom: 1 }}>
                   <Box sx={{ marginBottom: '16px' }}>
-                    <Button
-                      variant='contained'
-                      size='large'
-                      sx={{ display: 'block', width: '100%' }}
-                    >
-                      Travel Companions
-                    </Button>
+                    <Box sx={{ marginBottom: '16px' }}>
+                      <Button
+                        variant='contained'
+                        size='large'
+                        sx={{ display: 'block', width: '100%' }}
+                      >
+                        Travel Companions
+                      </Button>
+                    </Box>
+                    <Box sx={{ marginBottom: '16px' }}>
+                      <Button
+                        variant='contained'
+                        size='large'
+                        sx={{ display: 'block', width: '100%' }}
+                        onClick={() => setEditMode(!editMode)}
+                      >
+                        {editMode ? <>Cancel Edit</> : <>Edit Trip</>}
+                      </Button>
+                    </Box>
+                    {editMode ? (
+                      <Button
+                        // component={Link}
+                        // to='/activities'
+                        variant='contained'
+                        size='large'
+                        sx={{
+                          display: 'block',
+                          width: '100%',
+                          textDecoration: 'none',
+                        }}
+                        onClick={() =>
+                          navigate('/activities', {
+                            state: {
+                              cityId: city.id,
+                              imageUrl: city.imageUrl,
+                              displayName: city.name,
+                            },
+                          })
+                        }
+                      >
+                        Add More Activities
+                      </Button>
+                    ) : null}
                   </Box>
-                  <Box sx={{ marginBottom: '16px' }}>
-                    <Button
-                      variant='contained'
-                      size='large'
-                      sx={{ display: 'block', width: '100%' }}
-                      onClick={() => setEditMode(!editMode)}
-                    >
-                      {editMode ? <>Cancel Edit</> : <>Edit Trip</>}
-                    </Button>
-                  </Box>
-                  {editMode ? (
-                    <Button
-                      component={Link}
-                      to='/destinations'
-                      variant='contained'
-                      size='large'
-                      sx={{
-                        display: 'block',
-                        width: '100%',
-                        textDecoration: 'none',
-                      }}
-                    >
-                      Add More Activities
-                    </Button>
-                  ) : null}
-                </Box>
-              </Item>
+                </Item>
+              </Grid>
             </Grid>
           </Grid>
+          <Grid item xs={4} sx={{ textAlign: 'left' }}>
+            <Box sx={{ maxHeight: '1200px', overflowY: 'auto', flex: 1 }}>
+              <Item>
+                <h2>Trip Details</h2>
+                <ActivityList
+                  activitiesArr={activities}
+                  editMode={editMode}
+                  onActivityDelete={handleActivityDelete}
+                />
+              </Item>
+            </Box>
+          </Grid>
         </Grid>
-        <Grid item xs={4} sx={{ textAlign: 'left' }}>
-          <Box sx={{ maxHeight: '1200px', overflowY: 'auto', flex: 1 }}>
-            <Item>
-              <h2>Trip Details</h2>
-              <ActivityList
-                activitiesArr={activities}
-                editMode={editMode}
-                onActivityDelete={handleActivityDelete}
-              />
-            </Item>
-          </Box>
-        </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </>
   );
 }
 

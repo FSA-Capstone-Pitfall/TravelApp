@@ -118,17 +118,17 @@ const trips = createSlice({
       })
       .addCase(deleteTripActvity.fulfilled, (state, action) => {
         state.itineraries = action.payload;
-      });
-    builder.addCase(createTrip.fulfilled, (state, { payload }) => {
-      if (payload.error) {
-        let errorMessage = 'Something went wrong.';
-        if (payload.error.response.status === 500) {
-          errorMessage = 'Cannot create itinerary.';
+      })
+      .addCase(createTrip.fulfilled, (state, { payload }) => {
+        if (payload.error) {
+          let errorMessage = 'Something went wrong.';
+          if (payload.error.response.status === 500) {
+            errorMessage = 'Cannot create itinerary.';
+          }
+          return { ...state, error: errorMessage };
         }
-        return { ...state, error: errorMessage };
-      }
-      state.itineraries.push(payload.itinerary);
-    });
+        state.itineraries.push(payload.itinerary);
+      });
   },
 });
 
