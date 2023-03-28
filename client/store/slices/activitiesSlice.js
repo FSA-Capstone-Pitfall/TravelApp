@@ -20,13 +20,6 @@ export const fetchActivities = createAsyncThunk('/activities', async ({
                                                                       }) => {
   try {
 
-    console.log({
-      destinationId,
-      cityId,
-      page,
-      limit,
-      categories,
-    });
     const { data } = await axios.get(`/api/activities`, {
       params: {
         destinationId: destinationId,

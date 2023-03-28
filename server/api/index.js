@@ -4,6 +4,7 @@ const {
   usersRouter,
   destinationsRouter,
   activitiesRouter,
+  itinerariesRouter,
   citiesRouter,
 } = require('./routes');
 
@@ -12,6 +13,7 @@ router.use('/auth', authRouter);
 router.use('/users', usersRouter);
 router.use('/destinations', destinationsRouter);
 router.use('/activities', activitiesRouter);
+router.use('/itineraries', itinerariesRouter);
 router.use('/cities', citiesRouter);
 
 router.use((req, res, next) => {

@@ -12,6 +12,7 @@ import UserProfile from './components/users/userProfile';
 import Activities from './components/pages/Activities';
 import SelectedActivity from './components/pages/SelectedActivity';
 import Explore from './components/pages/Explore';
+import SingleItinerary from './components/pages/SingleItinerary';
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const Router = () => {
             element={<SelectedActivity/>}
           />
           <Route path="/destinations" element={<Explore/>}/>
+          <Route path="/itineraries/:itineraryId" element={<SingleItinerary/>}/>
         </Routes>
       ) : (
         <Routes>
@@ -47,6 +49,7 @@ const Router = () => {
             element={<SelectedActivity/>}
           />
           <Route path="/destinations" element={<Explore/>}/>
+          <Route path="/itineraries/:itineraryId" element={<SingleItinerary/>}/>
           <Route path="/mytrips" element={<AllTrips/>}/>
           <Route path="/singletrip" element={<MyTrip/>}/>
           <Route exact path="/users/all" element={<AllUsers/>}/>

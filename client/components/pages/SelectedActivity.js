@@ -6,12 +6,10 @@ import { Box, Container, Typography } from '@mui/material';
 import { fetchSingleActivity } from '../../store';
 import MapWithMarkers from '../../features/itinerary/components/map/map';
 
-
 const SelectedActivity = () => {
   const { activityId } = useParams();
   const dispatch = useDispatch();
   const activity = useSelector((state) => state.activities.selectedActivity);
-
 
   useEffect(() => {
     dispatch(fetchSingleActivity(activityId));
@@ -19,11 +17,17 @@ const SelectedActivity = () => {
 
   if (!activity.id) return null;
 
-  const [lat, lng] = activity.googleMap.split(',').map(c => parseFloat(c));
+  const [lat, lng] = activity.googleMap.split(',').map((c) => parseFloat(c));
+
+  let destinations = [];
+  destinations.push({
+    lat,
+    lng,
+  });
 
   return (
     <Box
-      component="section"
+      component='section'
       sx={{
         width: '100%',
       }}
@@ -43,33 +47,38 @@ const SelectedActivity = () => {
           backgroundColor: 'common.black',
         }}
       >
-        <Typography color="#fff" align="center" variant="h2">
+        <Typography color='#fff' align='center' variant='h2'>
           {activity.name}
         </Typography>
         <Typography
-          color="#fff"
-          align="center"
-          variant="h5"
+          color='#fff'
+          align='center'
+          variant='h5'
           sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
         >
           {activity.description}
         </Typography>
       </Box>
       <Box>
-        <Typography color="black" align="center" variant="h5"
-                    sx={{ mb: 4 }}
-                    style={
-                      { fontWeight: 'regular' }
-                    }>
+        <Typography
+          color='black'
+          align='center'
+          variant='h5'
+          sx={{ mb: 4 }}
+          style={{ fontWeight: 'regular' }}
+        >
           Suggested duration {activity.duration} minutes
         </Typography>
-        <Container maxWidth="lg" sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}>
+        <Container
+          maxWidth='lg'
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
           {activity ? (
-            MapWithMarkers([{ lat, lng }])
+            <MapWithMarkers destinations={destinations} />
           ) : (
             <h3 style={{ color: 'black' }}>No activities found.</h3>
           )}

@@ -88,7 +88,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:activityId', async (req, res, next) => {
   try {
-    const { activityId } = req.params
+    const { activityId } = req.params;
     const activity = await Activity.findOne({
       where: {
         id: activityId,

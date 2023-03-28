@@ -1712,9 +1712,16 @@ const ITINERARY_ACTIVITY_SEED_DATA = [
     date: new Date('Jul 13, 2023 10:00:00'),
   },
   {
-    activityId: 12, // Yankee Stadium
+    activityId: 34, // The Guthrie Inn
     itineraryId: 1,
     date: new Date('Jul 13, 2023 11:30:00'),
+  },
+  {
+    activityId: 12, // Yankee Stadium
+    itineraryId: 1,
+    date: new Date('Jul 13, 2023 13:35:00'),
+    duration: 240,
+    buffer: 120,
   },
   {
     activityId: 32, // 230 Rooftop Bar
@@ -1735,6 +1742,21 @@ const ITINERARY_ACTIVITY_SEED_DATA = [
     activityId: 33, // Art Bar
     itineraryId: 1,
     date: new Date('Jul 14, 2023 13:00:00'),
+  },
+  {
+    activityId: 31, // Art Bar
+    itineraryId: 1,
+    date: new Date('Jul 21, 2023 13:00:00'),
+  },
+  {
+    activityId: 16, // Art Bar
+    itineraryId: 1,
+    date: new Date('Jul 21, 2023 13:00:00'),
+  },
+  {
+    activityId: 15, // Art Bar
+    itineraryId: 1,
+    date: new Date('Jul 21, 2023 13:00:00'),
   },
 
   // San Diego Beach Hopping

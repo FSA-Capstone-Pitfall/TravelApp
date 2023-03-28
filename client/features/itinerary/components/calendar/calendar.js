@@ -6,33 +6,60 @@ import interactionPlugin from '@fullcalendar/interaction';
 
 export default function Calendar({ city, activities, selectedTrip }) {
   const calendarRef = useRef(null);
+  const destinationColor = '#ff9f89';
+  const activityColor = '#2874A6';
 
   const handleEventDrop = useCallback(({ event }) => {
-    console.log('Event dropped:', event);
     // handle event drop logic here
   }, []);
 
-  let startDate;
-  let endDate;
-  if (activities && activities.length > 0) {
-    startDate = new Date(activities[0].itinerary_activity.date);
-    endDate = new Date(
-      activities[activities.length - 1].itinerary_activity.date
-    );
+  let events = [];
+  let allDestinations = [];
+  let prevDest;
+
+  // dates for visting specific destinations (e.g. Brooklyn dates, Queens dates, etc.)
+  if (activities) {
+    activities.map((activity) => {
+      let destinationName = activity.destination.name;
+      let startDate = new Date(activity.itinerary_activity.date);
+      let duration = activity.itinerary_activity.duration * 60000;
+      let buffer = activity.itinerary_activity.buffer * 60000;
+      let endDate = new Date(startDate.getTime() + duration);
+      if (destinationName !== prevDest) {
+        allDestinations.push({
+          title: destinationName,
+          start: startDate,
+          end: endDate,
+          backgroundColor: destinationColor,
+        });
+        prevDest = activity.destination.name;
+      } else {
+        allDestinations[allDestinations.length - 1].end = new Date(
+          allDestinations[allDestinations.length - 1].end.getTime() +
+            duration +
+            buffer
+        );
+      }
+
+      return null;
+    });
+    events = [...allDestinations];
   }
 
-  console.log(city);
-
-  let events = [];
-
-  if (city) {
-    events = [
-      {
-        title: city.name,
+  // dates for all the individual activities (e.g. the MET musuem, Statue of Liberty, Brooklyn Bridge)
+  if (activities) {
+    activities.map((activity) => {
+      let startDate = new Date(activity.itinerary_activity.date);
+      let endDate = new Date(
+        startDate.getTime() + activity.itinerary_activity.duration * 60000
+      );
+      events.push({
+        title: activity.name,
         start: startDate,
         end: endDate,
-      },
-    ];
+        backgroundColor: activityColor,
+      });
+    });
   }
 
   let initialDate;
@@ -45,6 +72,14 @@ export default function Calendar({ city, activities, selectedTrip }) {
     }
   }
 
+  events.push({
+    title: 'TEST',
+    start: '2023-07-12T10:00:00',
+    end: '2023-07-12T16:00:00',
+    display: 'background',
+    color: '#ff9f89',
+  });
+
   return initialDate ? (
     <FullCalendar
       ref={calendarRef}
@@ -55,6 +90,7 @@ export default function Calendar({ city, activities, selectedTrip }) {
         right: 'dayGridMonth,timeGridWeek,timeGridDay',
       }}
       initialView='dayGridMonth'
+      eventDisplay='block'
       editable={true}
       selectable={true}
       selectMirror={true}
