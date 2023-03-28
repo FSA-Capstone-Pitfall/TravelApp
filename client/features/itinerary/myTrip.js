@@ -59,6 +59,7 @@ function MyTrip() {
 
   const [activities, setActivities] = useState();
   const [city, setCity] = useState();
+  const [tripName, setTripName] = useState();
   const [editMode, setEditMode] = useState(false);
   const user = useSelector((state) => state.auth.user);
   const selectedTrip = useSelector((state) => state.trips.itineraries);
@@ -81,6 +82,7 @@ function MyTrip() {
   useEffect(() => {
     const pullData = async () => {
       const userTrip = await dispatch(fetchSingleTrip({ userId, tripId }));
+      setTripName(userTrip.payload.itinerary.name);
       let activitiesArr;
       activitiesArr = [...userTrip.payload.itinerary.itinerary_activities];
       activitiesArr.sort(comparePositions);
@@ -115,7 +117,7 @@ function MyTrip() {
         {city ? (
           <>
             <img src={city.imageUrl} alt='Full-width' />
-            <h1>{selectedTrip.itinerary.name}</h1>
+            <h1>{tripName}</h1>
             <h3>{city.name}</h3>
           </>
         ) : (
