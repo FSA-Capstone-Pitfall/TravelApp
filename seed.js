@@ -1405,7 +1405,7 @@ const ACTIVITY_SEED_DATA = [
     zipcode: '10028',
     googleMap: '40.78010278033864, -73.96350149206384',
     description:
-      'One of the world\'s largest and finest art museums, with a vast collection spanning 5,000 years of world culture.',
+      "One of the world's largest and finest art museums, with a vast collection spanning 5,000 years of world culture.",
     categories: ['art', 'culture'],
     destinationId: 1,
     imageUrl:
@@ -1431,7 +1431,7 @@ const ACTIVITY_SEED_DATA = [
     zipcode: '10014',
     googleMap: '40.739766518475705, -74.00883071484067',
     description:
-      'Museum showcasing American art from the 20th and 21st centuries, including works by Edward Hopper and Georgia O\'Keeffe.',
+      "Museum showcasing American art from the 20th and 21st centuries, including works by Edward Hopper and Georgia O'Keeffe.",
     categories: ['art', 'culture'],
     destinationId: 1,
     imageUrl:
@@ -1610,55 +1610,55 @@ const ITINERARY_SEED_DATA = [
   {
     name: 'New York City Essentials',
     duration: 3,
-    userId: 1,
-    cityId: 1
+    authorId: 1,
+    cityId: 1,
   },
   {
     name: 'San Diego Beach Hopping',
     duration: 2,
-    userId: 25,
+    authorId: 25,
     cityId: 2,
   },
   {
     name: 'Las Vegas Ultimate Experience',
     duration: 4,
-    userId: 60,
+    authorId: 60,
     cityId: 3,
   },
   {
     name: 'Brooklyn Art and Food Tour',
     duration: 1,
-    userId: 42,
+    authorId: 42,
     cityId: 1,
   },
   {
     name: 'Queens Cultural Immersion',
     duration: 2,
-    userId: 78,
+    authorId: 78,
     cityId: 1,
   },
   {
     name: 'The Bronx Sports and History',
     duration: 1,
-    userId: 19,
+    authorId: 19,
     cityId: 1,
   },
   {
     name: 'Staten Island Nature and History',
     duration: 1,
-    userId: 92,
+    authorId: 92,
     cityId: 1,
   },
   {
     name: 'Gaslamp Quarter Nightlife and Dining',
     duration: 1,
-    userId: 31,
+    authorId: 31,
     cityId: 2,
   },
   {
     name: 'Las Vegas Off the Strip Adventure',
     duration: 3,
-    userId: 67,
+    authorId: 67,
     cityId: 3,
   },
 ];

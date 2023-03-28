@@ -30,6 +30,25 @@ export const fetchSingleTrip = createAsyncThunk(
   }
 );
 
+export const createTrip = createAsyncThunk(
+  'createTrip',
+  async ({ userId, name, city }) => {
+    try {
+      const { data: itinerary } = await axios.post(
+        `/api/users/${userId}/itineraries`,
+        {
+          name,
+          city,
+        }
+      );
+      return { itinerary };
+    } catch (error) {
+      console.error('Unable to create itinerary.', error);
+      return { error };
+    }
+  }
+);
+
 const initialState = {
   itineraries: [],
   status: 'idle', // options: idle, loading, succeeded, failed
@@ -58,6 +77,16 @@ const trips = createSlice({
       .addCase(fetchSingleTrip.fulfilled, (state, action) => {
         state.itineraries = action.payload;
       });
+    builder.addCase(createTrip.fulfilled, (state, { payload }) => {
+      if (payload.error) {
+        let errorMessage = 'Something went wrong.';
+        if (payload.error.response.status === 500) {
+          errorMessage = 'Cannot create itinerary.';
+        }
+        return { ...state, error: errorMessage };
+      }
+      state.itineraries.push(payload.itinerary);
+    });
   },
 });
 

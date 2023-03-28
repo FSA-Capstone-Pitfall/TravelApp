@@ -161,6 +161,34 @@ router.post('/', requireAdminToken, async (req, res, next) => {
   }
 });
 
+// POST /api/users/:authorId/itineraries
+router.post('/:authorId/itineraries', requireToken, async (req, res, next) => {
+  try {
+    const { name, city } = req.body;
+    const { authorId } = req.params;
+
+    const cityInstance = await City.findOne({ where: { name: city } });
+    if (!cityInstance) {
+      res.status(400).json({ error: 'City not found' });
+      return;
+    }
+
+    const cityId = cityInstance.id;
+
+    const newItinerary = await Itinerary.create({ name, cityId, authorId });
+
+    const user = await User.findByPk(authorId);
+    await user.addItinerary(newItinerary, {
+      through: { status: 'planning' },
+    });
+
+    res.status(201).json(newItinerary);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
 // PUT /api/users/:userId
 router.put('/:id', requireToken, async (req, res, next) => {
   try {

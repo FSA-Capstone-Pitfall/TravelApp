@@ -17,13 +17,12 @@ function TripCard({ city, duration, itineraryId }) {
           border: '1px solid',
           borderColor: 'black',
           flexGrow: 2,
-          padding: '8px',
           mb: 1,
         }}
       >
         <CardMedia
           component='img'
-          sx={{ width: 75, height: 75 }}
+          sx={{ width: 150, height: 150 }}
           image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFy1ZRj0Lz8HeiG73c2jlrHCWpKpxSlqT4Kg&usqp=CAU'
         />
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>

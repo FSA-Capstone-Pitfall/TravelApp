@@ -63,7 +63,7 @@ export default function LoginDialog({ toggleDialog }) {
         await dispatch(getUserByToken());
         setEmail('');
         setPassword('');
-        navigate('/', { replace: true });
+        navigate('/mytrips', { replace: true });
       }
     }
   };
