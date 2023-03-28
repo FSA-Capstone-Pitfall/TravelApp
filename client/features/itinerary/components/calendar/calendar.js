@@ -35,8 +35,15 @@ export default function Calendar({ city, activities, selectedTrip }) {
     ];
   }
 
-  const initialDate =
-    events.length > 0 ? events[0].start.toISOString().split('T')[0] : null;
+  let initialDate;
+  if (events[0]) {
+    if (events[0].start) {
+      initialDate =
+        events.length > 0 ? events[0].start.toISOString().split('T')[0] : null;
+    } else {
+      initialDate = new Date();
+    }
+  }
 
   return initialDate ? (
     <FullCalendar

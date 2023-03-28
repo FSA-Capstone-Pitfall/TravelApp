@@ -161,11 +161,11 @@ router.post('/', requireAdminToken, async (req, res, next) => {
   }
 });
 
-// POST /api/users/:userId/itineraries
-router.post('/:userId/itineraries', requireToken, async (req, res, next) => {
+// POST /api/users/:authorId/itineraries
+router.post('/:authorId/itineraries', requireToken, async (req, res, next) => {
   try {
     const { name, city } = req.body;
-    const { userId } = req.params;
+    const { authorId } = req.params;
 
     const cityInstance = await City.findOne({ where: { name: city } });
     if (!cityInstance) {
@@ -175,7 +175,12 @@ router.post('/:userId/itineraries', requireToken, async (req, res, next) => {
 
     const cityId = cityInstance.id;
 
-    const newItinerary = await Itinerary.create({ name, cityId, userId });
+    const newItinerary = await Itinerary.create({ name, cityId, authorId });
+
+    const user = await User.findByPk(authorId);
+    await user.addItinerary(newItinerary, {
+      through: { status: 'planning' },
+    });
 
     res.status(201).json(newItinerary);
   } catch (error) {
