@@ -22,11 +22,11 @@ export default function BasicTimeline({
       let dest = [];
       activities.forEach((activity) => {
         if (dest.length > 0) {
-          if (dest[dest.length - 1] !== activity.destination.name) {
-            dest.push(activity.destination.name);
+          if (dest[dest.length - 1] !== activity.activity.destination.name) {
+            dest.push(activity.activity.destination.name);
           }
         } else {
-          dest.push(activity.destination.name);
+          dest.push(activity.activity.destination.name);
         }
       });
       setDestinations(dest);
@@ -92,7 +92,13 @@ export default function BasicTimeline({
           );
         })
       ) : (
-        <h2>Loading...</h2>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelineDot sx={{ width: '24px', height: '24px' }} />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent sx={{ fontSize: '1.25rem' }}></TimelineContent>
+        </TimelineItem>
       )}
     </Timeline>
   );

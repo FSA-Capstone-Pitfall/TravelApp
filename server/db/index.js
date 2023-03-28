@@ -26,11 +26,15 @@ Itinerary.belongsTo(User, { as: 'author' });
 Itinerary.belongsTo(City);
 Itinerary.belongsToMany(User, { through: User_Itinerary });
 Itinerary.hasMany(User_Itinerary);
-Itinerary.belongsToMany(Activity, { through: Itinerary_Activity });
+Itinerary.belongsToMany(Activity, {
+  through: { model: Itinerary_Activity, unique: false },
+});
 
 // Activity
 Activity.belongsTo(Destination);
-Activity.belongsToMany(Itinerary, { through: Itinerary_Activity });
+Activity.belongsToMany(Itinerary, {
+  through: { model: Itinerary_Activity, unique: false },
+});
 
 // City
 City.hasMany(Itinerary);
@@ -43,6 +47,10 @@ Destination.hasMany(Activity);
 // User_Itinerary
 User_Itinerary.belongsTo(User);
 User_Itinerary.belongsTo(Itinerary);
+
+// Itinerary_Activity
+Itinerary_Activity.belongsTo(Itinerary);
+Itinerary_Activity.belongsTo(Activity);
 
 module.exports = {
   db,

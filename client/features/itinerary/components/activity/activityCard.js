@@ -11,46 +11,43 @@ import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const MediaControlCard = ({ activity, onDelete, ...props }) => {
-  const [description, setDescription] = useState(activity.description || '');
-  const [prevDescription, setPrevDescription] = useState(description);
-  const [anchorEl, setAnchorEl] = useState(null);
+const MediaControlCard = ({
+  activity,
+  onDelete,
+  editMode,
+  userId,
+  tripId,
+  ...props
+}) => {
+  const [notes, setNotes] = useState(activity.notes || '');
+  const [prevNotes, setPrevNotes] = useState(notes);
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
-  };
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleNotesChange = (event) => {
+    setNotes(event.target.value);
   };
 
   const toggleEditing = (isSaving) => {
     if (isEditing) {
       if (!isSaving) {
-        setDescription(prevDescription); // Revert to the previous description when canceling
+        setNotes(prevNotes);
       }
     } else {
-      setPrevDescription(description); // Store the current description when entering edit mode
+      setPrevNotes(notes);
     }
     setIsEditing(!isEditing);
   };
 
   const handleSave = () => {
-    toggleEditing(true); // Pass true to indicate you are saving the edit
+    toggleEditing(true);
   };
 
   const handleDelete = () => {
-    onDelete(activity.id);
-    handleClose();
+    onDelete(activity.id, userId, tripId);
   };
 
-  let startDate = new Date(activity.itinerary_activity.date);
-  let activityDuration = activity.itinerary_activity.duration;
+  let startDate = new Date(activity.date);
+  let activityDuration = activity.duration;
 
   const dateTimeGenerator = (date, duration) => {
     let endDate = new Date(date.getTime() + duration * 60000);
@@ -79,13 +76,13 @@ const MediaControlCard = ({ activity, onDelete, ...props }) => {
         <CardMedia
           component='img'
           sx={{ width: 200, height: 165, objectFit: 'cover' }}
-          image={activity.imageUrl}
+          image={activity.activity.imageUrl}
           alt='activity picture'
         />
         <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
           <CardContent sx={{ flex: '1 0 auto' }}>
             <Typography component='div' variant='h5'>
-              {activity.name}
+              {activity.activity.name}
             </Typography>
             <Typography
               variant='subtitle1'
@@ -103,17 +100,17 @@ const MediaControlCard = ({ activity, onDelete, ...props }) => {
               variant='body2'
               color='text.secondary'
               component='div'
-              onDoubleClick={() => !isEditing && toggleEditing(false)} // Add this line to enable editing on double click
+              onDoubleClick={() => !isEditing && toggleEditing(false)}
             >
               {isEditing ? (
                 <>
                   <TextField
-                    value={description}
-                    onChange={handleDescriptionChange}
+                    value={notes}
+                    onChange={handleNotesChange}
                     onKeyPress={(event) => {
                       if (event.key === 'Enter') {
                         handleSave();
-                        event.preventDefault(); // Prevent adding a new line
+                        event.preventDefault();
                       }
                     }}
                     multiline
@@ -121,7 +118,6 @@ const MediaControlCard = ({ activity, onDelete, ...props }) => {
                   />
                   <Box mt={1}>
                     {' '}
-                    {/* Add this Box to show the Save and Cancel buttons */}
                     <Button
                       onClick={handleSave}
                       variant='contained'
@@ -142,10 +138,22 @@ const MediaControlCard = ({ activity, onDelete, ...props }) => {
                   </Box>
                 </>
               ) : (
-                description
+                notes
               )}
             </Typography>
           </CardContent>
+          {editMode && (
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Button
+                onClick={handleDelete}
+                variant='outlined'
+                color='secondary'
+                size='medium'
+              >
+                Delete
+              </Button>
+            </Box>
+          )}
         </Box>
       </Card>
     </Box>

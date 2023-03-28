@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Box, Container, List, ListItemButton, Pagination, Typography } from '@mui/material';
+import {
+  Box,
+  Container,
+  List,
+  ListItemButton,
+  Pagination,
+  Typography,
+} from '@mui/material';
+import { fetchActivities } from '../../store';
 import MapWithMarkers from '../../features/itinerary/components/map/map';
 import { Filters } from '../shared';
 import { capital, snake } from 'case';
@@ -19,7 +27,7 @@ const hardcodedCategories = [
   'show',
   'sports',
   'transportation',
-].map(category => capital(category));
+].map((category) => capital(category));
 
 const Activities = () => {
   const navigate = useNavigate();
@@ -81,7 +89,7 @@ const Activities = () => {
 
   if (!activities || !activities.data) return null;
 
-  const destinations = activities.data.map(activity => {
+  const destinations = activities.data.map((activity) => {
     const coordinates = activity.googleMap.split(',');
     return {
       lat: parseFloat(coordinates[0]),
@@ -91,7 +99,7 @@ const Activities = () => {
 
   return (
     <Box
-      component="section"
+      component='section'
       sx={{
         width: '100%',
       }}
@@ -111,17 +119,19 @@ const Activities = () => {
           backgroundColor: 'common.black',
         }}
       >
-        <Typography color="#fff" align="center" variant="h2">
+        <Typography color='#fff' align='center' variant='h2'>
           {displayName}
         </Typography>
-        {description && <Typography
-          color="#fff"
-          align="center"
-          variant="h5"
-          sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
-        >
-          {description}
-        </Typography>}
+        {description && (
+          <Typography
+            color='#fff'
+            align='center'
+            variant='h5'
+            sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
+          >
+            {description}
+          </Typography>
+        )}
       </Box>
       <Container maxWidth="lg" sx={{
         display: 'flex',
@@ -149,15 +159,19 @@ const Activities = () => {
             setCurrPageActivities(1);
           }}
         />
-        {activities.data &&
-          <List sx={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(25%, 1fr))',
-            gridGap: '1rem',
-            width: '100%'
-          }}>
-            {activities.data.map(activity => (
-                <ListItemButton key={activity.id} sx={{
+        {activities.data && (
+          <List
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(25%, 1fr))',
+              gridGap: '1rem',
+              width: '100%',
+            }}
+          >
+            {activities.data.map((activity) => (
+              <ListItemButton
+                key={activity.id}
+                sx={{
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-around',
@@ -183,15 +197,17 @@ const Activities = () => {
         }
         {totalPagesActivities &&
           <Pagination
-            id="activities-pagination"
+            id='activities-pagination'
             sx={{ mb: 10 }}
             count={totalPagesActivities} page={currPageActivities}
             onChange={(event, value) => setCurrPageActivities(value)}
           />}
         {destinations.length > 0 ? (
-          <MapWithMarkers destinations={destinations}/>
+          <MapWithMarkers destinations={destinations} />
         ) : (
-          <h3 style={{ color: 'black' }}>No activities found by selected categories.</h3>
+          <h3 style={{ color: 'black' }}>
+            No activities found by selected categories.
+          </h3>
         )}
       </Container>
       {cityId && itineraries && <Container

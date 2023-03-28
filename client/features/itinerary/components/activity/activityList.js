@@ -5,6 +5,9 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import MediaControlCard from './activityCard';
 import anime from 'animejs';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { deleteTripActvity } from '../../../../store/slices/tripsSlice';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -29,9 +32,22 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export default function ActivityList({ activitiesArr }) {
+export default function ActivityList({
+  activitiesArr,
+  editMode,
+  onActivityDelete,
+}) {
+  const dispatch = useDispatch();
   const [activities, setActivities] = useState();
+  const user = useSelector((state) => state.auth.user);
+  const { tripId } = useParams();
 
+  let userId;
+  if (user) {
+    userId = user.id;
+  }
+
+  // anime.js logic-----------------------------------------
   const observer = useRef();
 
   const handleObserver = (entries, observer) => {
@@ -77,21 +93,15 @@ export default function ActivityList({ activitiesArr }) {
     };
   }, [activities]);
 
-  const handleDelete = (activityId) => {
-    // Update your activities state
-    setActivities(activities.filter((activity) => activity.id !== activityId));
-  };
+  //---------------------------------------------------------
 
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    if (value === 0) {
-    } else {
-    }
     if (activitiesArr) {
       setActivities(activitiesArr);
     }
-  }, [value, activitiesArr]);
+  }, [activitiesArr]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -100,7 +110,7 @@ export default function ActivityList({ activitiesArr }) {
   let tripDays = [];
   if (activities && activities.length > 0) {
     activities.map((activity) => {
-      let date = new Date(activity.itinerary_activity.date);
+      let date = new Date(activity.date);
       if (tripDays.length === 0) {
         tripDays.push(date);
       } else if (tripDays[tripDays.length - 1].getDate() !== date.getDate()) {
@@ -109,6 +119,17 @@ export default function ActivityList({ activitiesArr }) {
       return null;
     });
   }
+
+  const handleDelete = (activityId, tripId, userId) => {
+    console.log('activities--->', activities);
+    const updatedActivities = activities.filter((activity) => {
+      return activity.id !== activityId;
+    });
+    console.log('updatedActivities--->', updatedActivities);
+    setActivities(updatedActivities);
+    onActivityDelete(updatedActivities);
+    dispatch(deleteTripActvity({ userId, tripId, activityId }));
+  };
 
   const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
 
@@ -133,8 +154,7 @@ export default function ActivityList({ activitiesArr }) {
           <TabPanel value={value} index={index} key={index}>
             {activities &&
               activities.map((activity, index) =>
-                new Date(activity.itinerary_activity.date).getDate() ===
-                day.getDate() ? (
+                new Date(activity.date).getDate() === day.getDate() ? (
                   <Box
                     sx={{
                       marginBottom: '16px',
@@ -144,7 +164,10 @@ export default function ActivityList({ activitiesArr }) {
                     <MediaControlCard
                       activity={activity}
                       onDelete={handleDelete}
-                      data-index={index} // Add this line
+                      data-index={index}
+                      editMode={editMode}
+                      tripId={tripId}
+                      userId={userId}
                     />
                   </Box>
                 ) : null

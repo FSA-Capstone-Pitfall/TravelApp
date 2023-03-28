@@ -1,15 +1,19 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-
-export const fetchSingleActivity = createAsyncThunk('fetchSingleActivity', async (activityId) => {
-  try {
-    const { data: activity } = await axios.get(`/api/activities/${activityId}`);
-    return { activity };
-  } catch (err) {
-    throw err.message;
+export const fetchSingleActivity = createAsyncThunk(
+  'fetchSingleActivity',
+  async (activityId) => {
+    try {
+      const { data: activity } = await axios.get(
+        `/api/activities/${activityId}`
+      );
+      return { activity };
+    } catch (err) {
+      throw err.message;
+    }
   }
-});
+);
 
 export const fetchActivities = createAsyncThunk('/activities', async ({
                                                                         destinationId,
@@ -33,7 +37,7 @@ export const fetchActivities = createAsyncThunk('/activities', async ({
   } catch (err) {
     throw err.message;
   }
-});
+);
 
 const initialState = {
   activities: [],

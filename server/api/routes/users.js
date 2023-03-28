@@ -1,6 +1,14 @@
 const router = require('express').Router();
 const {
-  models: { User, User_Itinerary, Itinerary, Activity, City, Destination },
+  models: {
+    User,
+    User_Itinerary,
+    Itinerary,
+    Activity,
+    City,
+    Destination,
+    Itinerary_Activity,
+  },
 } = require('../../db');
 const { requireToken, requireAdminToken } = require('../middleware');
 
@@ -132,9 +140,12 @@ router.get('/:userId/trips/:tripId', requireToken, async (req, res, next) => {
           model: Itinerary,
           include: [
             {
-              model: Activity,
+              model: Itinerary_Activity,
               include: {
-                model: Destination,
+                model: Activity,
+                include: {
+                  model: Destination,
+                },
               },
             },
             {
@@ -150,6 +161,25 @@ router.get('/:userId/trips/:tripId', requireToken, async (req, res, next) => {
     next(error);
   }
 });
+
+router.delete(
+  '/:userId/trips/:tripId',
+  requireToken,
+  async (req, res, next) => {
+    try {
+      const { activityId } = req.body;
+      await Itinerary_Activity.destroy({
+        where: {
+          id: activityId,
+        },
+      });
+      res.status(200).send();
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  }
+);
 
 // POST /api/users/
 router.post('/', requireAdminToken, async (req, res, next) => {

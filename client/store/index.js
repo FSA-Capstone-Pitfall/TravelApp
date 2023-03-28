@@ -14,7 +14,7 @@ const store = configureStore({
     destinations: destinationsReducer,
     trips: tripsReducer,
     activities: activitiesReducer,
-    itineraries: itinerariesReducer
+    itineraries: itinerariesReducer,
     cities: citiesReducer,
   },
   // middleware: (getDefaultMiddleware) =>
