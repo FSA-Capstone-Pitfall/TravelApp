@@ -23,6 +23,7 @@ function TripsList({ status }) {
     if (trip.status === status) {
       return (
         <TripCard
+          key={trip.itinerary.id}
           duration={trip.itinerary.duration}
           city={trip.itinerary.city.name}
           itineraryId={trip.itineraryId}
