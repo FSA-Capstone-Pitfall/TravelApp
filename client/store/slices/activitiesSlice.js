@@ -15,27 +15,23 @@ export const fetchSingleActivity = createAsyncThunk(
   }
 );
 
-export const fetchActivities = createAsyncThunk('/activities', async ({
-                                                                        destinationId,
-                                                                        cityId,
-                                                                        page,
-                                                                        limit,
-                                                                        categories,
-                                                                      }) => {
-  try {
-
-    const { data } = await axios.get(`/api/activities`, {
-      params: {
-        destinationId: destinationId,
-        cityId: cityId,
-        page: page,
-        limit: limit,
-        categories: categories.join(','),
-      },
-    });
-    return data;
-  } catch (err) {
-    throw err.message;
+export const fetchActivities = createAsyncThunk(
+  '/activities',
+  async ({ destinationId, cityId, page, limit, categories }) => {
+    try {
+      const { data } = await axios.get(`/api/activities`, {
+        params: {
+          destinationId: destinationId,
+          cityId: cityId,
+          page: page,
+          limit: limit,
+          categories: categories.join(','),
+        },
+      });
+      return data;
+    } catch (err) {
+      throw err.message;
+    }
   }
 );
 
