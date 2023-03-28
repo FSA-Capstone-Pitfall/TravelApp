@@ -19,7 +19,16 @@ function TripsList({ status }) {
     dispatch(fetchTrips(userId));
   }, [dispatch, userId]);
 
-  return itineraries.map((trip) => {
+  const filteredTrips = itineraries
+    .filter((itinerary) => itinerary.status === status)
+    .filter((trip, index) => {
+      if (status === 'upcoming') {
+        return index !== 0;
+      }
+      return true;
+    });
+
+  return filteredTrips.map((trip) => {
     if (trip.status === status) {
       return (
         <TripCard
@@ -27,6 +36,7 @@ function TripsList({ status }) {
           duration={trip.itinerary.duration}
           city={trip.itinerary.city.name}
           itineraryId={trip.itineraryId}
+          name={trip.itinerary.name}
         />
       );
     }
