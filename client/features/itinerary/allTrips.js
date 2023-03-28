@@ -94,7 +94,7 @@ function AllTrips() {
           <TripsList status={'upcoming'} />
         </>
       );
-    } else if (selectedCategory === 'Under Construction' && showUpcoming) {
+    } else if (selectedCategory === 'Planning' && showUpcoming) {
       return <TripsList status={'planning'} />;
     } else if (selectedCategory === 'Completed' && showUpcoming) {
       return <TripsList status={'complete'} />;
