@@ -58,7 +58,7 @@ export default function ActivityList({
           translateY: [100, 0],
           opacity: [0, 1],
           easing: 'easeOutExpo',
-          delay: entry.target.dataset.index * 100,
+          delay: entry.target.dataset.index * 10,
         });
         observer.unobserve(entry.target);
       }
@@ -121,11 +121,9 @@ export default function ActivityList({
   }
 
   const handleDelete = (activityId, tripId, userId) => {
-    console.log('activities--->', activities);
     const updatedActivities = activities.filter((activity) => {
       return activity.id !== activityId;
     });
-    console.log('updatedActivities--->', updatedActivities);
     setActivities(updatedActivities);
     onActivityDelete(updatedActivities);
     dispatch(deleteTripActvity({ userId, tripId, activityId }));

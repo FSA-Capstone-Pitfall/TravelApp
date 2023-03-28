@@ -16,6 +16,7 @@ export default function BasicTimeline({
   tripDuration,
 }) {
   const [destinations, setDestinations] = useState([]);
+  console.log('in the timeline', activities, city, tripDuration);
 
   useEffect(() => {
     if (activities) {

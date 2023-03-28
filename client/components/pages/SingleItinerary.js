@@ -12,7 +12,6 @@ import { useParams } from 'react-router-dom';
 import { fetchItinerary } from '../../store';
 import { Typography } from '@mui/material';
 
-
 const Item = styled(Box)(({ theme }) => ({
   padding: 25,
   textAlign: 'center',
@@ -42,6 +41,14 @@ const PictureBox = styled(Box)(({ theme }) => ({
     fontSize: '3rem',
     fontWeight: 'bold',
   },
+  '& h3': {
+    position: 'absolute',
+    top: '60%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    color: 'white',
+    fontSize: '2rem',
+  },
 }));
 
 const SingleItinerary = () => {
@@ -49,15 +56,29 @@ const SingleItinerary = () => {
   const { itineraryId } = useParams();
 
   const itinerary = useSelector((state) => state.itineraries.itinerary);
+  console.log('in the single itin', itinerary);
+
+  function comparePositions(a, b) {
+    let dateA = new Date(a.date);
+    let dateB = new Date(b.date);
+    return dateA - dateB;
+  }
+
+  let activitiesArr;
+  if (itinerary) {
+    activitiesArr = [...itinerary.itinerary_activities];
+    activitiesArr.sort(comparePositions);
+    console.log(activitiesArr);
+  }
 
   useEffect(() => {
     dispatch(fetchItinerary({ itineraryId }));
-  }, [dispatch]);
+  }, [dispatch, itineraryId]);
 
   if (!itinerary) return null;
 
-  let destinations = itinerary.activities.map((activity) => {
-    const coordinates = activity.googleMap.split(',');
+  let destinations = itinerary.itinerary_activities.map((activity) => {
+    const coordinates = activity.activity.googleMap.split(',');
     return {
       lat: parseFloat(coordinates[0]),
       lng: parseFloat(coordinates[1]),
@@ -65,82 +86,83 @@ const SingleItinerary = () => {
   });
 
   let tripDuration = 0;
-  if (itinerary.activities && itinerary.activities.length > 0) {
-    const startDate = new Date(itinerary.activities[0].itinerary_activity.date);
+  if (
+    itinerary.activities &&
+    itinerary.itinerary_activities.activities.length > 0
+  ) {
+    const startDate = new Date(
+      itinerary.itinerary_activities.activities[0].date
+    );
     const endDate = new Date(
-      itinerary.activities[itinerary.activities.length - 1].itinerary_activity.date
+      itinerary.itinerary_activities.activities[
+        itinerary.itinerary_activities.activities.length - 1
+      ].date
     );
     tripDuration = Math.round((endDate - startDate) / 86400000);
   }
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Box
-        sx={{
-          mb: 10,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '40rem',
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${itinerary.city.imageUrl})`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          overflow: 'hidden',
-          backgroundColor: 'common.black',
-        }}
-      >
-        <Typography color="#fff" align="center" variant="h2">
-          {itinerary.name}
-        </Typography>
-      </Box>
-      <Grid container spacing={2} sx={{ display: 'flex' }}>
-        <Grid item xs={8}>
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <Item sx={{ marginBottom: 1 }}>
-                <h2>Trip Timeline</h2>
-                <BasicTimeline
-                  activities={itinerary.activities}
-                  city={itinerary.city}
-                  tripDuration={tripDuration}
-                />
-              </Item>
-            </Grid>
-            <Grid item xs={6}>
-              <Item sx={{ marginBottom: 1 }}>
-                {destinations.length > 0 ? (
-                  <MapWithMarkers destinations={destinations}/>
-                ) : (
-                  <h3>Loading...</h3>
-                )}
-              </Item>
-            </Grid>
-            <Grid item xs={6}>
-              <Item sx={{ marginBottom: 1 }}>
-                <Box sx={{ marginBottom: '16px' }}>
-                  <Button
-                    variant="contained"
-                    size="large"
-                    sx={{ display: 'block', width: '100%' }}
-                  >
-                    Add to MyTrips
-                  </Button>
-                </Box>
-              </Item>
+    <>
+      <PictureBox sx={{ flexGrow: 1, marginBottom: 3, minHeight: '650px' }}>
+        {itinerary.city ? (
+          <>
+            <img src={itinerary.city.imageUrl} alt='Full-width' />
+            <h1>{itinerary.name}</h1>
+            <h3>{itinerary.city.name}</h3>
+          </>
+        ) : (
+          <h3>Add activity to see details</h3>
+        )}
+      </PictureBox>
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={2} sx={{ display: 'flex' }}>
+          <Grid item xs={8}>
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <Item sx={{ marginBottom: 1 }}>
+                  <h2>Trip Timeline</h2>
+                  <BasicTimeline
+                    activities={itinerary.itinerary_activities}
+                    city={itinerary.city}
+                    tripDuration={tripDuration}
+                  />
+                </Item>
+              </Grid>
+              <Grid item xs={6}>
+                <Item sx={{ marginBottom: 1 }}>
+                  {destinations.length > 0 ? (
+                    <MapWithMarkers destinations={destinations} />
+                  ) : (
+                    <h3>Loading...</h3>
+                  )}
+                </Item>
+              </Grid>
+              <Grid item xs={6}>
+                <Item sx={{ marginBottom: 1 }}>
+                  <Box sx={{ marginBottom: '16px' }}>
+                    <Button
+                      variant='contained'
+                      size='large'
+                      sx={{ display: 'block', width: '100%' }}
+                    >
+                      Add to MyTrips
+                    </Button>
+                  </Box>
+                </Item>
+              </Grid>
             </Grid>
           </Grid>
+          <Grid item xs={4} sx={{ textAlign: 'left' }}>
+            <Box sx={{ maxHeight: '1200px', overflowY: 'auto', flex: 1 }}>
+              <Item>
+                <h2>Trip Details</h2>
+                <ActivityList activitiesArr={activitiesArr} />
+              </Item>
+            </Box>
+          </Grid>
         </Grid>
-        <Grid item xs={4} sx={{ textAlign: 'left' }}>
-          <Box sx={{ maxHeight: '1200px', overflowY: 'auto', flex: 1 }}>
-            <Item>
-              <h2>Trip Details</h2>
-              <ActivityList activitiesArr={itinerary.activities}/>
-            </Item>
-          </Box>
-        </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </>
   );
 };
 
