@@ -14,16 +14,17 @@ const User = require('./models/user');
 const User_Itinerary = require('./models/user_itinerary');
 
 // User
-User.hasMany(Itinerary);
 User.hasMany(User_Itinerary);
 User.hasMany(Badge);
 User.hasMany(Frame);
+User.belongsToMany(Itinerary, { through: User_Itinerary });
 Badge.belongsToMany(User, { through: User_Badge });
 Frame.belongsToMany(User, { through: User_Frame });
 
 // Itinerary
-Itinerary.belongsTo(User);
+Itinerary.belongsTo(User, { as: 'author' });
 Itinerary.belongsTo(City);
+Itinerary.belongsToMany(User, { through: User_Itinerary });
 Itinerary.hasMany(User_Itinerary);
 Itinerary.belongsToMany(Activity, {
   through: { model: Itinerary_Activity, unique: false },
@@ -50,8 +51,6 @@ User_Itinerary.belongsTo(Itinerary);
 // Itinerary_Activity
 Itinerary_Activity.belongsTo(Itinerary);
 Itinerary_Activity.belongsTo(Activity);
-Itinerary.hasMany(Itinerary_Activity);
-Activity.hasMany(Itinerary_Activity);
 
 module.exports = {
   db,

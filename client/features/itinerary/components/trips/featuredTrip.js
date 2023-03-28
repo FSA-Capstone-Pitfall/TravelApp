@@ -36,11 +36,14 @@ function FeaturedTrip({ city, duration, itineraryId }) {
             sx={{
               display: 'flex',
               border: '1px solid',
+              borderColor: 'black',
+              flexGrow: 2,
+              mb: 1,
             }}
           >
             <CardMedia
               component='img'
-              sx={{ width: 250 }}
+              sx={{ width: 150, height: 150 }}
               image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFy1ZRj0Lz8HeiG73c2jlrHCWpKpxSlqT4Kg&usqp=CAU'
             />
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -52,11 +55,7 @@ function FeaturedTrip({ city, duration, itineraryId }) {
                 >
                   Featured Trip{' '}
                 </Typography>
-                <Typography variant='h4' color='primary' component='div'>
-                  <Link underline='none' href='/singletrip'>
-                    Downtown Escape
-                  </Link>
-                </Typography>
+                Downtown Escape
                 <Typography
                   variant='body1'
                   color='text.secondary'

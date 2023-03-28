@@ -12,9 +12,11 @@ import {
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrips } from '../../store/slices/tripsSlice';
+import { fetchCities } from '../../store/slices/citiesSlice';
 import TripsList from './components/trips/tripsList';
 import FeaturedTrip from './components/trips/featuredTrip';
 import FindTrip from './components/trips/findTrip';
+import CreateTrip from './createTrip';
 
 const drawerWidth = 240;
 
@@ -44,10 +46,14 @@ const PictureBox = styled(Box)(({ theme }) => ({
 }));
 
 const CustomToolbar = styled(Toolbar)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: theme.palette.primary.light,
   color: theme.palette.primary.contrastText,
   display: 'flex',
   justifyContent: 'left',
+  border: '1px solid rgba(0, 0, 0, 0.12)',
+  borderRadius: '1px',
+  boxShadow: '0 2px 5px rgba(0, 0, 0, 0.15)',
+  padding: theme.spacing(1),
 }));
 
 function AllTrips() {
@@ -67,12 +73,15 @@ function AllTrips() {
 
   const [selectedCategory, setSelectedCategory] = useState('Upcoming');
   const [showUpcoming, setShowUpcoming] = useState(false);
+  const [openCreateTrip, setOpenCreateTrip] = useState(false);
 
   useEffect(() => {
-    const upcomingTrips = itineraries.filter(
-      (itinerary) => itinerary.status === 'upcoming'
-    );
-    setShowUpcoming(upcomingTrips.length > 0);
+    if (itineraries) {
+      const upcomingTrips = itineraries.filter(
+        (itinerary) => itinerary.status === 'upcoming'
+      );
+      setShowUpcoming(upcomingTrips.length > 0);
+    }
   }, [itineraries]);
 
   const renderContent = () => {
@@ -117,6 +126,12 @@ function AllTrips() {
 
   return (
     <>
+      {openCreateTrip && (
+        <CreateTrip
+          openCreateTrip={openCreateTrip}
+          toggleDialog={setOpenCreateTrip}
+        />
+      )}
       <PictureBox sx={{ flexGrow: 1, marginBottom: 1, minHeight: '700px' }}>
         <>
           <img
@@ -143,7 +158,7 @@ function AllTrips() {
           >
             <Box
               sx={{
-                width: drawerWidth,
+                width: 'drawerWidth',
                 backgroundColor: (theme) => theme.palette.background.paper,
                 boxShadow: (theme) => theme.shadows[4],
                 overflowY: 'auto',
@@ -157,13 +172,16 @@ function AllTrips() {
                   <ListItem key={category.text} disablePadding>
                     <ListItemButton
                       onClick={() => setSelectedCategory(category.text)}
-                      sx={
-                        selectedCategory === category.text
-                          ? {
-                              borderBottom: `2px solid ${theme.palette.secondary.main}`,
-                            }
-                          : {}
-                      }
+                      sx={{
+                        '&:hover': {
+                          backgroundColor: theme.palette.primary.light,
+                        },
+                        backgroundColor:
+                          selectedCategory === category.text
+                            ? theme.palette.primary.light
+                            : 'inherit',
+                        transition: 'border-color 0.3s',
+                      }}
                     >
                       <ListItemText primary={category.text} />
                     </ListItemButton>
@@ -179,7 +197,11 @@ function AllTrips() {
                     flexGrow: 0,
                   }}
                 >
-                  <Button variant='contained' color='primary'>
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    onClick={() => setOpenCreateTrip(true)}
+                  >
                     Create a Trip
                   </Button>
                 </Box>

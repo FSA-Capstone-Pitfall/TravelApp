@@ -12,6 +12,7 @@ const Itinerary = db.define('itinerary', {
   duration: {
     type: Sequelize.INTEGER,
     allowNull: true,
+    defaultValue: '0',
   },
 });
 

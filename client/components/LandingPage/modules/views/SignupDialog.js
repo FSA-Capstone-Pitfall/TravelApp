@@ -71,7 +71,7 @@ export default function SignupDialog({ toggleDialog }) {
         if (!result.payload.error) {
           dispatch(getUserByToken());
           clearLocalState();
-          navigate('/', { replace: true });
+          navigate('/mytrips', { replace: true });
         } else {
           throw new Error(result.payload.error);
         }
