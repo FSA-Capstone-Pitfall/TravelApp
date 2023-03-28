@@ -8,7 +8,7 @@ import {
   Link,
 } from '@mui/material';
 
-function TripCard({ city, duration, itineraryId }) {
+function TripCard({ city, duration, itineraryId, name }) {
   return (
     <Link underline='none' href={`/mytrips/${itineraryId}`}>
       <Card
@@ -27,6 +27,9 @@ function TripCard({ city, duration, itineraryId }) {
         />
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <CardContent sx={{ flex: '1 0 auto' }}>
+            <Typography variant='h6' color='primary' component='div'>
+              {name}
+            </Typography>
             <Typography variant='body1' color='text.secondary' component='div'>
               {city}
             </Typography>

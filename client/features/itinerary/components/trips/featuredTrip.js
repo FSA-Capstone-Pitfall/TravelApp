@@ -10,7 +10,7 @@ import {
   Link,
 } from '@mui/material';
 
-function FeaturedTrip({ city, duration, itineraryId }) {
+function FeaturedTrip() {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.auth.user);
@@ -26,6 +26,8 @@ function FeaturedTrip({ city, duration, itineraryId }) {
     dispatch(fetchTrips(userId));
   }, [dispatch, userId]);
 
+  console.log('itins: ', itineraries);
+
   return (
     <>
       {!itineraries[0] ? (
@@ -36,14 +38,11 @@ function FeaturedTrip({ city, duration, itineraryId }) {
             sx={{
               display: 'flex',
               border: '1px solid',
-              borderColor: 'black',
-              flexGrow: 2,
-              mb: 1,
             }}
           >
             <CardMedia
               component='img'
-              sx={{ width: 150, height: 150 }}
+              sx={{ width: 250 }}
               image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFy1ZRj0Lz8HeiG73c2jlrHCWpKpxSlqT4Kg&usqp=CAU'
             />
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -53,14 +52,16 @@ function FeaturedTrip({ city, duration, itineraryId }) {
                   variant='caption'
                   sx={{ marginBottom: '0.3rem' }}
                 >
-                  Featured Trip{' '}
+                  May 05, 2023 - May 14, 2023
                 </Typography>
-                Downtown Escape
+                <Typography variant='h4' color='primary' component='div'>
+                  {itineraries[0].itinerary.name}
+                </Typography>
                 <Typography
                   variant='body1'
                   color='text.secondary'
                   component='div'
-                  sx={{ marginBottom: '1rem' }}
+                  sx={{ marginBottom: '1rem', fontSize: '1.2rem' }}
                 >
                   {itineraries[0].itinerary.city.name}{' '}
                 </Typography>
