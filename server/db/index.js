@@ -51,6 +51,9 @@ User_Itinerary.belongsTo(Itinerary);
 // Itinerary_Activity
 Itinerary_Activity.belongsTo(Itinerary);
 Itinerary_Activity.belongsTo(Activity);
+Itinerary.hasMany(Itinerary_Activity);
+Activity.hasMany(Itinerary_Activity);
+
 
 module.exports = {
   db,

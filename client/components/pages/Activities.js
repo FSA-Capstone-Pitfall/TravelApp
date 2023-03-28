@@ -9,7 +9,6 @@ import {
   Pagination,
   Typography,
 } from '@mui/material';
-import { fetchActivities } from '../../store';
 import MapWithMarkers from '../../features/itinerary/components/map/map';
 import { Filters } from '../shared';
 import { capital, snake } from 'case';
@@ -49,29 +48,32 @@ const Activities = () => {
     googleMap,
   } = state;
 
-
   const activities = useSelector((state) => state.activities.activities);
   const itineraries = useSelector((state) => state.itineraries.itineraries);
 
   useEffect(() => {
     if (destinationId || cityId) {
-      dispatch(fetchActivities({
-        destinationId,
-        cityId,
-        page: currPageActivities,
-        categories: categories.map(category => snake(category)),
-        limit: 6
-      }));
+      dispatch(
+        fetchActivities({
+          destinationId,
+          cityId,
+          page: currPageActivities,
+          categories: categories.map((category) => snake(category)),
+          limit: 6,
+        })
+      );
     }
   }, [dispatch, destinationId, cityId, currPageActivities, categories]);
 
   useEffect(() => {
     if (cityId) {
-      dispatch(fetchItineraries({
-        cityId,
-        page: currPageItins,
-        limit: 3
-      }));
+      dispatch(
+        fetchItineraries({
+          cityId,
+          page: currPageItins,
+          limit: 3,
+        })
+      );
     }
   }, [dispatch, currPageItins, cityId]);
 
@@ -133,20 +135,21 @@ const Activities = () => {
           </Typography>
         )}
       </Box>
-      <Container maxWidth="lg" sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        mb: 10,
-      }}>
+      <Container
+        maxWidth='lg'
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          mb: 10,
+        }}
+      >
         <Typography
-          color="black"
-          align="center"
-          variant="h4"
+          color='black'
+          align='center'
+          variant='h4'
           sx={{ mb: 4 }}
-          style={
-            { fontWeight: 'regular' }
-          }
+          style={{ fontWeight: 'regular' }}
         >
           Things to do in {displayName}
         </Typography>
@@ -176,32 +179,35 @@ const Activities = () => {
                   flexDirection: 'column',
                   justifyContent: 'space-around',
                   height: '20rem',
-                  boxSizing: 'border-box'
-                }} onClick={() => navigate(`/activities/${activity.id}`)}
-                >
-                  <img
-                    src={activity.imageUrl}
-                    loading="lazy"
-                    style={{
-                      maxWidth: '100%',
-                      height: '80%'
-                    }}
-                  />
-                  <Typography variant="h5" align={'center'}>
-                    {activity.name}
-                  </Typography>
-                </ListItemButton>
-              ),
-            )}
+                  boxSizing: 'border-box',
+                }}
+                onClick={() => navigate(`/activities/${activity.id}`)}
+              >
+                <img
+                  src={activity.imageUrl}
+                  loading='lazy'
+                  alt='blank'
+                  style={{
+                    maxWidth: '100%',
+                    height: '80%',
+                  }}
+                />
+                <Typography variant='h5' align={'center'}>
+                  {activity.name}
+                </Typography>
+              </ListItemButton>
+            ))}
           </List>
-        }
-        {totalPagesActivities &&
+        )}
+        {totalPagesActivities && (
           <Pagination
             id='activities-pagination'
             sx={{ mb: 10 }}
-            count={totalPagesActivities} page={currPageActivities}
+            count={totalPagesActivities}
+            page={currPageActivities}
             onChange={(event, value) => setCurrPageActivities(value)}
-          />}
+          />
+        )}
         {destinations.length > 0 ? (
           <MapWithMarkers destinations={destinations} />
         ) : (
@@ -210,34 +216,34 @@ const Activities = () => {
           </h3>
         )}
       </Container>
-      {cityId && itineraries && <Container
-        maxWidth="lg"
-
-        sx={{
-          mb: 10,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Typography
-          color="black"
-          align="center"
-          variant="h4"
-          sx={{ mb: 4 }}
-          style={
-            { fontWeight: 'regular' }
-          }
+      {cityId && itineraries && (
+        <Container
+          maxWidth='lg'
+          sx={{
+            mb: 10,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
         >
-          Trips by local experts
-        </Typography>
-        <List sx={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(25%, 1fr))',
-          gridGap: '1rem',
-          width: '100%'
-        }}>
-          {itineraries.data.map(itinerary => (
+          <Typography
+            color='black'
+            align='center'
+            variant='h4'
+            sx={{ mb: 4 }}
+            style={{ fontWeight: 'regular' }}
+          >
+            Trips by local experts
+          </Typography>
+          <List
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(25%, 1fr))',
+              gridGap: '1rem',
+              width: '100%',
+            }}
+          >
+            {itineraries.data.map((itinerary) => (
               <ListItemButton
                 key={itinerary.id}
                 sx={{
@@ -245,25 +251,27 @@ const Activities = () => {
                   flexDirection: 'column',
                   justifyContent: 'space-around',
                   height: '20rem',
-                  boxSizing: 'border-box'
+                  boxSizing: 'border-box',
                 }}
                 onClick={() => navigate(`/itineraries/${itinerary.id}`)}
               >
-                <Typography variant="h5" align={'center'}>
+                <Typography variant='h5' align={'center'}>
                   {itinerary.name}
                 </Typography>
               </ListItemButton>
-            ),
+            ))}
+          </List>
+          {totalPagesItins && (
+            <Pagination
+              id='itineraries-pagination'
+              sx={{ mb: 10 }}
+              count={totalPagesItins}
+              page={currPageItins}
+              onChange={(event, value) => setCurrPageItins(value)}
+            />
           )}
-        </List>
-        {totalPagesItins &&
-          <Pagination
-            id="itineraries-pagination"
-            sx={{ mb: 10 }}
-            count={totalPagesItins} page={currPageItins}
-            onChange={(event, value) => setCurrPageItins(value)}
-          />}
-      </Container>}
+        </Container>
+      )}
     </Box>
   );
 };
