@@ -30,6 +30,45 @@ export const fetchSingleTrip = createAsyncThunk(
   }
 );
 
+export const editTripActivity = createAsyncThunk(
+  'editTripActivity',
+  async (userId, tripId, activity) => {
+    try {
+      const { data } = await axios.put(
+        `/api/users/${userId}/trips/${tripId}`,
+        activity
+      );
+      return data;
+    } catch (err) {
+      throw err.message;
+    }
+  }
+);
+
+export const deleteTripActvity = createAsyncThunk(
+  'deleteTripActivity',
+  async ({ userId, tripId, activityId }) => {
+    console.log(
+      'in the deleteTripActivity thunk',
+      'userId: ',
+      userId,
+      'tripId: ',
+      tripId,
+      'activityId: ',
+      activityId
+    );
+    try {
+      const { data } = await axios.delete(
+        `/api/users/${userId}/trips/${tripId}`,
+        { data: { activityId } }
+      );
+      return data;
+    } catch (err) {
+      throw err.message;
+    }
+  }
+);
+
 const initialState = {
   itineraries: [],
   status: 'idle', // options: idle, loading, succeeded, failed
@@ -56,6 +95,9 @@ const trips = createSlice({
         state.error = action.payload.message;
       })
       .addCase(fetchSingleTrip.fulfilled, (state, action) => {
+        state.itineraries = action.payload;
+      })
+      .addCase(deleteTripActvity.fulfilled, (state, action) => {
         state.itineraries = action.payload;
       });
   },

@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Box, Container, List, ListItemButton, Pagination, Typography } from '@mui/material';
+import {
+  Box,
+  Container,
+  List,
+  ListItemButton,
+  Pagination,
+  Typography,
+} from '@mui/material';
 import { fetchActivities } from '../../store';
 import MapWithMarkers from '../../features/itinerary/components/map/map';
 import { Filters } from '../shared';
@@ -18,7 +25,7 @@ const hardcodedCategories = [
   'show',
   'sports',
   'transportation',
-].map(category => capital(category));
+].map((category) => capital(category));
 
 const Activities = () => {
   const navigate = useNavigate();
@@ -42,13 +49,15 @@ const Activities = () => {
 
   useEffect(() => {
     if (destinationId || cityId) {
-      dispatch(fetchActivities({
-        destinationId,
-        cityId,
-        page: currPage,
-        categories: categories.map(category => snake(category)),
-        limit: 6
-      }));
+      dispatch(
+        fetchActivities({
+          destinationId,
+          cityId,
+          page: currPage,
+          categories: categories.map((category) => snake(category)),
+          limit: 6,
+        })
+      );
     }
   }, [dispatch, destinationId, cityId, currPage, categories]);
 
@@ -60,7 +69,7 @@ const Activities = () => {
 
   if (!activities.data) return null;
 
-  const destinations = activities.data.map(activity => {
+  const destinations = activities.data.map((activity) => {
     const coordinates = activity.googleMap.split(',');
     return {
       lat: parseFloat(coordinates[0]),
@@ -70,7 +79,7 @@ const Activities = () => {
 
   return (
     <Box
-      component="section"
+      component='section'
       sx={{
         width: '100%',
       }}
@@ -90,28 +99,35 @@ const Activities = () => {
           backgroundColor: 'common.black',
         }}
       >
-        <Typography color="#fff" align="center" variant="h2">
+        <Typography color='#fff' align='center' variant='h2'>
           {displayName}
         </Typography>
-        {description && <Typography
-          color="#fff"
-          align="center"
-          variant="h5"
-          sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
-        >
-          {description}
-        </Typography>}
+        {description && (
+          <Typography
+            color='#fff'
+            align='center'
+            variant='h5'
+            sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
+          >
+            {description}
+          </Typography>
+        )}
       </Box>
-      <Container maxWidth="lg" sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}>
-        <Typography color="black" align="center" variant="h4"
-                    sx={{ mb: 4 }}
-                    style={
-                      { fontWeight: 'regular' }
-                    }>
+      <Container
+        maxWidth='lg'
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography
+          color='black'
+          align='center'
+          variant='h4'
+          sx={{ mb: 4 }}
+          style={{ fontWeight: 'regular' }}
+        >
           Things to do in {displayName}
         </Typography>
         <Filters
@@ -123,48 +139,57 @@ const Activities = () => {
             setCurrPage(1);
           }}
         />
-        {activities.data &&
-          <List sx={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(25%, 1fr))',
-            gridGap: '1rem',
-            width: '100%'
-          }}>
-            {activities.data.map(activity => (
-                <ListItemButton key={activity.id} sx={{
+        {activities.data && (
+          <List
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(25%, 1fr))',
+              gridGap: '1rem',
+              width: '100%',
+            }}
+          >
+            {activities.data.map((activity) => (
+              <ListItemButton
+                key={activity.id}
+                sx={{
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-around',
                   height: '20rem',
-                  boxSizing: 'border-box'
-                }} onClick={() => navigate(`/activities/${activity.id}`)}
-                >
-                  <img
-                    src={activity.imageUrl}
-                    loading="lazy"
-                    style={{
-                      maxWidth: '100%',
-                      height: '80%'
-                    }}
-                  />
-                  <Typography variant="h5" align={'center'}>
-                    {activity.name}
-                  </Typography>
-                </ListItemButton>
-              ),
-            )}
-          </List>}
-        {totalPages &&
+                  boxSizing: 'border-box',
+                }}
+                onClick={() => navigate(`/activities/${activity.id}`)}
+              >
+                <img
+                  src={activity.imageUrl}
+                  loading='lazy'
+                  style={{
+                    maxWidth: '100%',
+                    height: '80%',
+                  }}
+                />
+                <Typography variant='h5' align={'center'}>
+                  {activity.name}
+                </Typography>
+              </ListItemButton>
+            ))}
+          </List>
+        )}
+        {totalPages && (
           <Pagination
-            id="activities-pagination"
+            id='activities-pagination'
             sx={{ mb: 10 }}
-            count={totalPages} page={currPage}
+            count={totalPages}
+            page={currPage}
             onChange={(event, value) => setCurrPage(value)}
-          />}
+          />
+        )}
         {destinations.length > 0 ? (
-          <MapWithMarkers destinations={destinations}/>
+          <MapWithMarkers destinations={destinations} />
         ) : (
-          <h3 style={{ color: 'black' }}>No activities found by selected categories.</h3>
+          <h3 style={{ color: 'black' }}>
+            No activities found by selected categories.
+          </h3>
         )}
       </Container>
     </Box>

@@ -1668,8 +1668,15 @@ const ITINERARY_ACTIVITY_SEED_DATA = [
   {
     activityId: 1, // Statue of Liberty National Monument
     itineraryId: 1,
+    date: new Date('Jul 15, 2023 08:30:00'),
+    notes: 'different activity',
+  },
+  {
+    activityId: 1, // Statue of Liberty National Monument
+    itineraryId: 1,
     date: new Date('Jul 12, 2023 08:30:00'),
   },
+
   {
     activityId: 25, // Times Square
     itineraryId: 1,

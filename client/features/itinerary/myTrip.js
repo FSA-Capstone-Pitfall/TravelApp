@@ -7,6 +7,7 @@ import BasicTimeline from './components/timeline/timeline';
 import Calendar from './components/calendar/calendar';
 import ActivityList from './components/activity/activityList';
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -49,8 +50,8 @@ function MyTrip() {
 
   const [activities, setActivities] = useState();
   const [city, setCity] = useState();
+  const [editMode, setEditMode] = useState(false);
   const user = useSelector((state) => state.auth.user);
-  //const itineraries = useSelector((state) => state.trips.itineraries);
   const selectedTrip = useSelector((state) => state.trips.itineraries);
 
   let userId;
@@ -59,16 +60,20 @@ function MyTrip() {
   }
 
   function comparePositions(a, b) {
-    let dateA = new Date(a.itinerary_activity.date);
-    let dateB = new Date(b.itinerary_activity.date);
+    let dateA = new Date(a.date);
+    let dateB = new Date(b.date);
     return dateA - dateB;
   }
+
+  const handleActivityDelete = (updatedActivities) => {
+    setActivities(updatedActivities);
+  };
 
   useEffect(() => {
     const pullData = async () => {
       const userTrip = await dispatch(fetchSingleTrip({ userId, tripId }));
       let activitiesArr;
-      activitiesArr = [...userTrip.payload.itinerary.activities];
+      activitiesArr = [...userTrip.payload.itinerary.itinerary_activities];
       activitiesArr.sort(comparePositions);
       setActivities(activitiesArr);
       setCity(userTrip.payload.itinerary.city);
@@ -79,7 +84,7 @@ function MyTrip() {
   let destinations = [];
   if (activities) {
     const locations = activities.map((item) => {
-      const coordinates = item.googleMap.split(',');
+      const coordinates = item.activity.googleMap.split(',');
       return {
         lat: parseFloat(coordinates[0]),
         lng: parseFloat(coordinates[1]),
@@ -90,10 +95,8 @@ function MyTrip() {
 
   let tripDuration = 0;
   if (activities && activities.length > 0) {
-    const startDate = new Date(activities[0].itinerary_activity.date);
-    const endDate = new Date(
-      activities[activities.length - 1].itinerary_activity.date
-    );
+    const startDate = new Date(activities[0].date);
+    const endDate = new Date(activities[activities.length - 1].date);
     tripDuration = Math.round((endDate - startDate) / 86400000);
   }
 
@@ -106,7 +109,7 @@ function MyTrip() {
             <h1>{city.name}</h1>
           </>
         ) : (
-          <h3>Loading...</h3>
+          <h3>Add activity to see details</h3>
         )}
       </PictureBox>
       <Grid container spacing={2} sx={{ display: 'flex' }}>
@@ -127,7 +130,7 @@ function MyTrip() {
                 {destinations.length > 0 ? (
                   <MapWithMarkers destinations={destinations} />
                 ) : (
-                  <h3>Loading...</h3>
+                  <h3>Add activity to see map</h3>
                 )}
               </Item>
             </Grid>
@@ -137,6 +140,7 @@ function MyTrip() {
                   activities={activities}
                   city={city}
                   selectedTrip={selectedTrip}
+                  editMode={editMode}
                 />
               </Item>
             </Grid>
@@ -157,17 +161,26 @@ function MyTrip() {
                       variant='contained'
                       size='large'
                       sx={{ display: 'block', width: '100%' }}
+                      onClick={() => setEditMode(!editMode)}
                     >
-                      Travel Budget
+                      {editMode ? <>Cancel Edit</> : <>Edit Trip</>}
                     </Button>
                   </Box>
-                  <Button
-                    variant='contained'
-                    size='large'
-                    sx={{ display: 'block', width: '100%' }}
-                  >
-                    Transportation Plans
-                  </Button>
+                  {editMode ? (
+                    <Button
+                      component={Link}
+                      to='/destinations'
+                      variant='contained'
+                      size='large'
+                      sx={{
+                        display: 'block',
+                        width: '100%',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      Add More Activities
+                    </Button>
+                  ) : null}
                 </Box>
               </Item>
             </Grid>
@@ -177,7 +190,11 @@ function MyTrip() {
           <Box sx={{ maxHeight: '1200px', overflowY: 'auto', flex: 1 }}>
             <Item>
               <h2>Trip Details</h2>
-              <ActivityList activitiesArr={activities} />
+              <ActivityList
+                activitiesArr={activities}
+                editMode={editMode}
+                onActivityDelete={handleActivityDelete}
+              />
             </Item>
           </Box>
         </Grid>
