@@ -118,7 +118,7 @@ function AllTrips() {
 
   const categories = [
     { text: 'Upcoming' },
-    { text: 'Under Construction' },
+    { text: 'Planning' },
     { text: 'Completed' },
     { text: 'My Curated Trips' },
     { text: 'Wishlist' },
@@ -142,74 +142,70 @@ function AllTrips() {
         </>
       </PictureBox>
       <Box sx={{ flexGrow: 1, padding: 3 }}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-          <CustomToolbar>
-            <Typography variant='h6' noWrap component='div'>
-              Trips
-            </Typography>
-          </CustomToolbar>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            width: `calc(100% - 56px)`,
+            minHeight: 'calc(100% - 56px)',
+          }}
+        >
           <Box
             sx={{
+              width: '250px',
+              backgroundColor: (theme) => theme.palette.background.paper,
+              boxShadow: (theme) => theme.shadows[4],
+              overflowY: 'auto',
+              height: '100%',
               display: 'flex',
-              flexDirection: 'row',
-              width: `calc(100% - 56px)`,
-              minHeight: 'calc(100% - 56px)',
+              flexDirection: 'column',
             }}
           >
-            <Box
-              sx={{
-                width: 'drawerWidth',
-                backgroundColor: (theme) => theme.palette.background.paper,
-                boxShadow: (theme) => theme.shadows[4],
-                overflowY: 'auto',
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
-              <List sx={{ flexGrow: 1 }}>
-                {categories.map((category) => (
-                  <ListItem key={category.text} disablePadding>
-                    <ListItemButton
-                      onClick={() => setSelectedCategory(category.text)}
-                      sx={{
-                        '&:hover': {
-                          backgroundColor: theme.palette.primary.light,
-                        },
-                        backgroundColor:
-                          selectedCategory === category.text
-                            ? theme.palette.primary.light
-                            : 'inherit',
-                        transition: 'border-color 0.3s',
-                      }}
-                    >
-                      <ListItemText primary={category.text} />
-                    </ListItemButton>
-                  </ListItem>
-                ))}
-                <Box
-                  sx={{
-                    width: '100%',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    mt: 3,
-                    mb: 3,
-                    flexGrow: 0,
-                  }}
-                >
-                  <Button
-                    variant='contained'
-                    color='primary'
-                    onClick={() => setOpenCreateTrip(true)}
+            <List sx={{ flexGrow: 1 }}>
+              {categories.map((category) => (
+                <ListItem key={category.text} disablePadding>
+                  <ListItemButton
+                    onClick={() => setSelectedCategory(category.text)}
+                    sx={{
+                      '&:hover': {
+                        backgroundColor: theme.palette.primary.light,
+                      },
+                      backgroundColor:
+                        selectedCategory === category.text
+                          ? theme.palette.primary.light
+                          : 'inherit',
+                      transition: 'border-color 0.3s',
+                    }}
                   >
-                    Create a Trip
-                  </Button>
-                </Box>
-              </List>
-            </Box>
-            <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
-              {renderContent()}
-            </Box>
+                    <ListItemText primary={category.text} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+              <Box
+                sx={{
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  mt: 3,
+                  mb: 3,
+                  flexGrow: 0,
+                }}
+              >
+                <Button
+                  variant='contained'
+                  color='primary'
+                  onClick={() => setOpenCreateTrip(true)}
+                >
+                  Create a Trip
+                </Button>
+              </Box>
+            </List>
+          </Box>
+          <Box
+            component='main'
+            sx={{ flexGrow: 1, pl: 3, pt: 1, width: '100%' }}
+          >
+            {renderContent()}
           </Box>
         </Box>
       </Box>
