@@ -1405,7 +1405,7 @@ const ACTIVITY_SEED_DATA = [
     zipcode: '10028',
     googleMap: '40.78010278033864, -73.96350149206384',
     description:
-      "One of the world's largest and finest art museums, with a vast collection spanning 5,000 years of world culture.",
+      'One of the world\'s largest and finest art museums, with a vast collection spanning 5,000 years of world culture.',
     categories: ['art', 'culture'],
     destinationId: 1,
     imageUrl:
@@ -1431,7 +1431,7 @@ const ACTIVITY_SEED_DATA = [
     zipcode: '10014',
     googleMap: '40.739766518475705, -74.00883071484067',
     description:
-      "Museum showcasing American art from the 20th and 21st centuries, including works by Edward Hopper and Georgia O'Keeffe.",
+      'Museum showcasing American art from the 20th and 21st centuries, including works by Edward Hopper and Georgia O\'Keeffe.',
     categories: ['art', 'culture'],
     destinationId: 1,
     imageUrl:
@@ -1611,7 +1611,7 @@ const ITINERARY_SEED_DATA = [
     name: 'New York City Essentials',
     duration: 3,
     userId: 1,
-    cityId: 1,
+    cityId: 1
   },
   {
     name: 'San Diego Beach Hopping',

@@ -5,6 +5,7 @@ import usersReducer from './slices/usersSlice';
 import destinationsReducer from './slices/destinationsSlice';
 import tripsReducer from './slices/tripsSlice';
 import activitiesReducer from './slices/activitiesSlice';
+import itinerariesReducer from './slices/itinerariesSlice';
 
 const store = configureStore({
   reducer: {
@@ -13,10 +14,11 @@ const store = configureStore({
     destinations: destinationsReducer,
     trips: tripsReducer,
     activities: activitiesReducer,
+    itineraries: itinerariesReducer
 
   },
-  // middleware: (getDefaultMiddleware) =>
-  //   getDefaultMiddleware().concat(createLogger()),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(createLogger()),
 });
 
 export default store;
@@ -24,3 +26,4 @@ export * from './slices/destinationsSlice';
 export * from './slices/authSlice';
 export * from './slices/activitiesSlice';
 export * from './slices/destinationsSlice';
+export * from './slices/itinerariesSlice';

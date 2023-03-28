@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Box, Container, List, ListItemButton, Pagination, Typography } from '@mui/material';
-import { fetchActivities } from '../../store';
 import MapWithMarkers from '../../features/itinerary/components/map/map';
 import { Filters } from '../shared';
 import { capital, snake } from 'case';
+
+import { fetchActivities, fetchItineraries } from '../../store';
 
 const hardcodedCategories = [
   'amusement_park',
@@ -26,8 +27,10 @@ const Activities = () => {
   const { state } = useLocation();
 
   const [categories, setCategories] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
-  const [currPage, setCurrPage] = useState(1);
+  const [totalPagesActivities, setTotalPagesActivities] = useState(0);
+  const [currPageActivities, setCurrPageActivities] = useState(1);
+  const [totalPagesItins, setTotalPagesItins] = useState(0);
+  const [currPageItins, setCurrPageItins] = useState(1);
 
   const {
     destinationId,
@@ -38,27 +41,45 @@ const Activities = () => {
     googleMap,
   } = state;
 
+
   const activities = useSelector((state) => state.activities.activities);
+  const itineraries = useSelector((state) => state.itineraries.itineraries);
 
   useEffect(() => {
     if (destinationId || cityId) {
       dispatch(fetchActivities({
         destinationId,
         cityId,
-        page: currPage,
+        page: currPageActivities,
         categories: categories.map(category => snake(category)),
         limit: 6
       }));
     }
-  }, [dispatch, destinationId, cityId, currPage, categories]);
+  }, [dispatch, destinationId, cityId, currPageActivities, categories]);
+
+  useEffect(() => {
+    if (cityId) {
+      dispatch(fetchItineraries({
+        cityId,
+        page: currPageItins,
+        limit: 3
+      }));
+    }
+  }, [dispatch, currPageItins, cityId]);
 
   useEffect(() => {
     if (activities.data) {
-      setTotalPages(activities.totalPages);
+      setTotalPagesActivities(activities.totalPages);
     }
   }, [activities]);
 
-  if (!activities.data) return null;
+  useEffect(() => {
+    if (itineraries && itineraries.data) {
+      setTotalPagesItins(itineraries.totalPages);
+    }
+  }, [itineraries]);
+
+  if (!activities || !activities.data) return null;
 
   const destinations = activities.data.map(activity => {
     const coordinates = activity.googleMap.split(',');
@@ -106,12 +127,17 @@ const Activities = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        mb: 10,
       }}>
-        <Typography color="black" align="center" variant="h4"
-                    sx={{ mb: 4 }}
-                    style={
-                      { fontWeight: 'regular' }
-                    }>
+        <Typography
+          color="black"
+          align="center"
+          variant="h4"
+          sx={{ mb: 4 }}
+          style={
+            { fontWeight: 'regular' }
+          }
+        >
           Things to do in {displayName}
         </Typography>
         <Filters
@@ -120,7 +146,7 @@ const Activities = () => {
           options={hardcodedCategories}
           onChange={(selectedCategories) => {
             setCategories(selectedCategories);
-            setCurrPage(1);
+            setCurrPageActivities(1);
           }}
         />
         {activities.data &&
@@ -153,13 +179,14 @@ const Activities = () => {
                 </ListItemButton>
               ),
             )}
-          </List>}
-        {totalPages &&
+          </List>
+        }
+        {totalPagesActivities &&
           <Pagination
             id="activities-pagination"
             sx={{ mb: 10 }}
-            count={totalPages} page={currPage}
-            onChange={(event, value) => setCurrPage(value)}
+            count={totalPagesActivities} page={currPageActivities}
+            onChange={(event, value) => setCurrPageActivities(value)}
           />}
         {destinations.length > 0 ? (
           <MapWithMarkers destinations={destinations}/>
@@ -167,6 +194,60 @@ const Activities = () => {
           <h3 style={{ color: 'black' }}>No activities found by selected categories.</h3>
         )}
       </Container>
+      {cityId && itineraries && <Container
+        maxWidth="lg"
+
+        sx={{
+          mb: 10,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography
+          color="black"
+          align="center"
+          variant="h4"
+          sx={{ mb: 4 }}
+          style={
+            { fontWeight: 'regular' }
+          }
+        >
+          Trips by local experts
+        </Typography>
+        <List sx={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(25%, 1fr))',
+          gridGap: '1rem',
+          width: '100%'
+        }}>
+          {itineraries.data.map(itinerary => (
+              <ListItemButton
+                key={itinerary.id}
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-around',
+                  height: '20rem',
+                  boxSizing: 'border-box'
+                }}
+                onClick={() => navigate(`/itineraries/${itinerary.id}`)}
+              >
+                <Typography variant="h5" align={'center'}>
+                  {itinerary.name}
+                </Typography>
+              </ListItemButton>
+            ),
+          )}
+        </List>
+        {totalPagesItins &&
+          <Pagination
+            id="itineraries-pagination"
+            sx={{ mb: 10 }}
+            count={totalPagesItins} page={currPageItins}
+            onChange={(event, value) => setCurrPageItins(value)}
+          />}
+      </Container>}
     </Box>
   );
 };
