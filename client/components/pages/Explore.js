@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Typography from '@mui/material/Typography';
 import { Box, Container, List, ListItemButton } from '@mui/material';
@@ -11,12 +11,11 @@ const displayPic = 'https://images.unsplash.com/photo-1669733040274-1e3c13e731db
 const Explore = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [searchAppearances, setSearchAppearances] = useState(null);
-  const destinations = useSelector((state) => state.destinations.destinations);
 
+  const cities = useSelector((state) => state.destinations.destinations);
 
   useEffect(() => {
-    dispatch(fetchDestinations({ identifier: searchAppearances }));
+    dispatch(fetchDestinations({}));
   }, [dispatch]);
 
   return (
@@ -51,11 +50,15 @@ const Explore = () => {
         flexDirection: 'column',
         alignItems: 'center',
       }}>
-        <Typography color="black" align="center" variant="h5"
-                    sx={{ mb: 4 }}
-                    style={
-                      { fontWeight: 'regular' }
-                    }>
+        <Typography
+          color="black"
+          align="center"
+          variant="h5"
+          sx={{ mb: 4 }}
+          style={
+            { fontWeight: 'regular' }
+          }
+        >
           Spots at the top of travelers’ must-go lists
         </Typography>
 
@@ -65,8 +68,8 @@ const Explore = () => {
           gridGap: '1rem',
           width: '100%'
         }}>
-          {destinations.map(destination => (
-              <ListItemButton key={destination.id} sx={{
+          {cities.map(city => (
+              <ListItemButton key={city.id} sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-around',
@@ -75,17 +78,15 @@ const Explore = () => {
               }} onClick={() =>
                 navigate('/activities', {
                   state: {
-                    destinationId: destination.id,
-                    displayName: destination.name,
-                    description: destination.description,
-                    imageUrl: destination.imageUrl,
-                    googleMap: destination.googleMap,
+                    cityId: city.id,
+                    displayName: city.name,
+                    imageUrl: city.imageUrl,
                   },
                 })
               }
               >
                 <img
-                  src={destination.imageUrl}
+                  src={city.imageUrl}
                   loading="lazy"
                   style={{
                     maxWidth: '100%',
@@ -93,7 +94,7 @@ const Explore = () => {
                   }}
                 />
                 <Typography variant="h5" align={'center'}>
-                  {destination.name}, {destination.state}
+                  {city.name}, {city.state}
                 </Typography>
               </ListItemButton>
             ),
