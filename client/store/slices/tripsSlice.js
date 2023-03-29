@@ -67,7 +67,7 @@ export const editTripActivity = createAsyncThunk(
 );
 
 export const editTripName = createAsyncThunk(
-  'editTripActivity',
+  'editTripName',
   async ({ userId, tripId, name }) => {
     console.log('in the trips slice', userId, tripId, name);
     try {
@@ -151,6 +151,9 @@ const trips = createSlice({
       })
       .addCase(editTripName.fulfilled, (state, action) => {
         state.status = 'succeeded';
+      })
+      .addCase(editTripActivity.fulfilled, (state, action) => {
+        state.itineraries = action.payload;
       });
   },
 });

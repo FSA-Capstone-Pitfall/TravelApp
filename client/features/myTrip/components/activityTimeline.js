@@ -9,7 +9,7 @@ import {
   timelineItemClasses,
 } from '@mui/lab';
 
-export default function ActivityTimeline({ activities, city, tripDuration }) {
+export default function BasicTimeline({ activities, city, tripDuration }) {
   const [destinations, setDestinations] = useState([]);
 
   useEffect(() => {
