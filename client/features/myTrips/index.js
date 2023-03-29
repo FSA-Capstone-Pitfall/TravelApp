@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
-import { Box, Button, List, ListItem, ListItemButton, ListItemText, Toolbar, } from '@mui/material';
+import {
+  Box,
+  Button,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Toolbar,
+} from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrips } from '../../store';
 import { CreateTrip, FeaturedTrip, FindTrip, TripsList } from './components';
@@ -74,28 +82,28 @@ function MyTrips() {
       return (
         <>
           <Box sx={{ mb: 3 }}>
-            <FeaturedTrip/>
+            <FeaturedTrip />
           </Box>
-          <TripsList status={'upcoming'}/>
+          <TripsList status={'upcoming'} />
         </>
       );
-    } else if (selectedCategory === 'Planning' && showUpcoming) {
-      return <TripsList status={'planning'}/>;
+    } else if (selectedCategory === 'Planning') {
+      return <TripsList status={'planning'} />;
     } else if (selectedCategory === 'Completed' && showUpcoming) {
-      return <TripsList status={'complete'}/>;
+      return <TripsList status={'complete'} />;
     } else if (selectedCategory === '' && showUpcoming) {
       return (
         <>
           <Box sx={{ mb: 3 }}>
-            <FeaturedTrip/>
+            <FeaturedTrip />
           </Box>
-          <TripsList status={'upcoming'}/>
+          <TripsList status={'upcoming'} />
         </>
       );
     } else {
       return (
         <>
-          <FindTrip/>
+          <FindTrip />
         </>
       );
     }
@@ -120,8 +128,8 @@ function MyTrips() {
       <PictureBox sx={{ flexGrow: 1, marginBottom: 1, minHeight: '700px' }}>
         <>
           <img
-            src="https://justinkelefas.com/wp-content/uploads/2022/04/New-York-City-Sunset-sample-2.jpg"
-            alt="Full-width"
+            src='https://justinkelefas.com/wp-content/uploads/2022/04/New-York-City-Sunset-sample-2.jpg'
+            alt='Full-width'
           />
           <h1>My Trips</h1>
         </>
@@ -162,7 +170,7 @@ function MyTrips() {
                       transition: 'border-color 0.3s',
                     }}
                   >
-                    <ListItemText primary={category.text}/>
+                    <ListItemText primary={category.text} />
                   </ListItemButton>
                 </ListItem>
               ))}
@@ -177,8 +185,8 @@ function MyTrips() {
                 }}
               >
                 <Button
-                  variant="contained"
-                  color="primary"
+                  variant='contained'
+                  color='primary'
                   onClick={() => setOpenCreateTrip(true)}
                 >
                   Create a Trip
@@ -187,7 +195,7 @@ function MyTrips() {
             </List>
           </Box>
           <Box
-            component="main"
+            component='main'
             sx={{ flexGrow: 1, pl: 3, pt: 1, width: '100%' }}
           >
             {renderContent()}
