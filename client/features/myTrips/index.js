@@ -2,16 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import {
   Box,
-  Button,
+  Typography,
+  Toolbar,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
-  Toolbar,
+  Button,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTrips } from '../../store';
-import { CreateTrip, FeaturedTrip, FindTrip, TripsList } from './components';
+import { fetchTrips } from '../../store/slices/tripsSlice';
+import { fetchCities } from '../../store/slices/citiesSlice';
+import TripsList from './components/trips/tripsList';
+import FeaturedTrip from './components/trips/featuredTrip';
+import FindTrip from './components/trips/findTrip';
+import CreateTrip from './createTrip';
+
+const drawerWidth = 240;
 
 const PictureBox = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -38,18 +45,7 @@ const PictureBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-const CustomToolbar = styled(Toolbar)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.light,
-  color: theme.palette.primary.contrastText,
-  display: 'flex',
-  justifyContent: 'left',
-  border: '1px solid rgba(0, 0, 0, 0.12)',
-  borderRadius: '1px',
-  boxShadow: '0 2px 5px rgba(0, 0, 0, 0.15)',
-  padding: theme.spacing(1),
-}));
-
-function MyTrips() {
+function AllTrips() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const itineraries = useSelector((state) => state.trips.itineraries);
@@ -64,21 +60,21 @@ function MyTrips() {
     dispatch(fetchTrips(userId));
   }, [dispatch, userId]);
 
-  const [selectedCategory, setSelectedCategory] = useState('Upcoming');
-  const [showUpcoming, setShowUpcoming] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [openCreateTrip, setOpenCreateTrip] = useState(false);
 
-  useEffect(() => {
-    if (itineraries) {
-      const upcomingTrips = itineraries.filter(
-        (itinerary) => itinerary.status === 'upcoming'
-      );
-      setShowUpcoming(upcomingTrips.length > 0);
-    }
-  }, [itineraries]);
+  const statusChecker = (status) => {
+    let flag = false;
+    itineraries.map((itin) => {
+      if (itin.status === status) {
+        flag = true;
+      }
+    });
+    return flag;
+  };
 
   const renderContent = () => {
-    if (selectedCategory === 'Upcoming' && showUpcoming) {
+    if (selectedCategory === 'Upcoming' && statusChecker('upcoming')) {
       return (
         <>
           <Box sx={{ mb: 3 }}>
@@ -87,11 +83,11 @@ function MyTrips() {
           <TripsList status={'upcoming'} />
         </>
       );
-    } else if (selectedCategory === 'Planning') {
+    } else if (selectedCategory === 'Planning' && statusChecker('planning')) {
       return <TripsList status={'planning'} />;
-    } else if (selectedCategory === 'Completed' && showUpcoming) {
+    } else if (selectedCategory === 'Completed' && statusChecker('completed')) {
       return <TripsList status={'complete'} />;
-    } else if (selectedCategory === '' && showUpcoming) {
+    } else if (selectedCategory === '') {
       return (
         <>
           <Box sx={{ mb: 3 }}>
@@ -113,8 +109,6 @@ function MyTrips() {
     { text: 'Upcoming' },
     { text: 'Planning' },
     { text: 'Completed' },
-    { text: 'My Curated Trips' },
-    { text: 'Wishlist' },
   ];
 
   return (
@@ -206,4 +200,4 @@ function MyTrips() {
   );
 }
 
-export default MyTrips;
+export default AllTrips;
