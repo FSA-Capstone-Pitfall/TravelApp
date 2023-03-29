@@ -3,10 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchSingleUserProfile } from '../../../store/slices/usersSlice';
 import { Box, Grid } from '@mui/material';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
 
 const ProfileBody = () => {
   const dispatch = useDispatch();
