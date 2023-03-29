@@ -1,15 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import { Alert, AlertTitle, Box, Button, Grid } from '@mui/material';
 
 import MapWithMarkers from '../components/map';
 import BasicTimeline from '../myTrip/components/activityTimeline';
 import ActivityList from '../myTrip/components/activityList';
-import Button from '@mui/material/Button';
 import { fetchItinerary } from '../../store';
 
 const Item = styled(Box)(({ theme }) => ({
@@ -57,6 +55,8 @@ const SingleItinerary = () => {
   const dispatch = useDispatch();
   const { itineraryId } = useParams();
 
+  const [showSuccess, setShowSuccess] = useState(false);
+
   const itinerary = useSelector((state) => state.itineraries.itinerary);
   const user = useSelector((state) => state.auth.user);
 
@@ -82,6 +82,8 @@ const SingleItinerary = () => {
       const { data } = await axios.post(`/api/itineraries/${itineraryId}`, {
         userId,
       });
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
       return data;
     } catch (err) {
       console.error('error adding my itinerary: ', err);
@@ -116,10 +118,17 @@ const SingleItinerary = () => {
 
   return (
     <>
-      <PictureBox sx={{ flexGrow: 1, marginBottom: 3, minHeight: '650px' }}>
+      <PictureBox
+        sx={{
+          flexGrow: 1,
+          marginBottom: 3,
+          minHeight: '650px',
+        }}
+      >
         {itinerary.city ? (
           <>
-            <img src={itinerary.city.imageUrl} alt='Full-width' />
+            <img src={itinerary.imageUrl} alt='Full-width' />
+
             <h1>{itinerary.name}</h1>
             <h3>{itinerary.city.name}</h3>
           </>
@@ -167,6 +176,13 @@ const SingleItinerary = () => {
                     </Box>
                   </Item>
                 </Grid>
+              )}
+              {showSuccess && (
+                <Alert severity='success' sx={{ mt: 2 }}>
+                  <AlertTitle>
+                    Successfully added this itinerary to your trips.
+                  </AlertTitle>
+                </Alert>
               )}
             </Grid>
           </Grid>

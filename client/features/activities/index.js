@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import {
-  Box,
-  Container,
-  List,
-  ListItemButton,
-  Pagination,
-  Typography,
-} from '@mui/material';
+import { Box, Container, List, ListItemButton, Pagination, Typography, } from '@mui/material';
 import { Filters, Map } from '../components';
 import { capital, snake } from 'case';
 
@@ -100,7 +93,7 @@ const Activities = () => {
 
   return (
     <Box
-      component='section'
+      component="section"
       sx={{
         width: '100%',
       }}
@@ -120,14 +113,14 @@ const Activities = () => {
           backgroundColor: 'common.black',
         }}
       >
-        <Typography color='#fff' align='center' variant='h2'>
+        <Typography color="#fff" align="center" variant="h2">
           {displayName}
         </Typography>
         {description && (
           <Typography
-            color='#fff'
-            align='center'
-            variant='h5'
+            color="#fff"
+            align="center"
+            variant="h5"
             sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
           >
             {description}
@@ -135,7 +128,7 @@ const Activities = () => {
         )}
       </Box>
       <Container
-        maxWidth='lg'
+        maxWidth="lg"
         sx={{
           display: 'flex',
           flexDirection: 'column',
@@ -144,9 +137,9 @@ const Activities = () => {
         }}
       >
         <Typography
-          color='black'
-          align='center'
-          variant='h4'
+          color="black"
+          align="center"
+          variant="h4"
           sx={{ mb: 4 }}
           style={{ fontWeight: 'regular' }}
         >
@@ -184,14 +177,14 @@ const Activities = () => {
               >
                 <img
                   src={activity.imageUrl}
-                  loading='lazy'
-                  alt='blank'
+                  loading="lazy"
+                  alt="blank"
                   style={{
                     maxWidth: '100%',
                     height: '80%',
                   }}
                 />
-                <Typography variant='h5' align={'center'}>
+                <Typography variant="h5" align={'center'}>
                   {activity.name}
                 </Typography>
               </ListItemButton>
@@ -200,7 +193,7 @@ const Activities = () => {
         )}
         {totalPagesActivities && (
           <Pagination
-            id='activities-pagination'
+            id="activities-pagination"
             sx={{ mb: 10 }}
             count={totalPagesActivities}
             page={currPageActivities}
@@ -208,7 +201,7 @@ const Activities = () => {
           />
         )}
         {destinations.length > 0 ? (
-          <Map destinations={destinations} />
+          <Map destinations={destinations}/>
         ) : (
           <h3 style={{ color: 'black' }}>
             No activities found by selected categories.
@@ -217,7 +210,7 @@ const Activities = () => {
       </Container>
       {cityId && itineraries && (
         <Container
-          maxWidth='lg'
+          maxWidth="lg"
           sx={{
             mb: 10,
             display: 'flex',
@@ -226,9 +219,9 @@ const Activities = () => {
           }}
         >
           <Typography
-            color='black'
-            align='center'
-            variant='h4'
+            color="black"
+            align="center"
+            variant="h4"
             sx={{ mb: 4 }}
             style={{ fontWeight: 'regular' }}
           >
@@ -254,15 +247,24 @@ const Activities = () => {
                 }}
                 onClick={() => navigate(`/itineraries/${itinerary.id}`)}
               >
-                <Typography variant='h5' align={'center'}>
+                <Typography variant="h5" align={'center'}>
                   {itinerary.name}
                 </Typography>
+                <img
+                  src={itinerary.imageUrl}
+                  loading="lazy"
+                  alt="blank"
+                  style={{
+                    maxWidth: '100%',
+                    height: '80%',
+                  }}
+                />
               </ListItemButton>
             ))}
           </List>
           {totalPagesItins && (
             <Pagination
-              id='itineraries-pagination'
+              id="itineraries-pagination"
               sx={{ mb: 10 }}
               count={totalPagesItins}
               page={currPageItins}

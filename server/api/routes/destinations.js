@@ -44,7 +44,7 @@ router.get('/', async (req, res, next) => {
     // TODO make identifier case-insensitive
 
     const citiesWithDestinations = await City.findAll({
-      limit: 5,
+      limit: 9,
       where: whereClause,
       order: orderClause,
       include: includeClause
