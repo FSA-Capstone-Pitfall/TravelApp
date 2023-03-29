@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import { Map, ActivityTimeline, Calendar, ActivityList } from './components';
+import MapWithMarkers from '../components/map';
+import ActivityTimeline from './components/activityTimeline';
+import Calendar from './components/calendar';
+import ActivityList from './components/activityList';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchSingleTrip } from '../../store/slices/tripsSlice';
+import { editTripName } from '../../store/slices/tripsSlice';
 
 const Item = styled(Box)(({ theme }) => ({
   padding: 25,
@@ -76,6 +79,21 @@ function MyTrip() {
     setActivities(updatedActivities);
   };
 
+  const handleActivityUpdate = (updatedActivities) => {
+    setActivities(updatedActivities);
+  };
+
+  const handleNameChange = (name) => {
+    setTripName(name);
+    dispatch(
+      editTripName({
+        userId,
+        tripId,
+        name: name,
+      })
+    );
+  };
+
   useEffect(() => {
     const pullData = async () => {
       const userTrip = await dispatch(fetchSingleTrip({ userId, tripId }));
@@ -112,11 +130,34 @@ function MyTrip() {
     <>
       <PictureBox sx={{ flexGrow: 1, marginBottom: 3, minHeight: '650px' }}>
         {city ? (
-          <>
-            <img src={city.imageUrl} alt='Full-width' />
-            <h1>{tripName}</h1>
-            <h3>{city.name}</h3>
-          </>
+          editMode ? (
+            <>
+              <img src={city.imageUrl} alt='Full-width' />
+              <h1
+                contentEditable={true}
+                onBlur={(e) => {
+                  console.log(e.target.innerText);
+                  handleNameChange(e.target.innerText);
+                }}
+                suppressContentEditableWarning={true}
+                style={{
+                  backgroundColor: 'darkgray',
+                  border: '2px solid black',
+                  borderRadius: '4px',
+                  padding: '4px',
+                }}
+              >
+                {tripName}
+              </h1>
+              <h3>{city.name}</h3>
+            </>
+          ) : (
+            <>
+              <img src={city.imageUrl} alt='Full-width' />
+              <h1>{tripName}</h1>
+              <h3>{city.name}</h3>
+            </>
+          )
         ) : (
           <h3>Add activity to see details</h3>
         )}
@@ -129,6 +170,7 @@ function MyTrip() {
                 <Item sx={{ marginBottom: 1 }}>
                   <h2>Trip Timeline</h2>
                   <ActivityTimeline
+                    onActivityUpdate={handleActivityUpdate}
                     activities={activities}
                     city={city}
                     tripDuration={tripDuration}
@@ -138,7 +180,7 @@ function MyTrip() {
               <Grid item xs={6}>
                 <Item sx={{ marginBottom: 1 }}>
                   {destinations.length > 0 ? (
-                    <Map destinations={destinations} />
+                    <MapWithMarkers destinations={destinations} />
                   ) : (
                     <h3>Add activity to see map</h3>
                   )}
@@ -177,28 +219,30 @@ function MyTrip() {
                       </Button>
                     </Box>
                     {editMode ? (
-                      <Button
-                        // component={Link}
-                        // to='/activities'
-                        variant='contained'
-                        size='large'
-                        sx={{
-                          display: 'block',
-                          width: '100%',
-                          textDecoration: 'none',
-                        }}
-                        onClick={() =>
-                          navigate('/activities', {
-                            state: {
-                              cityId: city.id,
-                              imageUrl: city.imageUrl,
-                              displayName: city.name,
-                            },
-                          })
-                        }
-                      >
-                        Add More Activities
-                      </Button>
+                      <>
+                        <Box sx={{ marginBottom: '16px' }}>
+                          <Button
+                            variant='contained'
+                            size='large'
+                            sx={{
+                              display: 'block',
+                              width: '100%',
+                              textDecoration: 'none',
+                            }}
+                            onClick={() =>
+                              navigate('/activities', {
+                                state: {
+                                  cityId: city.id,
+                                  imageUrl: city.imageUrl,
+                                  displayName: city.name,
+                                },
+                              })
+                            }
+                          >
+                            Add More Activities
+                          </Button>
+                        </Box>
+                      </>
                     ) : null}
                   </Box>
                 </Item>
@@ -213,6 +257,7 @@ function MyTrip() {
                   activitiesArr={activities}
                   editMode={editMode}
                   onActivityDelete={handleActivityDelete}
+                  onActivityUpdate={handleActivityUpdate}
                 />
               </Item>
             </Box>

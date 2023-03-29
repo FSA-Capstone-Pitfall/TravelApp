@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import ActivityCard from './activityCard';
+import MediaControlCard from './activityCard';
 import anime from 'animejs';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { deleteTripActvity } from '../../../store/slices/tripsSlice';
+import {
+  deleteTripActvity,
+  editTripActivity,
+} from '../../../store/slices/tripsSlice';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -36,6 +39,7 @@ export default function ActivityList({
   activitiesArr,
   editMode,
   onActivityDelete,
+  onActivityUpdate,
 }) {
   const dispatch = useDispatch();
   const [activities, setActivities] = useState();
@@ -119,6 +123,7 @@ export default function ActivityList({
       return null;
     });
   }
+  tripDays.sort((a, b) => a - b);
 
   const handleDelete = (activityId, tripId, userId) => {
     const updatedActivities = activities.filter((activity) => {
@@ -127,6 +132,30 @@ export default function ActivityList({
     setActivities(updatedActivities);
     onActivityDelete(updatedActivities);
     dispatch(deleteTripActvity({ userId, tripId, activityId }));
+  };
+
+  const handleUpdate = ({ activity, date, notes }) => {
+    const updatedActivities = activities.map((element) => {
+      if (activity.id === element.id) {
+        return {
+          ...element,
+          date: date,
+          notes: notes,
+        };
+      }
+      return element;
+    });
+    setActivities(updatedActivities);
+    onActivityUpdate(updatedActivities);
+    dispatch(
+      editTripActivity({
+        userId,
+        tripId,
+        activity,
+        date,
+        notes,
+      })
+    );
   };
 
   const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
@@ -159,9 +188,10 @@ export default function ActivityList({
                     }}
                     key={activity.id}
                   >
-                    <ActivityCard
+                    <MediaControlCard
                       activity={activity}
                       onDelete={handleDelete}
+                      onUpdate={handleUpdate}
                       data-index={index}
                       editMode={editMode}
                       tripId={tripId}
