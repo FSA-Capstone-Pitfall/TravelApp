@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import {
   Box,
-  Typography,
-  Toolbar,
   List,
   ListItem,
   ListItemButton,
@@ -12,13 +10,10 @@ import {
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrips } from '../../store/slices/tripsSlice';
-import { fetchCities } from '../../store/slices/citiesSlice';
-import TripsList from './components/trips/tripsList';
-import FeaturedTrip from './components/trips/featuredTrip';
-import FindTrip from './components/trips/findTrip';
-import CreateTrip from './createTrip';
-
-const drawerWidth = 240;
+import TripsList from './components/tripsList';
+import FeaturedTrip from './components/featuredTrip';
+import FindTrip from './components/findTrip';
+import CreateTrip from './components/createTrip';
 
 const PictureBox = styled(Box)(({ theme }) => ({
   position: 'relative',
