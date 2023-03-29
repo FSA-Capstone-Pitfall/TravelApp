@@ -29,10 +29,8 @@ const PictureBox = styled(Box)(({ theme }) => ({
     width: '100%',
     height: '100%',
     objectFit: 'cover',
-    // opacity: 0.5,
-
-    // backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5))`,
-    // linearGradient: 'rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)'
+    opacity: 0.5,
+    backgroundColor: '#000',
   },
   '& h1': {
     position: 'absolute',
@@ -62,7 +60,6 @@ const SingleItinerary = () => {
   const itinerary = useSelector((state) => state.itineraries.itinerary);
   const user = useSelector((state) => state.auth.user);
 
-
   function comparePositions(a, b) {
     let dateA = new Date(a.date);
     let dateB = new Date(b.date);
@@ -82,9 +79,11 @@ const SingleItinerary = () => {
 
   const copyItinerary = async ({ itineraryId, userId }) => {
     try {
-      const { data } = await axios.post(`/api/itineraries/${itineraryId}`, { userId });
-      setShowSuccess(true)
-      setTimeout(() => setShowSuccess(false), 3000)
+      const { data } = await axios.post(`/api/itineraries/${itineraryId}`, {
+        userId,
+      });
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
       return data;
     } catch (err) {
       console.error('error adding my itinerary: ', err);
@@ -111,20 +110,24 @@ const SingleItinerary = () => {
     );
     const endDate = new Date(
       itinerary.itinerary_activities.activities[
-      itinerary.itinerary_activities.activities.length - 1
-        ].date
+        itinerary.itinerary_activities.activities.length - 1
+      ].date
     );
     tripDuration = Math.round((endDate - startDate) / 86400000);
   }
 
   return (
     <>
-      <PictureBox sx={{
-        flexGrow: 1, marginBottom: 3, minHeight: '650px'
-      }}>
+      <PictureBox
+        sx={{
+          flexGrow: 1,
+          marginBottom: 3,
+          minHeight: '650px',
+        }}
+      >
         {itinerary.city ? (
           <>
-            <img src={itinerary.imageUrl} alt="Full-width"/>
+            <img src={itinerary.imageUrl} alt='Full-width' />
 
             <h1>{itinerary.name}</h1>
             <h3>{itinerary.city.name}</h3>
@@ -150,40 +153,44 @@ const SingleItinerary = () => {
               <Grid item xs={6}>
                 <Item sx={{ marginBottom: 1 }}>
                   {destinations.length > 0 ? (
-                    <MapWithMarkers destinations={destinations}/>
+                    <MapWithMarkers destinations={destinations} />
                   ) : (
                     <h3>Loading...</h3>
                   )}
                 </Item>
               </Grid>
-              {user && user.id !== itinerary.authorId && <Grid item xs={6}>
-                <Item sx={{ marginBottom: 1 }}>
-                  <Box sx={{ marginBottom: '16px' }}>
-                    <Button
-                      variant="contained"
-                      size="large"
-                      sx={{ display: 'block', width: '100%' }}
-                      onClick={async () => await copyItinerary({ itineraryId, userId: user.id })}
-                    >
-                      Add to MyTrips
-                    </Button>
-                  </Box>
-                </Item>
-              </Grid>}
-              {
-                showSuccess && (
-                  <Alert severity="success" sx={{ mt: 2 }}>
-                    <AlertTitle>Successfully added this itinerary to your trips.</AlertTitle>
-                  </Alert>
-                )
-              }
+              {user && user.id !== itinerary.authorId && (
+                <Grid item xs={6}>
+                  <Item sx={{ marginBottom: 1 }}>
+                    <Box sx={{ marginBottom: '16px' }}>
+                      <Button
+                        variant='contained'
+                        size='large'
+                        sx={{ display: 'block', width: '100%' }}
+                        onClick={async () =>
+                          await copyItinerary({ itineraryId, userId: user.id })
+                        }
+                      >
+                        Add to MyTrips
+                      </Button>
+                    </Box>
+                  </Item>
+                </Grid>
+              )}
+              {showSuccess && (
+                <Alert severity='success' sx={{ mt: 2 }}>
+                  <AlertTitle>
+                    Successfully added this itinerary to your trips.
+                  </AlertTitle>
+                </Alert>
+              )}
             </Grid>
           </Grid>
           <Grid item xs={4} sx={{ textAlign: 'left' }}>
             <Box sx={{ maxHeight: '1200px', overflowY: 'auto', flex: 1 }}>
               <Item>
                 <h2>Trip Details</h2>
-                <ActivityList activitiesArr={activitiesArr}/>
+                <ActivityList activitiesArr={activitiesArr} />
               </Item>
             </Box>
           </Grid>

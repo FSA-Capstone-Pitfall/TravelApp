@@ -18,7 +18,7 @@ const App = () => {
           width: '100%',
           height: '100%',
           zIndex: -1,
-          background: `linear-gradient(to bottom, ${theme.palette.primary.main}, ${theme.palette.primary.main} 100px, white 300px)`,
+          background: `linear-gradient(to bottom, ${theme.palette.primary.main}, ${theme.palette.primary.main} 68px, white 68px)`,
         }}
       />
       <div style={{ position: 'relative', zIndex: 1 }}>

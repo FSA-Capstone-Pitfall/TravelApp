@@ -59,11 +59,11 @@ function ProductValues() {
       sx={{
         display: 'flex',
         overflow: 'hidden',
-        bgcolor: 'secondary.light',
+        bgcolor: 'primary',
         mt: '0vh',
       }}
     >
-      <Container sx={{ mt: 15, mb: 30, display: 'flex', position: 'relative' }}>
+      <Container sx={{ mt: 15, mb: 20, display: 'flex', position: 'relative' }}>
         <Box
           component='img'
           src='https://gitlab.create-ion.at/lt/material-ui/-/raw/v4.0.2/static/themes/onepirate/productCurvyLines.png'
@@ -71,11 +71,11 @@ function ProductValues() {
           sx={{ pointerEvents: 'none', position: 'absolute', top: -180 }}
         />
         <Grid container spacing={5}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <Box ref={(el) => (itemRefs.current[0] = el)} sx={item}>
               <Avatar
                 alt='Locals'
-                src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
+                src='https://media.licdn.com/dms/image/D4E03AQFvqxoFbLvQVA/profile-displayphoto-shrink_800_800/0/1676475244765?e=1685577600&v=beta&t=SzzwQvMvoizr6z7vpXJrSjVNYlA7qTBMO9nAR-_5huw'
                 sx={{ width: 200, height: 200 }}
               />
               <Typography variant='h6' sx={{ my: 5 }}>
@@ -88,11 +88,11 @@ function ProductValues() {
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <Box ref={(el) => (itemRefs.current[1] = el)} sx={item}>
               <Avatar
                 alt='Experiences'
-                src='https://images.unsplash.com/photo-1551027654-f7b9f56804c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
+                src='https://media.licdn.com/dms/image/C5603AQEpfzL16P8KKA/profile-displayphoto-shrink_800_800/0/1654816121419?e=1685577600&v=beta&t=r2HkjhuB5a-__QSSTe4g3hkMMuX-l1v4x9PTOqUIQ8c'
                 sx={{ width: 200, height: 200 }}
               />
               <Typography variant='h6' sx={{ my: 5 }}>
@@ -107,11 +107,11 @@ function ProductValues() {
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <Box ref={(el) => (itemRefs.current[2] = el)} sx={item}>
               <Avatar
                 alt='Exclusive'
-                src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80'
+                src='https://media.licdn.com/dms/image/C4E03AQGZmRPGVULmjQ/profile-displayphoto-shrink_800_800/0/1602177553284?e=1685577600&v=beta&t=TOTXSL7mek_gAVzk8KFZZg-9Bf5oHDiEGC1vEObNK_0'
                 sx={{ width: 200, height: 200 }}
               />
               <Typography variant='h6' sx={{ my: 5 }}>
@@ -122,6 +122,24 @@ function ProductValues() {
                   "By registering, you will you'll gain access to exclusive itineraries"
                 }
                 {' tailored to your interests and preferences.'}
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <Box ref={(el) => (itemRefs.current[2] = el)} sx={item}>
+              <Avatar
+                alt='Exclusive'
+                src='https://media.licdn.com/dms/image/C5603AQHdJ3gZbfIrCw/profile-displayphoto-shrink_800_800/0/1610292910008?e=1685577600&v=beta&t=yTrYaseBEMQEg-W9r2PwaLZ1WOqmyF75NBinHg7kRjA'
+                sx={{ width: 200, height: 200 }}
+              />
+              <Typography variant='h6' sx={{ my: 5 }}>
+                Expand your horizons
+              </Typography>
+              <Typography variant='h5'>
+                {
+                  'Browse cities and itineraries to find the excitement you never knew you were looking for. '
+                }
+                {''}
               </Typography>
             </Box>
           </Grid>
