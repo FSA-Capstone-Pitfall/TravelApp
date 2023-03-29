@@ -71,21 +71,21 @@ function AllTrips() {
     dispatch(fetchTrips(userId));
   }, [dispatch, userId]);
 
-  const [selectedCategory, setSelectedCategory] = useState('Upcoming');
-  const [showUpcoming, setShowUpcoming] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [openCreateTrip, setOpenCreateTrip] = useState(false);
 
-  useEffect(() => {
-    if (itineraries) {
-      const upcomingTrips = itineraries.filter(
-        (itinerary) => itinerary.status === 'upcoming'
-      );
-      setShowUpcoming(upcomingTrips.length > 0);
-    }
-  }, [itineraries]);
+  const statusChecker = (status) => {
+    let flag = false;
+    itineraries.map((itin) => {
+      if (itin.status === status) {
+        flag = true;
+      }
+    });
+    return flag;
+  };
 
   const renderContent = () => {
-    if (selectedCategory === 'Upcoming' && showUpcoming) {
+    if (selectedCategory === 'Upcoming' && statusChecker('upcoming')) {
       return (
         <>
           <Box sx={{ mb: 3 }}>
@@ -94,11 +94,11 @@ function AllTrips() {
           <TripsList status={'upcoming'} />
         </>
       );
-    } else if (selectedCategory === 'Planning' && showUpcoming) {
+    } else if (selectedCategory === 'Planning' && statusChecker('planning')) {
       return <TripsList status={'planning'} />;
-    } else if (selectedCategory === 'Completed' && showUpcoming) {
+    } else if (selectedCategory === 'Completed' && statusChecker('completed')) {
       return <TripsList status={'complete'} />;
-    } else if (selectedCategory === '' && showUpcoming) {
+    } else if (selectedCategory === '') {
       return (
         <>
           <Box sx={{ mb: 3 }}>
@@ -120,8 +120,6 @@ function AllTrips() {
     { text: 'Upcoming' },
     { text: 'Planning' },
     { text: 'Completed' },
-    { text: 'My Curated Trips' },
-    { text: 'Wishlist' },
   ];
 
   return (

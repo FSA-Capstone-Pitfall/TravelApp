@@ -997,6 +997,15 @@ const USER_SEED_DATA = [
     email: 'ahalfacree2r@nymag.com',
   },
   {
+    firstName: 'seed',
+    lastName: 'data',
+    state: 'Mississippi',
+    city: 'Jackson',
+    role: 'user',
+    password: '123123',
+    email: 'dfjwe@nymag.com',
+  },
+  {
     firstName: 'LK',
     lastName: 'Watana',
     state: 'Nevada',
@@ -2311,7 +2320,7 @@ const ITINERARY_SEED_DATA = [
   {
     name: "Lisa's Dream Day",
     duration: 1,
-    authorId: 101,
+    authorId: 102,
     cityId: 3,
   },
 ];
@@ -2669,7 +2678,7 @@ const USER_ITINERARY_SEED_DATA = [
   },
   {
     status: 'planning',
-    userId: 101,
+    userId: 102,
     itineraryId: 10,
   },
 ];
