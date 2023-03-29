@@ -1618,6 +1618,72 @@ const ACTIVITY_SEED_DATA = [
       'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/db/6f/80/see-the-world-s-biggest.jpg?w=1200&h=1200&s=1',
   },
   {
+    name: 'Velveteen Rabbit',
+    address: '1218 S Main St, Las Vegas, NV 89104',
+    duration: 90,
+    zipcode: '89104',
+    googleMap: '36.155183,-115.148455',
+    description:
+      'A chic and intimate craft cocktail bar in the heart of the Arts District, known for its innovative drinks and whimsical decor.',
+    categories: ['bar', 'culture'],
+    destinationId: 12, // activityId 20
+  },
+  {
+    name: 'Glam Factory Vintage',
+    address: '211 E Colorado Ave, Las Vegas, NV 89104',
+    duration: 60,
+    zipcode: '89104',
+    googleMap: '36.160841,-115.141925',
+    description:
+      'A boutique vintage store in the Arts District, specializing in unique and glamorous fashion finds from the 1920s to the 1980s.',
+    categories: ['shopping', 'culture'],
+    destinationId: 12,
+  },
+  {
+    name: 'Alt Rebel',
+    address: '1228 S Main St, Las Vegas, NV 89104',
+    duration: 60,
+    zipcode: '89104',
+    googleMap: '36.155114,-115.148036',
+    description:
+      'A trendy boutique in the Arts District, featuring a curated selection of clothing, accessories, and home decor with a bohemian edge.',
+    categories: ['shopping', 'culture'],
+    destinationId: 12,
+  },
+  {
+    name: 'Silver Stamp Bar',
+    address: '113 N 4th St, Las Vegas, NV 89101',
+    duration: 60,
+    zipcode: '89101',
+    googleMap: '36.168361,-115.143055',
+    description:
+      'A hip and intimate bar in the heart of Downtown Las Vegas, featuring craft cocktails, live music, and a laid-back atmosphere.',
+    categories: ['bar'],
+    destinationId: 12,
+  },
+  {
+    name: 'Viva Las Arepas',
+    address: '1616 S Las Vegas Blvd, Las Vegas, NV 89104',
+    duration: 45,
+    zipcode: '89104',
+    googleMap: '36.148117,-115.155428',
+    description:
+      'A beloved Venezuelan restaurant in the Arts District, serving up delicious and authentic arepas stuffed with a variety of fillings.',
+    categories: ['food', 'culture'],
+    destinationId: 12,
+  },
+  {
+    name: 'Kaiseki Yuzu',
+    address: '1716 W Horizon Ridge Pkwy #100, Henderson, NV 89012',
+    duration: 120,
+    zipcode: '89012',
+    googleMap: '36.004719,-115.086050',
+    description:
+      'A high-end Japanese restaurant in nearby Henderson, specializing in multi-course kaiseki dinners featuring seasonal ingredients and exquisite presentation.',
+    categories: ['food', 'culture'],
+    destinationId: 12,
+  },
+  {
     name: 'The Metropolitan Museum of Art',
     address: '1000 5th Ave, New York',
     duration: 180,
@@ -1934,7 +2000,7 @@ const ACTIVITY_SEED_DATA = [
     destinationId: 22,
   },
   {
-    name: 'Ripley’s Believe It or Not! San Francisco',
+    name: "Ripley's Believe It or Not! San Francisco",
     address: '175 Jefferson St',
     duration: 120,
     zipcode: '94133',
@@ -2119,6 +2185,72 @@ const ACTIVITY_SEED_DATA = [
     categories: ['music', 'nightlife'],
     destinationId: 30,
   },
+  {
+    name: 'Arizona Science Center',
+    address: '600 E Washington St, Phoenix, AZ 85004',
+    duration: 180,
+    zipcode: '85004',
+    googleMap: '33.44842359336351, -112.06620839639112',
+    description:
+      'A hands-on science museum featuring interactive exhibits, a planetarium, and a giant-screen theater.',
+    categories: ['museum', 'science'],
+    destinationId: 31, // Roosevelt Row
+  },
+  {
+    name: 'Phoenix Art Museum',
+    address: '1625 N Central Ave, Phoenix, AZ 85004',
+    duration: 120,
+    zipcode: '85004',
+    googleMap: '33.468287437953965, -112.07388135639618',
+    description:
+      'One of the largest art museums in the Southwest, featuring a wide variety of modern and contemporary art, American art, and fashion design.',
+    categories: ['art', 'museum'],
+    destinationId: 32,
+  },
+  {
+    name: 'South Mountain Park',
+    address: '10919 S Central Ave, Phoenix, AZ 85042',
+    duration: 240,
+    zipcode: '85042',
+    googleMap: '33.35000277868813, -112.06467737139706',
+    description:
+      'A large natural park in Phoenix, featuring scenic trails, picnic areas, and a variety of outdoor activities.',
+    categories: ['nature', 'park'],
+    destinationId: 33,
+  },
+  {
+    name: 'Taliesin West',
+    address: '12621 N Frank Lloyd Wright Blvd, Scottsdale, AZ 85259',
+    duration: 180,
+    zipcode: '85259',
+    googleMap: '33.606001869398, -111.84401590330692',
+    description:
+      'The winter home and architectural studio of famed architect Frank Lloyd Wright, now a national historic landmark.',
+    categories: ['landmark', 'culture'],
+    destinationId: 34,
+  },
+  {
+    name: 'Scottsdale Fashion Square',
+    address: '7014 E Camelback Rd, Scottsdale, AZ 85251',
+    duration: 180,
+    zipcode: '85251',
+    googleMap: '33.50258029676538, -111.91813605811913',
+    description:
+      'Arizonas largest shopping mall, featuring luxury brands, department stores, and a variety of dining options.',
+    categories: ['shopping', 'food'],
+    destinationId: 34,
+  },
+  {
+    name: 'Camelback Mountain',
+    address: '4925 E McDonald Dr, Phoenix, AZ 85018',
+    duration: 180,
+    zipcode: '85018',
+    googleMap: '33.522400217058876, -111.96534804774205',
+    description:
+      'A popular hiking spot in Phoenix, known for its stunning views of the city and its challenging trails.',
+    categories: ['nature', 'park'],
+    destinationId: 35,
+  },
 ];
 
 const ITINERARY_SEED_DATA = [
@@ -2174,6 +2306,12 @@ const ITINERARY_SEED_DATA = [
     name: 'Las Vegas Off the Strip Adventure',
     duration: 3,
     authorId: 67,
+    cityId: 3,
+  },
+  {
+    name: "Lisa's Dream Day",
+    duration: 1,
+    authorId: 101,
     cityId: 3,
   },
 ];
@@ -2360,6 +2498,32 @@ const ITINERARY_ACTIVITY_SEED_DATA = [
     activityId: 16, // Mob Museum
     itineraryId: 9,
   },
+
+  // Lisa's Dream Day
+  {
+    activityId: 20, // Velveteen Rabbit
+    itineraryId: 10,
+  },
+  {
+    activityId: 21, // Glam Factory Vintage
+    itineraryId: 10,
+  },
+  {
+    activityId: 22, // Alt Rebel
+    itineraryId: 10,
+  },
+  {
+    activityId: 23, // Silver Stamp Bar
+    itineraryId: 10,
+  },
+  {
+    activityId: 24, // Viva Las Arepas
+    itineraryId: 10,
+  },
+  {
+    activityId: 25, // Kaiseki Yuzu
+    itineraryId: 10,
+  },
 ];
 
 const USER_ITINERARY_SEED_DATA = [
@@ -2502,6 +2666,11 @@ const USER_ITINERARY_SEED_DATA = [
     status: 'complete',
     userId: 71,
     itineraryId: 9,
+  },
+  {
+    status: 'planning',
+    userId: 101,
+    itineraryId: 10,
   },
 ];
 
