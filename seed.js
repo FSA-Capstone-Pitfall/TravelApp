@@ -996,6 +996,24 @@ const USER_SEED_DATA = [
     password: 'marinesdrool',
     email: 'ahalfacree2r@nymag.com',
   },
+  {
+    firstName: 'seed',
+    lastName: 'data',
+    state: 'Mississippi',
+    city: 'Jackson',
+    role: 'user',
+    password: '123123',
+    email: 'dfjwe@nymag.com',
+  },
+  {
+    firstName: 'LK',
+    lastName: 'Watana',
+    state: 'Nevada',
+    city: 'Las Vegas',
+    role: 'user',
+    password: 'password123',
+    email: 'lk@lk.com',
+  },
 ];
 
 const CITY_SEED_DATA = [
@@ -1019,6 +1037,41 @@ const CITY_SEED_DATA = [
     state: 'Nevada',
     imageUrl:
       'https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1748&q=80',
+  },
+  {
+    name: 'Los Angeles',
+    tag: 'LA',
+    state: 'California',
+    imageUrl:
+      'https://images.unsplash.com/flagged/photo-1575555201693-7cd442b8023f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80',
+  },
+  {
+    name: 'San Francisco',
+    tag: 'SF',
+    state: 'California',
+    imageUrl:
+      'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80',
+  },
+  {
+    name: 'Nashville',
+    tag: 'NASH',
+    state: 'Tennessee',
+    imageUrl:
+      'https://images.unsplash.com/photo-1588897159261-328f3f53715f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1769&q=80',
+  },
+  {
+    name: 'Phoenix',
+    tag: 'PHX',
+    state: 'Arizona',
+    imageUrl:
+      'https://images.unsplash.com/photo-1589046207215-b5ee3097bafc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+  },
+  {
+    name: 'Chicago',
+    tag: 'CHI',
+    state: 'Illinois',
+    imageUrl:
+      'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1888&q=80',
   },
 ];
 
@@ -1147,6 +1200,181 @@ const DESTINATION_SEED_DATA = [
       'An unincorporated area and census-designated place south of Las Vegas, containing much of The Strip, McCarran International Airport, and the University of Nevada, Las Vegas.',
     googleMap: '36.09838250246821, -115.15021632804732',
     cityId: 3,
+  },
+  {
+    name: 'Hollywood',
+    description:
+      'A famous neighborhood in Los Angeles, known for its entertainment industry, iconic landmarks, and vibrant nightlife.',
+    googleMap: '34.09466984415059, -118.32948274394971',
+    cityId: 4, // Los Angeles // destination 16
+  },
+  {
+    name: 'Santa Monica',
+    description:
+      'A coastal city in Los Angeles, known for its beach, historic pier, and upscale shopping and dining.',
+    googleMap: '34.02576516146256, -118.4855712554187',
+    cityId: 4,
+  },
+  {
+    name: 'Hollywood Hills',
+    description:
+      'A hillside neighborhood in Los Angeles, known for its celebrity homes, hiking trails, and scenic views of the city.',
+    googleMap: '34.12152646505826, -118.35019388049225',
+    cityId: 4,
+  },
+  {
+    name: 'Beverly Hills',
+    description:
+      'An upscale neighborhood in Los Angeles, known for its luxury shopping, celebrity homes, and iconic landmarks like the Beverly Hills sign.',
+    googleMap: '34.07362060943819, -118.4003561952252',
+    cityId: 4,
+  },
+  {
+    name: 'Venice Beach',
+    description:
+      'A lively beachfront neighborhood in Los Angeles, known for its colorful boardwalk, street performers, and eclectic shops and restaurants.',
+    googleMap: '33.986319074670125, -118.4726518537468',
+    cityId: 4,
+  },
+  {
+    name: 'Union Square',
+    description:
+      'A vibrant shopping, dining, and entertainment hub located in the heart of downtown San Francisco.',
+    googleMap: '37.78830854524724, -122.40729935793625',
+    cityId: 5, // San Francisco
+  },
+  {
+    name: 'The Mission',
+    description:
+      'A vibrant neighborhood in San Francisco, known for its colorful murals, hipster cafes, and a variety of bars and restaurants.',
+    googleMap: '37.75969726208188, -122.41920191112246',
+    cityId: 5,
+  },
+  {
+    name: "Fisherman's Wharf",
+    description:
+      'A popular waterfront area in San Francisco known for its seafood, historic attractions, and scenic bay views.',
+    googleMap: '37.80768583328876, -122.41567408472162',
+    cityId: 5,
+  },
+  {
+    name: 'Chinatown',
+    description:
+      'One of the oldest and largest Chinatowns outside of Asia, featuring traditional architecture, shops, and restaurants.',
+    googleMap: '37.79421299647998, -122.40656662079232',
+    cityId: 5,
+  },
+  {
+    name: 'Golden Gate Park',
+    description:
+      'A large urban park in San Francisco, featuring gardens, lakes, museums, and a variety of outdoor activities.',
+    googleMap: '37.769422011128994, -122.4862141090797',
+    cityId: 5,
+  },
+  {
+    name: 'East Nashville',
+    description:
+      'A hip and artsy neighborhood in Nashville, known for its vintage shops, live music venues, and a variety of restaurants and bars.',
+    googleMap: '36.17710372232674, -86.75630173176619',
+    cityId: 6, // Nashville
+  },
+  {
+    name: 'Downtown Nashville',
+    description:
+      'The bustling heart of Nashville, featuring honky-tonks, live music venues, museums, and a variety of dining options.',
+    googleMap: '36.16283008158482, -86.78138157318957',
+    cityId: 6,
+  },
+  {
+    name: 'Germantown',
+    description:
+      'A historic and trendy neighborhood in Nashville, known for its Victorian houses, boutique shops, and a variety of restaurants and bars.',
+    googleMap: '36.18098482736892, -86.7914281941745',
+    cityId: 6,
+  },
+  {
+    name: 'The Gulch',
+    description:
+      'A hip and urban neighborhood in Nashville, known for its trendy boutiques, rooftop bars, and a variety of dining options.',
+    googleMap: '36.1516302341864, -86.78863496022302',
+    cityId: 6,
+  },
+  {
+    name: '12 South',
+    description:
+      'A trendy neighborhood in Nashville, known for its boutique shops, coffeehouses, and a variety of restaurants and bars.',
+    googleMap: '36.12326741851816, -86.79046484175546',
+    cityId: 6,
+  },
+  {
+    name: 'Roosevelt Row',
+    description:
+      'A creative and artsy district in Phoenix, known for its colorful murals, galleries, and a variety of cafes and bars.',
+    googleMap: '33.458880017079934, -112.07148132627115',
+    cityId: 7, // Phoenix
+  },
+  {
+    name: 'Central Phoenix',
+    description:
+      'A diverse and vibrant neighborhood in the heart of Phoenix, known for its cultural events, delicious food, and historic homes.',
+    googleMap: '33.47969615578877, -112.07315391433247',
+    cityId: 7,
+  },
+  {
+    name: 'South Mountain Park',
+    description:
+      'A large natural park in Phoenix, featuring scenic trails, picnic areas, and a variety of outdoor activities.',
+    googleMap: '33.35000277868813, -112.06467737139706',
+    cityId: 7,
+  },
+  {
+    name: 'Scottsdale',
+    description:
+      'A vibrant city adjacent to Phoenix, known for its luxury resorts, shopping, and art galleries, as well as its vibrant nightlife.',
+    googleMap: '33.50258029676538, -111.91813605811913',
+    cityId: 7,
+  },
+  {
+    name: 'Arcadia',
+    description:
+      'A residential neighborhood in Phoenix known for its large, lushly landscaped properties, wide streets, and charming, pedestrian-friendly shopping district.',
+    googleMap: '33.50711049742911, -111.96689654192532',
+    cityId: 7,
+  },
+  {
+    name: 'Wicker Park',
+    description:
+      'A trendy neighborhood in Chicago known for its artistic vibe, independent shops, and a variety of bars and restaurants.',
+    googleMap: '41.90706616164699, -87.6742709853255',
+    cityId: 8, // Chicago
+  },
+  {
+    name: 'The Magnificent Mile',
+    description:
+      'A prestigious shopping district in Chicago, featuring high-end stores, luxury hotels, and a variety of dining options.',
+    googleMap: '41.89295504575216, -87.62412571251032',
+    cityId: 8,
+  },
+  {
+    name: 'Lincoln Park',
+    description:
+      'A large public park in Chicago, featuring a zoo, conservatory, beaches, and a variety of outdoor activities.',
+    googleMap: '41.924896731634316, -87.63550328238314',
+    cityId: 8,
+  },
+  {
+    name: 'Pilsen',
+    description:
+      'A vibrant and artistic neighborhood in Chicago, known for its Latino culture, colorful murals, and a variety of restaurants and bars.',
+    googleMap: '41.856849503271575, -87.67532661193166',
+    cityId: 8,
+  },
+  {
+    name: 'West Loop',
+    description:
+      'A vibrant neighborhood in Chicago, known for its trendy restaurants, bars, and art galleries.',
+    googleMap: '41.88265608288281, -87.64454137644368',
+    cityId: 8,
   },
 ];
 
@@ -1381,7 +1609,7 @@ const ACTIVITY_SEED_DATA = [
     description:
       'A picturesque, man-made lake featuring upscale resorts, golf courses, and a Mediterranean-style village.',
     categories: ['nature'],
-    destinationId: 14, // Henderson
+    destinationId: 14, // Henderson //
     imageUrl:
       'https://travelnevada.com/wp-content/uploads/2021/01/LakeLV_Featured.jpg',
   },
@@ -1397,6 +1625,72 @@ const ACTIVITY_SEED_DATA = [
     destinationId: 12, // Downtown Las Vegas
     imageUrl:
       'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/db/6f/80/see-the-world-s-biggest.jpg?w=1200&h=1200&s=1',
+  },
+  {
+    name: 'Velveteen Rabbit',
+    address: '1218 S Main St, Las Vegas, NV 89104',
+    duration: 90,
+    zipcode: '89104',
+    googleMap: '36.155183,-115.148455',
+    description:
+      'A chic and intimate craft cocktail bar in the heart of the Arts District, known for its innovative drinks and whimsical decor.',
+    categories: ['bar', 'culture'],
+    destinationId: 12, // activityId 20
+  },
+  {
+    name: 'Glam Factory Vintage',
+    address: '211 E Colorado Ave, Las Vegas, NV 89104',
+    duration: 60,
+    zipcode: '89104',
+    googleMap: '36.160841,-115.141925',
+    description:
+      'A boutique vintage store in the Arts District, specializing in unique and glamorous fashion finds from the 1920s to the 1980s.',
+    categories: ['shopping', 'culture'],
+    destinationId: 12,
+  },
+  {
+    name: 'Alt Rebel',
+    address: '1228 S Main St, Las Vegas, NV 89104',
+    duration: 60,
+    zipcode: '89104',
+    googleMap: '36.155114,-115.148036',
+    description:
+      'A trendy boutique in the Arts District, featuring a curated selection of clothing, accessories, and home decor with a bohemian edge.',
+    categories: ['shopping', 'culture'],
+    destinationId: 12,
+  },
+  {
+    name: 'Silver Stamp Bar',
+    address: '113 N 4th St, Las Vegas, NV 89101',
+    duration: 60,
+    zipcode: '89101',
+    googleMap: '36.168361,-115.143055',
+    description:
+      'A hip and intimate bar in the heart of Downtown Las Vegas, featuring craft cocktails, live music, and a laid-back atmosphere.',
+    categories: ['bar'],
+    destinationId: 12,
+  },
+  {
+    name: 'Viva Las Arepas',
+    address: '1616 S Las Vegas Blvd, Las Vegas, NV 89104',
+    duration: 45,
+    zipcode: '89104',
+    googleMap: '36.148117,-115.155428',
+    description:
+      'A beloved Venezuelan restaurant in the Arts District, serving up delicious and authentic arepas stuffed with a variety of fillings.',
+    categories: ['food', 'culture'],
+    destinationId: 12,
+  },
+  {
+    name: 'Kaiseki Yuzu',
+    address: '1716 W Horizon Ridge Pkwy #100, Henderson, NV 89012',
+    duration: 120,
+    zipcode: '89012',
+    googleMap: '36.004719,-115.086050',
+    description:
+      'A high-end Japanese restaurant in nearby Henderson, specializing in multi-course kaiseki dinners featuring seasonal ingredients and exquisite presentation.',
+    categories: ['food', 'culture'],
+    destinationId: 12,
   },
   {
     name: 'The Metropolitan Museum of Art',
@@ -1604,6 +1898,368 @@ const ACTIVITY_SEED_DATA = [
     imageUrl:
       'https://images.unsplash.com/photo-1574879948818-1cfda7aa5b1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80',
   },
+  {
+    name: 'Hollywood Walk of Fame',
+    address: 'Hollywood Boulevard, Vine St',
+    duration: 60,
+    zipcode: '90028',
+    googleMap: '34.10185155897129, -118.32666542020868',
+    description:
+      'A famous sidewalk featuring the stars of celebrities from various industries including music, film, TV and theater.',
+    categories: ['landmark', 'culture'],
+    destinationId: 16,
+  },
+  {
+    name: 'Santa Monica Pier',
+    address: '200 Santa Monica Pier',
+    duration: 120,
+    zipcode: '90401',
+    googleMap: '34.00814471129338, -118.49694324895534',
+    description:
+      'A historic landmark and popular destination featuring an amusement park, aquarium, restaurants and shops.',
+    categories: ['landmark', 'amusement_park', 'food', 'shopping'],
+    destinationId: 17,
+  },
+  {
+    name: 'Griffith Observatory',
+    address: '2800 E Observatory Rd',
+    duration: 120,
+    zipcode: '90027',
+    googleMap: '34.11840864348056, -118.3003834389876',
+    description:
+      'A popular observatory featuring exhibits on astronomy and space, planetarium shows and scenic views of the city.',
+    categories: ['landmark', 'nature'],
+    destinationId: 18,
+  },
+  {
+    name: 'Rodeo Drive',
+    address: '328 N Rodeo Dr',
+    duration: 90,
+    zipcode: '90210',
+    googleMap: '34.06843843547489, -118.4004526552822',
+    description:
+      'An iconic high-end shopping destination with luxury boutiques, hotels and restaurants.',
+    categories: ['landmark', 'shopping', 'food'],
+    destinationId: 19,
+  },
+  {
+    name: 'Venice Beach Boardwalk',
+    address: '1800 Ocean Front Walk',
+    duration: 90,
+    zipcode: '90291',
+    googleMap: '33.98879815816358, -118.47580900540572',
+    description:
+      'A popular beachside promenade featuring street performers, vendors, and an eclectic mix of shops and restaurants.',
+    categories: ['landmark', 'beach', 'shopping', 'food'],
+    destinationId: 20,
+  },
+  {
+    name: 'San Francisco Museum of Modern Art',
+    address: '151 3rd St, San Francisco, CA 94103',
+    duration: 180,
+    zipcode: '94103',
+    googleMap: '37.78575130150668, -122.40197488019268',
+    description:
+      'A world-renowned museum showcasing a wide range of modern and contemporary art.',
+    categories: ['museum', 'art'],
+    destinationId: 21,
+  },
+  {
+    name: 'Westfield San Francisco Centre',
+    address: '865 Market St, San Francisco, CA 94103',
+    duration: 120,
+    zipcode: '94103',
+    googleMap: '37.78431056246453, -122.40642663507223',
+    description:
+      'A large shopping center with a mix of high-end and affordable stores, plus dining and entertainment options.',
+    categories: ['shopping', 'food'],
+    destinationId: 21,
+  },
+  {
+    name: 'Mission Dolores Park',
+    address: '19th St & Dolores St, San Francisco, CA 94114',
+    duration: 120,
+    zipcode: '94114',
+    googleMap: '37.75966540724957, -122.42749267048392',
+    description:
+      'A popular park in the heart of the Mission district, featuring stunning views of the city skyline and a lively atmosphere.',
+    categories: ['park', 'nature'],
+    destinationId: 22,
+  },
+  {
+    name: 'Clarion Alley Mural Project',
+    address: 'Clarion Alley, San Francisco, CA 94110',
+    duration: 60,
+    zipcode: '94110',
+    googleMap: '37.76313453643684, -122.41479064288367',
+    description:
+      'A vibrant alleyway featuring colorful murals created by local artists.',
+    categories: ['art', 'culture'],
+    destinationId: 22,
+  },
+  {
+    name: 'Tartine Bakery',
+    address: '600 Guerrero St, San Francisco, CA 94110',
+    duration: 60,
+    zipcode: '94110',
+    googleMap: '37.76142030474411, -122.42480498903128',
+    description:
+      'A beloved bakery known for its fresh bread, pastries, and coffee.',
+    categories: ['food'],
+    destinationId: 22,
+  },
+  {
+    name: "Ripley's Believe It or Not! San Francisco",
+    address: '175 Jefferson St',
+    duration: 120,
+    zipcode: '94133',
+    googleMap: '37.8086447,-122.4150365',
+    description:
+      'A museum featuring bizarre and unique exhibits, such as shrunken heads and a two-headed calf.',
+    categories: ['museum', 'show'],
+    destinationId: 23,
+  },
+  {
+    name: 'San Francisco Maritime National Historical Park',
+    address: '499 Jefferson St',
+    duration: 120,
+    zipcode: '94109',
+    googleMap: '37.8077714,-122.4180329',
+    description:
+      'A waterfront park that features a collection of historic ships and maritime exhibits.',
+    categories: ['park', 'museum'],
+    destinationId: 23,
+  },
+  {
+    name: 'Madame Tussauds San Francisco',
+    address: '145 Jefferson St',
+    duration: 120,
+    zipcode: '94133',
+    googleMap: '37.8083565,-122.4147729',
+    description:
+      'A museum featuring life-like wax sculptures of celebrities and historical figures.',
+    categories: ['museum', 'show'],
+    destinationId: 23,
+  },
+  {
+    name: 'Golden Gate Fortune Cookie Factory',
+    address: '56 Ross Alley',
+    duration: 60,
+    zipcode: '94108',
+    googleMap: '37.7958616,-122.4059029',
+    description:
+      'A factory where visitors can see how fortune cookies are made, and even purchase personalized cookies.',
+    categories: ['art', 'food'],
+    destinationId: 24,
+  },
+  {
+    name: 'Chinese Historical Society of America Museum',
+    address: '965 Clay St',
+    duration: 120,
+    zipcode: '94108',
+    googleMap: '37.7943029,-122.4075533',
+    description:
+      'A museum that explores the history and contributions of Chinese Americans in the United States.',
+    categories: ['museum', 'culture'],
+    destinationId: 24,
+  },
+  {
+    name: 'Old St. Marys Cathedral',
+    address: '660 California St',
+    duration: 60,
+    zipcode: '94108',
+    googleMap: '37.7927999,-122.4070636',
+    description:
+      'A historic church that was the first cathedral of the Archdiocese of San Francisco, and is now a landmark in Chinatown.',
+    categories: ['landmark', 'culture'],
+    destinationId: 24,
+  },
+  {
+    name: 'California Academy of Sciences',
+    address: '55 Music Concourse Dr',
+    duration: 180,
+    zipcode: '94118',
+    googleMap: '37.7698322,-122.4662279',
+    description:
+      'A museum that features an aquarium, planetarium, natural history exhibits, and a rainforest habitat.',
+    categories: ['museum', 'nature', 'art'],
+    destinationId: 25,
+  },
+  {
+    name: 'Five Points',
+    address: '1024 Woodland St',
+    duration: 60,
+    zipcode: '37206',
+    googleMap: '36.17783440454326, -86.74812469195814',
+    description:
+      'A hip and artsy district in East Nashville, known for its vintage shops, live music venues, and a variety of restaurants and bars.',
+    categories: ['culture', 'food', 'shopping'],
+    destinationId: 26,
+  },
+  {
+    name: 'Vinyl Tap',
+    address: '2038 Greenwood Ave',
+    duration: 90,
+    zipcode: '37206',
+    googleMap: '36.176575, -86.749839',
+    description:
+      'A cozy, dog-friendly bar in East Nashville, known for its wide selection of craft beer and vinyl records.',
+    categories: ['food', 'drinks'],
+    destinationId: 26,
+  },
+  {
+    name: 'Broadway',
+    address: 'Broadway',
+    duration: 120,
+    zipcode: '37203',
+    googleMap: '36.162398008082396, -86.77512236048438',
+    description:
+      'A bustling street in Downtown Nashville, featuring honky-tonks, live music venues, museums, and a variety of dining options.',
+    categories: ['landmark', 'show', 'food'],
+    destinationId: 27,
+  },
+  {
+    name: 'The Red Door Saloon',
+    address: '1816 Division St',
+    duration: 120,
+    zipcode: '37203',
+    googleMap: '36.151012, -86.793286',
+    description:
+      'A popular dive bar in Midtown, known for its burgers and lively atmosphere.',
+    categories: ['food', 'drinks'],
+    destinationId: 27,
+  },
+  {
+    name: "Nashville Farmers' Market",
+    address: '900 Rosa L Parks Blvd',
+    duration: 90,
+    zipcode: '37208',
+    googleMap: '36.17394461355758, -86.78909923093805',
+    description:
+      'A public market in Germantown, featuring locally-sourced produce, artisanal goods, and a variety of dining options.',
+    categories: ['food', 'shopping'],
+    destinationId: 28,
+  },
+  {
+    name: 'Barista Parlor',
+    address: '1230 4th Ave N',
+    duration: 60,
+    zipcode: '37208',
+    googleMap: '36.173788, -86.799338',
+    description:
+      'A hip coffee shop in Germantown with a retro industrial vibe.',
+    categories: ['food', 'coffee'],
+    destinationId: 28,
+  },
+  {
+    name: 'The Station Inn',
+    address: '402 12th Ave S',
+    duration: 120,
+    zipcode: '37203',
+    googleMap: '36.152521939119406, -86.78623929524737',
+    description:
+      'A famous bluegrass music venue in The Gulch, known for its intimate atmosphere and talented musicians.',
+    categories: ['show'],
+    destinationId: 29,
+  },
+  {
+    name: 'The Station Inn',
+    address: '402 12th Ave S',
+    duration: 120,
+    zipcode: '37203',
+    googleMap: '36.150191, -86.784683',
+    description: 'A legendary bluegrass venue in the heart of the Gulch.',
+    categories: ['show', 'music'],
+    destinationId: 29,
+  },
+  {
+    name: 'Sevier Park',
+    address: '3000 Granny White Pike',
+    duration: 90,
+    zipcode: '37204',
+    googleMap: '36.11219101117811, -86.78765789734138',
+    description:
+      'A large public park in 12 South, featuring playgrounds, sports fields, and a variety of outdoor activities.',
+    categories: ['park', 'sports'],
+    destinationId: 30,
+  },
+  {
+    name: 'Station Inn',
+    address: '402 12th Ave S, Nashville, TN 37203',
+    duration: 120,
+    zipcode: '37203',
+    googleMap: '36.15029786328506, -86.7844690715147',
+    description:
+      'A historic live music venue in The Gulch, featuring bluegrass and roots music performances.',
+    categories: ['music', 'nightlife'],
+    destinationId: 30,
+  },
+  {
+    name: 'Arizona Science Center',
+    address: '600 E Washington St, Phoenix, AZ 85004',
+    duration: 180,
+    zipcode: '85004',
+    googleMap: '33.44842359336351, -112.06620839639112',
+    description:
+      'A hands-on science museum featuring interactive exhibits, a planetarium, and a giant-screen theater.',
+    categories: ['museum', 'science'],
+    destinationId: 31, // Roosevelt Row
+  },
+  {
+    name: 'Phoenix Art Museum',
+    address: '1625 N Central Ave, Phoenix, AZ 85004',
+    duration: 120,
+    zipcode: '85004',
+    googleMap: '33.468287437953965, -112.07388135639618',
+    description:
+      'One of the largest art museums in the Southwest, featuring a wide variety of modern and contemporary art, American art, and fashion design.',
+    categories: ['art', 'museum'],
+    destinationId: 32,
+  },
+  {
+    name: 'South Mountain Park',
+    address: '10919 S Central Ave, Phoenix, AZ 85042',
+    duration: 240,
+    zipcode: '85042',
+    googleMap: '33.35000277868813, -112.06467737139706',
+    description:
+      'A large natural park in Phoenix, featuring scenic trails, picnic areas, and a variety of outdoor activities.',
+    categories: ['nature', 'park'],
+    destinationId: 33,
+  },
+  {
+    name: 'Taliesin West',
+    address: '12621 N Frank Lloyd Wright Blvd, Scottsdale, AZ 85259',
+    duration: 180,
+    zipcode: '85259',
+    googleMap: '33.606001869398, -111.84401590330692',
+    description:
+      'The winter home and architectural studio of famed architect Frank Lloyd Wright, now a national historic landmark.',
+    categories: ['landmark', 'culture'],
+    destinationId: 34,
+  },
+  {
+    name: 'Scottsdale Fashion Square',
+    address: '7014 E Camelback Rd, Scottsdale, AZ 85251',
+    duration: 180,
+    zipcode: '85251',
+    googleMap: '33.50258029676538, -111.91813605811913',
+    description:
+      'Arizonas largest shopping mall, featuring luxury brands, department stores, and a variety of dining options.',
+    categories: ['shopping', 'food'],
+    destinationId: 34,
+  },
+  {
+    name: 'Camelback Mountain',
+    address: '4925 E McDonald Dr, Phoenix, AZ 85018',
+    duration: 180,
+    zipcode: '85018',
+    googleMap: '33.522400217058876, -111.96534804774205',
+    description:
+      'A popular hiking spot in Phoenix, known for its stunning views of the city and its challenging trails.',
+    categories: ['nature', 'park'],
+    destinationId: 35,
+  },
 ];
 
 const ITINERARY_SEED_DATA = [
@@ -1659,6 +2315,12 @@ const ITINERARY_SEED_DATA = [
     name: 'Las Vegas Off the Strip Adventure',
     duration: 3,
     authorId: 67,
+    cityId: 3,
+  },
+  {
+    name: "Lisa's Dream Day",
+    duration: 1,
+    authorId: 102,
     cityId: 3,
   },
 ];
@@ -1845,6 +2507,32 @@ const ITINERARY_ACTIVITY_SEED_DATA = [
     activityId: 16, // Mob Museum
     itineraryId: 9,
   },
+
+  // Lisa's Dream Day
+  {
+    activityId: 20, // Velveteen Rabbit
+    itineraryId: 10,
+  },
+  {
+    activityId: 21, // Glam Factory Vintage
+    itineraryId: 10,
+  },
+  {
+    activityId: 22, // Alt Rebel
+    itineraryId: 10,
+  },
+  {
+    activityId: 23, // Silver Stamp Bar
+    itineraryId: 10,
+  },
+  {
+    activityId: 24, // Viva Las Arepas
+    itineraryId: 10,
+  },
+  {
+    activityId: 25, // Kaiseki Yuzu
+    itineraryId: 10,
+  },
 ];
 
 const USER_ITINERARY_SEED_DATA = [
@@ -1987,6 +2675,11 @@ const USER_ITINERARY_SEED_DATA = [
     status: 'complete',
     userId: 71,
     itineraryId: 9,
+  },
+  {
+    status: 'planning',
+    userId: 102,
+    itineraryId: 10,
   },
 ];
 

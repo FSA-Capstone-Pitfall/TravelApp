@@ -26,8 +26,6 @@ function FeaturedTrip() {
     dispatch(fetchTrips(userId));
   }, [dispatch, userId]);
 
-  console.log('itins: ', itineraries);
-
   return (
     <>
       {!itineraries[0] ? (
@@ -64,15 +62,6 @@ function FeaturedTrip() {
                   sx={{ marginBottom: '1rem', fontSize: '1.2rem' }}
                 >
                   {itineraries[0].itinerary.city.name}{' '}
-                </Typography>
-                <Typography
-                  component='div'
-                  variant='body2'
-                  sx={{ fontStyle: 'italic', marginBottom: '1rem' }}
-                >
-                  "Explore Dumbo, Brooklyn like a local by experiencing all the
-                  best food, shopping, and waterside activities in the
-                  neighborhood!"
                 </Typography>
                 <Typography component='div' color='secondary' variant='body2'>
                   Duration: {itineraries[0].itinerary.duration} day(s)
