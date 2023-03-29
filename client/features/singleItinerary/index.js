@@ -31,6 +31,10 @@ const PictureBox = styled(Box)(({ theme }) => ({
     width: '100%',
     height: '100%',
     objectFit: 'cover',
+    // opacity: 0.5,
+
+    // backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5))`,
+    // linearGradient: 'rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)'
   },
   '& h1': {
     position: 'absolute',
@@ -80,7 +84,7 @@ const SingleItinerary = () => {
       const { data } = await axios.post(`/api/itineraries/${itineraryId}`, { userId });
       return data;
     } catch (err) {
-      console.error("error adding my itinerary: ", err)
+      console.error('error adding my itinerary: ', err);
     }
   };
 
@@ -112,10 +116,13 @@ const SingleItinerary = () => {
 
   return (
     <>
-      <PictureBox sx={{ flexGrow: 1, marginBottom: 3, minHeight: '650px' }}>
+      <PictureBox sx={{
+        flexGrow: 1, marginBottom: 3, minHeight: '650px'
+      }}>
         {itinerary.city ? (
           <>
-            <img src={itinerary.city.imageUrl} alt="Full-width"/>
+            <img src={itinerary.imageUrl} alt="Full-width"/>
+
             <h1>{itinerary.name}</h1>
             <h3>{itinerary.city.name}</h3>
           </>
