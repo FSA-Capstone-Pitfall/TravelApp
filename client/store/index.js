@@ -6,6 +6,7 @@ import tripsReducer from './slices/tripsSlice';
 import activitiesReducer from './slices/activitiesSlice';
 import itinerariesReducer from './slices/itinerariesSlice';
 import citiesReducer from './slices/citiesSlice';
+import { createLogger } from 'redux-logger/src';
 
 const store = configureStore({
   reducer: {
@@ -17,8 +18,8 @@ const store = configureStore({
     itineraries: itinerariesReducer,
     cities: citiesReducer,
   },
-  // middleware: (getDefaultMiddleware) =>
-  //   getDefaultMiddleware().concat(createLogger()),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(createLogger()),
 });
 
 export default store;

@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import Home from './components/LandingPage/Home';
+import Home from './features/home';
 import { getUserByToken } from './store';
 import { isLoggedIn } from './utils';
-import MyTrip from './features/itinerary';
-import AllTrips from './features/itinerary/allTrips';
-import AllUsers from './components/users/allUsers';
-import UserAccount from './components/users/userAccount';
-import UserProfile from './components/users/userProfile';
-import Activities from './components/pages/Activities';
-import SelectedActivity from './components/pages/SelectedActivity';
-import Explore from './components/pages/Explore';
-import SingleItinerary from './components/pages/SingleItinerary';
+import {
+  MyTrip,
+  MyTrips,
+  Users,
+  UserAccount,
+  UserProfile,
+  Activities,
+  Activity,
+  Explore,
+  SingleItinerary,
+} from './features';
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -33,10 +35,7 @@ const Router = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/activities' element={<Activities />} />
-          <Route
-            path='/activities/:activityId'
-            element={<SelectedActivity />}
-          />
+          <Route path='/activities/:activityId' element={<Activity />} />
           <Route path='/destinations' element={<Explore />} />
           <Route
             path='/itineraries/:itineraryId'
@@ -47,17 +46,14 @@ const Router = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/activities' element={<Activities />} />
-          <Route
-            path='/activities/:activityId'
-            element={<SelectedActivity />}
-          />
+          <Route path='/activities/:activityId' element={<Activity />} />
           <Route path='/destinations' element={<Explore />} />
           <Route
             path='/itineraries/:itineraryId'
             element={<SingleItinerary />}
           />
-          <Route path='/mytrips' element={<AllTrips />} />
-          <Route exact path='/users/all' element={<AllUsers />} />
+          <Route path='/mytrips' element={<MyTrips />} />
+          <Route exact path='/users/all' element={<Users />} />
           <Route
             exact
             path={`/users/account/${user.id}`}
