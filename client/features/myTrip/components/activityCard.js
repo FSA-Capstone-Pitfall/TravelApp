@@ -7,9 +7,10 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const ActivityCard = ({
+const MediaControlCard = ({
   activity,
   onDelete,
+  onUpdate,
   editMode,
   userId,
   tripId,
@@ -18,6 +19,7 @@ const ActivityCard = ({
   const [notes, setNotes] = useState(activity.notes || '');
   const [prevNotes, setPrevNotes] = useState(notes);
   const [isEditing, setIsEditing] = useState(false);
+  const [date, setDate] = useState(activity.date);
 
   const handleNotesChange = (event) => {
     setNotes(event.target.value);
@@ -35,6 +37,14 @@ const ActivityCard = ({
   };
 
   const handleSave = () => {
+    console.log('in the save', userId, tripId, activity, date, notes);
+    onUpdate({
+      userId,
+      tripId,
+      activity,
+      date: new Date(date),
+      notes,
+    });
     toggleEditing(true);
   };
 
@@ -42,7 +52,26 @@ const ActivityCard = ({
     onDelete(activity.id, userId, tripId);
   };
 
-  let startDate = new Date(activity.date);
+  const handleDateChange = (event) => {
+    console.log(
+      'in the handle date change',
+      userId,
+      tripId,
+      activity,
+      date,
+      notes
+    );
+    console.log(typeof event.target.value, event.target.value);
+    setDate(event.target.value);
+    onUpdate({
+      userId,
+      tripId,
+      activity,
+      date: event.target.value,
+      notes,
+    });
+  };
+
   let activityDuration = activity.duration;
 
   const dateTimeGenerator = (date, duration) => {
@@ -85,13 +114,25 @@ const ActivityCard = ({
               color='text.secondary'
               component='div'
             ></Typography>
-            <Typography
-              variant='subtitle1'
-              color='text.secondary'
-              component='div'
-            >
-              {dateTimeGenerator(startDate, activityDuration)}
-            </Typography>
+            {editMode ? (
+              <TextField
+                label='Date & Time'
+                type='datetime-local'
+                defaultValue={date.slice(0, 16)}
+                onChange={handleDateChange}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            ) : (
+              <Typography
+                variant='subtitle1'
+                color='text.secondary'
+                component='div'
+              >
+                {dateTimeGenerator(new Date(date), activityDuration)}
+              </Typography>
+            )}
             <Typography
               variant='body2'
               color='text.secondary'
@@ -156,4 +197,4 @@ const ActivityCard = ({
   );
 };
 
-export default ActivityCard;
+export default MediaControlCard;

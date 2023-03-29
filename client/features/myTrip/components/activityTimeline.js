@@ -9,14 +9,8 @@ import {
   timelineItemClasses,
 } from '@mui/lab';
 
-export default function ActivityTimeline({
-  activities,
-  city,
-  overallFlag,
-  tripDuration,
-}) {
+export default function ActivityTimeline({ activities, city, tripDuration }) {
   const [destinations, setDestinations] = useState([]);
-  console.log('in the timeline', activities, city, tripDuration);
 
   useEffect(() => {
     if (activities) {
@@ -43,38 +37,7 @@ export default function ActivityTimeline({
         },
       }}
     >
-      {overallFlag ? (
-        <>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot sx={{ width: '24px', height: '24px' }} />
-              <TimelineConnector sx={{ height: '65px' }} />
-            </TimelineSeparator>
-            <TimelineContent sx={{ fontSize: '1.25rem' }}>
-              Start
-            </TimelineContent>
-          </TimelineItem>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot sx={{ width: '24px', height: '24px' }} />
-              <TimelineConnector sx={{ height: '65px' }} />
-            </TimelineSeparator>
-            <TimelineContent sx={{ fontSize: '1.25rem' }}>
-              {city && tripDuration
-                ? `${city.name} - ${tripDuration} day(s)`
-                : city
-                ? city.name
-                : null}
-            </TimelineContent>
-          </TimelineItem>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot sx={{ width: '24px', height: '24px' }} />
-            </TimelineSeparator>
-            <TimelineContent sx={{ fontSize: '1.25rem' }}>End</TimelineContent>
-          </TimelineItem>
-        </>
-      ) : destinations ? (
+      {destinations ? (
         destinations.map((destination, i) => {
           return (
             <TimelineItem key={i}>

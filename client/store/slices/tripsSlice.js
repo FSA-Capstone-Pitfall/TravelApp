@@ -51,11 +51,31 @@ export const createTrip = createAsyncThunk(
 
 export const editTripActivity = createAsyncThunk(
   'editTripActivity',
-  async (userId, tripId, activity) => {
+  async ({ userId, tripId, activity, date, notes }) => {
+    console.log('in the trips slice', userId, tripId, activity, date, notes);
+    try {
+      const { data } = await axios.put(`/api/users/${userId}/trips/${tripId}`, {
+        activity,
+        date,
+        notes,
+      });
+      return data;
+    } catch (err) {
+      throw err.message;
+    }
+  }
+);
+
+export const editTripName = createAsyncThunk(
+  'editTripActivity',
+  async ({ userId, tripId, name }) => {
+    console.log('in the trips slice', userId, tripId, name);
     try {
       const { data } = await axios.put(
-        `/api/users/${userId}/trips/${tripId}`,
-        activity
+        `/api/users/${userId}/trips/${tripId}/name`,
+        {
+          name,
+        }
       );
       return data;
     } catch (err) {
@@ -128,6 +148,9 @@ const trips = createSlice({
           return { ...state, error: errorMessage };
         }
         state.itineraries.push(payload.itinerary);
+      })
+      .addCase(editTripName.fulfilled, (state, action) => {
+        state.status = 'succeeded';
       });
   },
 });
