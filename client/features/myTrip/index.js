@@ -76,10 +76,12 @@ function MyTrip() {
   }
 
   const handleActivityDelete = (updatedActivities) => {
+    updatedActivities.sort(comparePositions);
     setActivities(updatedActivities);
   };
 
   const handleActivityUpdate = (updatedActivities) => {
+    updatedActivities.sort(comparePositions);
     setActivities(updatedActivities);
   };
 
@@ -170,7 +172,6 @@ function MyTrip() {
                 <Item sx={{ marginBottom: 1 }}>
                   <h2>Trip Timeline</h2>
                   <ActivityTimeline
-                    onActivityUpdate={handleActivityUpdate}
                     activities={activities}
                     city={city}
                     tripDuration={tripDuration}
