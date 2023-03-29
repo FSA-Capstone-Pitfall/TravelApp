@@ -1,7 +1,9 @@
 const router = require('express').Router();
+const sequelize = require('sequelize');
 
 const {
-  models: { Itinerary, City, Activity, Destination, Itinerary_Activity },
+  db,
+  models: { Itinerary, City, Activity, Destination, Itinerary_Activity, User },
 } = require('../../db');
 
 const defaultPage = 1;
@@ -91,5 +93,78 @@ router.get('/:itineraryId', async (req, res, next) => {
     next(err);
   }
 });
+
+// POST: /api/itineraries/:itineraryId
+router.post('/:itineraryId', async (req, res, next) => {
+
+  // init db transaction to handle chain of DB writes
+  const tx = await db.transaction();
+
+  try {
+    const { itineraryId } = req.params;
+
+    const { userId } = req.body;
+
+    // fetch user who wants to have the itinerary
+    const user = await User.findByPk(userId);
+    if (!user) {
+      res.status(400).send('invalid user id');
+      return;
+    }
+
+    // fetch itinerary
+    const itinerary = await Itinerary.findOne({
+      where: {
+        id: itineraryId,
+      },
+      include: [
+        {
+          model: Itinerary_Activity,
+          include: {
+            model: Activity,
+            include: {
+              model: Destination,
+            },
+          },
+        },
+        {
+          model: City,
+        },
+      ],
+    });
+
+    // create itinerary row for new user with old itinerary info
+    const itineraryCopy = await Itinerary.create({
+      name: itinerary.name,
+      duration: itinerary.duration,
+      authorId: itinerary.authorId,
+      cityId: itinerary.cityId
+    }, { transaction: tx });
+
+    // copy itinerary_activities into new itinerary
+    if (itinerary.itinerary_activities) {
+      const itineraryActivities = itinerary.itinerary_activities.map(record => record.activity);
+      await itineraryCopy.setActivities(itineraryActivities, { transaction: tx });
+    }
+
+    // assign new itinerary to new user
+    await user.addItinerary(itineraryCopy, {
+      through: { status: 'planning' },
+      transaction: tx
+    });
+
+    // commit DB transaction to apply creates/updates
+    await tx.commit();
+
+    res.status(200).json({
+      itineraryId: itineraryCopy.id
+    });
+  } catch (err) {
+    // rollback succeeded DB creates/updates on error
+    await tx.rollback();
+    next(err);
+  }
+});
+
 
 module.exports = router;
