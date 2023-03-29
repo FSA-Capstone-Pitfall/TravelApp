@@ -1251,7 +1251,7 @@ const DESTINATION_SEED_DATA = [
     cityId: 5,
   },
   {
-    name: "Fisherman's Wharf",
+    name: 'Fisherman\'s Wharf',
     description:
       'A popular waterfront area in San Francisco known for its seafood, historic attractions, and scenic bay views.',
     googleMap: '37.80768583328876, -122.41567408472162',
@@ -1699,7 +1699,7 @@ const ACTIVITY_SEED_DATA = [
     zipcode: '10028',
     googleMap: '40.78010278033864, -73.96350149206384',
     description:
-      "One of the world's largest and finest art museums, with a vast collection spanning 5,000 years of world culture.",
+      'One of the world\'s largest and finest art museums, with a vast collection spanning 5,000 years of world culture.',
     categories: ['art', 'culture'],
     destinationId: 1,
     imageUrl:
@@ -1725,7 +1725,7 @@ const ACTIVITY_SEED_DATA = [
     zipcode: '10014',
     googleMap: '40.739766518475705, -74.00883071484067',
     description:
-      "Museum showcasing American art from the 20th and 21st centuries, including works by Edward Hopper and Georgia O'Keeffe.",
+      'Museum showcasing American art from the 20th and 21st centuries, including works by Edward Hopper and Georgia O\'Keeffe.',
     categories: ['art', 'culture'],
     destinationId: 1,
     imageUrl:
@@ -2009,7 +2009,7 @@ const ACTIVITY_SEED_DATA = [
     destinationId: 22,
   },
   {
-    name: "Ripley's Believe It or Not! San Francisco",
+    name: 'Ripley\'s Believe It or Not! San Francisco',
     address: '175 Jefferson St',
     duration: 120,
     zipcode: '94133',
@@ -2130,7 +2130,7 @@ const ACTIVITY_SEED_DATA = [
     destinationId: 27,
   },
   {
-    name: "Nashville Farmers' Market",
+    name: 'Nashville Farmers\' Market',
     address: '900 Rosa L Parks Blvd',
     duration: 90,
     zipcode: '37208',
@@ -2268,60 +2268,70 @@ const ITINERARY_SEED_DATA = [
     duration: 3,
     authorId: 1,
     cityId: 1,
+    imageUrl: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'
   },
   {
     name: 'San Diego Beach Hopping',
     duration: 2,
     authorId: 25,
     cityId: 2,
+    imageUrl: 'https://images.unsplash.com/photo-1529553815871-df205a9a2891?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'
   },
   {
     name: 'Las Vegas Ultimate Experience',
     duration: 4,
     authorId: 60,
     cityId: 3,
+    imageUrl: 'https://images.unsplash.com/photo-1550109161-7262e652bf82?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3732&q=80'
   },
   {
     name: 'Brooklyn Art and Food Tour',
     duration: 1,
     authorId: 42,
     cityId: 1,
+    imageUrl: 'https://images.unsplash.com/photo-1515112569565-1e4aef316db9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'
   },
   {
     name: 'Queens Cultural Immersion',
     duration: 2,
     authorId: 78,
     cityId: 1,
+    imageUrl: 'https://images.unsplash.com/photo-1628371840169-e0a786b6b3ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'
   },
   {
     name: 'The Bronx Sports and History',
     duration: 1,
     authorId: 19,
     cityId: 1,
+    imageUrl: 'https://images.unsplash.com/photo-1625852028664-10a1e488e346?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'
   },
   {
     name: 'Staten Island Nature and History',
     duration: 1,
     authorId: 92,
     cityId: 1,
+    imageUrl: 'https://images.unsplash.com/photo-1509819749506-0289e9eed3cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3576&q=80'
   },
   {
     name: 'Gaslamp Quarter Nightlife and Dining',
     duration: 1,
     authorId: 31,
     cityId: 2,
+    imageUrl: 'https://images.unsplash.com/photo-1630375604571-4e370942fa65?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3570&q=80'
   },
   {
     name: 'Las Vegas Off the Strip Adventure',
     duration: 3,
     authorId: 67,
     cityId: 3,
+    imageUrl: 'https://images.unsplash.com/photo-1549861833-c5932fd19229?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2666&q=80'
   },
   {
-    name: "Lisa's Dream Day",
+    name: 'Lisa\'s Dream Day',
     duration: 1,
     authorId: 102,
     cityId: 3,
+    imageUrl: 'https://images.unsplash.com/photo-1525648703170-3c8f42836383?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80'
   },
 ];
 

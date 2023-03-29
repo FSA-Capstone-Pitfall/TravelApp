@@ -89,9 +89,9 @@ const UserAccount = ({ userId }) => {
                   component='div'
                   sx={{ textAlign: 'left', display: 'block', mb: 1 }}
                 >
-                  <Button variant='outlined' sx={{ mt: 2, ml: '36px' }}>
+                  {/* <Button variant='outlined' sx={{ mt: 2, ml: '36px' }}>
                     Edit photo
-                  </Button>
+                  </Button> */}
                 </Box>
               </Box>
             </Grid>
