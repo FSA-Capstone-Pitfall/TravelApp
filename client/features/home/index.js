@@ -11,8 +11,8 @@ function HomePage() {
     <React.Fragment>
       <ProductHero />
       <ProductValues />
-      <ProductCategories />
-      <ProductCTA />
+      {/* <ProductCategories /> */}
+      {/* <ProductCTA /> */}
     </React.Fragment>
   );
 }

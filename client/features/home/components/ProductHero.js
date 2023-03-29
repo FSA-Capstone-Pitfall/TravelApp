@@ -46,7 +46,7 @@ export default function ProductHero() {
             color='inherit'
             align='center'
             variant='h5'
-            sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
+            sx={{ mb: 10, mt: { xs: 2, sm: 4 } }}
           >
             Experience your next destination with personalized itineraries
             crafted by local experts.
@@ -57,13 +57,10 @@ export default function ProductHero() {
             size='large'
             component='a'
             href={`/destinations`}
-            sx={{ minWidth: 200 }}
+            sx={{ minWidth: 250, fontSize: '3rem' }}
           >
             Explore
           </Button>
-          <Typography variant='body2' color='inherit' sx={{ mt: 2 }}>
-            Discover the experience
-          </Typography>
         </>
       ) : (
         <>
@@ -84,7 +81,7 @@ export default function ProductHero() {
             color='inherit'
             align='center'
             variant='h5'
-            sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
+            sx={{ mb: 10, mt: { xs: 2, sm: 4 } }}
           >
             Get your itinerary now and explore as the locals do.
           </Typography>
@@ -94,7 +91,7 @@ export default function ProductHero() {
             size='large'
             component='a'
             href={`/destinations`}
-            sx={{ minWidth: 200 }}
+            sx={{ minWidth: 250, fontSize: '2rem' }}
           >
             Destinations
           </Button>
