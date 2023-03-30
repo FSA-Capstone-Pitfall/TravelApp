@@ -32,39 +32,44 @@ function FeaturedTrip() {
         '...Loading'
       ) : (
         <Link underline='none' href={`/mytrips/${itineraries[0].itineraryId}`}>
-          <Card
-            sx={{
-              display: 'flex',
-              border: '1px solid',
-            }}
-          >
+          <Card className='activity-card' sx={{ display: 'flex', padding: 2 }}>
             <CardMedia
               component='img'
-              sx={{ width: 250 }}
-              image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFy1ZRj0Lz8HeiG73c2jlrHCWpKpxSlqT4Kg&usqp=CAU'
+              sx={{ width: 400, height: 325, objectFit: 'cover' }}
+              image={itineraries[0].itinerary.imageUrl}
+              alt='activity picture'
             />
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
               <CardContent sx={{ flex: '1 0 auto' }}>
-                <Typography
-                  component='div'
-                  variant='caption'
-                  sx={{ marginBottom: '0.3rem' }}
-                >
-                  May 05, 2023 - May 14, 2023
-                </Typography>
-                <Typography variant='h4' color='primary' component='div'>
+                <Typography component='div' variant='h5'>
                   {itineraries[0].itinerary.name}
                 </Typography>
                 <Typography
-                  variant='body1'
+                  variant='subtitle1'
                   color='text.secondary'
                   component='div'
                   sx={{ marginBottom: '1rem', fontSize: '1.2rem' }}
                 >
                   {itineraries[0].itinerary.city.name}{' '}
                 </Typography>
-                <Typography component='div' color='secondary' variant='body2'>
-                  Duration: {itineraries[0].itinerary.duration} day(s)
+                <Typography
+                  variant='subtitle1'
+                  color='text.secondary'
+                  component='div'
+                >
+                  Duration: {itineraries[0].itinerary.duration} day
+                  {itineraries[0].itinerary.duration > 1 ? 's' : ''}
+                </Typography>
+                <Typography
+                  component='div'
+                  color='text.secondary'
+                  variant='subtitle1'
+                  sx={{
+                    fontStyle: 'italic',
+                    textTransform: 'capitalize',
+                  }}
+                >
+                  Status: {itineraries[0].status}
                 </Typography>
               </CardContent>
             </Box>

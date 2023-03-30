@@ -25,7 +25,7 @@ const rightLink = {
   textTransform: 'none',
 };
 
-const settings = ['Account', 'Logout'];
+const settings = ['Profile', 'Account', 'Logout'];
 
 function AppAppBar() {
   const navigate = useNavigate();

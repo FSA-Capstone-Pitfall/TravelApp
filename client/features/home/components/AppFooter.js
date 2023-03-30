@@ -24,6 +24,7 @@ export default function AppFooter() {
         width: '100%',
         position: 'fixed',
         bottom: 0,
+        marginTop: 'calc(10% + 60px)',
       }}
       component='footer'
       square

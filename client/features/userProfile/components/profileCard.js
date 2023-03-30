@@ -2,47 +2,45 @@ import React from 'react';
 import {
   Box,
   Card,
-  CardMedia,
   CardContent,
+  CardMedia,
   Typography,
-  Button,
+  Link,
 } from '@mui/material';
 
-function FindTrip() {
+function ProfileCard({ city, duration, itineraryId, name, imageUrl }) {
   return (
-    <>
-      <Card className='activity-card' sx={{ display: 'flex', padding: 2 }}>
+    <Link underline='none' href={`/itineraries/${itineraryId}`}>
+      <Card
+        className='activity-card'
+        sx={{ display: 'flex', padding: 2, mb: 2 }}
+      >
         <CardMedia
           component='img'
           sx={{ width: 200, height: 165, objectFit: 'cover' }}
-          image='https://www.traveloffpath.com/wp-content/uploads/2022/04/flight-take-off-sunset.jpg'
+          image={imageUrl}
           alt='activity picture'
         />
         <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
           <CardContent sx={{ flex: '1 0 auto' }}>
             <Typography component='div' variant='h5'>
-              Need ideas?
+              {name}
             </Typography>
             <Typography
               variant='subtitle1'
               color='text.secondary'
               component='div'
             >
-              Find cities, itineraries and more
+              {city}
             </Typography>
-            <Button
-              variant='outlined'
-              color='primary'
-              href='/destinations'
-              sx={{ marginTop: 4 }}
-            >
-              Explore
-            </Button>
+            <Typography component='div' color='black' variant='subtitle1'>
+              Duration: {duration} day{duration > 1 ? 's' : ''}
+            </Typography>
           </CardContent>
         </Box>
       </Card>
-    </>
+    </Link>
   );
 }
 
-export default FindTrip;
+export default ProfileCard;

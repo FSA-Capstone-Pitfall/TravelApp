@@ -14,17 +14,10 @@ const UserProfile = () => {
   }, [dispatch, userId]);
 
   return (
-    <Box sx={{ flexGrow: 1, padding: 3 }}>
-      <Grid container spacing={0}>
-        <Grid item xs={12} lg={3}>
-          <ProfileColumn />
-        </Grid>
-        <Grid item xs={0} lg={9}>
-          <Box sx={{ display: 'flex' }}>
-            <ProfileBody />
-          </Box>
-        </Grid>
-      </Grid>
+    <Box sx={{ flexGrow: 1, padding: 6, display: 'flex' }}>
+      <ProfileColumn />
+
+      <ProfileBody />
     </Box>
   );
 };
