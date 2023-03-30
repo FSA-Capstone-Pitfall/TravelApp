@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { Alert, AlertTitle, Box, Button, Grid } from '@mui/material';
+import { Box, Button, Grid } from '@mui/material';
 
 import MapWithMarkers from '../components/map';
 import BasicTimeline from '../myTrip/components/activityTimeline';
@@ -53,9 +53,9 @@ const PictureBox = styled(Box)(({ theme }) => ({
 
 const SingleItinerary = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { itineraryId } = useParams();
 
-  const [showSuccess, setShowSuccess] = useState(false);
 
   const itinerary = useSelector((state) => state.itineraries.itinerary);
   const user = useSelector((state) => state.auth.user);
@@ -82,8 +82,6 @@ const SingleItinerary = () => {
       const { data } = await axios.post(`/api/itineraries/${itineraryId}`, {
         userId,
       });
-      setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 3000);
       return data;
     } catch (err) {
       console.error('error adding my itinerary: ', err);
@@ -110,8 +108,8 @@ const SingleItinerary = () => {
     );
     const endDate = new Date(
       itinerary.itinerary_activities.activities[
-        itinerary.itinerary_activities.activities.length - 1
-      ].date
+      itinerary.itinerary_activities.activities.length - 1
+        ].date
     );
     tripDuration = Math.round((endDate - startDate) / 86400000);
   }
@@ -127,7 +125,7 @@ const SingleItinerary = () => {
       >
         {itinerary.city ? (
           <>
-            <img src={itinerary.imageUrl} alt='Full-width' />
+            <img src={itinerary.imageUrl} alt="Full-width"/>
 
             <h1>{itinerary.name}</h1>
             <h3>{itinerary.city.name}</h3>
@@ -153,44 +151,36 @@ const SingleItinerary = () => {
               <Grid item xs={6}>
                 <Item sx={{ marginBottom: 1 }}>
                   {destinations.length > 0 ? (
-                    <MapWithMarkers destinations={destinations} />
+                    <MapWithMarkers destinations={destinations}/>
                   ) : (
                     <h3>Loading...</h3>
                   )}
                 </Item>
-              </Grid>
+
               {user && user.id !== itinerary.authorId && (
                 <Grid item xs={6}>
                   <Item sx={{ marginBottom: 1 }}>
                     <Box sx={{ marginBottom: '16px' }}>
                       <Button
-                        variant='contained'
-                        size='large'
+                        variant="contained"
+                        size="large"
                         sx={{ display: 'block', width: '100%' }}
-                        onClick={async () =>
-                          await copyItinerary({ itineraryId, userId: user.id })
+                        onClick={async () => {
+                          // await copyItinerary({ itineraryId, userId: user.id });
+                          // navigate('/');
+                          console.log('clicked');
+                        }
                         }
                       >
                         Add to MyTrips
                       </Button>
                     </Box>
                   </Item>
-                </Grid>
-              )}
-              {showSuccess && (
-                <Alert severity='success' sx={{ mt: 2 }}>
-                  <AlertTitle>
-                    Successfully added this itinerary to your trips.
-                  </AlertTitle>
-                </Alert>
-              )}
-            </Grid>
-          </Grid>
           <Grid item xs={4} sx={{ textAlign: 'left' }}>
             <Box sx={{ maxHeight: '1200px', overflowY: 'auto', flex: 1 }}>
               <Item>
                 <h2>Trip Details</h2>
-                <ActivityList activitiesArr={activitiesArr} />
+                <ActivityList activitiesArr={activitiesArr}/>
               </Item>
             </Box>
           </Grid>
