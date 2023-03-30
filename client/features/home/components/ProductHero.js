@@ -5,15 +5,9 @@ import ProductHeroLayout from './ProductHeroLayout';
 import { useSelector } from 'react-redux';
 
 const backgroundVideos = [
-  '/assets/home.mp4',
-  '/assets/home2.mp4',
   '/assets/home4.mp4',
   '/assets/home7.mp4',
-  '/assets/video2.mp4',
   '/assets/video3.mp4',
-  '/assets/video4.mp4',
-  '/assets/video5.mp4',
-  '/assets/video6.mp4',
 ];
 
 const rdmIdx = Math.floor(Math.random() * backgroundVideos.length);
