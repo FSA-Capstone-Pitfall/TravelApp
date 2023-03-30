@@ -28,18 +28,34 @@ export default function BasicTimeline({
   }, [activities, selectedDay]);
 
   useEffect(() => {
+    let allDestinations = [];
+    let prevDest;
+
     if (filteredActivities) {
-      let dest = [];
-      filteredActivities.forEach((activity) => {
-        if (dest.length > 0) {
-          if (dest[dest.length - 1] !== activity.activity.destination.name) {
-            dest.push(activity.activity.destination.name);
-          }
+      filteredActivities.map((activity) => {
+        let destinationName = activity.activity.destination.name;
+        let startDate = new Date(activity.date);
+        let duration = activity.duration * 60000;
+        let buffer = activity.buffer * 60000;
+        let endDate = new Date(startDate.getTime() + duration);
+        if (destinationName !== prevDest) {
+          allDestinations.push({
+            title: destinationName,
+            start: startDate,
+            end: endDate,
+          });
+          prevDest = activity.activity.destination.name;
         } else {
-          dest.push(activity.activity.destination.name);
+          allDestinations[allDestinations.length - 1].end = new Date(
+            allDestinations[allDestinations.length - 1].end.getTime() +
+              duration +
+              buffer
+          );
         }
+
+        return null;
       });
-      setDestinations(dest);
+      setDestinations([...allDestinations]);
     }
   }, [filteredActivities]);
 
@@ -54,6 +70,13 @@ export default function BasicTimeline({
     >
       {destinations ? (
         destinations.map((destination, i) => {
+          const destinationDuration = `${destination.start.getHours()}:${destination.start
+            .getMinutes()
+            .toString()
+            .padStart(2, '0')} - ${destination.end.getHours()}:${destination.end
+            .getMinutes()
+            .toString()
+            .padStart(2, '0')}`;
           return (
             <TimelineItem key={i}>
               <TimelineSeparator>
@@ -62,10 +85,10 @@ export default function BasicTimeline({
               </TimelineSeparator>
               <TimelineContent sx={{ fontSize: '1.25rem' }}>
                 {i === 0
-                  ? `Start from ${destination}`
+                  ? `Start from ${destination.title} ${destinationDuration}`
                   : i === destinations.length - 1
-                  ? `End at ${destination}`
-                  : `Head to ${destination}`}
+                  ? `End at ${destination.title} ${destinationDuration}`
+                  : `Head to ${destination.title}  ${destinationDuration}`}
               </TimelineContent>
             </TimelineItem>
           );

@@ -6,9 +6,16 @@ import { useSelector } from 'react-redux';
 
 // add your video paths here
 const backgroundVideos = [
+  '/assets/videos/home3.mp4',
   '/assets/videos/home4.mp4',
+  '/assets/videos/home5.mp4',
   '/assets/videos/home7.mp4',
+  '/assets/videos/video1.mp4',
+  '/assets/videos/video2.mp4',
   '/assets/videos/video3.mp4',
+  '/assets/videos/video4.mp4',
+  '/assets/videos/video5.mp4',
+  '/assets/videos/video6.mp4',
 ];
 
 const rdmIdx = Math.floor(Math.random() * backgroundVideos.length);
