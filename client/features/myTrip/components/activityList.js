@@ -40,6 +40,8 @@ export default function ActivityList({
   editMode,
   onActivityDelete,
   onActivityUpdate,
+  selectedDay,
+  setSelectedDay,
 }) {
   const dispatch = useDispatch();
   const [activities, setActivities] = useState();
@@ -109,6 +111,7 @@ export default function ActivityList({
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    setSelectedDay(tripDays[newValue]);
   };
 
   let tripDays = [];

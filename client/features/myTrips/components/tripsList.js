@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrips } from '../../../store/slices/tripsSlice';
-import TripCard from './tripCard.js';
+import TripCard from './tripCard';
 
 function TripsList({ status }) {
   const dispatch = useDispatch();

@@ -70,7 +70,6 @@ const SingleItinerary = () => {
   if (itinerary) {
     activitiesArr = [...itinerary.itinerary_activities];
     activitiesArr.sort(comparePositions);
-    console.log(activitiesArr);
   }
 
   useEffect(() => {

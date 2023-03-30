@@ -61,6 +61,8 @@ function MyTrip() {
   const [city, setCity] = useState();
   const [tripName, setTripName] = useState();
   const [editMode, setEditMode] = useState(false);
+  const [selectedDay, setSelectedDay] = useState(null);
+  const [tripBlock, setTripBlock] = useState(null);
   const user = useSelector((state) => state.auth.user);
   const selectedTrip = useSelector((state) => state.trips.itineraries);
 
@@ -69,6 +71,20 @@ function MyTrip() {
     userId = user.id;
   }
 
+  const getFirstDay = (activities) => {
+    let firstDay = null;
+
+    activities.forEach((activity) => {
+      const activityDate = new Date(activity.date);
+
+      if (firstDay === null || activityDate < firstDay) {
+        firstDay = activityDate;
+      }
+    });
+
+    return firstDay;
+  };
+
   function comparePositions(a, b) {
     let dateA = new Date(a.date);
     let dateB = new Date(b.date);
@@ -76,10 +92,12 @@ function MyTrip() {
   }
 
   const handleActivityDelete = (updatedActivities) => {
+    updatedActivities.sort(comparePositions);
     setActivities(updatedActivities);
   };
 
   const handleActivityUpdate = (updatedActivities) => {
+    updatedActivities.sort(comparePositions);
     setActivities(updatedActivities);
   };
 
@@ -102,14 +120,32 @@ function MyTrip() {
       activitiesArr = [...userTrip.payload.itinerary.itinerary_activities];
       activitiesArr.sort(comparePositions);
       setActivities(activitiesArr);
+      setSelectedDay(getFirstDay(activitiesArr));
       setCity(userTrip.payload.itinerary.city);
     };
     pullData();
   }, [dispatch, userId, tripId]);
 
+  useEffect(() => {
+    if (activities) {
+      const firstDay = getFirstDay(activities);
+      const lastDay = new Date(activities[activities.length - 1].date);
+      setTripBlock({
+        start: firstDay,
+        end: new Date(lastDay.getTime() + 24 * 60 * 60 * 1000),
+      });
+    }
+  }, [activities]);
+
   let destinations = [];
   if (activities) {
-    const locations = activities.map((item) => {
+    const filteredActivities = activities.filter((activity) => {
+      return (
+        selectedDay &&
+        new Date(activity.date).getDate() === selectedDay.getDate()
+      );
+    });
+    const locations = filteredActivities.map((item) => {
       const coordinates = item.activity.googleMap.split(',');
       return {
         lat: parseFloat(coordinates[0]),
@@ -136,7 +172,6 @@ function MyTrip() {
               <h1
                 contentEditable={true}
                 onBlur={(e) => {
-                  console.log(e.target.innerText);
                   handleNameChange(e.target.innerText);
                 }}
                 suppressContentEditableWarning={true}
@@ -170,7 +205,7 @@ function MyTrip() {
                 <Item sx={{ marginBottom: 1 }}>
                   <h2>Trip Timeline</h2>
                   <ActivityTimeline
-                    onActivityUpdate={handleActivityUpdate}
+                    selectedDay={selectedDay}
                     activities={activities}
                     city={city}
                     tripDuration={tripDuration}
@@ -189,6 +224,10 @@ function MyTrip() {
               <Grid item xs={6}>
                 <Item sx={{ marginBottom: 1 }}>
                   <Calendar
+                    onActivitiesUpdate={handleActivityUpdate}
+                    tripBlock={tripBlock}
+                    setTripBlock={setTripBlock}
+                    selectedDay={selectedDay}
                     activities={activities}
                     city={city}
                     selectedTrip={selectedTrip}
@@ -254,6 +293,8 @@ function MyTrip() {
               <Item>
                 <h2>Trip Details</h2>
                 <ActivityList
+                  selectedDay={selectedDay}
+                  setSelectedDay={setSelectedDay}
                   activitiesArr={activities}
                   editMode={editMode}
                   onActivityDelete={handleActivityDelete}
