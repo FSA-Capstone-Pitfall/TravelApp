@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
-import { Box, Button, List, ListItem, ListItemButton, ListItemText, } from '@mui/material';
+import { Box, Button, List, ListItem, ListItemButton, ListItemText, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrips } from '../../store/slices/tripsSlice';
 import TripsList from './components/tripsList';
@@ -8,7 +8,6 @@ import FeaturedTrip from './components/featuredTrip';
 import FindTrip from './components/findTrip';
 import CreateTrip from './components/createTrip';
 import { useLocation } from 'react-router-dom';
-import Typography from '@mui/material/Typography';
 
 const PictureBox = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -85,7 +84,7 @@ function AllTrips() {
   const categories = [
     { text: 'Upcoming' },
     { text: 'Planning' },
-    { text: 'Completed' },
+    { text: 'Complete' },
   ];
 
   return (
@@ -165,7 +164,7 @@ function AllTrips() {
                 }}
               >
                 <Button
-                  variant="contained"
+                  variant="outlined"
                   color="primary"
                   onClick={() => setOpenCreateTrip(true)}
                 >

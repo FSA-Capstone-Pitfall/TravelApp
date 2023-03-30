@@ -38,6 +38,7 @@ function TripsList({ status }) {
           itineraryId={trip.itineraryId}
           name={trip.itinerary.name}
           image={trip.itinerary.imageUrl}
+          status={trip.status}
         />
       );
     }
