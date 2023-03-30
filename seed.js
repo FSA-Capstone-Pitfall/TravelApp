@@ -1029,7 +1029,7 @@ const CITY_SEED_DATA = [
     tag: 'SD',
     state: 'California',
     imageUrl:
-      'https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1748&q=80',
+      'https://images.unsplash.com/photo-1551360705-6d010584c713?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3774&q=80',
   },
   {
     name: 'Las Vegas',

@@ -1,14 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTrips } from '../../../store/slices/tripsSlice';
-import {
-  Box,
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Link,
-} from '@mui/material';
+import { fetchTrips } from '../../../store';
+import { Box, Card, CardContent, CardMedia, Link, Typography, } from '@mui/material';
 
 function FeaturedTrip() {
   const dispatch = useDispatch();
@@ -16,7 +9,6 @@ function FeaturedTrip() {
   const user = useSelector((state) => state.auth.user);
 
   const itineraries = useSelector((state) => state.trips.itineraries);
-
   let userId;
   if (user) {
     userId = user.id;
@@ -31,13 +23,17 @@ function FeaturedTrip() {
       {!itineraries[0] ? (
         '...Loading'
       ) : (
-        <Link underline='none' href={`/mytrips/${itineraries[0].itineraryId}`}>
-          <Card className='activity-card' sx={{ display: 'flex', padding: 2 }}>
+        <Link underline="none" href={`/mytrips/${itineraries[0].itineraryId}`}>
+          <Card
+            sx={{
+              display: 'flex',
+              padding: 2
+            }}
+          >
             <CardMedia
-              component='img'
-              sx={{ width: 400, height: 325, objectFit: 'cover' }}
+              component="img"
+              sx={{ width: 200, height: 165 }}
               image={itineraries[0].itinerary.imageUrl}
-              alt='activity picture'
             />
             <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
               <CardContent sx={{ flex: '1 0 auto' }}>

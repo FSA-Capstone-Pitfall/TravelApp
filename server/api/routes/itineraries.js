@@ -138,7 +138,8 @@ router.post('/:itineraryId', async (req, res, next) => {
       name: itinerary.name,
       duration: itinerary.duration,
       authorId: itinerary.authorId,
-      cityId: itinerary.cityId
+      cityId: itinerary.cityId,
+      imageUrl: itinerary.imageUrl
     }, { transaction: tx });
 
     // copy itinerary_activities into new itinerary

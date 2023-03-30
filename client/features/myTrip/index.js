@@ -7,11 +7,10 @@ import ActivityTimeline from './components/activityTimeline';
 import Calendar from './components/calendar';
 import ActivityList from './components/activityList';
 import Button from '@mui/material/Button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { fetchSingleTrip } from '../../store/slices/tripsSlice';
-import { editTripName } from '../../store/slices/tripsSlice';
+import { editTripName, fetchSingleTrip } from '../../store/slices/tripsSlice';
+import Typography from '@mui/material/Typography';
 
 const Item = styled(Box)(({ theme }) => ({
   padding: 25,
@@ -161,14 +160,13 @@ function MyTrip() {
     const endDate = new Date(activities[activities.length - 1].date);
     tripDuration = Math.round((endDate - startDate) / 86400000);
   }
-
   return (
     <>
       <PictureBox sx={{ flexGrow: 1, marginBottom: 3, minHeight: '650px' }}>
         {city ? (
           editMode ? (
             <>
-              <img src={city.imageUrl} alt='Full-width' />
+              <img src={selectedTrip.itinerary.imageUrl} alt="Full-width"/>
               <h1
                 contentEditable={true}
                 onBlur={(e) => {
@@ -188,9 +186,28 @@ function MyTrip() {
             </>
           ) : (
             <>
-              <img src={city.imageUrl} alt='Full-width' />
-              <h1>{tripName}</h1>
-              <h3>{city.name}</h3>
+              <PictureBox
+                sx={{
+                  mb: 10,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '40rem',
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${selectedTrip.itinerary.imageUrl})`,
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  overflow: 'hidden',
+                  backgroundColor: 'common.black',
+                }}
+              >
+                <Typography color="#fff" align="center" variant="h2">
+                  {tripName}
+                </Typography>
+                <Typography color="#fff" align="center" variant="h5" sx={{ mt: 4 }}>
+                  {city.name}
+                </Typography>
+              </PictureBox>
             </>
           )
         ) : (
@@ -215,7 +232,7 @@ function MyTrip() {
               <Grid item xs={6}>
                 <Item sx={{ marginBottom: 1 }}>
                   {destinations.length > 0 ? (
-                    <MapWithMarkers destinations={destinations} />
+                    <MapWithMarkers destinations={destinations}/>
                   ) : (
                     <h3>Add activity to see map</h3>
                   )}
@@ -240,8 +257,8 @@ function MyTrip() {
                   <Box sx={{ marginBottom: '16px' }}>
                     <Box sx={{ marginBottom: '16px' }}>
                       <Button
-                        variant='contained'
-                        size='large'
+                        variant="contained"
+                        size="large"
                         sx={{ display: 'block', width: '100%' }}
                       >
                         Travel Companions
@@ -249,8 +266,8 @@ function MyTrip() {
                     </Box>
                     <Box sx={{ marginBottom: '16px' }}>
                       <Button
-                        variant='contained'
-                        size='large'
+                        variant="contained"
+                        size="large"
                         sx={{ display: 'block', width: '100%' }}
                         onClick={() => setEditMode(!editMode)}
                       >
@@ -261,8 +278,8 @@ function MyTrip() {
                       <>
                         <Box sx={{ marginBottom: '16px' }}>
                           <Button
-                            variant='contained'
-                            size='large'
+                            variant="contained"
+                            size="large"
                             sx={{
                               display: 'block',
                               width: '100%',
