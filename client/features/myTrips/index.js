@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
-import {
-  Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Button,
-} from '@mui/material';
+import { Box, Button, List, ListItem, ListItemButton, ListItemText, } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrips } from '../../store/slices/tripsSlice';
 import TripsList from './components/tripsList';
 import FeaturedTrip from './components/featuredTrip';
 import FindTrip from './components/findTrip';
 import CreateTrip from './components/createTrip';
+import { useLocation } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
 
 const PictureBox = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -21,27 +16,14 @@ const PictureBox = styled(Box)(({ theme }) => ({
   textAlign: 'center',
   height: '400px',
   marginBottom: '20px',
-  '& img': {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-  },
-  '& h1': {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    color: 'white',
-    fontSize: '3rem',
-    fontWeight: 'bold',
-  },
 }));
+
+const image = 'https://justinkelefas.com/wp-content/uploads/2022/04/New-York-City-Sunset-sample-2.jpg';
 
 function AllTrips() {
   const dispatch = useDispatch();
+  const location = useLocation();
+
   const user = useSelector((state) => state.auth.user);
   const itineraries = useSelector((state) => state.trips.itineraries);
   const theme = useTheme();
@@ -55,7 +37,7 @@ function AllTrips() {
     dispatch(fetchTrips(userId));
   }, [dispatch, userId]);
 
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState((location.state && location.state.category) || '');
   const [openCreateTrip, setOpenCreateTrip] = useState(false);
 
   const statusChecker = (status) => {
@@ -73,28 +55,28 @@ function AllTrips() {
       return (
         <>
           <Box sx={{ mb: 3 }}>
-            <FeaturedTrip />
+            <FeaturedTrip/>
           </Box>
-          <TripsList status={'upcoming'} />
+          <TripsList status={'upcoming'}/>
         </>
       );
     } else if (selectedCategory === 'Planning' && statusChecker('planning')) {
-      return <TripsList status={'planning'} />;
+      return <TripsList status={'planning'}/>;
     } else if (selectedCategory === 'Completed' && statusChecker('completed')) {
-      return <TripsList status={'complete'} />;
+      return <TripsList status={'complete'}/>;
     } else if (selectedCategory === '') {
       return (
         <>
           <Box sx={{ mb: 3 }}>
-            <FeaturedTrip />
+            <FeaturedTrip/>
           </Box>
-          <TripsList status={'upcoming'} />
+          <TripsList status={'upcoming'}/>
         </>
       );
     } else {
       return (
         <>
-          <FindTrip />
+          <FindTrip/>
         </>
       );
     }
@@ -114,14 +96,23 @@ function AllTrips() {
           toggleDialog={setOpenCreateTrip}
         />
       )}
-      <PictureBox sx={{ flexGrow: 1, marginBottom: 1, minHeight: '700px' }}>
-        <>
-          <img
-            src='https://justinkelefas.com/wp-content/uploads/2022/04/New-York-City-Sunset-sample-2.jpg'
-            alt='Full-width'
-          />
-          <h1>My Trips</h1>
-        </>
+      <PictureBox sx={{
+        mb: 10,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '40rem',
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${image})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        overflow: 'hidden',
+        backgroundColor: 'common.black',
+      }}>
+        <Typography color="#fff" align="center" variant="h2">
+          My Trips
+        </Typography>
+
       </PictureBox>
       <Box sx={{ flexGrow: 1, padding: 3 }}>
         <Box
@@ -159,7 +150,7 @@ function AllTrips() {
                       transition: 'border-color 0.3s',
                     }}
                   >
-                    <ListItemText primary={category.text} />
+                    <ListItemText primary={category.text}/>
                   </ListItemButton>
                 </ListItem>
               ))}
@@ -174,8 +165,8 @@ function AllTrips() {
                 }}
               >
                 <Button
-                  variant='contained'
-                  color='primary'
+                  variant="contained"
+                  color="primary"
                   onClick={() => setOpenCreateTrip(true)}
                 >
                   Create a Trip
@@ -184,7 +175,7 @@ function AllTrips() {
             </List>
           </Box>
           <Box
-            component='main'
+            component="main"
             sx={{ flexGrow: 1, pl: 3, pt: 1, width: '100%' }}
           >
             {renderContent()}

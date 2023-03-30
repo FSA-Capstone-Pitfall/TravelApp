@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -9,6 +9,7 @@ import MapWithMarkers from '../components/map';
 import BasicTimeline from '../myTrip/components/activityTimeline';
 import ActivityList from '../myTrip/components/activityList';
 import { fetchItinerary } from '../../store';
+import Typography from '@mui/material/Typography';
 
 const Item = styled(Box)(({ theme }) => ({
   padding: 25,
@@ -87,6 +88,7 @@ const SingleItinerary = () => {
     }
   };
 
+
   if (!itinerary) return null;
 
   let destinations = itinerary.itinerary_activities.map((activity) => {
@@ -117,17 +119,27 @@ const SingleItinerary = () => {
     <>
       <PictureBox
         sx={{
-          flexGrow: 1,
-          marginBottom: 3,
-          minHeight: '650px',
+          mb: 10,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '40rem',
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${itinerary.imageUrl})`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          overflow: 'hidden',
+          backgroundColor: 'common.black',
         }}
       >
         {itinerary.city ? (
           <>
-            <img src={itinerary.imageUrl} alt="Full-width"/>
-
-            <h1>{itinerary.name}</h1>
-            <h3>{itinerary.city.name}</h3>
+            <Typography color="#fff" align="center" variant="h2">
+              {itinerary.name}
+            </Typography>
+            <Typography color="#fff" align="center" variant="h5" sx={{ mt: 4 }}>
+              {itinerary.city.name}
+            </Typography>
           </>
         ) : (
           <h3>Add activity to see details</h3>
@@ -155,7 +167,7 @@ const SingleItinerary = () => {
                     <h3>Loading...</h3>
                   )}
                 </Item>
-
+              </Grid>
               {user && user.id !== itinerary.authorId && (
                 <Grid item xs={6}>
                   <Item sx={{ marginBottom: 1 }}>
@@ -164,17 +176,25 @@ const SingleItinerary = () => {
                         variant="contained"
                         size="large"
                         sx={{ display: 'block', width: '100%' }}
-                        onClick={async () => {
-                          // await copyItinerary({ itineraryId, userId: user.id });
-                          // navigate('/');
-                          console.log('clicked');
-                        }
+                        onClick={
+                          async () => {
+                            await copyItinerary({ itineraryId, userId: user.id });
+                            navigate(`/mytrips`, {
+                              state: {
+                                category: 'Planning'
+                              }
+                            });
+                          }
                         }
                       >
                         Add to MyTrips
                       </Button>
                     </Box>
                   </Item>
+                </Grid>
+              )}
+            </Grid>
+          </Grid>
           <Grid item xs={4} sx={{ textAlign: 'left' }}>
             <Box sx={{ maxHeight: '1200px', overflowY: 'auto', flex: 1 }}>
               <Item>

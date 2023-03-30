@@ -1,14 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTrips } from '../../../store/slices/tripsSlice';
-import {
-  Box,
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Link,
-} from '@mui/material';
+import { fetchTrips } from '../../../store';
+import { Box, Card, CardContent, CardMedia, Link, Typography, } from '@mui/material';
 
 function FeaturedTrip() {
   const dispatch = useDispatch();
@@ -16,7 +9,6 @@ function FeaturedTrip() {
   const user = useSelector((state) => state.auth.user);
 
   const itineraries = useSelector((state) => state.trips.itineraries);
-
   let userId;
   if (user) {
     userId = user.id;
@@ -31,39 +23,39 @@ function FeaturedTrip() {
       {!itineraries[0] ? (
         '...Loading'
       ) : (
-        <Link underline='none' href={`/mytrips/${itineraries[0].itineraryId}`}>
+        <Link underline="none" href={`/mytrips/${itineraries[0].itineraryId}`}>
           <Card
             sx={{
               display: 'flex',
-              border: '1px solid',
+              padding: 2
             }}
           >
             <CardMedia
-              component='img'
-              sx={{ width: 250 }}
-              image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFy1ZRj0Lz8HeiG73c2jlrHCWpKpxSlqT4Kg&usqp=CAU'
+              component="img"
+              sx={{ width: 200, height: 165 }}
+              image={itineraries[0].itinerary.imageUrl}
             />
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <CardContent sx={{ flex: '1 0 auto' }}>
                 <Typography
-                  component='div'
-                  variant='caption'
+                  component="div"
+                  variant="caption"
                   sx={{ marginBottom: '0.3rem' }}
                 >
                   May 05, 2023 - May 14, 2023
                 </Typography>
-                <Typography variant='h4' color='primary' component='div'>
+                <Typography variant="h4" color="primary" component="div">
                   {itineraries[0].itinerary.name}
                 </Typography>
                 <Typography
-                  variant='body1'
-                  color='text.secondary'
-                  component='div'
+                  variant="body1"
+                  color="text.secondary"
+                  component="div"
                   sx={{ marginBottom: '1rem', fontSize: '1.2rem' }}
                 >
                   {itineraries[0].itinerary.city.name}{' '}
                 </Typography>
-                <Typography component='div' color='secondary' variant='body2'>
+                <Typography component="div" color="secondary" variant="body2">
                   Duration: {itineraries[0].itinerary.duration} day(s)
                 </Typography>
               </CardContent>

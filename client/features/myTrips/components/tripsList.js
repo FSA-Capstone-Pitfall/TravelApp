@@ -37,6 +37,7 @@ function TripsList({ status }) {
           city={trip.itinerary.city.name}
           itineraryId={trip.itineraryId}
           name={trip.itinerary.name}
+          image={trip.itinerary.imageUrl}
         />
       );
     }
