@@ -4,10 +4,11 @@ import Typography from './Typography';
 import ProductHeroLayout from './ProductHeroLayout';
 import { useSelector } from 'react-redux';
 
+// add your video paths here
 const backgroundVideos = [
-  '/assets/home4.mp4',
-  '/assets/home7.mp4',
-  '/assets/video3.mp4',
+  '/assets/videos/home4.mp4',
+  '/assets/videos/home7.mp4',
+  '/assets/videos/video3.mp4',
 ];
 
 const rdmIdx = Math.floor(Math.random() * backgroundVideos.length);

@@ -93,7 +93,7 @@ function AppAppBar() {
         >
           <Box sx={{ display: 'flex', alignItems: 'center', pl: -2 }}>
             <img
-              src='https://i.ibb.co/LJhcbQp/IMG-0599.png'
+              src={'/assets/IMG_0599.PNG'}
               alt='pathfinder'
               height='40'
               width='40'
