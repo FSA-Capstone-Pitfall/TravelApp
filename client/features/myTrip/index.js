@@ -127,7 +127,7 @@ function MyTrip() {
   }, [dispatch, userId, tripId]);
 
   useEffect(() => {
-    if (activities) {
+    if (activities && activities.length > 0) {
       const firstDay = getFirstDay(activities);
       const lastDay = new Date(activities[activities.length - 1].date);
       setTripBlock({
@@ -138,7 +138,7 @@ function MyTrip() {
   }, [activities]);
 
   let destinations = [];
-  if (activities) {
+  if (activities && activities.length > 0) {
     const filteredActivities = activities.filter((activity) => {
       return (
         selectedDay &&

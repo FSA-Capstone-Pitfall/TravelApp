@@ -114,28 +114,32 @@ export default function ActivityList({
     setSelectedDay(tripDays[newValue]);
   };
 
-  let tripDays = [];
-  if (activities && activities.length > 0) {
-    activities.map((activity) => {
-      let date = new Date(activity.date);
-      if (tripDays.length === 0) {
-        tripDays.push(date);
-      } else if (tripDays[tripDays.length - 1].getDate() !== date.getDate()) {
-        tripDays.push(date);
-      }
-      return null;
-    });
-  }
-  tripDays.sort((a, b) => a - b);
-
   const handleDelete = (activityId, tripId, userId) => {
     const updatedActivities = activities.filter((activity) => {
       return activity.id !== activityId;
     });
     setActivities(updatedActivities);
     onActivityDelete(updatedActivities);
+    setValue(0);
+    setSelectedDay(tripDays[0]);
     dispatch(deleteTripActvity({ userId, tripId, activityId }));
   };
+
+  // let activitiesLeft = false;
+  // if (tripDays.length > 0) {
+  //   const currIdx = tripDays.findIndex((day) => {
+  //     return day.toString() === selectedDay.toString();
+  //   });
+  //   const currDay = tripDays[currIdx];
+  //   activities.map((activity, index) => {
+  //     if (new Date(activity.date).getDate() === currDay.getDate()) {
+  //       activitiesLeft = true;
+  //     }
+  //   });
+  //   console.log('flag--->', activitiesLeft);
+  //   console.log('activities--->', activities);
+  //   console.log('currDay--->', currDay, ':', selectedDay);
+  // }
 
   const handleUpdate = ({ activity, date, notes }) => {
     const updatedActivities = activities.map((element) => {
@@ -160,6 +164,20 @@ export default function ActivityList({
       })
     );
   };
+
+  let tripDays = [];
+  if (activities && activities.length > 0) {
+    activities.map((activity) => {
+      let date = new Date(activity.date);
+      if (tripDays.length === 0) {
+        tripDays.push(date);
+      } else if (tripDays[tripDays.length - 1].getDate() !== date.getDate()) {
+        tripDays.push(date);
+      }
+      return null;
+    });
+  }
+  tripDays.sort((a, b) => a - b);
 
   const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
 
