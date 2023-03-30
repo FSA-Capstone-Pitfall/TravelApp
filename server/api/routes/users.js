@@ -167,14 +167,12 @@ router.get('/:userId/trips/:tripId', requireToken, async (req, res, next) => {
 router.put('/:userId/trips/:tripId', requireToken, async (req, res, next) => {
   try {
     const { activity, date, notes } = req.body;
-    console.log('in the router', activity, date, notes);
     const trip = await Itinerary_Activity.findOne({
       where: {
         id: activity.id,
       },
     });
     trip.update({ date: date, notes: notes });
-    console.log('trip!!!!!!', await trip);
     res.status(200).json(trip);
   } catch (error) {
     console.error(error);
@@ -190,14 +188,12 @@ router.put(
     try {
       const { tripId } = req.params;
       const { name } = req.body;
-      console.log('in the router', name);
       const trip = await Itinerary.findOne({
         where: {
           id: tripId,
         },
       });
       trip.update({ name: name });
-      console.log('trip!!!!!!', await trip);
       res.status(200).json(trip);
     } catch (error) {
       console.error(error);

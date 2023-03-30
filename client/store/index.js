@@ -18,8 +18,8 @@ const store = configureStore({
     itineraries: itinerariesReducer,
     cities: citiesReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(createLogger()),
+  // middleware: (getDefaultMiddleware) =>
+  //   getDefaultMiddleware().concat(createLogger()),
 });
 
 export default store;

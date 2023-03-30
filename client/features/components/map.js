@@ -9,7 +9,6 @@ const containerStyle = {
 const Map = ({ destinations }) => {
   const locationKey = 'AIzaSyARbbsqAblNXS7rOerdE1gI_q5a6yQyXgw';
 
-  // Get the first destination as the center
   const defaultCenter = destinations[0];
 
   return (

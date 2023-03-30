@@ -3,7 +3,6 @@ import axios from 'axios';
 
 export const fetchTrips = createAsyncThunk('fetchTrips', async (userId) => {
   try {
-    console.log('in the fetchTrips thunk', 'userId: ', userId);
     const { data } = await axios.get(`/api/users/${userId}/trips`);
     return data;
   } catch (err) {
@@ -15,13 +14,6 @@ export const fetchSingleTrip = createAsyncThunk(
   'fetchSingleTrip',
   async ({ userId, tripId }) => {
     try {
-      console.log(
-        'in the fetchSingleTrip thunk',
-        'userId: ',
-        userId,
-        'tripId: ',
-        tripId
-      );
       const { data } = await axios.get(`/api/users/${userId}/trips/${tripId}`);
       return data;
     } catch (err) {
@@ -52,7 +44,6 @@ export const createTrip = createAsyncThunk(
 export const editTripActivity = createAsyncThunk(
   'editTripActivity',
   async ({ userId, tripId, activity, date, notes }) => {
-    console.log('in the trips slice', userId, tripId, activity, date, notes);
     try {
       const { data } = await axios.put(`/api/users/${userId}/trips/${tripId}`, {
         activity,
@@ -69,7 +60,6 @@ export const editTripActivity = createAsyncThunk(
 export const editTripName = createAsyncThunk(
   'editTripName',
   async ({ userId, tripId, name }) => {
-    console.log('in the trips slice', userId, tripId, name);
     try {
       const { data } = await axios.put(
         `/api/users/${userId}/trips/${tripId}/name`,
@@ -87,15 +77,6 @@ export const editTripName = createAsyncThunk(
 export const deleteTripActvity = createAsyncThunk(
   'deleteTripActivity',
   async ({ userId, tripId, activityId }) => {
-    console.log(
-      'in the deleteTripActivity thunk',
-      'userId: ',
-      userId,
-      'tripId: ',
-      tripId,
-      'activityId: ',
-      activityId
-    );
     try {
       const { data } = await axios.delete(
         `/api/users/${userId}/trips/${tripId}`,
