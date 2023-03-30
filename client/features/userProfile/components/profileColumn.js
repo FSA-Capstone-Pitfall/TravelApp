@@ -41,11 +41,15 @@ const ProfileColumn = () => {
       sx={{
         display: 'grid',
         gridTemplateColumns: '1fr',
-        maxWidth: '150px',
+        maxWidth: '300px',
         gap: '0.5rem',
+        border: '1px solid #ccc',
+        boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.3)',
+        borderRadius: 5,
+        padding: 3,
       }}
     >
-      <Avatar src={imageUrl} sx={{ height: '225px', width: '225px' }} />
+      <Avatar src={imageUrl} sx={{ height: '225px', width: '225px', mb: 1 }} />
       <Box
         component='div'
         sx={{
@@ -65,52 +69,9 @@ const ProfileColumn = () => {
           <PlaceIcon color='secondary' fontSize='inherit' /> {city}, {userState}
         </Typography>
       </Box>
-      <Box component='div' sx={{ textAlign: 'left', display: 'block', mb: 1 }}>
-        <Typography variant='caption'>
-          This is where the user's description will go after we hook up the
-          backend to accommodate this--maybe there's also an option to add a
-          link to their profile.
-        </Typography>
-      </Box>
-      <Box
-        component='div'
-        sx={{
-          textAlign: 'left',
-          display: 'block',
-          border: '1px solid',
-          backgroundColor: 'secondary.main',
-          opacity: 0.5,
-          minHeight: 'fit-content',
-          py: 2,
-          px: 3,
-          borderRadius: '5px',
-          flexWrap: 'wrap',
-        }}
-      >
-        <Box
-          component='img'
-          src='https://www.seekpng.com/png/detail/159-1595172_iceberg-badge-pixel-art.png'
-          sx={{
-            width: '40px',
-            height: '40px',
-            mr: 2,
-          }}
-        />
-        <Box
-          component='img'
-          src='https://www.seekpng.com/png/detail/159-1595172_iceberg-badge-pixel-art.png'
-          sx={{
-            width: '40px',
-            height: '40px',
-            mr: 2,
-          }}
-        />
-        <Box
-          component='img'
-          src='https://www.seekpng.com/png/detail/159-1595172_iceberg-badge-pixel-art.png'
-          sx={{ width: '40px', height: '40px', mr: 2 }}
-        />
-      </Box>
+      {/* <Box component='div' sx={{ textAlign: 'left', display: 'block', mb: 1 }}>
+        <Typography variant='caption'></Typography>
+      </Box> */}
 
       <Box component='div' sx={{ textAlign: 'left', display: 'block', mt: 1 }}>
         {' '}

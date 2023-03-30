@@ -1,35 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchSingleUserProfile } from '../../../store/slices/usersSlice';
-import { Box, Grid } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import ProfileTrips from './profileTrips';
 
 const ProfileBody = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
-  const [user, setUser] = useState(null);
   const selectedUser = useSelector((state) => state.users.userProfile);
-
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [userState, setUserState] = useState('');
-  const [city, setCity] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
 
   useEffect(() => {
     dispatch(fetchSingleUserProfile(userId));
   }, [dispatch, userId]);
-
-  useEffect(() => {
-    if (selectedUser) {
-      setUser(selectedUser);
-      setFirstName(selectedUser.firstName);
-      setLastName(selectedUser.lastName);
-      setCity(selectedUser.city);
-      setUserState(selectedUser.state);
-      setImageUrl(selectedUser.imageUrl);
-    }
-  }, [selectedUser]);
 
   return (
     <Box
@@ -38,8 +21,20 @@ const ProfileBody = () => {
         gridTemplateColumns: '1fr',
         maxWidth: '1200px',
         gap: '0.5rem',
+        marginLeft: '4rem',
+        border: '1px solid #ccc',
+        boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.3)',
+        borderRadius: 5,
+        padding: 3,
       }}
-    ></Box>
+    >
+      <Box>
+        <Typography color='secondary' variant='h2'>
+          My Curated Trips
+        </Typography>
+      </Box>
+      <Box>{selectedUser && <ProfileTrips />} </Box>
+    </Box>
   );
 };
 

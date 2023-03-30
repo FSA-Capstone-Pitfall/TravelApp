@@ -80,7 +80,7 @@ function AllTrips() {
       );
     } else if (selectedCategory === 'Planning' && statusChecker('planning')) {
       return <TripsList status={'planning'} />;
-    } else if (selectedCategory === 'Completed' && statusChecker('completed')) {
+    } else if (selectedCategory === 'Complete' && statusChecker('complete')) {
       return <TripsList status={'complete'} />;
     } else if (selectedCategory === '') {
       return (
@@ -103,7 +103,7 @@ function AllTrips() {
   const categories = [
     { text: 'Upcoming' },
     { text: 'Planning' },
-    { text: 'Completed' },
+    { text: 'Complete' },
   ];
 
   return (
@@ -174,7 +174,7 @@ function AllTrips() {
                 }}
               >
                 <Button
-                  variant='contained'
+                  variant='outlined'
                   color='primary'
                   onClick={() => setOpenCreateTrip(true)}
                 >
