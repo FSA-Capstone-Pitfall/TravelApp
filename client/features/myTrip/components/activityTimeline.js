@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import {
   Timeline,
   TimelineItem,
@@ -9,13 +9,28 @@ import {
   timelineItemClasses,
 } from '@mui/lab';
 
-export default function BasicTimeline({ activities, city, tripDuration }) {
+export default function BasicTimeline({
+  activities,
+  city,
+  tripDuration,
+  selectedDay,
+}) {
   const [destinations, setDestinations] = useState([]);
 
+  const filteredActivities = useMemo(() => {
+    if (selectedDay) {
+      return activities.filter(
+        (activity) =>
+          new Date(activity.date).getDate() === selectedDay.getDate()
+      );
+    }
+    return activities;
+  }, [activities, selectedDay]);
+
   useEffect(() => {
-    if (activities) {
+    if (filteredActivities) {
       let dest = [];
-      activities.forEach((activity) => {
+      filteredActivities.forEach((activity) => {
         if (dest.length > 0) {
           if (dest[dest.length - 1] !== activity.activity.destination.name) {
             dest.push(activity.activity.destination.name);
@@ -26,7 +41,7 @@ export default function BasicTimeline({ activities, city, tripDuration }) {
       });
       setDestinations(dest);
     }
-  }, [activities]);
+  }, [filteredActivities]);
 
   return (
     <Timeline
