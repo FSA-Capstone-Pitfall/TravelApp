@@ -10,7 +10,6 @@ import Button from '@mui/material/Button';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { editTripName, fetchSingleTrip } from '../../store/slices/tripsSlice';
-import Typography from '@mui/material/Typography';
 
 const Item = styled(Box)(({ theme }) => ({
   padding: 25,
@@ -64,7 +63,6 @@ function MyTrip() {
   const [tripBlock, setTripBlock] = useState(null);
   const user = useSelector((state) => state.auth.user);
   const selectedTrip = useSelector((state) => state.trips.itineraries);
-
 
   let userId;
   if (user) {
@@ -163,58 +161,45 @@ function MyTrip() {
   }
   return (
     <>
-      <PictureBox sx={{ flexGrow: 1, marginBottom: 3, minHeight: '650px' }}>
-        {city ? (
-          editMode ? (
-            <>
-              {/*<img src={selectedTrip.itinerary.imageUrl} alt="Full-width"/>*/}
-              <h1
-                contentEditable={true}
-                onBlur={(e) => {
-                  handleNameChange(e.target.innerText);
-                }}
-                suppressContentEditableWarning={true}
-                style={{
+      {city ? (
+        <PictureBox
+          sx={{
+            mb: 10,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '40rem',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            overflow: 'hidden',
+            backgroundColor: 'common.black',
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${city.imageUrl})`
+          }}>
+          <h1
+            contentEditable={editMode ? true : false}
+            onBlur={(e) => {
+              handleNameChange(e.target.innerText);
+            }}
+            suppressContentEditableWarning={true}
+            style={
+              editMode
+                ? {
                   backgroundColor: 'darkgray',
                   border: '2px solid black',
                   borderRadius: '4px',
                   padding: '4px',
-                }}
-              >
-                {tripName}
-              </h1>
-              <h3>{city.name}</h3>
-            </>
-          ) : (
-            <>
-              <PictureBox
-                sx={{
-                  mb: 10,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  height: '40rem',
-                  // backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${selectedTrip.itinerary.imageUrl})`,
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat',
-                  overflow: 'hidden',
-                  backgroundColor: 'common.black',
-                }}
-              >
-                <Typography color="#fff" align="center" variant="h2">
-                  {tripName}
-                </Typography>
-                <Typography color="#fff" align="center" variant="h5" sx={{ mt: 4 }}>
-                  {city.name}
-                </Typography>
-              </PictureBox>
-            </>
-          )
-        ) : (
-          <h3>Add activity to see details</h3>
-        )}
-      </PictureBox>
+                }
+                : null
+            }
+          >
+            {tripName}
+          </h1>
+          <h3>{city.name}</h3>
+        </PictureBox>
+      ) : (
+        <h3>Add activity to see details</h3>
+      )}
       <Box sx={{ flexGrow: 1, padding: 3 }}>
         <Grid container spacing={2} sx={{ display: 'flex' }}>
           <Grid item xs={8}>

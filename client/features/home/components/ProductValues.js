@@ -126,7 +126,7 @@ function ProductValues() {
             </Box>
           </Grid>
           <Grid item xs={12} md={3}>
-            <Box ref={(el) => (itemRefs.current[2] = el)} sx={item}>
+            <Box ref={(el) => (itemRefs.current[3] = el)} sx={item}>
               <Avatar
                 alt='Exclusive'
                 src='https://media.licdn.com/dms/image/C5603AQHdJ3gZbfIrCw/profile-displayphoto-shrink_800_800/0/1610292910008?e=1685577600&v=beta&t=yTrYaseBEMQEg-W9r2PwaLZ1WOqmyF75NBinHg7kRjA'

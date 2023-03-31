@@ -13,7 +13,7 @@ function ProfileCard({ city, duration, itineraryId, name, imageUrl }) {
     <Link underline='none' href={`/itineraries/${itineraryId}`}>
       <Card
         className='activity-card'
-        sx={{ display: 'flex', padding: 2, mb: 2 }}
+        sx={{ display: 'flex', padding: 2, mb: 5 }}
       >
         <CardMedia
           component='img'
@@ -33,8 +33,13 @@ function ProfileCard({ city, duration, itineraryId, name, imageUrl }) {
             >
               {city}
             </Typography>
-            <Typography component='div' color='black' variant='subtitle1'>
-              Duration: {duration} day{duration > 1 ? 's' : ''}
+            <Typography
+              component='div'
+              color='black'
+              variant='subtitle1'
+              sx={{ mt: 6, mb: -2 }}
+            >
+              Duration: {duration} day{duration === 1 ? '' : 's'}
             </Typography>
           </CardContent>
         </Box>
