@@ -30,29 +30,38 @@ export default function BasicTimeline({
   useEffect(() => {
     let allDestinations = [];
     let prevDest;
-
+    let startDate;
+    let destinationName;
+    let duration;
+    let endDate;
     if (filteredActivities) {
-      filteredActivities.map((activity) => {
-        let destinationName = activity.activity.destination.name;
-        let startDate = new Date(activity.date);
-        let duration = activity.duration * 60000;
-        let buffer = activity.buffer * 60000;
-        let endDate = new Date(startDate.getTime() + duration);
+      filteredActivities.map((activity, index) => {
+        duration = activity.duration * 60000;
+        destinationName = activity.activity.destination.name;
+        if (index === 0) {
+          startDate = new Date(activity.date);
+          endDate = new Date(startDate.getTime() + duration);
+          prevDest = activity.activity.destination.name;
+        }
         if (destinationName !== prevDest) {
           allDestinations.push({
             title: destinationName,
             start: startDate,
             end: endDate,
           });
-          prevDest = activity.activity.destination.name;
+          startDate = new Date(activity.date);
+          endDate = new Date(startDate.getTime() + duration);
         } else {
-          allDestinations[allDestinations.length - 1].end = new Date(
-            allDestinations[allDestinations.length - 1].end.getTime() +
-              duration +
-              buffer
-          );
+          endDate = new Date(activity.date);
+          endDate = new Date(endDate.getTime() + duration);
         }
-
+        if (index === filteredActivities.length - 1) {
+          allDestinations.push({
+            title: destinationName,
+            start: startDate,
+            end: endDate,
+          });
+        }
         return null;
       });
       setDestinations([...allDestinations]);

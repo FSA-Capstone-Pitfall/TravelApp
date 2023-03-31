@@ -115,31 +115,36 @@ export default function ActivityList({
   };
 
   const handleDelete = (activityId, tripId, userId) => {
+    if (tripDays && tripDays.length > 0) {
+      let currIdx = tripDays.findIndex((day) => {
+        return day.getDay().toString() === selectedDay.getDay().toString();
+      });
+      let currDay = tripDays[currIdx];
+      let activitiesLeft = false;
+      let activitiesRemaining = 0;
+      activities.map((activity, index) => {
+        if (new Date(activity.date).getDate() === currDay.getDate()) {
+          activitiesRemaining++;
+        }
+        if (activitiesRemaining > 1) {
+          return (activitiesLeft = true);
+        }
+      });
+      if (currIdx === 0 && tripDays.length > 1 && !activitiesLeft) {
+        setSelectedDay(tripDays[1]);
+        setValue(0);
+      } else if (tripDays.length > 1 && !activitiesLeft) {
+        setSelectedDay(tripDays[0]);
+        setValue(0);
+      }
+    }
     const updatedActivities = activities.filter((activity) => {
       return activity.id !== activityId;
     });
     setActivities(updatedActivities);
     onActivityDelete(updatedActivities);
-    setValue(0);
-    setSelectedDay(tripDays[0]);
     dispatch(deleteTripActvity({ userId, tripId, activityId }));
   };
-
-  // let activitiesLeft = false;
-  // if (tripDays.length > 0) {
-  //   const currIdx = tripDays.findIndex((day) => {
-  //     return day.toString() === selectedDay.toString();
-  //   });
-  //   const currDay = tripDays[currIdx];
-  //   activities.map((activity, index) => {
-  //     if (new Date(activity.date).getDate() === currDay.getDate()) {
-  //       activitiesLeft = true;
-  //     }
-  //   });
-  //   console.log('flag--->', activitiesLeft);
-  //   console.log('activities--->', activities);
-  //   console.log('currDay--->', currDay, ':', selectedDay);
-  // }
 
   const handleUpdate = ({ activity, date, notes }) => {
     const updatedActivities = activities.map((element) => {
@@ -152,6 +157,19 @@ export default function ActivityList({
       }
       return element;
     });
+    let tripDays = [];
+    if (updatedActivities && updatedActivities.length > 0) {
+      updatedActivities.map((activity) => {
+        let date = new Date(activity.date);
+        if (tripDays.length === 0) {
+          tripDays.push(date);
+        } else if (tripDays[tripDays.length - 1].getDate() !== date.getDate()) {
+          tripDays.push(date);
+        }
+        return null;
+      });
+    }
+    tripDays.sort((a, b) => a - b);
     setActivities(updatedActivities);
     onActivityUpdate(updatedActivities);
     dispatch(
@@ -163,8 +181,18 @@ export default function ActivityList({
         notes,
       })
     );
+    let newDay = new Date(date)
+    if (tripDays && tripDays.length > 0) {
+      let currIdx = tripDays.findIndex((day) => {
+        return day.getDay().toString() === newDay.getDay().toString();
+      });
+      let currDay = tripDays[currIdx];
+        setSelectedDay(currDay);
+        setValue(currIdx);
+    }
   };
 
+  
   let tripDays = [];
   if (activities && activities.length > 0) {
     activities.map((activity) => {
