@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchSingleUserProfile } from '../../store/slices/usersSlice';
-import { Box, Grid } from '@mui/material';
+import { Box } from '@mui/material';
 import { ProfileColumn, ProfileBody } from './components';
 
 const UserProfile = () => {
@@ -14,7 +14,14 @@ const UserProfile = () => {
   }, [dispatch, userId]);
 
   return (
-    <Box sx={{ flexGrow: 1, padding: 6, display: 'flex' }}>
+    <Box
+      sx={{
+        flex: '0 1 auto',
+        padding: 6,
+        display: 'flex',
+        alignItems: 'flex-start',
+      }}
+    >
       <ProfileColumn />
 
       <ProfileBody />

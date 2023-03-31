@@ -1,32 +1,10 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchTrips } from '../../../store/slices/tripsSlice';
+import React from 'react';
 import TripCard from './tripCard';
 
-function TripsList({ status }) {
-  const dispatch = useDispatch();
-
-  const user = useSelector((state) => state.auth.user);
-
-  const itineraries = useSelector((state) => state.trips.itineraries);
-
-  let userId;
-  if (user) {
-    userId = user.id;
-  }
-
-  useEffect(() => {
-    dispatch(fetchTrips(userId));
-  }, [dispatch, userId]);
-
-  const filteredTrips = itineraries
-    .filter((itinerary) => itinerary.status === status)
-    .filter((trip, index) => {
-      if (status === 'upcoming') {
-        return index !== 0;
-      }
-      return true;
-    });
+function TripsList({ status, itineraries }) {
+  const filteredTrips = itineraries.filter(
+    (itinerary) => itinerary.status === status
+  );
 
   return filteredTrips.map((trip) => {
     if (trip.status === status) {

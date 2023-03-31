@@ -104,6 +104,8 @@ const USER_SEED_DATA = [
     role: 'user',
     password: 'password123',
     email: 'vgrzelewski0@smugmug.com',
+    imageUrl:
+      'https://s3-media0.fl.yelpcdn.com/photo/7uFnj0hGuDXuBIYD00R0jQ/348s.jpg',
   },
   {
     firstName: 'Johna',
@@ -1013,6 +1015,8 @@ const USER_SEED_DATA = [
     role: 'user',
     password: 'password123',
     email: 'lk@lk.com',
+    imageUrl:
+      'https://cdn.imgbin.com/1/16/3/imgbin-hello-kitty-gif-pixel-sanrio-hello-kitty-frame-Ftv1aFYGJrv6G5NKFv7fHLPJ4.jpg',
   },
 ];
 
