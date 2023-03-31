@@ -12,25 +12,14 @@ const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    height: '100vh',
+    height: '115vh',
     minHeight: 500,
     maxHeight: 1800,
   },
 }));
 
-const Background = styled(Box)({
-  position: 'absolute',
-  left: 0,
-  right: 0,
-  top: 0,
-  bottom: 0,
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat',
-  zIndex: -2,
-});
-
 function ProductHeroLayout(props) {
-  const { sxBackground, children } = props;
+  const { children } = props;
 
   return (
     <ProductHeroLayoutRoot>
@@ -56,15 +45,9 @@ function ProductHeroLayout(props) {
             backgroundColor: 'common.black',
             opacity: 0.2,
             zIndex: -1,
+            height: '97%',
           }}
         />
-        <Background sx={sxBackground} />
-        <Box
-          height='16'
-          width='12'
-          alt='arrow down'
-          sx={{ position: 'absolute', bottom: 32 }}
-        ></Box>
       </Container>
     </ProductHeroLayoutRoot>
   );

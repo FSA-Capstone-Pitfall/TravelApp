@@ -9,6 +9,7 @@ import ProductHeroLayout from './ProductHeroLayout';
 import ProductValues from './ProductValues';
 import SignupDialog from './SignupDialog';
 import Typography from './Typography';
+import AboutTheSite from './aboutTheSite';
 
 export {
   AppAppBar,
@@ -21,5 +22,6 @@ export {
   ProductHeroLayout,
   ProductValues,
   SignupDialog,
-  Typography
+  Typography,
+  AboutTheSite,
 };
