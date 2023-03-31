@@ -65,6 +65,7 @@ function MyTrip() {
   const user = useSelector((state) => state.auth.user);
   const selectedTrip = useSelector((state) => state.trips.itineraries);
 
+
   let userId;
   if (user) {
     userId = user.id;
@@ -166,7 +167,7 @@ function MyTrip() {
         {city ? (
           editMode ? (
             <>
-              <img src={selectedTrip.itinerary.imageUrl} alt="Full-width"/>
+              {/*<img src={selectedTrip.itinerary.imageUrl} alt="Full-width"/>*/}
               <h1
                 contentEditable={true}
                 onBlur={(e) => {
@@ -194,7 +195,7 @@ function MyTrip() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   height: '40rem',
-                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${selectedTrip.itinerary.imageUrl})`,
+                  // backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${selectedTrip.itinerary.imageUrl})`,
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
                   overflow: 'hidden',

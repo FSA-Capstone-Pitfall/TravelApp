@@ -93,6 +93,9 @@ router.get('/:activityId', async (req, res, next) => {
       where: {
         id: activityId,
       },
+      include: [
+        { model: Destination }
+      ]
     });
     if (activity) {
       res.send(activity);
