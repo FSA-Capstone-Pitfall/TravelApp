@@ -4,15 +4,15 @@ import {
   ProductHero,
   ProductValues,
   ProductCTA,
+  AboutTheSite,
 } from './components';
 
 function HomePage() {
   return (
     <React.Fragment>
       <ProductHero />
+      <AboutTheSite />
       <ProductValues />
-      {/* <ProductCategories /> */}
-      {/* <ProductCTA /> */}
     </React.Fragment>
   );
 }
