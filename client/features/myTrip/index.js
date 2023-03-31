@@ -10,7 +10,6 @@ import Button from '@mui/material/Button';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { editTripName, fetchSingleTrip } from '../../store/slices/tripsSlice';
-import Typography from '@mui/material/Typography';
 
 const Item = styled(Box)(({ theme }) => ({
   padding: 25,
@@ -22,17 +21,8 @@ const PictureBox = styled(Box)(({ theme }) => ({
   position: 'relative',
   zIndex: 1,
   textAlign: 'center',
+  height: '400px',
   marginBottom: '20px',
-  mb: 10,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '40rem',
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat',
-  overflow: 'hidden',
-  backgroundColor: 'common.black',
   '& img': {
     position: 'absolute',
     top: 0,
@@ -172,7 +162,20 @@ function MyTrip() {
   return (
     <>
       {city ? (
-        <PictureBox sx={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${city.imageUrl})`}}>
+        <PictureBox
+          sx={{
+            mb: 10,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '40rem',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            overflow: 'hidden',
+            backgroundColor: 'common.black',
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${city.imageUrl})`
+          }}>
           <h1
             contentEditable={editMode ? true : false}
             onBlur={(e) => {
@@ -182,11 +185,11 @@ function MyTrip() {
             style={
               editMode
                 ? {
-                    backgroundColor: 'darkgray',
-                    border: '2px solid black',
-                    borderRadius: '4px',
-                    padding: '4px',
-                  }
+                  backgroundColor: 'darkgray',
+                  border: '2px solid black',
+                  borderRadius: '4px',
+                  padding: '4px',
+                }
                 : null
             }
           >
@@ -215,7 +218,7 @@ function MyTrip() {
               <Grid item xs={6}>
                 <Item sx={{ marginBottom: 1 }}>
                   {destinations.length > 0 ? (
-                    <MapWithMarkers destinations={destinations} />
+                    <MapWithMarkers destinations={destinations}/>
                   ) : (
                     <h3>Add activity to see map</h3>
                   )}
@@ -240,8 +243,8 @@ function MyTrip() {
                   <Box sx={{ marginBottom: '16px' }}>
                     <Box sx={{ marginBottom: '16px' }}>
                       <Button
-                        variant='contained'
-                        size='large'
+                        variant="contained"
+                        size="large"
                         sx={{ display: 'block', width: '100%' }}
                       >
                         Travel Companions
@@ -249,8 +252,8 @@ function MyTrip() {
                     </Box>
                     <Box sx={{ marginBottom: '16px' }}>
                       <Button
-                        variant='contained'
-                        size='large'
+                        variant="contained"
+                        size="large"
                         sx={{ display: 'block', width: '100%' }}
                         onClick={() => setEditMode(!editMode)}
                       >
@@ -261,8 +264,8 @@ function MyTrip() {
                       <>
                         <Box sx={{ marginBottom: '16px' }}>
                           <Button
-                            variant='contained'
-                            size='large'
+                            variant="contained"
+                            size="large"
                             sx={{
                               display: 'block',
                               width: '100%',
