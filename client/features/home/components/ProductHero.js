@@ -77,7 +77,7 @@ export default function ProductHero() {
             size='large'
             component='a'
             href={`/destinations`}
-            sx={{ minWidth: 250, fontSize: '3rem' }}
+            sx={{ minWidth: 250, fontSize: '2rem' }}
           >
             Explore
           </Button>

@@ -25,13 +25,14 @@ export default function AppFooter() {
         position: 'fixed',
         bottom: 0,
         marginTop: 'calc(10% + 60px)',
+        backgroundColor: 'transparent',
       }}
       component='footer'
       square
     >
       <Typography
         component='footer'
-        sx={{ display: 'flex', bgcolor: 'secondary.light' }}
+        sx={{ display: 'flex', bgcolor: 'transparent' }}
       >
         <Container sx={{ display: 'flex' }}>
           <Grid
@@ -60,50 +61,3 @@ export default function AppFooter() {
     </Paper>
   );
 }
-
-// import TextField from '../components/TextField';
-//
-// const LANGUAGES = [
-//   {
-//     code: 'en-US',
-//     name: 'English',
-//   },
-//   {
-//     code: 'fr-FR',
-//     name: 'Français',
-//   },
-//   {
-//     code: 'es-ES',
-//     name: 'Español',
-//   },
-//   {
-//     code: 'de-DE',
-//     name: 'Deutsch',
-//   },
-//   {
-//     code: 'zh-CN',
-//     name: '中文',
-//   },
-//   {
-//     code: 'ja-JP',
-//     name: '日本語',
-//   },
-// ];
-
-// <Grid item xs={6} sm={8} md={4}>
-// <TextField
-//   select
-//   size='small'
-//   variant='standard'
-//   SelectProps={{
-//     native: true,
-//   }}
-//   sx={{ mt: 1, width: 150 }}
-// >
-//   {LANGUAGES.map((language) => (
-//     <option value={language.code} key={language.code}>
-//       {language.name}
-//     </option>
-//   ))}
-// </TextField>
-// </Grid>
