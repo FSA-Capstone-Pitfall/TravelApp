@@ -13,7 +13,7 @@ const ProductHeroLayoutRoot = styled('section')({
   justifyContent: 'center',
   height: '115vh',
   minHeight: 500,
-  maxHeight: 1800,
+  maxHeight: 5000,
 });
 
 function ProductHeroLayout(props) {

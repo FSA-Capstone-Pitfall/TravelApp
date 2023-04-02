@@ -1077,6 +1077,13 @@ const CITY_SEED_DATA = [
     imageUrl:
       'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1888&q=80',
   },
+  {
+    name: 'Washington',
+    tag: 'DC',
+    state: 'DC',
+    imageUrl:
+      'https://images.unsplash.com/photo-1569328922596-4c04460c91a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80',
+  },
 ];
 
 const DESTINATION_SEED_DATA = [
@@ -1280,7 +1287,7 @@ const DESTINATION_SEED_DATA = [
     description:
       'A hip and artsy neighborhood in Nashville, known for its vintage shops, live music venues, and a variety of restaurants and bars.',
     googleMap: '36.17710372232674, -86.75630173176619',
-    cityId: 6, // Nashville
+    cityId: 6, // Nashville // destinationId: 26
   },
   {
     name: 'Downtown Nashville',
@@ -1315,7 +1322,7 @@ const DESTINATION_SEED_DATA = [
     description:
       'A creative and artsy district in Phoenix, known for its colorful murals, galleries, and a variety of cafes and bars.',
     googleMap: '33.458880017079934, -112.07148132627115',
-    cityId: 7, // Phoenix
+    cityId: 7, // Phoenix // destination Id: 31
   },
   {
     name: 'Central Phoenix',
@@ -1350,7 +1357,7 @@ const DESTINATION_SEED_DATA = [
     description:
       'A trendy neighborhood in Chicago known for its artistic vibe, independent shops, and a variety of bars and restaurants.',
     googleMap: '41.90706616164699, -87.6742709853255',
-    cityId: 8, // Chicago
+    cityId: 8, // Chicago // destinationId: 36
   },
   {
     name: 'The Magnificent Mile',
@@ -1379,6 +1386,46 @@ const DESTINATION_SEED_DATA = [
       'A vibrant neighborhood in Chicago, known for its trendy restaurants, bars, and art galleries.',
     googleMap: '41.88265608288281, -87.64454137644368',
     cityId: 8,
+  },
+  {
+    name: 'Georgetown',
+    description:
+      'A historic neighborhood with upscale shops, dining, and waterfront park.',
+    googleMap: '38.905331, -77.067676',
+
+    cityId: 9, // Washington, DC // destinationId: 41
+  },
+
+  {
+    name: 'Dupont Circle',
+    description:
+      'A vibrant neighborhood with lively nightlife, galleries, and international restaurants.',
+    googleMap: '38.909964, -77.043038',
+    cityId: 9,
+  },
+
+  {
+    name: 'Adams Morgan',
+    description:
+      'An eclectic neighborhood known for its diverse restaurants, lively music scene, and colorful murals.',
+    googleMap: '38.921495, -77.042070',
+    cityId: 9, // destinationId: 43
+  },
+  {
+    name: 'Capitol Hill',
+    description:
+      'A historic neighborhood home to the US Capitol, Supreme Court, and other government buildings.',
+    googleMap: '38.889848, -77.006801',
+
+    cityId: 9,
+  },
+  {
+    name: 'H Street Corridor',
+    description:
+      'A bustling nightlife and dining hub featuring bars, clubs, and diverse restaurants.',
+    googleMap: '38.900256, -76.995834',
+
+    cityId: 9,
   },
 ];
 
@@ -2264,6 +2311,72 @@ const ACTIVITY_SEED_DATA = [
     categories: ['nature', 'park'],
     destinationId: 35,
   },
+  {
+    name: 'Georgetown Waterfront Park',
+    address: '3303 Water St NW',
+    duration: 90,
+    zipcode: '20007',
+    googleMap: '38.902761, -77.067351',
+    description:
+      'Take a scenic walk along the waterfront, enjoy a picnic, or rent a kayak to explore the Potomac River.',
+    categories: ['outdoor', 'park'],
+    destinationId: 41,
+  },
+  {
+    name: 'The Phillips Collection',
+    address: '1600 21st St NW',
+    duration: 60,
+    zipcode: '20009',
+    googleMap: '38.911439, -77.046860',
+    description:
+      'Explore Americas first museum of modern art, housing an impressive collection of impressionist and contemporary works.',
+    categories: ['culture', 'art'],
+    destinationId: 42,
+  },
+  {
+    name: 'Murals in Adams Morgan',
+    address: '2466 18th St NW',
+    duration: 60,
+    zipcode: '20009',
+    googleMap: '38.921495, -77.042070',
+    description:
+      'Wander through the colorful streets and appreciate the neighborhoods creative and vibrant murals.',
+    categories: ['culture', 'art'],
+    destinationId: 43,
+  },
+  {
+    name: 'U.S. Capitol Tour',
+    address: 'First St SE',
+    duration: 90,
+    zipcode: '20004',
+    googleMap: '38.889848, -77.006801',
+    description:
+      'Visit the iconic symbol of American democracy and learn about its history and architecture during a guided tour.',
+    categories: ['culture', 'landmark'],
+    destinationId: 44,
+  },
+  {
+    name: 'Explore the Library of Congress in Capitol Hill',
+    address: '101 Independence Ave SE',
+    duration: 60,
+    zipcode: '20540',
+    googleMap: '38.888684, -77.004718',
+    description:
+      'Visit the worlds largest library, housing millions of books, photographs, and historical artifacts.',
+    categories: ['culture', 'landmark'],
+    destinationId: 44,
+  },
+  {
+    name: 'H Street Corridor',
+    address: '1117 H St NE',
+    duration: 120,
+    zipcode: '20002',
+    googleMap: '38.900256, -76.995834',
+    description:
+      'Savor delicious food, sip on craft cocktails, and enjoy live music at the lively bars and restaurants along H Street.',
+    categories: ['food', 'bar'],
+    destinationId: 45,
+  },
 ];
 
 const ITINERARY_SEED_DATA = [
@@ -2340,7 +2453,7 @@ const ITINERARY_SEED_DATA = [
       'https://images.unsplash.com/photo-1549861833-c5932fd19229?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2666&q=80',
   },
   {
-    name: "Lisa's Dream Day",
+    name: 'Downtown Vegas Saturday',
     duration: 1,
     authorId: 102,
     cityId: 3,
@@ -2532,7 +2645,7 @@ const ITINERARY_ACTIVITY_SEED_DATA = [
     itineraryId: 9,
   },
 
-  // Lisa's Dream Day
+  // Downtown Vegas Saturday
   {
     activityId: 20, // Velveteen Rabbit
     itineraryId: 10,
