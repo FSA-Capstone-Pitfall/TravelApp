@@ -97,8 +97,8 @@ runSeed();
 
 const USER_SEED_DATA = [
   {
-    firstName: 'Val',
-    lastName: 'Grzelewski',
+    firstName: 'Narb',
+    lastName: 'Varb',
     state: 'California',
     city: 'Pomona',
     role: 'user',
@@ -1054,7 +1054,7 @@ const CITY_SEED_DATA = [
     tag: 'SF',
     state: 'California',
     imageUrl:
-      'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80',
+      'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80', //cityId: 5
   },
   {
     name: 'Nashville',
@@ -1082,7 +1082,7 @@ const CITY_SEED_DATA = [
     tag: 'DC',
     state: 'DC',
     imageUrl:
-      'https://images.unsplash.com/photo-1569328922596-4c04460c91a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80',
+      'https://images.unsplash.com/photo-1569328922596-4c04460c91a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80', //cityId: 9
   },
 ];
 
@@ -1759,7 +1759,7 @@ const ACTIVITY_SEED_DATA = [
   {
     name: 'Glam Factory Vintage',
     address: '211 E Colorado Ave, Las Vegas, NV 89104',
-    duration: 60,
+    duration: 90,
     zipcode: '89104',
     googleMap: '36.160841,-115.141925',
     description:
@@ -1772,7 +1772,7 @@ const ACTIVITY_SEED_DATA = [
   {
     name: 'Alt Rebel',
     address: '1228 S Main St, Las Vegas, NV 89104',
-    duration: 60,
+    duration: 90,
     zipcode: '89104',
     googleMap: '36.155114,-115.148036',
     description:
@@ -1785,7 +1785,7 @@ const ACTIVITY_SEED_DATA = [
   {
     name: 'Silver Stamp Bar',
     address: '113 N 4th St, Las Vegas, NV 89101',
-    duration: 60,
+    duration: 120,
     zipcode: '89101',
     googleMap: '36.168361,-115.143055',
     description:
@@ -1798,7 +1798,7 @@ const ACTIVITY_SEED_DATA = [
   {
     name: 'Viva Las Arepas',
     address: '1616 S Las Vegas Blvd, Las Vegas, NV 89104',
-    duration: 45,
+    duration: 60,
     zipcode: '89104',
     googleMap: '36.148117,-115.155428',
     description:
@@ -2023,7 +2023,7 @@ const ACTIVITY_SEED_DATA = [
     zipcode: '10011',
     googleMap: '40.73420191159807, -73.99827361234685',
     description:
-      'Mace has been a regular on local and international “best of” lists since it first opened in 2015. Sip spice and botanical-forward cocktails, or one of the best frozen drinks in town, and see how fast you’ll make Mace your own personal recommendation.',
+      'Mace has been a regular on local and international “best of” lists since it first opened in 2015. Sip spice and botanical-forward cocktails, or one of the best frozen drinks in town, and see how fast youll make Mace your own personal recommendation.',
     categories: ['bar'],
     destinationId: 1, // Manhattan
     imageUrl:
@@ -2038,7 +2038,7 @@ const ACTIVITY_SEED_DATA = [
     description:
       'A famous sidewalk featuring the stars of celebrities from various industries including music, film, TV and theater.',
     categories: ['landmark', 'culture'],
-    destinationId: 16,
+    destinationId: 16, // activityId: 42
     imageUrl:
       'https://a.cdn-hotels.com/gdcs/production152/d1757/d1eed0bc-513d-49c2-be09-695d4fc2dc7e.jpg',
   },
@@ -2324,6 +2324,8 @@ const ACTIVITY_SEED_DATA = [
       'A hip coffee shop in Germantown with a retro industrial vibe.',
     categories: ['food', 'coffee'],
     destinationId: 28,
+    imageUrl:
+      'https://cdn.shopify.com/s/files/1/0385/1409/files/East-1.jpg?v=1673987974&width=3840',
   },
   {
     name: 'The Station Inn',
@@ -2335,16 +2337,21 @@ const ACTIVITY_SEED_DATA = [
       'A famous bluegrass music venue in The Gulch, known for its intimate atmosphere and talented musicians.',
     categories: ['show'],
     destinationId: 29, //activityId: 65
+    imageUrl:
+      'https://ewscripps.brightspotcdn.com/dims4/default/4de2a57/2147483647/strip/true/crop/1920x1080+0+0/resize/1280x720!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2F64%2Fdf%2F372d6c04428d8072552cb2c79204%2Fam-cole-station-inn-grammys-00.transfer_frame_95.jpeg',
   },
   {
-    name: 'The Station Inn',
-    address: '402 12th Ave S',
+    name: 'The Frist Art Museum',
+    address: '919 Broadway',
     duration: 120,
     zipcode: '37203',
-    googleMap: '36.150191, -86.784683',
-    description: 'A legendary bluegrass venue in the heart of the Gulch.',
-    categories: ['show', 'music'],
+    googleMap: '36.158886, -86.784245',
+    description:
+      'An innovative art museum housed in a historic Art Deco building in the Gulch neighborhood.',
+    categories: ['art', 'museum'],
     destinationId: 29,
+    imageUrl:
+      'https://media.cntraveler.com/photos/5f8454eb5f9755e5951db3c0/16:9/w_2560,c_limit/FristArtMuseum-Nashville-2020-DXDCMY.jpg',
   },
   {
     name: 'Sevier Park',
@@ -2356,17 +2363,21 @@ const ACTIVITY_SEED_DATA = [
       'A large public park in 12 South, featuring playgrounds, sports fields, and a variety of outdoor activities.',
     categories: ['park', 'sports'],
     destinationId: 30,
+    imageUrl:
+      'https://nashvilleguru.com/officialwebsite/wp-content/uploads/2021/05/12-South-Nashville-2021-199-1024x683.jpg',
   },
   {
-    name: 'Station Inn',
-    address: '402 12th Ave S, Nashville, TN 37203',
-    duration: 120,
-    zipcode: '37203',
-    googleMap: '36.15029786328506, -86.7844690715147',
+    name: 'Draper James Boutique',
+    address: '2608 12th Ave S',
+    duration: 60,
+    zipcode: '37204',
+    googleMap: '36.125069, -86.789768',
     description:
-      'A historic live music venue in The Gulch, featuring bluegrass and roots music performances.',
-    categories: ['music', 'nightlife'],
+      'A charming Southern-inspired boutique founded by actress Reese Witherspoon, offering womens clothing, accessories, and home decor in the 12 South neighborhood.',
+    categories: ['shopping', 'fashion'],
     destinationId: 30,
+    imageUrl:
+      'https://nashvilleguru.com/officialwebsite/wp-content/uploads/2021/05/12-South-Nashville-2021-146-1024x683.jpg',
   },
   {
     name: 'Arizona Science Center',
@@ -2378,6 +2389,8 @@ const ACTIVITY_SEED_DATA = [
       'A hands-on science museum featuring interactive exhibits, a planetarium, and a giant-screen theater.',
     categories: ['museum', 'science'],
     destinationId: 31, // Roosevelt Row
+    imageUrl:
+      'https://assets.simpleviewinc.com/simpleview/image/upload/crm/phoenix/Entrance---2_3C6C6DA1-E214-4395-90C149FCF0D53060_f523e0ba-6165-4c3c-93a5e5f5ed25b908.jpg',
   },
   {
     name: 'Phoenix Art Museum',
@@ -2389,6 +2402,8 @@ const ACTIVITY_SEED_DATA = [
       'One of the largest art museums in the Southwest, featuring a wide variety of modern and contemporary art, American art, and fashion design.',
     categories: ['art', 'museum'],
     destinationId: 32, //activityId: 70
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/a/a7/Phoenix_Art_Museum_entrance.jpg',
   },
   {
     name: 'South Mountain Park',
@@ -2400,6 +2415,8 @@ const ACTIVITY_SEED_DATA = [
       'A large natural park in Phoenix, featuring scenic trails, picnic areas, and a variety of outdoor activities.',
     categories: ['nature', 'park'],
     destinationId: 33,
+    imageUrl:
+      'https://a.travel-assets.com/findyours-php/viewfinder/images/res70/478000/478462-Phoenix.jpg',
   },
   {
     name: 'Taliesin West',
@@ -2411,6 +2428,8 @@ const ACTIVITY_SEED_DATA = [
       'The winter home and architectural studio of famed architect Frank Lloyd Wright, now a national historic landmark.',
     categories: ['landmark', 'culture'],
     destinationId: 34,
+    imageUrl:
+      'https://franklloydwright.org/wp-content/uploads/2017/04/Taliesin-West-credit-Foskett-Creative-Courtesy-of-the-Frank-Lloyd-Wright-Foundation-1.jpg',
   },
   {
     name: 'Scottsdale Fashion Square',
@@ -2422,6 +2441,8 @@ const ACTIVITY_SEED_DATA = [
       'Arizonas largest shopping mall, featuring luxury brands, department stores, and a variety of dining options.',
     categories: ['shopping', 'food'],
     destinationId: 34,
+    imageUrl:
+      'https://www.gannett-cdn.com/presto/2023/03/03/PPHX/b62f9159-f115-47db-8b93-79ce40c0de04-20230302160615_-_SFSUpgrades.jpg',
   },
   {
     name: 'Camelback Mountain',
@@ -2431,8 +2452,10 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '33.522400217058876, -111.96534804774205',
     description:
       'A popular hiking spot in Phoenix, known for its stunning views of the city and its challenging trails.',
-    categories: ['nature', 'park'],
+    categories: ['outdoors', 'park'],
     destinationId: 35,
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/a/a9/Camelback_Mountain_2.jpg',
   },
   {
     name: 'Georgetown Waterfront Park',
@@ -2442,7 +2465,7 @@ const ACTIVITY_SEED_DATA = [
     googleMap: '38.902761, -77.067351',
     description:
       'Take a scenic walk along the waterfront, enjoy a picnic, or rent a kayak to explore the Potomac River.',
-    categories: ['outdoor', 'park'],
+    categories: ['outdoors', 'park'],
     destinationId: 41, //activityId: 75
     imageUrl:
       'https://www.nps.gov/common/uploads/place/nri/20160121/places/F2B42263-1DD8-B71B-0B9079EDD1535BF1/F2B42263-1DD8-B71B-0B9079EDD1535BF1.gif',
@@ -2523,6 +2546,173 @@ const ACTIVITY_SEED_DATA = [
     destinationId: 10, // North Park
     imageUrl:
       'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/85/4e/e1/nice-bookstore.jpg?w=1200&h=-1&s=1',
+  },
+  {
+    name: 'Runyon Canyon Park',
+    address: '2000 N Fuller Ave',
+    duration: 120,
+    zipcode: '90046',
+    googleMap: '34.110756, -118.350389',
+    description:
+      'A popular hiking destination with locals, offering panoramic views of the city and the iconic Hollywood Sign.',
+    categories: ['outdoor'],
+    destinationId: 16,
+    imageUrl:
+      'https://a.cdn-hotels.com/gdcs/production106/d905/930c4b0e-69ba-46d1-9958-300418961414.jpg',
+  },
+  {
+    name: 'Third Street Promenade',
+    address: '1351 3rd Street Promenade',
+    duration: 120,
+    zipcode: '90401',
+    googleMap: '34.016228, -118.496939',
+    description:
+      'A vibrant outdoor shopping and dining area, featuring street performers, a farmers market, and unique local shops.',
+    categories: ['shopping', 'food'],
+    destinationId: 17,
+    imageUrl: 'https://travel.usnews.com/images/Third_Street_Promenade_SM.jpg',
+  },
+  {
+    name: 'TreePeople Park',
+    address: '12601 Mulholland Dr',
+    duration: 120,
+    zipcode: '90210',
+    googleMap: '34.128573, -118.412228',
+    description:
+      'An environmental park offering hiking trails, scenic views, and a chance to explore the urban forest of Los Angeles.',
+    categories: ['outdoor', 'hiking', 'nature', 'scenic_view'],
+    destinationId: 18,
+    imageUrl:
+      'https://www.treepeople.org/wp-content/uploads/2021/01/torrey-pines.jpg',
+  },
+  {
+    name: 'Greystone Mansion & Gardens',
+    address: '905 Loma Vista Dr',
+    duration: 90,
+    zipcode: '90210',
+    googleMap: '34.092209, -118.401843',
+    description:
+      'A historic estate featuring beautiful gardens, walking paths, and an opportunity to learn about the history of Beverly Hills.',
+    categories: ['historic_site', 'gardens', 'architecture', 'scenic_view'],
+    destinationId: 19, //activityId: 85
+    imageUrl:
+      'https://nebula.wsimg.com/cc4d6db833b3946aff8e1c2e6b54db7b?AccessKeyId=9C4C2A3CF9D243364BC0&disposition=0&alloworigin=1',
+  },
+  {
+    name: 'Venice Canals Walkway',
+    address: '200 Linnie Canal',
+    duration: 60,
+    zipcode: '90291',
+    googleMap: '33.985046, -118.467564',
+    description:
+      'A picturesque neighborhood featuring charming canals, arched bridges, and unique homes. A favorite spot for locals to stroll and unwind.',
+    categories: ['outdoor'],
+    destinationId: 20,
+    imageUrl:
+      'https://a.cdn-hotels.com/gdcs/production181/d189/f629cbe1-13a6-42ad-9dd1-646b9cce631f.jpg',
+  },
+  {
+    name: 'Abbot Kinney Boulevard',
+    address: 'Abbot Kinney Blvd',
+    duration: 120,
+    zipcode: '90291',
+    googleMap: '33.989838, -118.461970',
+    description:
+      'A trendy shopping and dining street lined with boutiques, art galleries, and some of the best restaurants and cafes in Venice.',
+    categories: ['shopping', 'food', 'art', 'culture'],
+    destinationId: 20,
+    imageUrl:
+      'https://images.squarespace-cdn.com/content/v1/573bf7cccf80a1c792a4b768/1542237581432-6X2E98VRTS0DIB8VSEZ6/AKA-1126.jpg?format=1000w',
+  },
+  {
+    name: 'Muscle Beach Venice',
+    address: '1800 Ocean Front Walk',
+    duration: 60,
+    zipcode: '90291',
+    googleMap: '33.986720, -118.471832',
+    description:
+      'An iconic outdoor gym and fitness area where locals and visitors alike come to exercise, socialize, and enjoy the beach atmosphere.',
+    categories: ['outdoor'],
+    destinationId: 20,
+    imageUrl:
+      'https://www.californiabeaches.com/wp-content/uploads/2016/09/2007-03-31-0188-600x450.jpg',
+  },
+  {
+    name: 'The 606 Trail',
+    address: '1805 N Ridgeway Ave',
+    duration: 90,
+    zipcode: '60647',
+    googleMap: '41.914352, -87.720516',
+    description:
+      'An elevated park and trail system offering a unique urban escape for walking, jogging, and cycling with beautiful city views.',
+    categories: ['outdoor'],
+    destinationId: 36,
+    imageUrl:
+      'https://cdn.vox-cdn.com/thumbor/dg9ZJNkcV9eByO_4-t-zn8j8Lq8=/0x32:1000x782/1200x800/filters:focal(0x32:1000x782)/cdn.vox-cdn.com/uploads/chorus_image/image/51287405/bloomindagle-606-trail.0.0.png',
+  },
+  {
+    name: 'Chicago Riverwalk',
+    address: 'Chicago Riverwalk',
+    duration: 120,
+    zipcode: '60601',
+    googleMap: '41.887730, -87.627082',
+    description:
+      'A vibrant pedestrian path along the Chicago River, featuring public art, dining options, and beautiful city views.',
+    categories: ['outdoor', 'food', 'art'],
+    destinationId: 37, // activityId: 90
+    imageUrl:
+      'https://cdn.choosechicago.com/uploads/2019/06/ALA_Riverwalk2017_6572-900x600.jpg',
+  },
+  {
+    name: 'Lincoln Park Zoo',
+    address: '2001 N Clark St',
+    duration: 180,
+    zipcode: '60614',
+    googleMap: '41.921546, -87.633785',
+    description:
+      'A free, family-friendly zoo featuring a diverse range of animals, beautiful gardens, and various interactive exhibits.',
+    categories: ['landmark', 'outdoor'],
+    destinationId: 38,
+    imageUrl:
+      'https://a.cdn-hotels.com/gdcs/production24/d1983/9e19cb2c-cd2c-4c0f-a5cc-473e0b442482.jpg',
+  },
+  {
+    name: 'National Museum of Mexican Art',
+    address: '1852 W 19th St',
+    duration: 120,
+    zipcode: '60608',
+    googleMap: '41.856081, -87.673480',
+    description:
+      'A cultural institution showcasing Mexican art and heritage, featuring exhibits that highlight the diverse artistic contributions of the Mexican community.',
+    categories: ['museum', 'art', 'culture'],
+    destinationId: 39,
+    imageUrl:
+      'https://media.cntraveler.com/photos/5a5fd0bd93931132da65a91d/16:9/w_2560,c_limit/National-Museum-of-Mexican-Art_2017_NMMA-Gallery-view-19sm.jpg',
+  },
+  {
+    name: 'Randolph Street Market',
+    address: '1341 W Randolph St',
+    duration: 180,
+    zipcode: '60607',
+    googleMap: '41.884550, -87.663461',
+    description:
+      'A monthly marketplace featuring an eclectic mix of vintage and antique items, local artisan goods, and delicious food.',
+    categories: ['shopping', 'food'],
+    destinationId: 40,
+    imageUrl:
+      'https://randolphstreetmarket.com/wp-content/uploads/2022/02/randolph-street-market-2022-dates-1-850x478.jpg',
+  },
+  {
+    name: 'Wicker Park Farmers Market',
+    address: '1425 N Damen Ave',
+    duration: 120,
+    zipcode: '60622',
+    googleMap: '41.908126, -87.677608',
+    description:
+      'A bustling seasonal farmers market featuring locally sourced produce, artisanal goods, and live music in the heart of Wicker Park.',
+    categories: ['shopping', 'food'],
+    destinationId: 36,
+    imageUrl: 'https://assets3.thrillist.com/v1/image/1606732/1200x630',
   },
 ];
 
@@ -2608,12 +2798,76 @@ const ITINERARY_SEED_DATA = [
       'https://images.unsplash.com/photo-1525648703170-3c8f42836383?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
   },
   {
-    name: 'DC Exploration',
+    name: 'Capital Exploration',
     duration: 1,
     authorId: 102,
     cityId: 9,
     imageUrl:
       'https://images.unsplash.com/photo-1618020298919-50f9d16f67b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
+  },
+  {
+    name: 'Phoenix Cultural Tour',
+    duration: 1,
+    authorId: 102,
+    cityId: 7,
+    imageUrl:
+      'https://media-cdn.tripadvisor.com/media/photo-s/10/b4/00/66/phoenix-art-museum-entrance.jpg',
+  },
+  {
+    name: 'Chicago Outdoors & Local Gems',
+    duration: 2,
+    authorId: 102,
+    cityId: 8,
+    imageUrl:
+      'https://www.spendlifetraveling.com/wp-content/uploads/2020/06/things_to_do_outside_in_chicago.jpg',
+  },
+  {
+    name: 'Venice Beach Vibes',
+    duration: 1,
+    authorId: 102,
+    cityId: 4,
+    imageUrl:
+      'https://www.boboandchichi.com/wp-content/uploads/Venice-Beach-at-Sunset-in-Los-Angeles-California.jpg',
+  },
+  {
+    name: 'LA Landmarks and Views',
+    duration: 1,
+    authorId: 102,
+    cityId: 4,
+    imageUrl:
+      'https://www.civitatis.com/f/estados-unidos/los-angeles/galeria/hollywood-boulevard-2.jpg',
+  },
+  {
+    name: 'Tennessee Music & Nightlife',
+    duration: 1,
+    authorId: 100,
+    cityId: 6,
+    imageUrl:
+      'https://travel.home.sndimg.com/content/dam/images/travel/fullrights/2019/3/11/0/CI_Rudys-Jazz-Bar-Nashville-Nightlife.jpg.rend.hgtvcom.1280.853.suffix/1552302056106.jpeg',
+  },
+  {
+    name: 'Nashville Arts & Culture',
+    duration: 1,
+    authorId: 100,
+    cityId: 6,
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/e/ea/Stix_Christian_Moeller.jpg',
+  },
+  {
+    name: 'Bay Area Art',
+    duration: 2,
+    authorId: 100,
+    cityId: 5,
+    imageUrl:
+      'https://sfmoma-media-dev.s3.us-west-1.amazonaws.com/www-media/2021/07/23122855/1Twirling-Tombly-scaled.jpg',
+  },
+  {
+    name: 'Relaxing in San Francisco',
+    duration: 1,
+    authorId: 100,
+    cityId: 5,
+    imageUrl:
+      'https://a.cdn-hotels.com/gdcs/production31/d1726/87874565-77e7-42ed-ade7-11b1ec1ae034.jpg?impolicy=fcrop&w=800&h=533&q=medium',
   },
 ];
 
@@ -2804,29 +3058,35 @@ const ITINERARY_ACTIVITY_SEED_DATA = [
   {
     activityId: 20, // Velveteen Rabbit
     itineraryId: 10,
+    date: new Date('Jul 15, 2023 21:00:00'),
   },
   {
     activityId: 21, // Glam Factory Vintage
     itineraryId: 10,
+    date: new Date('Jul 15, 2023 13:30:00'),
   },
   {
     activityId: 22, // Alt Rebel
     itineraryId: 10,
+    date: new Date('Jul 15, 2023 17:00:00'),
   },
   {
     activityId: 23, // Silver Stamp Bar
     itineraryId: 10,
+    date: new Date('Jul 15, 2023 15:00:00'),
   },
   {
     activityId: 24, // Viva Las Arepas
     itineraryId: 10,
+    date: new Date('Jul 15, 2023 12:30:00'),
   },
   {
     activityId: 25, // Kaiseki Yuzu
     itineraryId: 10,
+    date: new Date('Jul 15, 2023 19:00:00'),
   },
 
-  // DC Exploration
+  // Capital Exploration
   {
     activityId: 75, // Georgetown Waterfront Park
     itineraryId: 11,
@@ -2842,6 +3102,160 @@ const ITINERARY_ACTIVITY_SEED_DATA = [
   {
     activityId: 80, // The Corridor
     itineraryId: 11,
+  },
+
+  // Phoenix Cultural Tour
+  {
+    activityId: 72, // Taliesin West
+    itineraryId: 12,
+  },
+  {
+    activityId: 70, // Phoenix Art Museum
+    itineraryId: 12,
+  },
+  {
+    activityId: 69, // Arizona Science Center
+    itineraryId: 12,
+  },
+
+  // Chicago Outdoors & Local Gems
+  // itineraryId: 13
+  {
+    activityId: 89, // The 606 Trail
+    itineraryId: 13,
+    date: new Date('Jul 15, 2023 10:00:00'),
+  },
+  {
+    activityId: 90, // Chicago Riverwalk
+    itineraryId: 13,
+    date: new Date('Jul 15, 2023 12:00:00'),
+  },
+  {
+    activityId: 91, // Lincoln Park Zoo
+    itineraryId: 13,
+    date: new Date('Jul 15, 2023 14:00:00'),
+  },
+  {
+    activityId: 93, // Randolph Street Market
+    itineraryId: 13,
+    date: new Date('Jul 16, 2023 11:00:00'),
+  },
+  {
+    activityId: 92, // National Museum of Mexican Art
+    itineraryId: 13,
+    date: new Date('Jul 16, 2023 15:00:00'),
+  },
+
+  // Venice Beach Vibes
+  {
+    activityId: 46, // Venice Beach Boardwalk
+    itineraryId: 14,
+  },
+  {
+    activityId: 86, // Venice Canals Walkway
+    itineraryId: 14,
+  },
+  {
+    activityId: 87, // Abbot Kinney Boulevard
+    itineraryId: 14,
+  },
+  {
+    activityId: 88, // Muscle Beach Venice
+    itineraryId: 14,
+  },
+
+  // LA Landmarks and Views
+  {
+    activityId: 42, // Hollywood Walk of Fame
+    itineraryId: 15,
+  },
+  {
+    activityId: 44, // Griffith Observatory
+    itineraryId: 15,
+  },
+  {
+    activityId: 82, // Runyon Canyon Park
+    itineraryId: 15,
+  },
+  {
+    activityId: 85, // Greystone Mansion & Gardens
+    itineraryId: 15,
+  },
+
+  // Tennessee Music & Nightlife
+  {
+    activityId: 60, // Vinyl Tap
+    itineraryId: 16,
+  },
+  {
+    activityId: 65, // The Station Inn
+    itineraryId: 16,
+  },
+  {
+    activityId: 61, // Broadway
+    itineraryId: 16,
+  },
+  {
+    activityId: 62, // The Red Door Saloon
+    itineraryId: 16,
+  },
+
+  // Nashville Arts & Culture
+  {
+    activityId: 59, // Five Points
+    itineraryId: 17,
+  },
+  {
+    activityId: 66, // The Frist Art Museum
+    itineraryId: 17,
+  },
+  {
+    activityId: 63, // Nashville Farmers' Market
+    itineraryId: 17,
+  },
+  {
+    activityId: 68, // Draper James Boutique
+    itineraryId: 17,
+  },
+
+  // Bay Area Art
+  {
+    activityId: 50, // Clarion Alley Mural Project
+    itineraryId: 18,
+    date: new Date('Jul 20, 2023 11:00:00'),
+  },
+  {
+    activityId: 55, // Golden Gate Fortune Cookie Factory
+    itineraryId: 18,
+    date: new Date('Jul 20, 2023 13:00:00'),
+  },
+  {
+    activityId: 56, // Chinese Historical Society of America Museum
+    itineraryId: 18,
+    date: new Date('Jul 20, 2023 14:00:00'),
+  },
+  {
+    activityId: 47, // San Francisco Museum of Modern Art
+    itineraryId: 18,
+    date: new Date('Jul 21, 2023 11:00:00'),
+  },
+
+  // Relaxing in San Francisco
+  {
+    activityId: 52, // Ripley's Believe It or Not! San Francisco
+    itineraryId: 19,
+  },
+  {
+    activityId: 49, // Mission Dolores Park
+    itineraryId: 19,
+  },
+  {
+    activityId: 53, // San Francisco Maritime National Historical Park
+    itineraryId: 19,
+  },
+  {
+    activityId: 58, // California Academy of Sciences
+    itineraryId: 19,
   },
 ];
 
@@ -2991,7 +3405,46 @@ const USER_ITINERARY_SEED_DATA = [
     userId: 102,
     itineraryId: 10,
   },
-  { status: 'upcoming', userId: 102, itineraryId: 11 },
+  {
+    status: 'upcoming',
+    userId: 102,
+    itineraryId: 11,
+  },
+  {
+    status: 'complete',
+    userId: 102,
+    itineraryId: 12,
+  },
+  {
+    status: 'upcoming',
+    userId: 1,
+    itineraryId: 13,
+  },
+  {
+    status: 'upcoming',
+    userId: 102,
+    itineraryId: 14,
+  },
+  {
+    status: 'planning',
+    userId: 1,
+    itineraryId: 15,
+  },
+  {
+    status: 'planning',
+    userId: 100,
+    itineraryId: 16,
+  },
+  {
+    status: 'upcoming',
+    userId: 100,
+    itineraryId: 17,
+  },
+  {
+    status: 'complete',
+    userId: 100,
+    itineraryId: 18,
+  },
 ];
 
 const POST_SEED_DATA = [
