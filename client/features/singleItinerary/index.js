@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -56,9 +56,25 @@ const SingleItinerary = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { itineraryId } = useParams();
+  const [selectedDay, setSelectedDay] = useState(null);
+  const [value, setValue] = useState(0);
 
   const itinerary = useSelector((state) => state.itineraries.itinerary);
   const user = useSelector((state) => state.auth.user);
+
+  const getFirstDay = (activities) => {
+    let firstDay = null;
+
+    activities.forEach((activity) => {
+      const activityDate = new Date(activity.date);
+
+      if (firstDay === null || activityDate < firstDay) {
+        firstDay = activityDate;
+      }
+    });
+
+    return firstDay;
+  };
 
   function comparePositions(a, b) {
     let dateA = new Date(a.date);
@@ -75,6 +91,14 @@ const SingleItinerary = () => {
   useEffect(() => {
     dispatch(fetchItinerary({ itineraryId }));
   }, [dispatch, itineraryId]);
+
+  useEffect(() => {
+    if (itinerary) {
+      let activitiesArr = [...itinerary.itinerary_activities];
+      activitiesArr.sort(comparePositions);
+      setSelectedDay(getFirstDay(activitiesArr));
+    }
+  }, [itinerary]);
 
   const copyItinerary = async ({ itineraryId, userId }) => {
     try {
@@ -154,6 +178,7 @@ const SingleItinerary = () => {
                     activities={itinerary.itinerary_activities}
                     city={itinerary.city}
                     tripDuration={tripDuration}
+                    selectedDay={selectedDay}
                   />
                 </Item>
               </Grid>
@@ -195,7 +220,13 @@ const SingleItinerary = () => {
             <Box sx={{ maxHeight: '1200px', overflowY: 'auto', flex: 1 }}>
               <Item>
                 <h2>Trip Details</h2>
-                <ActivityList activitiesArr={activitiesArr} />
+                <ActivityList
+                  selectedDay={selectedDay}
+                  setSelectedDay={setSelectedDay}
+                  value={value}
+                  setValue={setValue}
+                  activitiesArr={activitiesArr}
+                />
               </Item>
             </Box>
           </Grid>
