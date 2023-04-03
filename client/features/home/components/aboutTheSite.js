@@ -83,18 +83,13 @@ function InformationSection() {
               >
                 TRAVEL LIKE A LOCAL{' '}
               </Typography>
-              <Typography variant='h5'>
+              <Typography variant='h5' sx={{ textAlign: 'left' }}>
                 Say goodbye to overwhelming trip planning and generic travel
                 suggestions! Our platform connects you to travel itineraries
                 handcrafted by local experts, fostering authentic connections
                 between travelers and locals to offer a personalized experience
                 in every city you visit.
               </Typography>
-              <Link to='/destinations' style={{ textDecoration: 'none' }}>
-                <Button variant='contained' size='large' sx={{ mb: 2 }}>
-                  Explore Destinations
-                </Button>
-              </Link>
             </Box>
           </Grid>
 
@@ -108,13 +103,18 @@ function InformationSection() {
               >
                 TRACK YOUR ADVENTURES{' '}
               </Typography>
-              <Typography variant='h5'>
+              <Typography variant='h5' sx={{ mb: 2, textAlign: 'left' }}>
                 Design and customize itineraries on our user-friendly platform,
                 where you can easily modify activities, switch between cities,
                 and fine-tune schedules to match your preferences. Pathfinder's
                 My Trips section allows you to manage your trips and access
                 itineraries with a single click.
               </Typography>
+              <Link to='/destinations' style={{ textDecoration: 'none' }}>
+                <Button variant='contained' size='large' sx={{ mb: 2 }}>
+                  Explore Destinations
+                </Button>
+              </Link>
             </Box>
           </Grid>
           <Grid item xs={12} lg={5} sx={{ mb: 20 }}>
@@ -152,7 +152,7 @@ function InformationSection() {
               >
                 ENDLESS DISCOVERY AWAITS{' '}
               </Typography>
-              <Typography variant='h5'>
+              <Typography variant='h5' sx={{ textAlign: 'left' }}>
                 Discover the unknown on our Explore page, where you'll find new
                 cities and itineraries waiting to be experienced. Draw
                 inspiration from other users' profiles and access the journeys
