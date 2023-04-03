@@ -72,10 +72,6 @@ function AppAppBar() {
     setIsTransparent(!trigger);
   };
 
-  const handleOpenLoginDialog = () => {
-    setIsLoginDialogOpen(true);
-  };
-
   const handleCloseLoginDialog = () => {
     setIsLoginDialogOpen(false);
   };

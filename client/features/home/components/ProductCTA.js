@@ -3,28 +3,19 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from './Typography';
-import Snackbar from './Snackbar';
 import Button from './Button';
 import { Link } from 'react-router-dom';
 import SignupDialog from './SignupDialog';
+import { useSelector } from 'react-redux';
 
 function ProductCTA() {
-  const [open, setOpen] = useState(false);
-  const [showSignUpForm, setShowSignUpForm] = useState(false);
-  const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(true);
+  const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
+  const user = useSelector((state) => state.auth.user);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpenLoginDialog = () => {
-    setIsLoginDialogOpen(true);
-  };
+  let userId;
+  if (user) {
+    userId = user.id;
+  }
 
   const handleCloseLoginDialog = () => {
     setIsLoginDialogOpen(false);
@@ -32,7 +23,6 @@ function ProductCTA() {
 
   const handleSignUpClick = () => {
     setIsLoginDialogOpen(true);
-    setShowSignUpForm(true);
   };
 
   return (
@@ -57,19 +47,27 @@ function ProductCTA() {
               >
                 Get Ready, Jet-set, Go!
               </Typography>
-              <Typography variant='h5'>
+              <Typography variant='h5' sx={{ mb: 2 }}>
                 Begin your adventure with us – sign up and join the travel
                 collective.
               </Typography>
-              <Button
-                type='button'
-                color='error'
-                variant='contained'
-                sx={{ width: '100%', mt: 2, mb: 2 }}
-                onClick={handleSignUpClick}
-              >
-                Sign Up
-              </Button>
+              {!user ? (
+                <Button
+                  type='button'
+                  color='error'
+                  variant='contained'
+                  sx={{ width: '100%', mt: 2, mb: 2 }}
+                  onClick={handleSignUpClick}
+                >
+                  <SignupDialog
+                    color='inherit'
+                    variant='h6'
+                    underline='none'
+                    open={isLoginDialogOpen}
+                    onClose={handleCloseLoginDialog}
+                  />
+                </Button>
+              ) : null}
               <Link to='/destinations' style={{ textDecoration: 'none' }}>
                 <Button
                   type='button'
@@ -115,20 +113,6 @@ function ProductCTA() {
           />
         </Grid>
       </Grid>
-      <Snackbar
-        open={open}
-        closeFunc={handleClose}
-        message="Thanks for signing up! We'll keep you up to date!"
-      />
-      {showSignUpForm && (
-        <SignupDialog
-          color='inherit'
-          variant='h6'
-          underline='none'
-          openForm={true}
-          onClose={handleCloseLoginDialog}
-        />
-      )}
     </Container>
   );
 }
