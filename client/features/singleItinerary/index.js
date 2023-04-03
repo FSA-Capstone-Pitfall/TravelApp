@@ -113,13 +113,28 @@ const SingleItinerary = () => {
 
   if (!itinerary) return null;
 
-  let destinations = itinerary.itinerary_activities.map((activity) => {
-    const coordinates = activity.activity.googleMap.split(',');
-    return {
-      lat: parseFloat(coordinates[0]),
-      lng: parseFloat(coordinates[1]),
-    };
-  });
+  let destinations = [];
+  if (
+    itinerary.itinerary_activities &&
+    itinerary.itinerary_activities.length > 0
+  ) {
+    const filteredActivities = itinerary.itinerary_activities.filter(
+      (activity) => {
+        return (
+          selectedDay &&
+          new Date(activity.date).getDate() === selectedDay.getDate()
+        );
+      }
+    );
+    const locations = filteredActivities.map((item) => {
+      const coordinates = item.activity.googleMap.split(',');
+      return {
+        lat: parseFloat(coordinates[0]),
+        lng: parseFloat(coordinates[1]),
+      };
+    });
+    destinations = locations;
+  }
 
   let tripDuration = 0;
   if (
