@@ -1,10 +1,21 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import anime from 'animejs';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+
+const Item = styled(Box)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 function InformationSection() {
   const itemRefs = useRef([]);
@@ -27,7 +38,7 @@ function InformationSection() {
               translateX: [translateDirection, 0],
               opacity: [0, 1],
               easing: 'easeOutExpo',
-              delay: Math.floor(index / 2) * 2200 + (index % 2) * 1200,
+              delay: Math.floor(index / 2) * 2000 + (index % 2) * 1000,
             });
           });
           observer.current.disconnect();
@@ -48,153 +59,109 @@ function InformationSection() {
 
   return (
     <>
-      <Box
-        component='section'
-        sx={{
-          display: 'flex',
-          overflow: 'hidden',
-          bgcolor: 'primary',
-          mt: '0vh',
-          mb: 25,
-        }}
-      >
-        <Container sx={{ mt: 15, display: 'flex', position: 'relative' }}>
-          <Grid container spacing={5} alignItems='center'>
-            <Grid item xs={12} md={5}>
-              <Box ref={(el) => (itemRefs.current[2] = el)}>
-                <img
-                  src='https://images.unsplash.com/photo-1507539989371-99615e449486?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1924&q=80'
-                  alt='Site information'
-                  style={{
-                    width: '165%',
-                    height: 'auto',
-                    objectFit: 'cover',
-                    aspectRatio: '3/4',
-                    marginLeft: '-70%',
-                  }}
-                />
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={7}>
-              <Box ref={(el) => (itemRefs.current[3] = el)}>
-                <Typography
-                  color='secondary'
-                  variant='h3'
-                  sx={{ mb: 2, letterSpacing: 1 }}
-                  gutterbottom
-                >
-                  TRAVEL LIKE A LOCAL{' '}
-                </Typography>
-                <Typography variant='h5'>
-                  Say goodbye to overwhelming trip planning and generic travel
-                  suggestions! Our platform connects you to travel itineraries
-                  handcrafted by local experts, fostering authentic connections
-                  between travelers and locals to offer a personalized
-                  experience in every city you visit.
-                </Typography>
-              </Box>
-            </Grid>
+      <Box sx={{ flexGrow: 1, padding: { lg: 45, xs: 5 } }}>
+        <Grid container spacing={5} alignItems='center'>
+          <Grid item xs={12} lg={5} sx={{ mb: 20 }}>
+            <Box ref={(el) => (itemRefs.current[0] = el)}>
+              <img
+                src='https://images.pexels.com/photos/1844547/pexels-photo-1844547.jpeg'
+                alt='Site information'
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
+              />
+            </Box>
           </Grid>
-        </Container>
-      </Box>
+          <Grid item xs={12} lg={7} sx={{ mb: 20 }}>
+            <Box ref={(el) => (itemRefs.current[1] = el)}>
+              <Typography
+                color='secondary'
+                variant='h3'
+                sx={{ mb: 2, letterSpacing: 1 }}
+                gutterbottom
+              >
+                TRAVEL LIKE A LOCAL{' '}
+              </Typography>
+              <Typography variant='h5' sx={{ textAlign: 'left' }}>
+                Say goodbye to overwhelming trip planning and generic travel
+                suggestions! Our platform connects you to travel itineraries
+                handcrafted by local experts, fostering authentic connections
+                between travelers and locals to offer a personalized experience
+                in every city you visit.
+              </Typography>
+            </Box>
+          </Grid>
 
-      <Box
-        component='section'
-        sx={{
-          display: 'flex',
-          overflow: 'hidden',
-          bgcolor: 'primary',
-          mt: '0vh',
-          mb: 25,
-        }}
-      >
-        <Container sx={{ mt: 15, display: 'flex', position: 'relative' }}>
-          <Grid container spacing={5} alignItems='center'>
-            <Grid item xs={12} md={7}>
-              <Box ref={(el) => (itemRefs.current[0] = el)}>
-                <Typography
-                  color='secondary'
-                  variant='h3'
-                  sx={{ mb: 2, letterSpacing: 1 }}
-                  gutterbottom
-                >
-                  TRACK YOUR ADVENTURES{' '}
-                </Typography>
-                <Typography variant='h5'>
-                  Design and customize itineraries on our user-friendly
-                  platform, where you can easily modify activities, switch
-                  between cities, and fine-tune schedules to match your
-                  preferences. Pathfinder's My Trips section allows you to
-                  manage your trips and access itineraries with a single click.
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={5}>
-              <Box ref={(el) => (itemRefs.current[1] = el)}>
-                <img
-                  src='https://images.pexels.com/photos/4529063/pexels-photo-4529063.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-                  alt='Site information'
-                  style={{
-                    width: '165%',
-                    height: 'auto',
-                    objectFit: 'cover',
-                    aspectRatio: '3/4',
-                  }}
-                />
-              </Box>
-            </Grid>
+          <Grid item xs={12} lg={7} sx={{ mb: 20 }}>
+            <Box ref={(el) => (itemRefs.current[2] = el)}>
+              <Typography
+                color='secondary'
+                variant='h3'
+                sx={{ mb: 2, letterSpacing: 1 }}
+                gutterbottom
+              >
+                TRACK YOUR ADVENTURES{' '}
+              </Typography>
+              <Typography variant='h5' sx={{ mb: 2, textAlign: 'left' }}>
+                Design and customize itineraries on our user-friendly platform,
+                where you can easily modify activities, switch between cities,
+                and fine-tune schedules to match your preferences. Pathfinder's
+                My Trips section allows you to manage your trips and access
+                itineraries with a single click.
+              </Typography>
+              <Link to='/destinations' style={{ textDecoration: 'none' }}>
+                <Button variant='contained' size='large' sx={{ mb: 2 }}>
+                  Explore Destinations
+                </Button>
+              </Link>
+            </Box>
           </Grid>
-        </Container>
-      </Box>
+          <Grid item xs={12} lg={5} sx={{ mb: 20 }}>
+            <Box ref={(el) => (itemRefs.current[3] = el)}>
+              <img
+                src='https://images.pexels.com/photos/4529063/pexels-photo-4529063.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+                alt='Site information'
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
+              />
+            </Box>
+          </Grid>
 
-      <Box
-        component='section'
-        sx={{
-          display: 'flex',
-          overflow: 'hidden',
-          bgcolor: 'primary',
-          mt: '0vh',
-          mb: 25,
-        }}
-      >
-        <Container sx={{ mt: 15, display: 'flex', position: 'relative' }}>
-          <Grid container spacing={5} alignItems='center'>
-            <Grid item xs={12} md={5}>
-              <Box ref={(el) => (itemRefs.current[2] = el)}>
-                <img
-                  src='https://images.pexels.com/photos/4666754/pexels-photo-4666754.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-                  alt='Site information'
-                  style={{
-                    width: '165%',
-                    height: 'auto',
-                    objectFit: 'cover',
-                    aspectRatio: '3/4',
-                    marginLeft: '-70%',
-                  }}
-                />
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={7}>
-              <Box ref={(el) => (itemRefs.current[3] = el)}>
-                <Typography
-                  color='secondary'
-                  variant='h3'
-                  sx={{ mb: 2, letterSpacing: 1 }}
-                  gutterbottom
-                >
-                  ENDLESS DISCOVERY AWAITS{' '}
-                </Typography>
-                <Typography variant='h5'>
-                  Discover the unknown on our Explore page, where you'll find
-                  new cities and itineraries waiting to be experienced. Draw
-                  inspiration from other users' profiles and access the journeys
-                  they've crafted. Pathfinder is your key to unlocking a world
-                  of new experiences.
-                </Typography>
-              </Box>
-            </Grid>
+          <Grid item xs={12} lg={5} sx={{ mb: 20 }}>
+            <Box ref={(el) => (itemRefs.current[4] = el)}>
+              <img
+                src='https://images.pexels.com/photos/4666754/pexels-photo-4666754.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+                alt='Site information'
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
+              />
+            </Box>
           </Grid>
-        </Container>
+          <Grid item xs={12} lg={7} sx={{ mb: 20 }}>
+            <Box ref={(el) => (itemRefs.current[5] = el)}>
+              <Typography
+                color='secondary'
+                variant='h3'
+                sx={{ mb: 2, letterSpacing: 1 }}
+                gutterbottom
+              >
+                ENDLESS DISCOVERY AWAITS{' '}
+              </Typography>
+              <Typography variant='h5' sx={{ textAlign: 'left' }}>
+                Discover the unknown on our Explore page, where you'll find new
+                cities and itineraries waiting to be experienced. Draw
+                inspiration from other users' profiles and access the journeys
+                they've crafted. Pathfinder is your key to unlocking a world of
+                new experiences.
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
       </Box>
     </>
   );

@@ -1,8 +1,10 @@
 import * as React from 'react';
 import Button from './Button';
 import Typography from './Typography';
-import ProductHeroLayout from './ProductHeroLayout';
 import { useSelector } from 'react-redux';
+import { styled } from '@mui/material/styles';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
 // add your video paths here
 const backgroundVideos = [
@@ -32,100 +34,102 @@ const displayVideo = backgroundVideos[rdmIdx];
 // const displayPic =
 //   'https://justinkelefas.com/wp-content/uploads/2022/04/New-York-City-Sunset-sample-2.jpg';
 
-export default function ProductHero() {
+const videoProps = {
+  src: displayVideo,
+  alt: 'increase priority',
+  autoPlay: true,
+  muted: true,
+  loop: true,
+  style: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    zIndex: -1,
+  },
+};
+
+const ExploreButton = ({ text }) => (
+  <Button
+    color='secondary'
+    variant='contained'
+    size='medium'
+    component='a'
+    href={`/destinations`}
+    sx={{ minWidth: 250, fontSize: text === 'Explore' ? '2rem' : '2rem' }}
+  >
+    {text}
+  </Button>
+);
+
+const ProductHeroWrapper = styled('section')(({ theme }) => ({
+  color: theme.palette.common.white,
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  [theme.breakpoints.up('sm')]: {
+    height: '115vh',
+    minHeight: 500,
+    maxHeight: 1800,
+  },
+}));
+
+const ProductHero = () => {
   const user = useSelector((state) => state.auth.user);
+  const isUserLoggedIn = Boolean(user);
 
   return (
-    <ProductHeroLayout
-      sxBackground={{
-        backgroundPosition: 'center',
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
-      {!user ? (
-        <>
-          <video
-            src={displayVideo}
-            alt='increase priority'
-            autoPlay
-            muted
-            loop
-            style={{
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              zIndex: -1,
-            }}
-          />
-          <Typography color='inherit' align='center' variant='h2'>
-            Your Personal Travel Concierge
-          </Typography>
-          <Typography
-            color='inherit'
-            align='center'
-            variant='h5'
-            sx={{ mb: 10, mt: { xs: 2, sm: 4 } }}
-          >
-            Experience your next destination with personalized itineraries
-            crafted by local experts.
-          </Typography>
-          <Button
-            color='secondary'
-            variant='contained'
-            size='large'
-            component='a'
-            href={`/destinations`}
-            sx={{ minWidth: 250, fontSize: '2rem' }}
-          >
-            Explore
-          </Button>
-        </>
-      ) : (
-        <>
-          <video
-            src={displayVideo}
-            alt='increase priority'
-            autoPlay
-            muted
-            loop
-            style={{
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              zIndex: -1,
-            }}
-          />
-          <Typography
-            color='inherit'
-            align='center'
-            variant='h2'
-            marked='center'
-          >
-            {`Your next destination awaits, ${user.firstName}`}
-          </Typography>
-          <Typography
-            color='inherit'
-            align='center'
-            variant='h5'
-            sx={{ mb: 10, mt: { xs: 2, sm: 4 } }}
-          >
-            Get your itinerary now and explore as the locals do.
-          </Typography>
-          <Button
-            color='secondary'
-            variant='contained'
-            size='large'
-            component='a'
-            href={`/destinations`}
-            sx={{ minWidth: 250, fontSize: '2rem' }}
-          >
-            Destinations
-          </Button>
-        </>
-      )}
-    </ProductHeroLayout>
+    <ProductHeroWrapper>
+      <Container
+        sx={{
+          mt: 3,
+          mb: 14,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100%',
+        }}
+      >
+        <video {...videoProps} />
+        <Typography
+          color='inherit'
+          align='center'
+          variant='h2'
+          marked={isUserLoggedIn ? 'center' : undefined}
+        >
+          {isUserLoggedIn
+            ? `Your next destination awaits, ${user.firstName}`
+            : 'Be apart of the travel movement'}
+        </Typography>
+        <Typography
+          color='inherit'
+          align='center'
+          variant='h5'
+          sx={{ mb: 10, mt: { xs: 2, sm: 4 } }}
+        >
+          {isUserLoggedIn
+            ? 'Get your itinerary now and explore as the locals do.'
+            : 'Experience your next destination with personalized itineraries crafted by local experts.'}
+        </Typography>
+        <ExploreButton text={isUserLoggedIn ? 'Destinations' : 'Explore'} />
+        <Box
+          sx={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: 'common.black',
+            opacity: 0.2,
+            zIndex: -1,
+            height: '97%',
+          }}
+        />
+      </Container>
+    </ProductHeroWrapper>
   );
-}
+};
+
+export default ProductHero;

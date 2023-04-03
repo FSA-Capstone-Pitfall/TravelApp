@@ -6,7 +6,7 @@ const containerStyle = {
   height: '500px',
 };
 
-const Map = ({ destinations }) => {
+const Map = ({ destinations, onUpdate }) => {
   const locationKey = 'AIzaSyARbbsqAblNXS7rOerdE1gI_q5a6yQyXgw';
 
   const defaultCenter = destinations[0];
