@@ -15,6 +15,8 @@ export default function Calendar({
   onActivitiesUpdate,
   tripBlock,
   setTripBlock,
+  setSelectedDay,
+  setValue
 }) {
   const calendarRef = useRef(null);
   const destinationColor = '#ff9f89';
@@ -55,6 +57,8 @@ export default function Calendar({
           };
         });
         onActivitiesUpdate(updatedActivities);
+        setSelectedDay(newStart)
+        setValue(0)
         updatedActivities.forEach((activity) => {
           dispatch(
             editTripActivity({
@@ -76,6 +80,8 @@ export default function Calendar({
       userId,
       tripId,
       onActivitiesUpdate,
+      setSelectedDay,
+      setValue
     ]
   );
 

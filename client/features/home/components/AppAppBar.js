@@ -192,6 +192,7 @@ function AppAppBar() {
                   underline='none'
                   open={isLoginDialogOpen}
                   onClose={handleCloseLoginDialog}
+                  place='navBar'
                 />
               </>
             )}
