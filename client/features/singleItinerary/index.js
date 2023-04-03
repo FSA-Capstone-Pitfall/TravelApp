@@ -57,7 +57,6 @@ const SingleItinerary = () => {
   const navigate = useNavigate();
   const { itineraryId } = useParams();
 
-
   const itinerary = useSelector((state) => state.itineraries.itinerary);
   const user = useSelector((state) => state.auth.user);
 
@@ -88,7 +87,6 @@ const SingleItinerary = () => {
     }
   };
 
-
   if (!itinerary) return null;
 
   let destinations = itinerary.itinerary_activities.map((activity) => {
@@ -109,8 +107,8 @@ const SingleItinerary = () => {
     );
     const endDate = new Date(
       itinerary.itinerary_activities.activities[
-      itinerary.itinerary_activities.activities.length - 1
-        ].date
+        itinerary.itinerary_activities.activities.length - 1
+      ].date
     );
     tripDuration = Math.round((endDate - startDate) / 86400000);
   }
@@ -124,7 +122,7 @@ const SingleItinerary = () => {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          height: '40rem',
+          height: '40vh',
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${itinerary.imageUrl})`,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
@@ -134,10 +132,10 @@ const SingleItinerary = () => {
       >
         {itinerary.city ? (
           <>
-            <Typography color="#fff" align="center" variant="h2">
+            <Typography color='#fff' align='center' variant='h2'>
               {itinerary.name}
             </Typography>
-            <Typography color="#fff" align="center" variant="h5" sx={{ mt: 4 }}>
+            <Typography color='#fff' align='center' variant='h5' sx={{ mt: 4 }}>
               {itinerary.city.name}
             </Typography>
           </>
@@ -162,7 +160,7 @@ const SingleItinerary = () => {
               <Grid item xs={6}>
                 <Item sx={{ marginBottom: 1 }}>
                   {destinations.length > 0 ? (
-                    <MapWithMarkers destinations={destinations}/>
+                    <MapWithMarkers destinations={destinations} />
                   ) : (
                     <h3>Loading...</h3>
                   )}
@@ -173,19 +171,17 @@ const SingleItinerary = () => {
                   <Item sx={{ marginBottom: 1 }}>
                     <Box sx={{ marginBottom: '16px' }}>
                       <Button
-                        variant="contained"
-                        size="large"
+                        variant='contained'
+                        size='large'
                         sx={{ display: 'block', width: '100%' }}
-                        onClick={
-                          async () => {
-                            await copyItinerary({ itineraryId, userId: user.id });
-                            navigate(`/mytrips`, {
-                              state: {
-                                category: 'Planning'
-                              }
-                            });
-                          }
-                        }
+                        onClick={async () => {
+                          await copyItinerary({ itineraryId, userId: user.id });
+                          navigate(`/mytrips`, {
+                            state: {
+                              category: 'Planning',
+                            },
+                          });
+                        }}
                       >
                         Add to MyTrips
                       </Button>
@@ -199,7 +195,7 @@ const SingleItinerary = () => {
             <Box sx={{ maxHeight: '1200px', overflowY: 'auto', flex: 1 }}>
               <Item>
                 <h2>Trip Details</h2>
-                <ActivityList activitiesArr={activitiesArr}/>
+                <ActivityList activitiesArr={activitiesArr} />
               </Item>
             </Box>
           </Grid>

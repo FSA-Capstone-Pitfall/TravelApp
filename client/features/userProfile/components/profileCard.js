@@ -13,7 +13,7 @@ function ProfileCard({ city, duration, itineraryId, name, imageUrl }) {
     <Link underline='none' href={`/itineraries/${itineraryId}`}>
       <Card
         className='activity-card'
-        sx={{ display: 'flex', padding: 2, mb: 5 }}
+        sx={{ display: 'flex', padding: 2, mb: 5, width: '140vh' }}
       >
         <CardMedia
           component='img'

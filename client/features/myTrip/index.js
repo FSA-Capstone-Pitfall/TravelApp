@@ -169,13 +169,14 @@ function MyTrip() {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '40rem',
+            height: '40vh',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             overflow: 'hidden',
             backgroundColor: 'common.black',
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${city.imageUrl})`
-          }}>
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${city.imageUrl})`,
+          }}
+        >
           <h1
             contentEditable={editMode ? true : false}
             onBlur={(e) => {
@@ -185,11 +186,11 @@ function MyTrip() {
             style={
               editMode
                 ? {
-                  backgroundColor: 'darkgray',
-                  border: '2px solid black',
-                  borderRadius: '4px',
-                  padding: '4px',
-                }
+                    backgroundColor: 'darkgray',
+                    border: '2px solid black',
+                    borderRadius: '4px',
+                    padding: '4px',
+                  }
                 : null
             }
           >
@@ -218,7 +219,7 @@ function MyTrip() {
               <Grid item xs={6}>
                 <Item sx={{ marginBottom: 1 }}>
                   {destinations.length > 0 ? (
-                    <MapWithMarkers destinations={destinations}/>
+                    <MapWithMarkers destinations={destinations} />
                   ) : (
                     <h3>Add activity to see map</h3>
                   )}
@@ -243,8 +244,8 @@ function MyTrip() {
                   <Box sx={{ marginBottom: '16px' }}>
                     <Box sx={{ marginBottom: '16px' }}>
                       <Button
-                        variant="contained"
-                        size="large"
+                        variant='contained'
+                        size='large'
                         sx={{ display: 'block', width: '100%' }}
                       >
                         Travel Companions
@@ -252,8 +253,8 @@ function MyTrip() {
                     </Box>
                     <Box sx={{ marginBottom: '16px' }}>
                       <Button
-                        variant="contained"
-                        size="large"
+                        variant='contained'
+                        size='large'
                         sx={{ display: 'block', width: '100%' }}
                         onClick={() => setEditMode(!editMode)}
                       >
@@ -264,8 +265,8 @@ function MyTrip() {
                       <>
                         <Box sx={{ marginBottom: '16px' }}>
                           <Button
-                            variant="contained"
-                            size="large"
+                            variant='contained'
+                            size='large'
                             sx={{
                               display: 'block',
                               width: '100%',

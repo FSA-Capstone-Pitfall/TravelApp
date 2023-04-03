@@ -21,12 +21,12 @@ const PictureBox = styled(Box)(({ theme }) => ({
   position: 'relative',
   zIndex: 1,
   textAlign: 'center',
-  height: '400px',
+  height: '40rem',
   marginBottom: '20px',
 }));
 
 const image =
-  'https://justinkelefas.com/wp-content/uploads/2022/04/New-York-City-Sunset-sample-2.jpg';
+  'https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80';
 
 function AllTrips() {
   const dispatch = useDispatch();
@@ -104,7 +104,7 @@ function AllTrips() {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          height: '40rem',
+          height: '40vh',
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${image})`,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
