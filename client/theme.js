@@ -17,9 +17,9 @@ const rawTheme = createTheme({
       default: '#def1ca',
     },
     error: {
-      light: red[50],
-      main: red[500],
-      dark: red[700],
+      light: '#326232',
+      main: '#003000',
+      dark: '#1E889E',
     },
     success: {
       main: '#07affb',

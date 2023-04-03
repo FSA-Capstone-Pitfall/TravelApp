@@ -30,47 +30,52 @@ export default function Calendar({
 
   const handleEventDrop = useCallback(
     ({ event }) => {
-      // if (event.title === 'Entire Trip') {
-      //   const newStart = new Date(event.start);
-      //   const originalStart = new Date(tripBlock.start);
-      //   const dayDifference =
-      //     (newStart - originalStart) / (24 * 60 * 60 * 1000);
-      //   setTripBlock({
-      //     start: newStart,
-      //     end: new Date(event.end),
-      //   });
-      //   const updatedActivities = activities.map((activity) => {
-      //     const activityStartDate = new Date(activity.date);
-      //     const updatedStartDate = new Date(
-      //       activityStartDate.getTime() + dayDifference * 24 * 60 * 60 * 1000
-      //     );
-      //     return {
-      //       ...activity,
-      //       date: updatedStartDate,
-      //     };
-      //   });
-      //   onActivitiesUpdate(updatedActivities);
-      //   updatedActivities.forEach((activity) => {
-      //     dispatch(
-      //       editTripActivity({
-      //         userId,
-      //         tripId,
-      //         activity,
-      //         date: activity.date,
-      //         notes: activity.notes,
-      //       })
-      //     );
-      //   });
-      // }
+      if (event.title === 'All Trip Days') {
+        const newStart = new Date(event.start);
+        const originalStart = new Date(tripBlock.start);
+        const dayDifference =
+          (newStart - originalStart) / (24 * 60 * 60 * 1000);
+        setTripBlock({
+          start: newStart,
+          end: new Date(event.end),
+        });
+        const updatedActivities = activities.map((activity) => {
+          const activityStartDate = new Date(activity.date);
+          const updatedStartDate = new Date(
+            activityStartDate.getTime() + dayDifference * 24 * 60 * 60 * 1000
+          );
+          // Keep the original time values from the old start date
+          updatedStartDate.setHours(activityStartDate.getHours());
+          updatedStartDate.setMinutes(activityStartDate.getMinutes());
+          updatedStartDate.setSeconds(activityStartDate.getSeconds());
+          updatedStartDate.setMilliseconds(activityStartDate.getMilliseconds());
+          return {
+            ...activity,
+            date: updatedStartDate,
+          };
+        });
+        onActivitiesUpdate(updatedActivities);
+        updatedActivities.forEach((activity) => {
+          dispatch(
+            editTripActivity({
+              userId,
+              tripId,
+              activity,
+              date: activity.date,
+              notes: activity.notes,
+            })
+          );
+        });
+      }
     },
     [
-      // dispatch,
-      // setTripBlock,
-      // activities,
-      // tripBlock,
-      // userId,
-      // tripId,
-      // onActivitiesUpdate,
+      dispatch,
+      setTripBlock,
+      activities,
+      tripBlock,
+      userId,
+      tripId,
+      onActivitiesUpdate,
     ]
   );
 
@@ -119,15 +124,16 @@ export default function Calendar({
     });
   }
 
-  // if (tripBlock) {
-  //   events.unshift({
-  //     title: 'All Trip Days',
-  //     start: tripBlock.start,
-  //     end: tripBlock.end,
-  //     backgroundColor: 'rgba(70, 130, 180, 0.5)',
-  //     allDay: true,
-  //   });
-  // }
+  if (tripBlock && editMode) {
+    console.log('All trip days: ', tripBlock.start, tripBlock.end);
+    events.unshift({
+      title: 'All Trip Days',
+      start: tripBlock.start,
+      end: tripBlock.end,
+      backgroundColor: 'rgba(70, 130, 180, 0.5)',
+      allDay: true,
+    });
+  }
 
   let initialDate;
   if (events[0]) {
@@ -150,13 +156,13 @@ export default function Calendar({
       }}
       initialView='dayGridMonth'
       eventDisplay='block'
-      editable={true}
+      editable={editMode}
       selectable={true}
       selectMirror={true}
       dayMaxEvents={true}
       initialDate={initialDate}
       events={events}
-      eventDrop={handleEventDrop}
+      eventDrop={editMode ? handleEventDrop : null}
     />
   ) : null;
 }

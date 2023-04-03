@@ -12,6 +12,7 @@ function HomePage() {
     <React.Fragment>
       <ProductHero />
       <AboutTheSite />
+      <ProductCTA />
       <ProductValues />
     </React.Fragment>
   );

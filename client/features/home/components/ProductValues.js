@@ -54,98 +54,105 @@ function ProductValues() {
   }, []);
 
   return (
-    <Box
-      component='section'
-      sx={{
-        display: 'flex',
-        overflow: 'hidden',
-        bgcolor: 'primary',
-        mt: '0vh',
-      }}
-    >
-      <Container sx={{ mt: 15, mb: 20, display: 'flex', position: 'relative' }}>
-        <Box
-          component='img'
-          src='https://gitlab.create-ion.at/lt/material-ui/-/raw/v4.0.2/static/themes/onepirate/productCurvyLines.png'
-          alt='curvy lines'
-          sx={{ pointerEvents: 'none', position: 'absolute', top: -180 }}
-        />
-        <Grid container spacing={5}>
-          <Grid item xs={12} md={3}>
-            <Box ref={(el) => (itemRefs.current[0] = el)} sx={item}>
-              <Avatar
-                alt='Locals'
-                src='https://media.licdn.com/dms/image/D4E03AQFvqxoFbLvQVA/profile-displayphoto-shrink_800_800/0/1676475244765?e=1685577600&v=beta&t=SzzwQvMvoizr6z7vpXJrSjVNYlA7qTBMO9nAR-_5huw'
-                sx={{ width: 200, height: 200 }}
-              />
-              <Typography variant='h6' sx={{ my: 5 }}>
-                Local Experts
-              </Typography>
-              <Typography variant='h5'>
-                {
-                  'Our travel app connects you with trusted locals who have personally experienced the best spots in town with their own families and friends.'
-                }
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <Box ref={(el) => (itemRefs.current[1] = el)} sx={item}>
-              <Avatar
-                alt='Experiences'
-                src='https://media.licdn.com/dms/image/C5603AQEpfzL16P8KKA/profile-displayphoto-shrink_800_800/0/1654816121419?e=1685577600&v=beta&t=r2HkjhuB5a-__QSSTe4g3hkMMuX-l1v4x9PTOqUIQ8c'
-                sx={{ width: 200, height: 200 }}
-              />
-              <Typography variant='h6' sx={{ my: 5 }}>
-                New Experiences
-              </Typography>
-              <Typography variant='h5'>
-                {'Travel is all about discovering new experiences.'}
+    <>
+      <Typography variant='h2' align='center' sx={{ mb: 4 }}>
+        About the team
+      </Typography>
+      <Box
+        component='section'
+        sx={{
+          display: 'flex',
+          overflow: 'hidden',
+          bgcolor: 'primary',
+          mt: '0vh',
+        }}
+      >
+        <Container
+          sx={{ mt: 15, mb: 20, display: 'flex', position: 'relative' }}
+        >
+          <Box
+            component='img'
+            src='https://gitlab.create-ion.at/lt/material-ui/-/raw/v4.0.2/static/themes/onepirate/productCurvyLines.png'
+            alt='curvy lines'
+            sx={{ pointerEvents: 'none', position: 'absolute', top: -180 }}
+          />
+          <Grid container spacing={5}>
+            <Grid item xs={12} md={3}>
+              <Box ref={(el) => (itemRefs.current[0] = el)} sx={item}>
+                <Avatar
+                  alt='Locals'
+                  src='https://media.licdn.com/dms/image/D4E03AQFvqxoFbLvQVA/profile-displayphoto-shrink_800_800/0/1676475244765?e=1685577600&v=beta&t=SzzwQvMvoizr6z7vpXJrSjVNYlA7qTBMO9nAR-_5huw'
+                  sx={{ width: 200, height: 200 }}
+                />
+                <Typography variant='h6' sx={{ my: 5 }}>
+                  Valeriia H.
+                </Typography>
+                <Typography variant='h5'>
+                  {
+                    'Our travel app connects you with trusted locals who have personally experienced the best spots in town with their own families and friends.'
+                  }
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <Box ref={(el) => (itemRefs.current[1] = el)} sx={item}>
+                <Avatar
+                  alt='Experiences'
+                  src='https://media.licdn.com/dms/image/C5603AQEpfzL16P8KKA/profile-displayphoto-shrink_800_800/0/1654816121419?e=1685577600&v=beta&t=r2HkjhuB5a-__QSSTe4g3hkMMuX-l1v4x9PTOqUIQ8c'
+                  sx={{ width: 200, height: 200 }}
+                />
+                <Typography variant='h6' sx={{ my: 5 }}>
+                  Chris E.
+                </Typography>
+                <Typography variant='h5'>
+                  {'Travel is all about discovering new experiences.'}
 
-                {
-                  'Discover the hidden gems of your destination and create unforgettable memories.'
-                }
-              </Typography>
-            </Box>
+                  {
+                    'Discover the hidden gems of your destination and create unforgettable memories.'
+                  }
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <Box ref={(el) => (itemRefs.current[2] = el)} sx={item}>
+                <Avatar
+                  alt='Exclusive'
+                  src='https://media.licdn.com/dms/image/C4E03AQGZmRPGVULmjQ/profile-displayphoto-shrink_800_800/0/1602177553284?e=1685577600&v=beta&t=TOTXSL7mek_gAVzk8KFZZg-9Bf5oHDiEGC1vEObNK_0'
+                  sx={{ width: 200, height: 200 }}
+                />
+                <Typography variant='h6' sx={{ my: 5 }}>
+                  Stephen P.
+                </Typography>
+                <Typography variant='h5'>
+                  {
+                    "By registering, you will you'll gain access to exclusive itineraries"
+                  }
+                  {' tailored to your interests and preferences.'}
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <Box ref={(el) => (itemRefs.current[3] = el)} sx={item}>
+                <Avatar
+                  alt='Exclusive'
+                  src='https://media.licdn.com/dms/image/C5603AQHdJ3gZbfIrCw/profile-displayphoto-shrink_800_800/0/1610292910008?e=1685577600&v=beta&t=yTrYaseBEMQEg-W9r2PwaLZ1WOqmyF75NBinHg7kRjA'
+                  sx={{ width: 200, height: 200 }}
+                />
+                <Typography variant='h6' sx={{ my: 5 }}>
+                  Lisa K.
+                </Typography>
+                <Typography variant='h5'>
+                  {
+                    'Browse cities and itineraries to find the excitement you never knew you were looking for. '
+                  }
+                  {''}
+                </Typography>
+              </Box>
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={3}>
-            <Box ref={(el) => (itemRefs.current[2] = el)} sx={item}>
-              <Avatar
-                alt='Exclusive'
-                src='https://media.licdn.com/dms/image/C4E03AQGZmRPGVULmjQ/profile-displayphoto-shrink_800_800/0/1602177553284?e=1685577600&v=beta&t=TOTXSL7mek_gAVzk8KFZZg-9Bf5oHDiEGC1vEObNK_0'
-                sx={{ width: 200, height: 200 }}
-              />
-              <Typography variant='h6' sx={{ my: 5 }}>
-                Exclusive Itineraries
-              </Typography>
-              <Typography variant='h5'>
-                {
-                  "By registering, you will you'll gain access to exclusive itineraries"
-                }
-                {' tailored to your interests and preferences.'}
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <Box ref={(el) => (itemRefs.current[3] = el)} sx={item}>
-              <Avatar
-                alt='Exclusive'
-                src='https://media.licdn.com/dms/image/C5603AQHdJ3gZbfIrCw/profile-displayphoto-shrink_800_800/0/1610292910008?e=1685577600&v=beta&t=yTrYaseBEMQEg-W9r2PwaLZ1WOqmyF75NBinHg7kRjA'
-                sx={{ width: 200, height: 200 }}
-              />
-              <Typography variant='h6' sx={{ my: 5 }}>
-                Expand your horizons
-              </Typography>
-              <Typography variant='h5'>
-                {
-                  'Browse cities and itineraries to find the excitement you never knew you were looking for. '
-                }
-                {''}
-              </Typography>
-            </Box>
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
+        </Container>
+      </Box>
+    </>
   );
 }
 
