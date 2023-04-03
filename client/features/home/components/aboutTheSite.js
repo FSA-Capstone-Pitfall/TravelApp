@@ -38,7 +38,7 @@ function InformationSection() {
               translateX: [translateDirection, 0],
               opacity: [0, 1],
               easing: 'easeOutExpo',
-              delay: Math.floor(index / 2) * 2000 + (index % 2) * 1000,
+              delay: Math.floor(index / 2) * 1400 + (index % 2) * 700,
             });
           });
           observer.current.disconnect();
@@ -79,7 +79,7 @@ function InformationSection() {
                 color='secondary'
                 variant='h3'
                 sx={{ mb: 2, letterSpacing: 1 }}
-                gutterbottom
+                gutterBottom
               >
                 TRAVEL LIKE A LOCAL{' '}
               </Typography>
@@ -99,7 +99,7 @@ function InformationSection() {
                 color='secondary'
                 variant='h3'
                 sx={{ mb: 2, letterSpacing: 1 }}
-                gutterbottom
+                gutterBottom
               >
                 TRACK YOUR ADVENTURES{' '}
               </Typography>
@@ -148,7 +148,7 @@ function InformationSection() {
                 color='secondary'
                 variant='h3'
                 sx={{ mb: 2, letterSpacing: 1 }}
-                gutterbottom
+                gutterBottom
               >
                 ENDLESS DISCOVERY AWAITS{' '}
               </Typography>

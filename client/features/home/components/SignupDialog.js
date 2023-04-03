@@ -15,16 +15,15 @@ import {
   DialogActions,
   IconButton,
 } from '@mui/material';
-import { Close as CloseIcon } from '@mui/icons-material';
+import { Close as CloseIcon, Height } from '@mui/icons-material';
 
 const rightLink = {
   fontSize: 16,
   color: 'common.white',
-  ml: 3,
   textTransform: 'none',
 };
 
-export default function SignupDialog({ toggleDialog, openForm }) {
+export default function SignupDialog({ toggleDialog, openForm, place }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
@@ -91,17 +90,26 @@ export default function SignupDialog({ toggleDialog, openForm }) {
   };
 
   return (
-    <Box>
+    <>
       {!open ? (
         <Link
           color='inherit'
           variant='h6'
           underline='none'
           onClick={handleClickOpen}
-          sx={{
+          sx={place === 'navBar' ? {
             ...rightLink,
             color: 'white',
             cursor: 'pointer',
+            width: '100%',
+            height: '100%',
+          } : {
+            ...rightLink,
+            color: 'white',
+            cursor: 'pointer',
+            width: '100%',
+            height: '100%',
+            paddingTop: '16px',
           }}
         >
           {'Sign Up'}
@@ -112,7 +120,7 @@ export default function SignupDialog({ toggleDialog, openForm }) {
         <Dialog open={true} onClose={handleClose} maxWidth='xs'>
           <form onSubmit={handleSubmit}>
             <DialogTitle sx={{ textAlign: 'center', paddingTop: '40px' }}>
-              <Typography component='h1' variant='h5'>
+              <Typography>
                 Sign Up
               </Typography>
               <IconButton
@@ -130,7 +138,7 @@ export default function SignupDialog({ toggleDialog, openForm }) {
                   flexDirection: 'column',
                 }}
               >
-                <Box component='form' onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                <Box onSubmit={handleSubmit} sx={{ mt: 1 }}>
                   <TextField
                     margin='normal'
                     autoComplete='given-name'
@@ -234,7 +242,7 @@ export default function SignupDialog({ toggleDialog, openForm }) {
         <Dialog open={open} onClose={handleClose} maxWidth='xs'>
           <form onSubmit={handleSubmit}>
             <DialogTitle sx={{ textAlign: 'center', paddingTop: '40px' }}>
-              <Typography component='h1' variant='h5'>
+              <Typography>
                 Sign Up
               </Typography>
               <IconButton
@@ -252,7 +260,7 @@ export default function SignupDialog({ toggleDialog, openForm }) {
                   flexDirection: 'column',
                 }}
               >
-                <Box component='form' onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                <Box onSubmit={handleSubmit} sx={{ mt: 1 }}>
                   <TextField
                     margin='normal'
                     autoComplete='given-name'
@@ -343,6 +351,6 @@ export default function SignupDialog({ toggleDialog, openForm }) {
           </form>
         </Dialog>
       )}
-    </Box>
+      </>
   );
 }

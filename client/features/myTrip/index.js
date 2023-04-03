@@ -64,6 +64,8 @@ function MyTrip() {
   const user = useSelector((state) => state.auth.user);
   const selectedTrip = useSelector((state) => state.trips.itineraries);
 
+  const [value, setValue] = useState(0);
+
   let userId;
   if (user) {
     userId = user.id;
@@ -232,25 +234,18 @@ function MyTrip() {
                     tripBlock={tripBlock}
                     setTripBlock={setTripBlock}
                     selectedDay={selectedDay}
+                    setSelectedDay={setSelectedDay}
                     activities={activities}
                     city={city}
                     selectedTrip={selectedTrip}
                     editMode={editMode}
+                    setValue={setValue}
                   />
                 </Item>
               </Grid>
               <Grid item xs={6}>
                 <Item sx={{ marginBottom: 1 }}>
                   <Box sx={{ marginBottom: '16px' }}>
-                    <Box sx={{ marginBottom: '16px' }}>
-                      <Button
-                        variant='contained'
-                        size='large'
-                        sx={{ display: 'block', width: '100%' }}
-                      >
-                        Travel Companions
-                      </Button>
-                    </Box>
                     <Box sx={{ marginBottom: '16px' }}>
                       <Button
                         variant='contained'
@@ -303,6 +298,8 @@ function MyTrip() {
                   editMode={editMode}
                   onActivityDelete={handleActivityDelete}
                   onActivityUpdate={handleActivityUpdate}
+                  value={value}
+                  setValue={setValue}
                 />
               </Item>
             </Box>

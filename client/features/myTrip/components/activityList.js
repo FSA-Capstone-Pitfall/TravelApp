@@ -42,6 +42,8 @@ export default function ActivityList({
   onActivityUpdate,
   selectedDay,
   setSelectedDay,
+  value,
+  setValue
 }) {
   const dispatch = useDispatch();
   const [activities, setActivities] = useState();
@@ -101,7 +103,6 @@ export default function ActivityList({
 
   //---------------------------------------------------------
 
-  const [value, setValue] = useState(0);
 
   useEffect(() => {
     if (activitiesArr) {

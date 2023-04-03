@@ -56,8 +56,7 @@ function ProductCTA() {
                   type='button'
                   color='error'
                   variant='contained'
-                  sx={{ width: '100%', mt: 2, mb: 2 }}
-                  onClick={handleSignUpClick}
+                  sx={{ width: '100%',  height: '55px', mt: 2, mb: 2, padding: 0 }}
                 >
                   <SignupDialog
                     color='inherit'
@@ -65,6 +64,7 @@ function ProductCTA() {
                     underline='none'
                     open={isLoginDialogOpen}
                     onClose={handleCloseLoginDialog}
+                    place='button'
                   />
                 </Button>
               ) : null}

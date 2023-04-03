@@ -45,12 +45,13 @@ export default function BasicTimeline({
         }
         if (destinationName !== prevDest) {
           allDestinations.push({
-            title: destinationName,
+            title: prevDest,
             start: startDate,
             end: endDate,
           });
           startDate = new Date(activity.date);
           endDate = new Date(startDate.getTime() + duration);
+          prevDest = activity.activity.destination.name;
         } else {
           endDate = new Date(activity.date);
           endDate = new Date(endDate.getTime() + duration);
