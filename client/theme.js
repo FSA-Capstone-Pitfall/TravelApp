@@ -4,7 +4,7 @@ import { grey, red } from '@mui/material/colors';
 const rawTheme = createTheme({
   palette: {
     primary: {
-      main: 'rgba(52,130,140,0.84)',
+      main: 'rgba(76, 141, 137, 0.84)',
     },
     secondary: {
       main: 'rgba(75,125,70,0.75)',

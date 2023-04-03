@@ -63,7 +63,7 @@ function InformationSection() {
             <Grid item xs={12} md={5}>
               <Box ref={(el) => (itemRefs.current[2] = el)}>
                 <img
-                  src='https://images.pexels.com/photos/4606770/pexels-photo-4606770.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+                  src='https://images.unsplash.com/photo-1507539989371-99615e449486?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1924&q=80'
                   alt='Site information'
                   style={{
                     width: '165%',
@@ -132,7 +132,7 @@ function InformationSection() {
             <Grid item xs={12} md={5}>
               <Box ref={(el) => (itemRefs.current[1] = el)}>
                 <img
-                  src='https://images.pexels.com/photos/14221237/pexels-photo-14221237.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+                  src='https://images.pexels.com/photos/4529063/pexels-photo-4529063.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
                   alt='Site information'
                   style={{
                     width: '165%',

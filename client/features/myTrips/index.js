@@ -26,7 +26,7 @@ const PictureBox = styled(Box)(({ theme }) => ({
 }));
 
 const image =
-  'https://justinkelefas.com/wp-content/uploads/2022/04/New-York-City-Sunset-sample-2.jpg';
+  'https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80';
 
 function AllTrips() {
   const dispatch = useDispatch();
