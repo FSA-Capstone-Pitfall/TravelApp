@@ -61,105 +61,105 @@ function InformationSection() {
     <>
       <Box sx={{ flexGrow: 1, padding: { lg: 45, xs: 5 } }}>
         <Grid container spacing={5} alignItems='center'>
-          <Grid item xs={12} lg={7} sx={{ mb: 20 }}>
-            <Item>
-              <Box ref={(el) => (itemRefs.current[0] = el)}>
-                <Typography variant='h3' gutterBottom>
-                  TRIPS FROM LOCAL EXPERTS
-                </Typography>
-                <Typography variant='h5' sx={{ textAlign: 'left' }}>
-                  Our travel app connects you with trusted locals who have
-                  personally experienced the best spots in town with their own
-                  families and friends.
-                </Typography>
-              </Box>
-            </Item>
-          </Grid>
           <Grid item xs={12} lg={5} sx={{ mb: 20 }}>
-            <Item>
-              <Box
-                ref={(el) => (itemRefs.current[1] = el)}
-                sx={{ overflow: 'hidden' }}
+            <Box ref={(el) => (itemRefs.current[0] = el)}>
+              <img
+                src='https://images.pexels.com/photos/1844547/pexels-photo-1844547.jpeg'
+                alt='Site information'
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
+              />
+            </Box>
+          </Grid>
+          <Grid item xs={12} lg={7} sx={{ mb: 20 }}>
+            <Box ref={(el) => (itemRefs.current[1] = el)}>
+              <Typography
+                color='secondary'
+                variant='h3'
+                sx={{ mb: 2, letterSpacing: 1 }}
+                gutterbottom
               >
-                <img
-                  src='https://images.pexels.com/photos/1844547/pexels-photo-1844547.jpeg'
-                  alt='Site information'
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    aspectRatio: '8/12',
-                  }}
-                />
-              </Box>
-            </Item>
-          </Grid>
-
-          <Grid item xs={12} lg={5} sx={{ mb: 20 }}>
-            <Item>
-              <Box ref={(el) => (itemRefs.current[2] = el)}>
-                <img
-                  src='https://images.unsplash.com/photo-1623556710453-d76c4ea26d1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
-                  alt='Site information'
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    aspectRatio: '8/12',
-                  }}
-                />
-              </Box>
-            </Item>
-          </Grid>
-          <Grid item xs={12} lg={7} sx={{ mb: 20 }}>
-            <Item>
-              <Box ref={(el) => (itemRefs.current[3] = el)}>
-                <Typography variant='h3' gutterBottom>
-                  NEW EXPERIENCES
-                </Typography>
-                <Typography variant='h5' sx={{ mb: 2, textAlign: 'left' }}>
-                  Travel is all about uncovering new experiences and hidden gems
-                  to create lasting memories. Dive into the heart of your
-                  destination, exploring its unique character and charm as if
-                  you were a local, embracing the genuine spirit of each
-                  adventure.
-                </Typography>
-                <Link to='/destinations' style={{ textDecoration: 'none' }}>
-                  <Button variant='contained' size='large' sx={{ mb: 2 }}>
-                    Explore Destinations
-                  </Button>
-                </Link>
-              </Box>
-            </Item>
+                TRAVEL LIKE A LOCAL{' '}
+              </Typography>
+              <Typography variant='h5'>
+                Say goodbye to overwhelming trip planning and generic travel
+                suggestions! Our platform connects you to travel itineraries
+                handcrafted by local experts, fostering authentic connections
+                between travelers and locals to offer a personalized experience
+                in every city you visit.
+              </Typography>
+              <Link to='/destinations' style={{ textDecoration: 'none' }}>
+                <Button variant='contained' size='large' sx={{ mb: 2 }}>
+                  Explore Destinations
+                </Button>
+              </Link>
+            </Box>
           </Grid>
 
           <Grid item xs={12} lg={7} sx={{ mb: 20 }}>
-            <Item>
-              <Box ref={(el) => (itemRefs.current[4] = el)}>
-                <Typography variant='h3' gutterBottom>
-                  EXPAND YOUR HORIZONS
-                </Typography>
-                <Typography variant='h5' sx={{ textAlign: 'left' }}>
-                  Browse cities and itineraries to find the excitement you never
-                  knew you were looking for. Whether you're looking for
-                  adventure, relaxation, or something in between, our travel app
-                  has everything you need to plan your next trip with ease.
-                </Typography>
-              </Box>
-            </Item>
+            <Box ref={(el) => (itemRefs.current[2] = el)}>
+              <Typography
+                color='secondary'
+                variant='h3'
+                sx={{ mb: 2, letterSpacing: 1 }}
+                gutterbottom
+              >
+                TRACK YOUR ADVENTURES{' '}
+              </Typography>
+              <Typography variant='h5'>
+                Design and customize itineraries on our user-friendly platform,
+                where you can easily modify activities, switch between cities,
+                and fine-tune schedules to match your preferences. Pathfinder's
+                My Trips section allows you to manage your trips and access
+                itineraries with a single click.
+              </Typography>
+            </Box>
           </Grid>
           <Grid item xs={12} lg={5} sx={{ mb: 20 }}>
-            <Item>
-              <Box ref={(el) => (itemRefs.current[5] = el)}>
-                <img
-                  src='https://images.unsplash.com/photo-1527631746610-bca00a040d60?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
-                  alt='Site information'
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    aspectRatio: '8/12',
-                  }}
-                />
-              </Box>
-            </Item>
+            <Box ref={(el) => (itemRefs.current[3] = el)}>
+              <img
+                src='https://images.pexels.com/photos/4529063/pexels-photo-4529063.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+                alt='Site information'
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
+              />
+            </Box>
+          </Grid>
+
+          <Grid item xs={12} lg={5} sx={{ mb: 20 }}>
+            <Box ref={(el) => (itemRefs.current[4] = el)}>
+              <img
+                src='https://images.pexels.com/photos/4666754/pexels-photo-4666754.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+                alt='Site information'
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
+              />
+            </Box>
+          </Grid>
+          <Grid item xs={12} lg={7} sx={{ mb: 20 }}>
+            <Box ref={(el) => (itemRefs.current[5] = el)}>
+              <Typography
+                color='secondary'
+                variant='h3'
+                sx={{ mb: 2, letterSpacing: 1 }}
+                gutterbottom
+              >
+                ENDLESS DISCOVERY AWAITS{' '}
+              </Typography>
+              <Typography variant='h5'>
+                Discover the unknown on our Explore page, where you'll find new
+                cities and itineraries waiting to be experienced. Draw
+                inspiration from other users' profiles and access the journeys
+                they've crafted. Pathfinder is your key to unlocking a world of
+                new experiences.
+              </Typography>
+            </Box>
           </Grid>
         </Grid>
       </Box>

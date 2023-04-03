@@ -162,21 +162,6 @@ export default function LoginDialog({ toggleDialog }) {
             >
               Login
             </Button>
-            <Grid
-              container
-              sx={{ width: '100%', justifyContent: 'space-between' }}
-            >
-              <Grid item>
-                <Link href='#' variant='body2'>
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href='/' variant='body2' onClick={toggleDialog}>
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
           </DialogActions>
         </form>
       </Dialog>

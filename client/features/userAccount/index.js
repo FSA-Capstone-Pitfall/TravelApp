@@ -60,7 +60,14 @@ const UserAccount = ({ userId }) => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, padding: 6, display: 'flex' }}>
+    <Box
+      sx={{
+        flexGrow: 1,
+        padding: 6,
+        display: 'flex',
+        alignItems: 'flex-start',
+      }}
+    >
       <Box
         sx={{
           display: 'grid',
@@ -89,7 +96,7 @@ const UserAccount = ({ userId }) => {
         }}
       >
         <Typography color='secondary' variant='h2'>
-          User Info
+          Account Info
         </Typography>
         <Box
           component='form'
@@ -121,58 +128,11 @@ const UserAccount = ({ userId }) => {
           />
           <TextField
             margin='normal'
-            id='email'
-            name='email'
-            type='email'
-            label='Email'
-            value={email}
-            autoFocus
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          {update}
-          <Button
-            type='submit'
-            variant='contained'
-            color='primary'
-            sx={{ mt: 2 }}
-          >
-            Update
-          </Button>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          maxWidth: '1200px',
-          gap: '0.5rem',
-          marginLeft: '4rem',
-          border: '1px solid #ccc',
-          boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.3)',
-          borderRadius: 5,
-          padding: 3,
-        }}
-      >
-        <Typography color='secondary' variant='h2'>
-          Profile Info
-        </Typography>
-        <Box
-          component='form'
-          onSubmit={handleUpdate}
-          sx={{
-            mt: 1,
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
-          <TextField
-            margin='normal'
             id='city'
             name='city'
             label='City'
             value={city}
             autoFocus
-            sx={{ width: '600px' }}
             onChange={(e) => setCity(e.target.value)}
           />
           <TextField
@@ -193,13 +153,18 @@ const UserAccount = ({ userId }) => {
             autoFocus
             onChange={(e) => setImageUrl(e.target.value)}
           />
+          <TextField
+            margin='normal'
+            id='email'
+            name='email'
+            type='email'
+            label='Email'
+            value={email}
+            autoFocus
+            onChange={(e) => setEmail(e.target.value)}
+          />
           {update}
-          <Button
-            type='submit'
-            variant='contained'
-            color='primary'
-            sx={{ mt: 2 }}
-          >
+          <Button type='submit' variant='contained' color='primary'>
             Update
           </Button>
         </Box>

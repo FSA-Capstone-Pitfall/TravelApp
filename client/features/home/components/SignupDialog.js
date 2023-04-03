@@ -308,51 +308,41 @@ export default function SignupDialog({ toggleDialog, openForm }) {
                   />
                 </Box>
               </Box>
-            </DialogContent>
-            <DialogActions
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                paddingTop: 0,
-                pl: 3,
-                pr: 3,
-                pb: 4,
-              }}
+            </Box>
+          </DialogContent>
+          <DialogActions
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              paddingTop: 0,
+              pl: 3,
+              pr: 3,
+              pb: 4,
+            }}
+          >
+            {notification && (
+              <Typography
+                align='center'
+                sx={{
+                  color: 'red',
+                  mt: -3,
+                }}
+              >
+                {notification}
+              </Typography>
+            )}
+            <Button
+              type='submit'
+              fullWidth
+              variant='contained'
+              sx={{ mt: 1, mb: 2 }}
             >
-              {notification && (
-                <Typography
-                  align='center'
-                  sx={{
-                    color: 'red',
-                    mt: -3,
-                  }}
-                >
-                  {notification}
-                </Typography>
-              )}
-              <Button
-                type='submit'
-                fullWidth
-                variant='contained'
-                sx={{ mt: 1, mb: 2 }}
-              >
-                Sign up
-              </Button>
-              <Grid
-                container
-                sx={{ width: '100%', justifyContent: 'space-between' }}
-              >
-                <Grid item>
-                  <Link href='/' variant='body2' onClick={toggleDialog}>
-                    {'Already have an account? Log In'}
-                  </Link>
-                </Grid>
-              </Grid>
-            </DialogActions>
-          </form>
-        </Dialog>
-      )}
+              Sign up
+            </Button>
+          </DialogActions>
+        </form>
+      </Dialog>
     </Box>
   );
 }

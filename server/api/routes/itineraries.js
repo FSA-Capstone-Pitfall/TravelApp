@@ -167,5 +167,33 @@ router.post('/:itineraryId', async (req, res, next) => {
   }
 });
 
+// PUT: /api/itineraries/:itineraryId
+router.put('/:itineraryId', async (req, res, next) => {
+
+  try {
+    const { itineraryId } = req.params;
+
+    const { activityId } = req.body;
+
+    const itinerary = await Itinerary.findByPk(itineraryId);
+    if (!itinerary) {
+      res.status(400).send('invalid itinerary identifier');
+      return;
+    }
+
+    const activityToAdd = await Activity.findByPk(activityId);
+    if (!activityToAdd) {
+      res.status(400).send('invalid activity identifier');
+      return;
+    }
+
+    await itinerary.addActivity(activityToAdd);
+
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+});
+
 
 module.exports = router;
