@@ -87,11 +87,6 @@ function ProductValues() {
                 <Typography variant='h6' sx={{ my: 5 }}>
                   Valeriia H.
                 </Typography>
-                <Typography variant='h5'>
-                  {
-                    'Our travel app connects you with trusted locals who have personally experienced the best spots in town with their own families and friends.'
-                  }
-                </Typography>
               </Box>
             </Grid>
             <Grid item xs={12} md={3}>
@@ -103,13 +98,6 @@ function ProductValues() {
                 />
                 <Typography variant='h6' sx={{ my: 5 }}>
                   Chris E.
-                </Typography>
-                <Typography variant='h5'>
-                  {'Travel is all about discovering new experiences.'}
-
-                  {
-                    'Discover the hidden gems of your destination and create unforgettable memories.'
-                  }
                 </Typography>
               </Box>
             </Grid>
@@ -123,12 +111,6 @@ function ProductValues() {
                 <Typography variant='h6' sx={{ my: 5 }}>
                   Stephen P.
                 </Typography>
-                <Typography variant='h5'>
-                  {
-                    "By registering, you will you'll gain access to exclusive itineraries"
-                  }
-                  {' tailored to your interests and preferences.'}
-                </Typography>
               </Box>
             </Grid>
             <Grid item xs={12} md={3}>
@@ -140,12 +122,6 @@ function ProductValues() {
                 />
                 <Typography variant='h6' sx={{ my: 5 }}>
                   Lisa K.
-                </Typography>
-                <Typography variant='h5'>
-                  {
-                    'Browse cities and itineraries to find the excitement you never knew you were looking for. '
-                  }
-                  {''}
                 </Typography>
               </Box>
             </Grid>

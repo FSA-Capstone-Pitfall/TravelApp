@@ -308,41 +308,41 @@ export default function SignupDialog({ toggleDialog, openForm }) {
                   />
                 </Box>
               </Box>
-            </Box>
-          </DialogContent>
-          <DialogActions
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              paddingTop: 0,
-              pl: 3,
-              pr: 3,
-              pb: 4,
-            }}
-          >
-            {notification && (
-              <Typography
-                align='center'
-                sx={{
-                  color: 'red',
-                  mt: -3,
-                }}
-              >
-                {notification}
-              </Typography>
-            )}
-            <Button
-              type='submit'
-              fullWidth
-              variant='contained'
-              sx={{ mt: 1, mb: 2 }}
+            </DialogContent>
+            <DialogActions
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                paddingTop: 0,
+                pl: 3,
+                pr: 3,
+                pb: 4,
+              }}
             >
-              Sign up
-            </Button>
-          </DialogActions>
-        </form>
-      </Dialog>
+              {notification && (
+                <Typography
+                  align='center'
+                  sx={{
+                    color: 'red',
+                    mt: -3,
+                  }}
+                >
+                  {notification}
+                </Typography>
+              )}
+              <Button
+                type='submit'
+                fullWidth
+                variant='contained'
+                sx={{ mt: 1, mb: 2 }}
+              >
+                Sign up
+              </Button>
+            </DialogActions>
+          </form>
+        </Dialog>
+      )}
     </Box>
   );
 }
