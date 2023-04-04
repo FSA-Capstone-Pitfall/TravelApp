@@ -6,33 +6,14 @@ import { styled } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 
-// add your video paths here
 const backgroundVideos = [
-  '/assets/videos/granny.mp4',
-  // '/assets/videos/home3.mp4',
-  // '/assets/videos/home4.mp4',
-  // '/assets/videos/home5.mp4',
-  // '/assets/videos/home7.mp4',
-  // '/assets/videos/video1.mp4',
-  // '/assets/videos/video2.mp4',
-  // '/assets/videos/video4.mp4',
-  // '/assets/videos/video.mp4',
-  // '/assets/videos/mov1.mp4',
-  // '/assets/videos/mov2.mp4',
-  // '/assets/videos/mov3.mp4',
-  // '/assets/videos/mov4.mp4',
-  // '/assets/videos/mov5.mp4',
-  // '/assets/videos/mov6.mp4',
-  // '/assets/videos/mov7.mp4',
-  // '/assets/videos/mov8.mp4',
-  // '/assets/videos/mov9.mp4',
+  '/assets/skateboard.mp4',
+  '/assets/scuba.mp4',
+  '/assets/climbing.mp4',
 ];
 
 const rdmIdx = Math.floor(Math.random() * backgroundVideos.length);
 const displayVideo = backgroundVideos[rdmIdx];
-
-// const displayPic =
-//   'https://justinkelefas.com/wp-content/uploads/2022/04/New-York-City-Sunset-sample-2.jpg';
 
 const videoProps = {
   src: displayVideo,
@@ -62,18 +43,17 @@ const ExploreButton = ({ text }) => (
   </Button>
 );
 
-const ProductHeroWrapper = styled('section')(({ theme }) => ({
-  color: theme.palette.common.white,
+const ProductHeroWrapper = styled('section')({
+  color: 'white',
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  [theme.breakpoints.up('sm')]: {
-    height: '115vh',
-    minHeight: 500,
-    maxHeight: 1800,
-  },
-}));
+
+  height: '115vh',
+  minHeight: 500,
+  maxHeight: 1800,
+});
 
 const ProductHero = () => {
   const user = useSelector((state) => state.auth.user);
@@ -101,7 +81,7 @@ const ProductHero = () => {
         >
           {isUserLoggedIn
             ? `Your next destination awaits, ${user.firstName}`
-            : 'Be apart of the travel movement'}
+            : 'Be a part of the travel movement'}
         </Typography>
         <Typography
           color='inherit'

@@ -171,7 +171,7 @@ function MyTrip() {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '40vh',
+            height: '50rem',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             overflow: 'hidden',

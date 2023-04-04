@@ -4,7 +4,7 @@
   "description": "boilerplate code for react-redux state management and Node.js express server with postgres database management using Sequelize",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build-watch & npm run start-server ",
+    "start": "node server",
     "start-prod": "npm run build-watch & npm run start-server ",
     "start-dev": "webpack -w & nodemon server",
     "build": "webpack",

@@ -99,7 +99,7 @@ function AppAppBar() {
               underline='none'
               color='white'
               href='/'
-              sx={{ fontSize: 16, textTransform: 'none', ml: 1 }}
+              sx={{ fontSize: 16, ml: 1 }}
             >
               {'Pathfinder'}
             </Link>
