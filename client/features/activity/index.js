@@ -73,7 +73,7 @@ const Activity = () => {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          height: '40vh',
+          height: '50rem',
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${activity.imageUrl})`,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',

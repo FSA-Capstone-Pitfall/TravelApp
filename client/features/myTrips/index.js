@@ -21,7 +21,7 @@ const PictureBox = styled(Box)(({ theme }) => ({
   position: 'relative',
   zIndex: 1,
   textAlign: 'center',
-  height: '40rem',
+  height: '50rem',
   marginBottom: '20px',
 }));
 
@@ -104,7 +104,7 @@ function AllTrips() {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          height: '40vh',
+          height: '50rem',
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${image})`,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
